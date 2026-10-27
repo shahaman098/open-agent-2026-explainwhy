@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { createRequire } from "node:module";
@@ -13,14 +13,14 @@ const cases = sourceDataset();
 const savedCalls = JSON.parse(readFileSync(resolve(root, "docs/training/source-support-v1/calls.json"), "utf8"));
 function fixture() {
   const cwd = mkdtempSync(resolve(tmpdir(), "explainwhy-training-cli-")); directories.push(cwd);
-  const directory = resolve(cwd, "docs/training/source-support-v1"); mkdirSync(directory, { recursive: true });
+  const directory = resolve(cwd, "docs/training/source-support-v1");
+  cpSync(resolve(root, "docs/training/source-support-v1"), directory, { recursive: true });
   const guard = resolve(cwd, "no-network.mjs");
   writeFileSync(guard, "globalThis.fetch = async () => { throw new Error('Network is forbidden in this test'); };\n");
-  const env = { ...process.env, MUBIT_API_KEY: "", MUBIT_INVESTIGATOR_MODEL: "gpt-6-luna", MUBIT_REASONING_DEPTH: "low" };
-  const run = (command: string, file?: string, credentials = false) => spawnSync(process.execPath,
-    ["--conditions=react-server", "--import", loader, "--import", guard, script, command, ...(file ? [file] : [])],
-    { cwd, env: { ...env, ...(credentials ? { MUBIT_API_KEY: "unit-test-placeholder" } : {}) }, encoding: "utf8", timeout: 15_000 });
-  expect(run("prepare").status).toBe(0);
+  const env = { ...process.env, NVIDIA_API_KEY: "", EXPLAINWHY_REASONING_DEPTH: "low" };
+  const run = (command: string, file?: string, credentials = false, experiment = "source-support-v1") => spawnSync(process.execPath,
+    ["--conditions=react-server", "--import", loader, "--import", guard, script, command, ...(file ? [file] : []), `--experiment=${experiment}`],
+    { cwd, env: { ...env, ...(credentials ? { NVIDIA_API_KEY: "unit-test-placeholder" } : {}) }, encoding: "utf8", timeout: 15_000 });
   return { cwd, directory, run, ledger: resolve(directory, "calls.json") };
 }
 afterEach(() => { directories.splice(0).forEach((directory) => rmSync(directory, { recursive: true, force: true })); });
@@ -32,7 +32,7 @@ describe("training CLI recovery and frozen evidence", () => {
     const result = f.run("report"); expect(result.status, result.stderr).toBe(0);
     expect(JSON.parse(readFileSync(resolve(f.directory, "report.json"), "utf8"))).toMatchObject({
       baseline: { total: 24, attempted: 24, valid: 24, correct: 15, accuracy: 0.625 },
-      collection: { successful: 40 }, comparison: { improved: null },
+      collection: { successful: 40 }, comparison: { status: expect.stringMatching(/blocked|ready/) },
     });
     expect(readFileSync(f.ledger, "utf8")).toBe(original);
   });
@@ -44,9 +44,13 @@ describe("training CLI recovery and frozen evidence", () => {
     expect(readFileSync(f.ledger, "utf8")).toBe(original);
   });
   it("rejects missing credentials before a pending call can be written", () => {
-    const f = fixture(), result = f.run("baseline");
-    expect(result.status).toBe(1); expect(result.stderr).toContain("missing_mubit_key");
-    expect(existsSync(f.ledger)).toBe(false);
+    const fresh = mkdtempSync(resolve(tmpdir(), "explainwhy-training-empty-")); directories.push(fresh);
+    const guard = resolve(fresh, "no-network.mjs");
+    writeFileSync(guard, "globalThis.fetch = async () => { throw new Error('Network is forbidden in this test'); };\n");
+    const result = spawnSync(process.execPath, ["--conditions=react-server", "--import", loader, "--import", guard, script, "baseline", "--experiment=source-support-nemotron-v1"],
+      { cwd: fresh, env: { ...process.env, NVIDIA_API_KEY: "" }, encoding: "utf8", timeout: 15_000 });
+    expect(result.status).toBe(1); expect(result.stderr).toContain("missing_nvidia_key");
+    expect(existsSync(resolve(fresh, "docs/training/source-support-nemotron-v1/calls.json"))).toBe(false);
   });
   it.each(["inputHash", "recording", "phase", "duplicate"])("rejects a corrupted %s ledger before replacing evidence", (field) => {
     const f = fixture(), rows = structuredClone(savedCalls);
@@ -76,9 +80,9 @@ describe("training CLI recovery and frozen evidence", () => {
     const results = cases.filter((c) => c.split === "test").map((c) => ({ caseId: c.caseId, inputHash: checksum(c.input),
       output: { assessments: [{ sourceId: c.input[0].sourceId, relation: c.expected, rationale: "Unit test fixture." }] } }));
     const file = resolve(f.cwd, "adapter-unit-fixture.json");
-    writeFileSync(file, JSON.stringify({ origin: "mubit_console_try_models", task: manifest.task, model: manifest.model,
-      fingerprint: manifest.fingerprint, datasetHash: manifest.datasetHash, adapterVersionId: "unit-fixture-v1", taskId: "unit-fixture-task",
-      capturedAt: new Date().toISOString(), consoleEvidencePaths: [capture], results }));
+    writeFileSync(file, JSON.stringify({ origin: "explainwhy_profile", task: manifest.task, model: manifest.model,
+      fingerprint: manifest.fingerprint, datasetHash: manifest.datasetHash, profileId: "unit-fixture-v1",
+      capturedAt: new Date().toISOString(), results }));
     const result = f.run("compare", file);
     expect(result.status).toBe(1); expect(result.stderr).toContain("baseline_outcome_unresolved");
     expect(existsSync(resolve(f.directory, "adapter-comparison.json"))).toBe(false);

@@ -12,7 +12,7 @@ async function main() {
   const arg = (name: string) => process.argv.find((a) => a.startsWith(`--${name}=`))?.slice(name.length + 3);
   const scope = arg("run") ? Scope.parse({ businessId: arg("business") || "nike_demo", simulationRunId: arg("run"), investigationId: arg("investigation") }) : undefined;
   const config = providerConfig();
-  console.log(`ExplainWhy investigation worker ready (${config.investigatorModel}; diagnosis ${config.diagnosisModel}; Gemini transport ${config.geminiTransport})`);
+  console.log(`ExplainWhy investigation worker ready (NVIDIA ${config.investigatorModel}; diagnosis ${config.diagnosisModel})`);
   do { const worked = await runNextInvestigation(db, scope); if (process.argv.includes("--once")) break; if (!worked) await new Promise((resolve) => setTimeout(resolve, 1500)); } while (!stop);
 }
 main().catch(() => { console.error("Investigation worker stopped: database or configuration failure"); process.exitCode = 1; }).finally(async () => { if (globalThis._explainwhyMongoClientPromise) await (await getMongoClient()).close(); });

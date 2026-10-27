@@ -13,7 +13,7 @@ import { captureReportMemory } from "@/integrations/meterless/persistence";
 import { recallHistoricalMemories, type HistoricalMemory } from "@/integrations/meterless/history";
 const scope = { businessId: "nike_test", simulationRunId: `t_stage5_${Date.now()}` };
 const window = { startAt: "2026-10-02T00:00:00.000Z", endAt: "2026-10-03T00:00:00.000Z" };
-const metadata: ModelResponse["metadata"] = { provider: "mubit", model: "test_fixture", requestId: "test_mock_request", providerRequestId: null, route: "test_mock", latencyMs: 1, inputTokens: 10, outputTokens: 10, totalTokens: 20, estimatedCostUsd: null };
+const metadata: ModelResponse["metadata"] = { provider: "nvidia", model: "test_fixture", requestId: "test_mock_request", providerRequestId: null, route: "test_mock", latencyMs: 1, inputTokens: 10, outputTokens: 10, totalTokens: 20, estimatedCostUsd: null };
 const hypothesis = (cause: typeof RootCause.options[number]) => ({ cause, explanation: "A plausible alternative", mechanism: "A possible mechanism", support: "insufficient_evidence", evidenceIds: [], counterEvidenceIds: [], expectedObservations: ["A matching change"], missingEvidence: ["More observations"], falsificationTests: ["Compare an unaffected cohort"], chronology: "Unknown", confounders: ["Changing mix"], controlComparison: "Unavailable" });
 const decision = { hypotheses: [hypothesis(RootCause.options[0]), hypothesis(RootCause.options[1])], decisionSummary: "More evidence is needed", nextTools: [{ tool: "checkout_analysis", question: "Are failures elevated?", campaignIds: [], productIds: [] }], research: null, stop: false, stopReason: "Need internal evidence" };
 const diagnosis = { primaryCause: "unknown", hypotheses: [{ cause: "unknown", strength: "weak", evidenceIds: [], counterEvidenceIds: [], explanation: "No reliable explanation is supported." }], summary: "Evidence is insufficient to select a reliable cause.", missingEvidence: ["A complete operational window"], requiresReview: true };
@@ -27,7 +27,7 @@ async function seed(name: string) {
   return { ...scope, investigationId };
 }
 beforeAll(async () => {
-  vi.stubEnv("MUBIT_API_KEY", "test_mock_key"); vi.stubEnv("EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED", "false");
+  vi.stubEnv("NVIDIA_API_KEY", "test_mock_key"); vi.stubEnv("EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED", "false");
   db = await getDb(); await ensureIndexes(db);
   await db.collection(COLLECTIONS.businessEvents).insertOne({ ...scope, eventId: `${scope.simulationRunId}_event`, type: "ad.metrics_observed", occurredAt: window.startAt, provenance: { connectorId: "stage5_test", sourceRecordId: scope.simulationRunId }, payload: { window } });
   await db.collection(COLLECTIONS.monitoringWindows).insertOne({ ...scope, windowKey: `${scope.simulationRunId}_window`, windowEnd: window.endAt, status: "ready" });

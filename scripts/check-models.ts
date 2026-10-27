@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { z } from "zod";
-import { callModel, jsonSchema, providerConfig, ProviderError, gatewayRequest } from "../src/intelligence/investigator/provider";
+import { callGeminiResearch, callModel, jsonSchema, providerConfig, ProviderError } from "../src/intelligence/investigator/provider";
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 async function main() {
   const c = providerConfig();
@@ -14,8 +14,8 @@ async function main() {
   try { await callModel({ model: "explainwhy-invalid-connectivity-model", system: "Reply ok.", input: "ok", maxOutputTokens: 16 }); throw new Error("Invalid model unexpectedly succeeded"); }
   catch (error) { if (!(error instanceof ProviderError)) throw error; console.log(JSON.stringify({ check: "invalid_model", code: error.code, ...error.metadata })); }
   if (process.argv.includes("--research")) {
-    const result = await gatewayRequest(`${c.geminiBase}/v1beta/models/${encodeURIComponent(c.researchModel)}:generateContent`, { contents: [{ role: "user", parts: [{ text: "Use Google Search to find the official Google Search status dashboard. Return its source URL and no operational advice." }] }], tools: [{ google_search: {} }], generationConfig: { maxOutputTokens: 1500, thinkingConfig: { thinkingLevel: "low" } } }, "mubit", c.researchModel);
-    console.log(JSON.stringify({ check: "native_grounding", ...result.metadata, result: result.body }));
+    const result = await callGeminiResearch({ contents: [{ role: "user", parts: [{ text: "Reply with one sentence: connectivity check only, no search." }] }], generationConfig: { maxOutputTokens: 256 } });
+    console.log(JSON.stringify({ check: "gemini_research_route", ...result.metadata, hasCandidates: Boolean((result.body.candidates as unknown[])?.length) }));
   }
 }
 main().catch((e: unknown) => { console.error(e instanceof ProviderError ? JSON.stringify({ code: e.code, metadata: e.metadata }) : String(e)); process.exitCode = 1; });

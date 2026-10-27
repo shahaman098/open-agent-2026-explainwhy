@@ -5,7 +5,7 @@ import { research } from "@/intelligence/investigator/research";
 
 const schema = z.object({ ok: z.boolean() }).strict();
 const reply = (content: string, finish = "stop") => new Response(JSON.stringify({ choices: [{ finish_reason: finish, message: { content } }], usage: { prompt_tokens: 12, completion_tokens: 5, total_tokens: 17 } }), { status: 200, headers: { "nvcf-reqid": "nvreq_123" } });
-beforeEach(() => { vi.stubEnv("EXPLAINWHY_MODEL_PROVIDER", "nvidia"); vi.stubEnv("NVIDIA_API_KEY", "nvapi-test"); vi.stubEnv("MUBIT_API_KEY", ""); });
+beforeEach(() => { vi.stubEnv("NVIDIA_API_KEY", "nvapi-test"); vi.stubEnv("GEMINI_API_KEY", ""); });
 afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 
 describe("direct NVIDIA provider (no gateway)", () => {
@@ -52,11 +52,11 @@ describe("direct NVIDIA provider (no gateway)", () => {
     expect(prompted.messages[0].content).toContain("matches this JSON Schema");
   });
 
-  it("does not attempt Gemini-grounded research on the NVIDIA route", async () => {
+  it("requires a Gemini key for grounded research while inference stays on NVIDIA", async () => {
     vi.stubEnv("EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED", "true");
     const mock = vi.fn(); vi.stubGlobal("fetch", mock);
     const window = { startAt: "2026-10-01T00:00:00.000Z", endAt: "2026-10-02T00:00:00.000Z" };
-    await expect(research({ topic: "retail_market", question: "q", rationale: "r", geography: "UK", hypotheses: ["unknown"], sourceTypes: ["government"] }, window, window.endAt)).rejects.toMatchObject({ code: "research_unavailable_for_provider" });
+    await expect(research({ topic: "retail_market", question: "q", rationale: "r", geography: "UK", hypotheses: ["unknown"], sourceTypes: ["government"] }, window, window.endAt)).rejects.toMatchObject({ code: "missing_gemini_key" });
     expect(mock).not.toHaveBeenCalled();
   });
 });

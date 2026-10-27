@@ -1,30 +1,30 @@
 import "server-only";
 
-export const DEFAULT_MUBIT_MODEL = "gemini-4-argon";
-/** Reasoning core when ExplainWhy calls the NVIDIA API catalog directly (EXPLAINWHY_MODEL_PROVIDER=nvidia). */
+/** Reasoning core when ExplainWhy calls the NVIDIA API catalog directly. */
 export const DEFAULT_NVIDIA_MODEL = "nvidia/nemotron-3-super-120b-a12b";
+export const DEFAULT_GEMINI_RESEARCH_MODEL = "gemini-2.0-flash";
 
-export type ModelProvider = "mubit" | "nvidia";
+export type ModelProvider = "nvidia";
+
+/** Inference uses the NVIDIA API catalog; grounded research uses direct Gemini when enabled. */
 export function modelProvider(): ModelProvider {
-  return process.env.EXPLAINWHY_MODEL_PROVIDER === "nvidia" ? "nvidia" : "mubit";
+  return "nvidia";
 }
 
 /** Server-owned model settings shared by inference and the current-model disclosure. No credentials. */
 export function configuredModels() {
-  if (modelProvider() === "nvidia") {
-    const model = (name: string) => process.env[`NEMOTRON_${name}_MODEL`] || DEFAULT_NVIDIA_MODEL;
-    return { investigatorModel: model("INVESTIGATOR"), diagnosisModel: model("DIAGNOSIS"), plannerModel: model("PLANNER"), researchModel: model("INVESTIGATOR") };
-  }
+  const defaultModel = process.env.NVIDIA_INFERENCE_MODE === "local" ? process.env.NVIDIA_LOCAL_MODEL || "nemotron-3-nano:4b" : DEFAULT_NVIDIA_MODEL;
+  const model = (name: string) => process.env[`NEMOTRON_${name}_MODEL`] || defaultModel;
   return {
-    investigatorModel: process.env.MUBIT_INVESTIGATOR_MODEL || DEFAULT_MUBIT_MODEL,
-    diagnosisModel: process.env.MUBIT_DIAGNOSIS_MODEL || DEFAULT_MUBIT_MODEL,
-    plannerModel: process.env.MUBIT_PLANNER_MODEL || DEFAULT_MUBIT_MODEL,
-    researchModel: process.env.MUBIT_RESEARCH_MODEL || DEFAULT_MUBIT_MODEL,
+    investigatorModel: model("INVESTIGATOR"),
+    diagnosisModel: model("DIAGNOSIS"),
+    plannerModel: model("PLANNER"),
+    researchModel: process.env.GEMINI_RESEARCH_MODEL || DEFAULT_GEMINI_RESEARCH_MODEL,
   };
 }
 
 export function modelDisplayName(model: string) {
-  if (model === DEFAULT_MUBIT_MODEL) return "Gemini 4 Argon";
   if (model === DEFAULT_NVIDIA_MODEL) return "NVIDIA Nemotron 3 Super";
+  if (model.startsWith("gemini-")) return "Gemini";
   return model;
 }

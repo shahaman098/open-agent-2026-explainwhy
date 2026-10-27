@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "explainwhy-agent",
+  "account_id": "cf7590968e7d3a54091b3a94df6f1506",
+  "main": ".open-next/worker.js",
+  "upload_source_maps": true,
+  "compatibility_date": "2026-10-27",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "EXPLAINWHY_DEMO_MODE": "true",
+    "MONGODB_DB": "explainwhy_dev"
+  }
+}

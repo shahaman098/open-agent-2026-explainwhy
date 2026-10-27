@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { configuredModels, modelDisplayName, modelProvider } from "@/intelligence/model-settings";
+import { configuredModels, modelDisplayName } from "@/intelligence/model-settings";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,13 +19,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  const modelNames = [...new Set(Object.values(configuredModels()))].map(modelDisplayName).join(", ");
+  const { researchModel, ...reasoningModels } = configuredModels();
+  const modelNames = [...new Set(Object.values(reasoningModels))].map(modelDisplayName).join(", ");
+  const researchName = process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED === "true"
+    ? process.env.EXPLAINWHY_RESEARCH_PROVIDER === "brightdata" ? "Bright Data public search" : `${modelDisplayName(researchModel)} public search`
+    : null;
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         {children}
         <footer className="demo-disclaimer">
-          <div>Configured AI: {modelNames} {modelProvider() === "nvidia" ? "via the NVIDIA API catalog" : "through Mubit"}.</div>
+          <div>Configured AI: {modelNames} {process.env.NVIDIA_INFERENCE_MODE === "local" ? "through the local inference server" : "via the NVIDIA API catalog"}.{researchName ? ` Research: ${researchName}.` : ""}</div>
           Nike names and imagery are used in an unaffiliated synthetic simulation. Operational metrics come from the selected run. The Shopify intro uses separate synthetic presentation fixtures.
         </footer>
       </body>

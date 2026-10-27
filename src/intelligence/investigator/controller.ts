@@ -12,8 +12,9 @@ import { HypothesisSet, ReasoningOutput, SourceAssessments, type ExternalSourceT
 import { claimInvestigation, digest, jobScope, renewLease, saveJob, stateView, type CallDoc, type JobDoc } from "./store";
 import { fallbackHypotheses, loadVerifiedEvidence, rejectNumericalProse, validateDiagnosis, validateReferences, type EvidencePacket } from "./validation";
 import { composeReport } from "./reports";
-import { deduplicateSources, research, verifyExternalSource, type ResearchResult } from "./research";
-import { SOURCE_TASK, sourceTaskRequest } from "./source-task";
+import { deduplicateSources, research, researchProvider, verifyExternalSource, type ResearchResult } from "./research";
+import { SOURCE_PROMPT_VERSION, SOURCE_TASK, sourceTaskRequest } from "./source-task";
+import { buildAugmentedRequest, loadActiveProfile } from "../training/task-profile";
 import { captureReportMemory } from "@/integrations/meterless/persistence";
 import { DEFAULT_JUDGE_MODEL, nemotronStatus, verifyDiagnosis } from "@/integrations/nemotron/verifier";
 
@@ -36,7 +37,7 @@ function budgetCheck(job: JobDoc, reserve: number) {
 }
 
 /** Checkpoint BEFORE sending. A recovered pending request is never silently billed a second time. */
-async function durableCall<T extends ModelResponse | ResearchResult>(db: Db, job: JobDoc, key: string, task: string, input: unknown, invoke: () => Promise<T>, outputLimit = 6000, fingerprint: string | null = null): Promise<T> {
+async function durableCall<T extends ModelResponse | ResearchResult>(db: Db, job: JobDoc, key: string, task: string, input: unknown, invoke: () => Promise<T>, outputLimit = 6000, fingerprint: string | null = null, inputSnapshot: unknown = null): Promise<T> {
   const calls = db.collection<CallDoc>(COLLECTIONS.investigationCalls);
   const id = `${job.jobId}_${key}`;
   const old = await calls.findOne({ callId: id });
@@ -46,7 +47,7 @@ async function durableCall<T extends ModelResponse | ResearchResult>(db: Db, job
   const reserve = Buffer.byteLength(JSON.stringify(input), "utf8") + outputLimit + 6000;
   budgetCheck(job, reserve);
   job.callCount++; job.reservedTokens += reserve; await saveJob(db, job);
-  const record: CallDoc = { ...jobScope(job), callId: id, jobId: job.jobId, task, promptVersion: PROMPT_VERSION, promptFingerprint: fingerprint, checksum: digest(input), status: "pending", startedAt: now(), completedAt: null, metadata: null, result: null, error: null, ambiguous: false, reservedTokens: reserve, outputDiagnosisId: null, validationStatus: null, correctionId: null, adapterVersion: null };
+  const record: CallDoc = { ...jobScope(job), callId: id, jobId: job.jobId, task, promptVersion: PROMPT_VERSION, promptFingerprint: fingerprint, checksum: digest(input), inputSnapshot, status: "pending", startedAt: now(), completedAt: null, metadata: null, result: null, error: null, ambiguous: false, reservedTokens: reserve, outputDiagnosisId: null, validationStatus: null, correctionId: null, adapterVersion: null };
   await calls.insertOne(record);
   try {
     const result = await invoke();
@@ -66,9 +67,9 @@ async function durableCall<T extends ModelResponse | ResearchResult>(db: Db, job
 }
 
 /** The task fingerprint excludes session IDs and evidence, while checksum retains per-call input identity. */
-async function durableModelCall(db: Db, job: JobDoc, key: string, task: string, request: ModelRequest, services: Services) {
+async function durableModelCall(db: Db, job: JobDoc, key: string, task: string, request: ModelRequest, services: Services, promptVersion = PROMPT_VERSION) {
   return durableCall(db, job, key, task, request.input, () => services.model(request), request.maxOutputTokens ?? 6000,
-    promptFingerprint(request, task, PROMPT_VERSION));
+    promptFingerprint(request, task, promptVersion), request.input);
 }
 
 export function toolSelection(ctx: InvestigationContext, choice: ReasoningOutputTChoice) {
@@ -108,10 +109,10 @@ async function executePlan(db: Db, job: JobDoc, ctx: InvestigationContext, servi
     await saveJob(db, job);
   }
   if (plan.research && !job.researchDone && job.researchCount < job.budget.maxResearchRounds && (job.sourceCount || 0) < job.budget.maxSources) {
-    const entry = step(job, "research", "gemini_grounded_search", plan.research.question); await saveJob(db, job);
+    const entry = step(job, "research", researchProvider() === "brightdata" ? "brightdata_search" : "gemini_grounded_search", plan.research.question); await saveJob(db, job);
     try {
       const result = await durableCall(db, job, `research_${job.round}`, "external_research", { delegation: plan.research.topic, window: job.incidentWindow, cutoff: job.cutoff }, () => services.research(plan.research!, job.incidentWindow, job.cutoff), 2000,
-        digest({ task: "external_research", version: PROMPT_VERSION, promptTemplate: "publicResearchPrompt", topic: plan.research.topic, geography: plan.research.geography }));
+        digest({ task: "external_research", version: PROMPT_VERSION, provider: researchProvider(), promptTemplate: "publicResearchPrompt", topic: plan.research.topic, geography: plan.research.geography }));
       const candidates = result.candidates.slice(0, job.budget.maxSources - (job.sourceCount || 0));
       job.sourceCount = (job.sourceCount || 0) + candidates.length; await saveJob(db, job);
       const sources: ExternalSourceT[] = [];
@@ -121,7 +122,13 @@ async function executePlan(db: Db, job: JobDoc, ctx: InvestigationContext, servi
       if (reviewable.length) {
         try {
           const input = reviewable.map((s) => ({ sourceId: s.sourceId, claim: s.proposedClaim, actualPassage: s.excerpt, publisherHost: s.publisher }));
-          const assessment = await durableModelCall(db, job, `source_review_${job.round}`, SOURCE_TASK, sourceTaskRequest(providerConfig().investigatorModel, input), services);
+          const config = providerConfig();
+          const baseRequest = sourceTaskRequest(config.investigatorModel, input);
+          const profileFingerprint = promptFingerprint(baseRequest, SOURCE_TASK, SOURCE_PROMPT_VERSION);
+          const profile = await loadActiveProfile(db, SOURCE_TASK, profileFingerprint);
+          const request = profile ? buildAugmentedRequest(baseRequest, profile) : baseRequest;
+          const assessment = await durableModelCall(db, job, `source_review_${job.round}`, SOURCE_TASK, request, services, SOURCE_PROMPT_VERSION);
+          if (profile) await db.collection<CallDoc>(COLLECTIONS.investigationCalls).updateOne({ callId: `${job.jobId}_source_review_${job.round}` }, { $set: { adapterVersion: profile.profileId } });
           const reviewed = SourceAssessments.parse(assessment.value);
           if (new Set(reviewed.assessments.map((a) => a.sourceId)).size !== reviewed.assessments.length || reviewed.assessments.some((a) => !reviewable.some((s) => s.sourceId === a.sourceId))) throw new Error("invalid_source_review_ids");
           for (const verdict of reviewed.assessments) {

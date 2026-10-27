@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 // Never seed or reset browser fixtures in the developer's demo database.
-process.env.MONGODB_DB = process.env.E2E_MONGODB_DB ?? "explainwhy_e2e";
+process.env.DATABASE_SCHEMA = process.env.MONGODB_DB = process.env.E2E_MONGODB_DB ?? "explainwhy_e2e";
 process.env.EXPLAINWHY_AUTO_MONITOR = "true";
 process.env.E2E_ARTIFACT_DIR ??= join(tmpdir(), "explainwhy-e2e-artifacts");
 

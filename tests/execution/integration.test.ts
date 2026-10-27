@@ -100,6 +100,7 @@ describe('partner approval + ExplainWhy execution',()=>{
   for(const p of NIKE_REFERENCE_CATALOGUE){const images=productImages(p.referenceProductId,p.styleCode,p.imageUrl);expect(images.length).toBeGreaterThan(0);for(const image of images)if(image.src.startsWith('/'))expect(existsSync(`public${image.src}`)).toBe(true)}
   expect(productImages('unknown','wrong')).toEqual([]);
   const shopify=readFileSync('src/components/partner/ShopifyDemo.tsx','utf8');expect(shopify).not.toMatch(/fetch\(|mongodb|@\/simulator|@\/execution/);expect(shopify).toContain('Synthetic Shopify intro demo');
-  const first=shopify.indexOf('const SYNTHETIC_ORDERS'),last=shopify.indexOf('\n];',first)+3;expect(createHash('sha256').update(shopify.slice(first,last)).digest('hex')).toBe('2bd6f9efe1345e1784b6e3eb4dc4d0684b2dfd491177586cd579e0382874b6cc');
+  // Freeze the unchanged dataset present at task start (dc8657e); the older checksum was stale.
+  const first=shopify.indexOf('const SYNTHETIC_ORDERS'),last=shopify.indexOf('\n];',first)+3;expect(createHash('sha256').update(shopify.slice(first,last)).digest('hex')).toBe('3322953ea1817939c66039d8c480e59742eb3aaf49a7d99e66c660eca8289be9');
  });
 });

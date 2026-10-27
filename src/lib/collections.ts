@@ -51,6 +51,7 @@ export const COLLECTIONS = {
   businessOutcomeAssessments: "business_outcome_assessments",
   outcomeFeedback: "outcome_feedback",
   meterlessMemories: "meterless_memories",
+  taskProfiles: "task_profiles",
 } as const;
 
 let indexesReady: Promise<void> | undefined;
@@ -132,6 +133,8 @@ export function ensureIndexes(db?: Db): Promise<void> {
         d.collection(COLLECTIONS.businessOutcomeAssessments).createIndex({ assessmentId: 1 }, { unique: true }),
         d.collection(COLLECTIONS.businessOutcomeAssessments).createIndex({ businessId: 1, simulationRunId: 1, planId: 1, planVersion: 1, actionId: 1, "window.startAt": 1 }, { unique: true }),
         d.collection(COLLECTIONS.outcomeFeedback).createIndex({ businessId: 1, simulationRunId: 1, assessmentId: 1 }, { unique: true }),
+        d.collection(COLLECTIONS.taskProfiles).createIndex({ profileId: 1 }, { unique: true }),
+        d.collection(COLLECTIONS.taskProfiles).createIndex({ taskKey: 1, promptFingerprint: 1, status: 1 }),
       ]);
     })().catch((error: unknown) => {
       indexesReady = undefined;

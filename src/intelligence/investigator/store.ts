@@ -10,7 +10,7 @@ import type { ResearchResult } from "./research";
 
 export const LEASE_MS = 120_000;
 export interface JobDoc extends StateT { leaseToken: string | null; leaseUntil: Date | null; plan: ReasoningT | null; executedChoices: string[]; researchDone: boolean; affected: string[]; deadline: number | null }
-export interface CallDoc extends ScopeT { callId: string; jobId: string; task: string; promptVersion: string; promptFingerprint?: string | null; checksum: string; status: "pending" | "completed" | "failed"; startedAt: string; completedAt: string | null; metadata: Partial<CallMetadata> | null; result: ModelResponse | ResearchResult | null; error: string | null; ambiguous: boolean; reservedTokens: number; outputDiagnosisId: string | null; validationStatus: string | null; correctionId: string | null; adapterVersion: null }
+export interface CallDoc extends ScopeT { callId: string; jobId: string; task: string; promptVersion: string; promptFingerprint?: string | null; checksum: string; inputSnapshot?: unknown | null; status: "pending" | "completed" | "failed"; startedAt: string; completedAt: string | null; metadata: Partial<CallMetadata> | null; result: ModelResponse | ResearchResult | null; error: string | null; ambiguous: boolean; reservedTokens: number; outputDiagnosisId: string | null; validationStatus: string | null; correctionId: string | null; adapterVersion: string | null }
 export const jobScope = (s: ScopeT): ScopeT => ({ businessId: s.businessId, simulationRunId: s.simulationRunId, investigationId: s.investigationId });
 export const digest = (v: unknown) => createHash("sha256").update(canonicalJson(v)).digest("hex");
 export const stateView = (doc: JobDoc): StateT => InvestigationState.parse(Object.fromEntries(Object.keys(InvestigationState.shape).map((key) => [key, doc[key as keyof JobDoc]])));
@@ -26,7 +26,7 @@ export async function ensureInvestigatorIndexes(db: Db) {
   ]);
 }
 export function defaultBudget() {
-  return Budget.parse({ maxRounds: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_ROUNDS || 5), maxTools: 12, maxResearchRounds: process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED === "true" && process.env.EXPLAINWHY_MODEL_PROVIDER !== "nvidia" ? 2 : 0, maxSources: 8, maxCalls: 10,
+  return Budget.parse({ maxRounds: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_ROUNDS || 5), maxTools: 12, maxResearchRounds: process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED === "true" ? 2 : 0, maxSources: 8, maxCalls: 10,
     maxTokens: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_TOKENS || 180000), maxWallMs: Number(process.env.EXPLAINWHY_INVESTIGATION_TIMEOUT_MS || 600000), maxCostUsd: process.env.EXPLAINWHY_INVESTIGATION_MAX_COST_USD ? Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_COST_USD) : null });
 }
 export async function startInvestigation(db: Db, input: unknown): Promise<JobDoc> {

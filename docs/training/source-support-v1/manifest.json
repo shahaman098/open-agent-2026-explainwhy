@@ -9,6 +9,7 @@
   "trainCases": 40,
   "testCases": 24,
   "protocol": "Source-scene grouped synthetic pilot; provider distillation, no correction-label ingestion. Test calls use x-middleware-record: metadata. No test output is uploaded for training. No parameter tuning on this test.",
+  "comparisonRule": "Positive paired accuracy delta, lower whole-scene bootstrap bound above zero, all adapter responses valid, no increase in false-supported claims. Preserve the original provider baseline and pinned adapter version.",
   "limitations": [
     "Labels and passages authored with agent assistance, not independently human adjudicated.",
     "Only source-support classification is tested; no claim about full investigator accuracy.",

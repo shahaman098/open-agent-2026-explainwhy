@@ -41,7 +41,7 @@ export async function seedExecutionFixture(db:Db,simulationRunId:string,shipping
   selected.actions[0].notice!.orderIds=ids;
  }
  await startPlanning(db,scope);
- await runNextPlanning(db,scope,async()=>({value:{strategies:[selected,{...selected,key:'observe',actions:[],advisory:['Continue observing.']}],recommendedKey:selected.key,recommendation:'Explicit test fixture, no model request.'},toolCalls:[],metadata:{provider:'mubit',model:'test_fixture_no_request',requestId:'fixture_no_request',providerRequestId:null,route:'fixture',latencyMs:0,inputTokens:0,outputTokens:0,totalTokens:0,estimatedCostUsd:null}}));
+ await runNextPlanning(db,scope,async()=>({value:{strategies:[selected,{...selected,key:'observe',actions:[],advisory:['Continue observing.']}],recommendedKey:selected.key,recommendation:'Explicit test fixture, no model request.'},toolCalls:[],metadata:{provider:'nvidia',model:'test_fixture_no_request',requestId:'fixture_no_request',providerRequestId:null,route:'fixture',latencyMs:0,inputTokens:0,outputTokens:0,totalTokens:0,estimatedCostUsd:null}}));
  await selectStrategy(db,scope,'bounded');const submitted=await submitPlan(db,scope);
  if(!submitted.plan)throw new Error('Fixture proposal failed');
  return {...runScope,planId:submitted.plan.planId,planVersion:submitted.plan.planVersion};

@@ -1,10 +1,10 @@
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
-import { providerConfig, gatewayRequest, ProviderError } from "../src/intelligence/investigator/provider";
+import { callGeminiResearch, geminiResearchConfig, ProviderError } from "../src/intelligence/investigator/provider";
 import { research, verifyExternalSource } from "../src/intelligence/investigator/research";
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 process.env.EXPLAINWHY_PROVIDER_DIAGNOSTICS = "true";
 async function main() {
-  const c = providerConfig(), direct = process.argv.includes("--direct");
+  geminiResearchConfig();
   if (process.argv.includes("--production-path")) {
     process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED = "true";
     const scope = { businessId: "nike_eval", simulationRunId: `research_${Date.now()}`, investigationId: "production_research_check" };
@@ -18,9 +18,7 @@ async function main() {
     console.log(JSON.stringify({ ...scope, requestId: result.metadata.requestId, groundingPresent: result.groundingPresent, queries: result.queries, candidateCount: result.candidates.length, sourceStatuses: sources.map((s) => s.status), limitations: result.limitations }));
     return;
   }
-  if (direct) process.env.EXPLAINWHY_DIRECT_GEMINI_FALLBACK = "true";
-  const route = `${direct ? "https://generativelanguage.googleapis.com" : c.geminiBase}/v1beta/models/${encodeURIComponent(c.researchModel)}:generateContent`;
-  const r = await gatewayRequest(route, { contents: [{ role: "user", parts: [{ text: "Use Google Search to find the official Google Search status dashboard. Return its URL with one short finding." }] }], tools: [{ google_search: {} }], generationConfig: { maxOutputTokens: 1500, thinkingConfig: { thinkingLevel: "low" } } }, direct ? "google_direct" : "mubit", c.researchModel);
+  const r = await callGeminiResearch({ contents: [{ role: "user", parts: [{ text: "Use Google Search to find the official Google Search status dashboard. Return its URL with one short finding." }] }], tools: [{ google_search: {} }], generationConfig: { maxOutputTokens: 1500, thinkingConfig: { thinkingLevel: "low" } } });
   const candidates = r.body.candidates as Array<{ groundingMetadata?: { groundingChunks?: Array<{ web?: { uri?: string; title?: string } }>; webSearchQueries?: string[]; groundingSupports?: Array<{ segment?: { text?: string }; groundingChunkIndices?: number[] }> } }> | undefined;
   const grounding = candidates?.[0]?.groundingMetadata;
   const cutoff = new Date().toISOString(), scope = { businessId: "nike_eval", simulationRunId: `research_${Date.now()}`, investigationId: "connectivity_source_check" };

@@ -278,15 +278,15 @@ export const ActionOutcome = z.object({
   observedAt: DateTime,
 }).strict();
 
-// ---------- Mubit request trace / human feedback / independent evaluation ----------
+// ---------- Model request trace / human feedback / independent evaluation ----------
 export const ModelCall = z.object({
   ...SchemaMeta, modelCallId: Id, investigationId: Id.optional(),
   taskKey: z.string().min(1), promptVersion: z.string().min(1),
   instructionsFingerprint: z.string().min(1),
-  route: z.literal('mubit'), providerModel: z.string().min(1),
-  modelKind: z.enum(['provider', 'adapter']), adapterVersionId: Id.optional(),
+  route: z.enum(['nvidia', 'google_direct', 'explainwhy_profile']), providerModel: z.string().min(1),
+  modelKind: z.enum(['provider', 'task_profile']), taskProfileId: Id.optional(),
   sessionId: Id, inputEvidenceIds: z.array(Id),
-  mubitRequestId: z.string().optional(), responseRecordId: Id.optional(),
+  providerRequestId: z.string().optional(), responseRecordId: Id.optional(),
   inputTokens: z.number().int().nonnegative().optional(),
   outputTokens: z.number().int().nonnegative().optional(),
   costUsdMicros: z.number().int().nonnegative().optional(),
@@ -299,13 +299,15 @@ export const ModelCorrection = z.object({
   verifiedByUserId: Id, verifiedAt: DateTime,
   ingestionStatus: z.enum(['local_only', 'queued', 'submitted', 'confirmed', 'unsupported']),
 }).strict();
-export const AdapterRecord = z.object({
-  ...SchemaMeta, adapterRecordId: Id, taskKey: z.string().min(1),
-  mubitTaskId: z.string().optional(), mubitAdapterVersionId: z.string().optional(),
-  status: z.enum(['unknown', 'collecting', 'training', 'testing', 'passed', 'failed']),
+export const TaskProfileRecord = z.object({
+  ...SchemaMeta, taskProfileId: Id, taskKey: z.string().min(1),
+  promptFingerprint: z.string().min(1),
+  status: z.enum(['draft', 'promoted', 'retired']),
   keptExamples: z.number().int().nonnegative().optional(),
   checkedAt: DateTime,
 }).strict();
+/** @deprecated Use TaskProfileRecord */
+export const AdapterRecord = TaskProfileRecord;
 export const EvaluationCase = z.object({
   ...SchemaMeta, evaluationCaseId: Id, datasetId: Id, scenarioId: Id,
   inputEvidenceIds: z.array(Id), groundTruthCause: RootCause,

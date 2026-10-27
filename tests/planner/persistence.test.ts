@@ -10,7 +10,7 @@ import { startPlanning, claimPlanning, processPlanning, readPlanning, runNextPla
 import { contextFixture, outputFixture } from "./fixtures";
 
 const scopeBase = { businessId: "nike_test", simulationRunId: `t_stage6_${Date.now()}` };
-const meta: ModelResponse["metadata"] = { provider: "mubit", model: "fixture_model", requestId: "fixture_request_not_live", providerRequestId: null, route: "fixture", latencyMs: 1, inputTokens: 5, outputTokens: 5, totalTokens: 10, estimatedCostUsd: null };
+const meta: ModelResponse["metadata"] = { provider: "nvidia", model: "fixture_model", requestId: "fixture_request_not_live", providerRequestId: null, route: "fixture", latencyMs: 1, inputTokens: 5, outputTokens: 5, totalTokens: 10, estimatedCostUsd: null };
 let db: Db;
 const model = () => vi.fn().mockResolvedValue({ value: outputFixture(), toolCalls: [], metadata: meta });
 async function seed(name: string): Promise<ScopeT> {
@@ -38,7 +38,7 @@ async function fixtureModel(scope: ScopeT) {
   return vi.fn().mockResolvedValue({ value: output, toolCalls: [], metadata: meta });
 }
 beforeAll(async () => {
-  vi.stubEnv("MUBIT_API_KEY", "test_fixture_key"); db = await getDb(); await ensureIndexes(db);
+  vi.stubEnv("NVIDIA_API_KEY", "test_fixture_key"); db = await getDb(); await ensureIndexes(db);
   const fixture = contextFixture();
   await Promise.all([
     db.collection(COLLECTIONS.simulatorState).insertOne({ ...scopeBase, virtualTime: fixture.storefront.virtualTime, updatedAt: fixture.storefront.updatedAt }),

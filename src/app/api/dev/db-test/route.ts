@@ -1,18 +1,15 @@
-import type { ObjectId } from "mongodb";
-
 import { describeDbError, getDb } from "@/lib/mongodb";
 
 // Runs on the Node.js runtime (the default). No `runtime` export: it is not
 // supported when cacheComponents is enabled in next.config.ts.
 
 interface ConnectionTestDocument {
-  _id?: ObjectId;
   source: string;
   createdAt: Date;
 }
 
 /**
- * Development-only check that MongoDB is reachable and writable.
+ * Development-only check that the Supabase Postgres database is reachable and writable.
  * POST /api/dev/db-test
  */
 export async function POST(): Promise<Response> {
@@ -37,12 +34,12 @@ export async function POST(): Promise<Response> {
         connected: true,
         database: db.databaseName,
         writeConfirmed,
-        documentId: insertedId.toHexString(),
+        documentId: String(insertedId),
       },
       { status: writeConfirmed ? 200 : 500 },
     );
   } catch (error) {
-    console.error("[db-test] MongoDB check failed:", describeDbError(error));
+    console.error("[db-test] Database check failed:", describeDbError(error));
     return Response.json(
       { connected: false, error: "Database connection test failed" },
       { status: 503 },

@@ -6,6 +6,8 @@
 
 **Sponsor integration status:** Meterless H-MEM now provides sourced historical recall and separate prompt context. A scoped Zetaris SQL evidence connector and local Docker setup are implemented; a live Zetaris query is still blocked on image entitlement and instance configuration. The existing video predates these changes. [Setup, verification and demo steps](docs/sponsor-integrations/README.md).
 
+**Connected financial animation:** ExplainWhy can send verified baseline/current measurements to the bundled Animation Studio and display the resulting MP4 and editable Blender project. Local Nemotron and Bright Data research are configurable alongside the existing Zetaris/H-MEM integrations. [Mac setup, failure handling and verification limits](docs/connected-animation.md). A synthetic chart was rendered and the browser flow verified here; a complete live sponsor run on the host Mac remains to be recorded.
+
 **Find the business problem. Check the evidence. Approve the next step. See what happened.**
 
 A small ecommerce business can see that sales have fallen. Finding the reason usually means moving between advertising reports, orders, delivery updates and customer feedback, then deciding what to do with incomplete information.
@@ -63,9 +65,9 @@ This demonstrates approval, ordered execution and read-back for customer care. T
 
 ![Recorded simulated campaign state after the approved budget change](docs/stage7-runs/meta-after.png)
 
-ExplainWhy is configured to use **Gemini 4 Argon (`gemini-4-argon`) through Mubit** for investigation, source-support checks, diagnosis, solution planning and optional grounded research. The [provider](src/intelligence/investigator/provider.ts) uses Mubit's native `/gemini/v1beta/models/gemini-4-argon:generateContent` route by default. Set `MUBIT_GEMINI_TRANSPORT=openai` to use the Gemini `/gemini/v1beta/openai/chat/completions` route with complete request/reply display in the console. Both routes have verified Gemini training tasks and validate structured responses locally. See [Mubit's Gemini connection guide](https://docs.mubit.ai/guides/connect-gemini). All four server-side model settings in [.env.example](.env.example) default to Gemini 4 Argon; never expose `MUBIT_API_KEY` through a `NEXT_PUBLIC_` variable.
+ExplainWhy is configured to use the **NVIDIA API catalog** (default **Nemotron 3 Super**) for investigation, source-support checks, diagnosis and solution planning via the [provider](src/intelligence/investigator/provider.ts). Optional **grounded public research** uses **direct Gemini** when `EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED=true` and `GEMINI_API_KEY` is set. Server credentials live in [.env.example](.env.example); never expose keys through `NEXT_PUBLIC_` variables.
 
-The [Gemini source-support pilot](docs/training/gemini-source-support-evaluation-2026-10-25.md) completed two transport runs: 40 teacher calls and 24 held-out baseline cases per route, each scoring 18/24 against the authored synthetic labels. Both Gemini tasks are awaiting Mubit review with 0 kept examples; first training has not started, so adapter improvement remains unmeasured.
+**Task profiles** replace hosted adapter training: approved examples are promoted only after a frozen held-out comparison passes the pilot gate. See [training integration](docs/training-integration.md). Archived Mubit/Gemini pilot artifacts remain under `docs/training/` for historical reference only.
 
 Historical request and evaluation artifacts retain the model IDs that actually produced them. They document earlier runs and do not establish Gemini 4 Argon accuracy or adapter improvement.
 
@@ -77,13 +79,13 @@ Historical request and evaluation artifacts retain the model IDs that actually p
 | Checkout strategy generation | Request `mreq_01a170a089347992a28b32b637d4f5a2` in the [checkout planning archive](docs/stage6-runs/checkout-advisory.json) | Mubit compared three advisory strategies for a coupon failure. There is no coupon-repair adapter, so this saved archive has no executable plan or approval handoff. |
 | External-source check | Discovery and passage-assessment IDs in [the source acceptance record](docs/stage5-runs/source_acceptance_1792885169199.json) | A narrow Nike employee-note claim was supported; an unsupported Google Ads outage claim was not. This was a separate source check, not causal evidence for the advertising incident. |
 
-ExplainWhy Agent keeps a durable call ledger with the Mubit request ID, route, model, reported token use, output or error, prompt version, stable task fingerprint and per-input checksum. This lets a reviewer distinguish repeated tasks from changing case data. Provider errors and ambiguous billable requests are recorded rather than silently replayed. Cost remains unknown without configured rates. See [provider tests](tests/investigator/provider.test.ts) and [investigation validation tests](tests/investigator/validation.test.ts).
+ExplainWhy Agent keeps a durable call ledger with provider request IDs, route, model, reported token use, output or error, prompt version, stable task fingerprint and per-input checksum. Provider errors and ambiguous billable requests are recorded rather than silently replayed. See [provider tests](tests/investigator/provider.test.ts).
 
-To exercise these paths locally, configure `MUBIT_API_KEY` and the relevant model IDs, start `npm run investigator:work` and `npm run planner:work`, then open an eligible investigation. Research is opt-in with `EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED=true`. For the hackathon's Mubit-only setup, keep `EXPLAINWHY_DIRECT_GEMINI_FALLBACK=false`; enabling that fallback can send research directly to Google after an unambiguous Mubit failure. The saved [Stage 5](docs/stage5-verification.md) and [Stage 6](docs/stage6-verification.md) reports show the actual request history and acceptance limits.
+To exercise these paths locally, configure `NVIDIA_API_KEY`, run `npm run investigator:check`, then start `npm run investigator:work` and `npm run planner:work`. Research is opt-in and requires `GEMINI_API_KEY`. The saved [Stage 5](docs/stage5-verification.md) and [Stage 6](docs/stage6-verification.md) reports document earlier recorded runs.
 
-### Adapter training: what the console actually shows
+### Task profiles and archived adapter pilots
 
-We checked the training path and kept the results, including the failure. The diagnostic, historical source-support and current Gemini tasks remain separate:
+In-house **task profiles** are the supported learning loop. The hosted-console pilots below are archived evidence only:
 
 | Task | Recorded result | What it means |
 | --- | --- | --- |

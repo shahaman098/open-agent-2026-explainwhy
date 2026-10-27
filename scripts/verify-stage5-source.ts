@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
-import { callModel, gatewayRequest, promptFingerprint, providerConfig, ProviderError } from "@/intelligence/investigator/provider";
+import { callGeminiResearch, callModel, promptFingerprint, providerConfig, ProviderError } from "@/intelligence/investigator/provider";
 import { deduplicateSources, textUrlCandidates, verifyExternalSource } from "@/intelligence/investigator/research";
 import { SourceAssessments, type ExternalSourceT } from "@/intelligence/investigator/schemas";
 
@@ -16,15 +16,15 @@ const excerpt = "NIKE, Inc. today shared the following note with employees regar
 async function main() {
   const cutoff = new Date().toISOString();
   const config = providerConfig();
-  const discovery = await gatewayRequest(`${config.geminiBase}/v1beta/models/${encodeURIComponent(config.researchModel)}:generateContent`, {
+  const discovery = await callGeminiResearch({
     contents: [{ role: "user", parts: [{ text: "Use Google Search to find the official Nike newsroom release about its October 1, 2026 operating model changes. Return the original about.nike.com URL and one short factual finding." }] }],
     tools: [{ google_search: {} }], generationConfig: { maxOutputTokens: 1500, thinkingConfig: { thinkingLevel: "low" } },
-  }, "mubit", config.researchModel);
+  });
   const discoveryCandidates = discovery.body.candidates as Array<{ content?: { parts?: Array<{ text?: string }> }; groundingMetadata?: { webSearchQueries?: string[] } }> | undefined;
   const answer = discoveryCandidates?.[0]?.content?.parts?.map((part) => part.text || "").join("\n") || "";
   const discoveredUrls = textUrlCandidates(answer).map((candidate) => candidate.url);
   const originalUrl = discoveredUrls.find((candidate) => candidate === url);
-  if (!originalUrl) throw new Error(`Mubit research ${discovery.metadata.requestId} did not return the expected original official URL; discovered ${JSON.stringify(discoveredUrls)}`);
+  if (!originalUrl) throw new Error(`Gemini research ${discovery.metadata.requestId} did not return the expected original official URL; discovered ${JSON.stringify(discoveredUrls)}`);
   const candidates = [
     { url: originalUrl, claim: "NIKE shared an employee note about changes to its operating model.", excerpt },
     { url: originalUrl, claim: "The operating model change was caused by a Google Ads outage.", excerpt },

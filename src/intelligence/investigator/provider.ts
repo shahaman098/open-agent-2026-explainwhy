@@ -1,11 +1,12 @@
 import "server-only";
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { canonicalJson } from "../evidence/provenance";
 import { z } from "zod";
-import { configuredModels, modelProvider } from "../model-settings";
+import { configuredModels } from "../model-settings";
+import { nvidiaEndpoint } from "../../integrations/nemotron/endpoint";
 
 export interface CallMetadata {
-  provider: "mubit" | "google_direct" | "nvidia"; route: string; model: string; requestId: string | null;
+  provider: "google_direct" | "nvidia" | "brightdata"; route: string; model: string; requestId: string | null;
   providerRequestId: string | null; latencyMs: number; inputTokens: number | null; outputTokens: number | null;
   totalTokens: number | null; estimatedCostUsd: number | null;
 }
@@ -15,29 +16,25 @@ export class ProviderError extends Error {
   }
 }
 export function providerConfig() {
-  if (modelProvider() === "nvidia") {
-    // Direct NVIDIA API catalog (OpenAI-compatible). ExplainWhy keeps its own durable call ledger; no gateway is involved.
-    const u = new URL(process.env.NVIDIA_BASE_URL || "https://integrate.api.nvidia.com/v1");
-    if (u.protocol !== "https:" || u.username || u.password || u.search || u.hash) throw new ProviderError("invalid_base_url", false, false);
-    if (!process.env.NVIDIA_API_KEY?.trim()) throw new ProviderError("missing_nvidia_key", false, false);
-    return { provider: "nvidia" as const, key: process.env.NVIDIA_API_KEY.trim(), base: u.href.replace(/\/$/, ""), geminiBase: "", geminiTransport: "native" as const, ...configuredModels(),
-      reasoning: z.enum(["low", "medium", "high"]).parse(process.env.MUBIT_REASONING_DEPTH || "low"),
-      structuredOutput: z.enum(["json_schema", "guided_json", "prompt"]).parse(process.env.NVIDIA_STRUCTURED_OUTPUT || "json_schema") };
+  let endpoint: ReturnType<typeof nvidiaEndpoint>;
+  try { endpoint = nvidiaEndpoint(); } catch (error) {
+    const code = error instanceof Error && ["missing_nvidia_key", "invalid_inference_mode"].includes(error.message) ? error.message : "invalid_base_url";
+    throw new ProviderError(code, false, false);
   }
-  const base = process.env.MUBIT_BASE_URL || "https://api.mubit.ai/openai/v1";
-  const geminiBase = process.env.MUBIT_GEMINI_BASE_URL || "https://api.mubit.ai/gemini";
-  for (const value of [base, geminiBase]) {
-    const u = new URL(value);
-    if (u.protocol !== "https:" || u.username || u.password || u.search || u.hash) throw new ProviderError("invalid_base_url", false, false);
-  }
-  if (!process.env.MUBIT_API_KEY) throw new ProviderError("missing_mubit_key", false, false);
   return {
-    provider: "mubit" as const, structuredOutput: "json_schema" as const,
-    key: process.env.MUBIT_API_KEY, base: base.replace(/\/$/, ""), geminiBase: geminiBase.replace(/\/$/, ""),
-    geminiTransport: z.enum(["native", "openai"]).parse(process.env.MUBIT_GEMINI_TRANSPORT || "native"),
+    provider: "nvidia" as const,
+    ...endpoint,
     ...configuredModels(),
-    reasoning: z.enum(["low", "medium", "high"]).parse(process.env.MUBIT_REASONING_DEPTH || "low"),
+    reasoning: z.enum(["low", "medium", "high"]).parse(process.env.EXPLAINWHY_REASONING_DEPTH || "low"),
+    structuredOutput: z.enum(["json_schema", "guided_json", "prompt"]).parse(process.env.NVIDIA_STRUCTURED_OUTPUT || "json_schema"),
   };
+}
+
+/** Direct Gemini for grounded public research only. */
+export function geminiResearchConfig() {
+  if (!process.env.GEMINI_API_KEY?.trim()) throw new ProviderError("missing_gemini_key", false, false);
+  const model = configuredModels().researchModel;
+  return { key: process.env.GEMINI_API_KEY.trim(), model, base: "https://generativelanguage.googleapis.com" };
 }
 
 /** Deliberately small converter: unsupported Zod nodes fail closed; local Zod remains authoritative. */
@@ -64,7 +61,7 @@ export interface FunctionTool { name: string; description: string; parameters: R
 export interface ModelRequest {
   model: string; system: string; input: unknown; schema?: z.ZodTypeAny; schemaName?: string;
   tools?: FunctionTool[]; forceTool?: string; maxOutputTokens?: number; sessionId?: string;
-  /** Held-out evaluation must use metadata: Mubit then cannot keep the request/answer for training. */
+  /** Local capture intent for training CLI / export; not sent to providers. */
   recording?: "full" | "metadata" | "off";
 }
 /** Stable task identity, independent of changing evidence, sessions, and model routing. */
@@ -76,32 +73,35 @@ export function promptFingerprint(request: ModelRequest, task: string, version: 
 export interface ModelResponse { value: unknown; toolCalls: Array<{ id: string; name: string; arguments: unknown }>; metadata: CallMetadata }
 const finite = (x: unknown) => typeof x === "number" && Number.isFinite(x) && x >= 0 ? x : null;
 
-export async function gatewayRequest(route: string, body: unknown, provider: CallMetadata["provider"], model: string, timeoutMs = 60_000, recording?: ModelRequest["recording"]): Promise<{ body: Record<string, unknown>; metadata: CallMetadata }> {
-  const config = providerConfig();
-  const direct = provider === "google_direct";
-  if (direct && (process.env.EXPLAINWHY_DIRECT_GEMINI_FALLBACK !== "true" || !process.env.GEMINI_API_KEY)) throw new ProviderError("direct_fallback_disabled", false, false);
+function assignRequestId(metadata: CallMetadata, response: Response, data: Record<string, unknown>) {
+  metadata.requestId = metadata.requestId
+    || response.headers.get(metadata.provider === "nvidia" ? "nvcf-reqid" : "x-middleware-request-id")
+    || randomUUID();
+  if (!metadata.providerRequestId && typeof data.responseId === "string") metadata.providerRequestId = data.responseId;
+}
+
+export async function gatewayRequest(route: string, body: unknown, provider: "google_direct" | "nvidia", model: string, timeoutMs = 60_000): Promise<{ body: Record<string, unknown>; metadata: CallMetadata }> {
   const native = route.includes(":generateContent");
-  const key = direct ? process.env.GEMINI_API_KEY! : config.key;
+  const key = provider === "google_direct" ? geminiResearchConfig().key : providerConfig().key;
   const started = Date.now();
   let response: Response;
   try {
     response = await fetch(route, { method: "POST", redirect: "error", signal: AbortSignal.timeout(timeoutMs),
-      headers: { "content-type": "application/json", ...(native ? { "x-goog-api-key": key } : { authorization: `Bearer ${key}` }), ...(provider === "mubit" && recording ? { "x-middleware-record": recording } : {}) }, body: JSON.stringify(body) });
+      headers: { "content-type": "application/json", ...(native ? { "x-goog-api-key": key } : { authorization: `Bearer ${key}` }) }, body: JSON.stringify(body) });
   } catch { throw new ProviderError("transport_or_timeout", false, true, { provider, model, route, latencyMs: Date.now() - started }); }
-  const metadata: CallMetadata = { provider, model, route, requestId: response.headers.get(provider === "nvidia" ? "nvcf-reqid" : "x-middleware-request-id"), providerRequestId: response.headers.get("x-request-id") || response.headers.get("request-id"), latencyMs: Date.now() - started, inputTokens: null, outputTokens: null, totalTokens: null, estimatedCostUsd: null };
+  const metadata: CallMetadata = { provider, model, route, requestId: null, providerRequestId: response.headers.get("x-request-id") || response.headers.get("request-id"), latencyMs: Date.now() - started, inputTokens: null, outputTokens: null, totalTokens: null, estimatedCostUsd: null };
   if (!response.ok) {
-    // Never echo provider bodies: they can include submitted data or credentials.
     const errorPayload = await response.json().catch(() => ({})) as { error?: { code?: string; message?: string } };
     const diagnostic = String(errorPayload.error?.message || "").replace(/(?:mbt_|sk-|AIza|nvapi-)[A-Za-z0-9_-]+/g, "[redacted]").slice(0, 500);
     if (process.env.EXPLAINWHY_PROVIDER_DIAGNOSTICS === "true") console.error(JSON.stringify({ status: response.status, diagnostic }));
     const retryable = response.headers.get("x-should-retry") !== "false" && [429, 503].includes(response.status);
     const retryAfter = Math.min(60_000, Math.max(1000, Number(response.headers.get("retry-after") || 1) * 1000));
+    assignRequestId(metadata, response, {});
     throw new ProviderError(`http_${response.status}`, retryable, response.status >= 500, metadata, retryAfter);
   }
   let data: Record<string, unknown>;
   try { data = await response.json(); } catch { throw new ProviderError("invalid_json", false, true, metadata); }
-  if (provider === "mubit" && !metadata.requestId) throw new ProviderError("missing_gateway_request_id", false, true, metadata);
-  if (!metadata.providerRequestId && typeof data.responseId === "string") metadata.providerRequestId = data.responseId;
+  assignRequestId(metadata, response, data);
   const usage = (data.usage || data.usageMetadata || {}) as Record<string, unknown>;
   metadata.inputTokens = finite(usage.prompt_tokens ?? usage.promptTokenCount);
   metadata.outputTokens = finite(usage.completion_tokens ?? (typeof usage.candidatesTokenCount === "number" ? usage.candidatesTokenCount + (finite(usage.thoughtsTokenCount) || 0) : null));
@@ -113,18 +113,7 @@ export async function gatewayRequest(route: string, body: unknown, provider: Cal
 }
 
 export async function callModel(req: ModelRequest): Promise<ModelResponse> {
-  const config = providerConfig();
-  if (config.provider === "nvidia") return callNvidiaModel(req, config);
-  const gemini = req.model.startsWith("gemini-");
-  if (gemini && config.geminiTransport === "native") return callGeminiModel(req);
-  const { body, metadata } = await gatewayRequest(`${gemini ? `${config.geminiBase}/v1beta/openai` : config.base}/chat/completions`, {
-    model: req.model, messages: [{ role: "system", content: req.system }, ...(req.sessionId ? [{ role: "user", content: `Investigation session: ${req.sessionId}` }] : []), { role: "user", content: JSON.stringify(req.input) }],
-    ...(gemini ? { max_tokens: req.maxOutputTokens ?? 6000 } : { max_completion_tokens: req.maxOutputTokens ?? 6000 }),
-    reasoning_effort: !gemini && req.tools?.length ? "none" : config.reasoning,
-    ...(req.schema ? { response_format: { type: "json_schema", json_schema: { name: req.schemaName || "normal_output", strict: true, schema: gemini ? geminiGenerationSchema(req.schema) : jsonSchema(req.schema) } } } : {}),
-    ...(req.tools?.length ? { tools: req.tools.map((t) => ({ type: "function", function: { ...t, strict: true } })), tool_choice: req.forceTool ? { type: "function", function: { name: req.forceTool } } : "auto", parallel_tool_calls: false } : {}),
-  }, "mubit", req.model, 60_000, req.recording);
-  return parseChatCompletion(body, req, metadata);
+  return callNvidiaModel(req, providerConfig());
 }
 
 /** NVIDIA API catalog (Nemotron). Structured output: json_schema response_format, NIM guided_json, or schema-in-prompt. */
@@ -154,8 +143,7 @@ function parseChatCompletion(body: Record<string, unknown>, req: ModelRequest, m
       if (!args || typeof args !== "object" || Array.isArray(args)) throw new Error("Invalid function arguments");
       return { id: c.id, name: c.function.name, arguments: args };
     });
-    // Reasoning models may prepend visible thinking; it is never an answer and never reaches the parser.
-    const content = metadata.provider === "nvidia" ? jsonPayload(choice.message.content || "", Boolean(req.schema)) : choice.message.content;
+    const content = jsonPayload(choice.message.content || "", Boolean(req.schema));
     const value = content ? (req.schema ? JSON.parse(content) as unknown : content) : null;
     if (req.forceTool && !toolCalls.length) throw new Error("Missing forced function call");
     if (!content && !toolCalls.length) throw new Error("Empty response");
@@ -184,40 +172,8 @@ function geminiGenerationSchema(schema: z.ZodTypeAny): Record<string, unknown> {
   return simplify(jsonSchema(schema)) as Record<string, unknown>;
 }
 
-/** Native Gemini through Mubit; the OpenAI gateway does not turn a Gemini model ID into a Gemini call. */
-async function callGeminiModel(req: ModelRequest): Promise<ModelResponse> {
-  const config = providerConfig();
-  const { body, metadata } = await gatewayRequest(`${config.geminiBase}/v1beta/models/${encodeURIComponent(req.model)}:generateContent`, {
-    systemInstruction: { parts: [{ text: req.system }] },
-    contents: [{ role: "user", parts: [
-      ...(req.sessionId ? [{ text: `Investigation session: ${req.sessionId}` }] : []),
-      { text: JSON.stringify(req.input) },
-    ] }],
-    generationConfig: { maxOutputTokens: req.maxOutputTokens ?? 6000, thinkingConfig: { thinkingLevel: config.reasoning },
-      ...(req.schema ? { responseMimeType: "application/json", responseJsonSchema: geminiGenerationSchema(req.schema) } : {}) },
-    ...(req.tools?.length ? { tools: [{ functionDeclarations: req.tools.map((tool) => ({ name: tool.name, description: tool.description, parametersJsonSchema: tool.parameters })) }],
-      toolConfig: { functionCallingConfig: req.forceTool ? { mode: "ANY", allowedFunctionNames: [req.forceTool] } : { mode: "AUTO" } } } : {}),
-  }, "mubit", req.model, 60_000, req.recording);
-  const candidates = body.candidates as Array<{ finishReason?: string; content?: { parts?: Array<{ text?: string; thought?: boolean; functionCall?: { id?: string; name: string; args?: unknown } }> } }> | undefined;
-  const candidate = candidates?.[0];
-  if (!candidate || candidate.finishReason !== "STOP" || (body.promptFeedback as { blockReason?: string } | undefined)?.blockReason) throw new ProviderError("incomplete_or_refused", false, false, metadata);
-  try {
-    const parts = candidate.content?.parts || [];
-    const toolCalls = parts.flatMap((part, index) => {
-      if (!part.functionCall) return [];
-      const call = part.functionCall;
-      if (!req.tools?.some((tool) => tool.name === call.name) || (req.forceTool && call.name !== req.forceTool)
-        || !call.args || typeof call.args !== "object" || Array.isArray(call.args)) throw new Error("Invalid function call");
-      return [{ id: call.id || `gemini_function_${index}`, name: call.name, arguments: call.args }];
-    });
-    // Thought text is not an answer and must not leak into a report or JSON parser.
-    const content = parts.filter((part) => !part.thought && typeof part.text === "string").map((part) => part.text).join("");
-    if (req.forceTool && !toolCalls.length) throw new Error("Missing forced function call");
-    const value = content ? (req.schema ? JSON.parse(content) as unknown : content) : null;
-    if (!content && !toolCalls.length) throw new Error("Empty response");
-    return { value: req.schema ? req.schema.parse(value) : value, toolCalls, metadata };
-  } catch (error) {
-    throw new ProviderError("invalid_structured_output", false, false, metadata, 0,
-      error instanceof z.ZodError ? error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`).slice(0, 6).join("; ") : "Invalid Gemini JSON or function call");
-  }
+/** Grounded Gemini research via Google AI (not NVIDIA). */
+export async function callGeminiResearch(body: Record<string, unknown>): Promise<{ body: Record<string, unknown>; metadata: CallMetadata }> {
+  const { model, base } = geminiResearchConfig();
+  return gatewayRequest(`${base}/v1beta/models/${encodeURIComponent(model)}:generateContent`, body, "google_direct", model, 90_000);
 }
