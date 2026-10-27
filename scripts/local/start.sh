@@ -37,7 +37,7 @@ for i in $(seq 1 120); do curl -fsS -o /dev/null "$URL/" 2>/dev/null && break; s
 curl -fsS -o /dev/null "$URL/" 2>/dev/null || die "The web app did not start. See .local/logs/web.log"
 say "ExplainWhy is running at $URL  (Ctrl-C to stop)"
 note "First time? Open $URL/dev/simulator, click 'Start / reset run', then inject an incident."
-open "$URL/dev/simulator" >/dev/null 2>&1 || true
+[ -n "${NO_OPEN:-}" ] || open "$URL/dev/simulator" >/dev/null 2>&1 || true
 
 # bash 3.2 has no `wait -n`: poll, and stop everything if any process exits.
 while true; do

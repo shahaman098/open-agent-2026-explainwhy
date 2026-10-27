@@ -4,7 +4,11 @@
 
 **Open Agent Hackathon 2026** — Track 02 (*The Agent That Can Explain Why*) · evidence-backed investigation across fragmented business data.
 
-**Current Mac handoff:** use branch `codex/sponsor-integrations` and the
+**Run it locally in two commands:** [Quick start](docs/QUICKSTART.md):
+`./scripts/local/setup.sh` once, then `./scripts/local/start.sh`. It uses a local
+Nemotron model through Ollama and needs no cloud keys.
+
+**Full sponsor setup:** use branch `codex/sponsor-integrations` and the
 [step-by-step Mac runbook](docs/friend-mac-runbook.md). The current runtime uses
 Postgres, NVIDIA Nemotron (local or hosted), optional Bright Data research, Zetaris
 and Meterless H-MEM, with the bundled Animation Studio renderer. Older Mubit demo

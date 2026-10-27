@@ -7,6 +7,7 @@ cd "$(dirname "$0")/../.."
 
 BASE_MODEL="${EXPLAINWHY_BASE_MODEL:-nemotron-3-nano:4b}"
 CONTEXT="${EXPLAINWHY_MODEL_CONTEXT:-16384}"
+PG_IMAGE="${EXPLAINWHY_POSTGRES_IMAGE:-postgres:17}"
 
 say "Checking prerequisites"
 use_node
@@ -30,11 +31,15 @@ if docker container inspect "$CONTAINER" >/dev/null 2>&1; then
   docker start "$CONTAINER" >/dev/null
   note "Reusing container $CONTAINER"
 else
+  if ! docker image inspect "$PG_IMAGE" >/dev/null 2>&1; then
+    for attempt in 1 2 3; do docker pull "$PG_IMAGE" && break; note "Download attempt $attempt failed; retrying…"; sleep 3; done
+    docker image inspect "$PG_IMAGE" >/dev/null 2>&1 || die "Could not download $PG_IMAGE. Check your internet connection (pause any VPN) and re-run."
+  fi
   [ -f .local/postgres.env ] || printf 'POSTGRES_PASSWORD=%s\n' "$(openssl rand -hex 24)" > .local/postgres.env
   docker volume create "$VOLUME" >/dev/null
   docker run -d --name "$CONTAINER" --restart unless-stopped -p "127.0.0.1:$PG_PORT:5432" \
     --env-file .local/postgres.env -e POSTGRES_USER=explainwhy -e POSTGRES_DB=explainwhy \
-    -v "$VOLUME:/var/lib/postgresql/data" postgres:17 >/dev/null
+    -v "$VOLUME:/var/lib/postgresql/data" "$PG_IMAGE" >/dev/null
   note "Created container $CONTAINER (data volume $VOLUME)"
 fi
 wait_for_postgres
