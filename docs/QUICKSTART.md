@@ -50,8 +50,8 @@ Investigations on a small local model take several minutes.
 
 The default `nemotron-3-nano:4b` runs on any Apple Silicon Mac and the whole pipeline
 works with it, but it often cannot follow the investigation format closely enough to
-commit to a cause. Its reports then end in **"Insufficient evidence"**. For real
-diagnoses, use a bigger model:
+commit to a cause. Its reports then end in **"Insufficient evidence"**. A bigger
+model should give real diagnoses (these two options have not been tested end to end yet):
 
 - **Mac with 32 GB+ of memory (48 GB recommended):** switch to the 30B Nemotron
   (a 24 GB download):
