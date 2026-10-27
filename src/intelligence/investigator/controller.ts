@@ -254,10 +254,12 @@ export async function processInvestigation(db: Db, job: JobDoc, services: Servic
         output = candidate; finalCallId = `${job.jobId}_diagnosis_${attempt}`;
       } catch (e) {
         if (String(e).includes("lease_lost_or_cancelled")) throw e;
-        repair = e instanceof ProviderError ? e.code : e instanceof Error ? e.message : "invalid_output";
-        if (e instanceof ProviderError && e.code !== "invalid_structured_output") diagnosisProviderFailure = e.code;
-        await db.collection<CallDoc>(COLLECTIONS.investigationCalls).updateOne({ callId: `${job.jobId}_diagnosis_${attempt}` }, { $set: { validationStatus: e instanceof ProviderError && e.code !== "invalid_structured_output" ? "provider_failed" : "rejected", correctionId: attempt === 0 && !(e instanceof ProviderError) ? `${job.jobId}_diagnosis_1` : null } });
-        if (e instanceof ProviderError || e instanceof BudgetError) break;
+        // A malformed shape (common on small local models) gets one repair attempt with the exact schema error.
+        const invalidShape = e instanceof ProviderError && e.code === "invalid_structured_output";
+        repair = invalidShape ? (e as ProviderError).message.slice(0, 500) : e instanceof ProviderError ? e.code : e instanceof Error ? e.message : "invalid_output";
+        if (e instanceof ProviderError && !invalidShape) diagnosisProviderFailure = e.code;
+        await db.collection<CallDoc>(COLLECTIONS.investigationCalls).updateOne({ callId: `${job.jobId}_diagnosis_${attempt}` }, { $set: { validationStatus: e instanceof ProviderError && !invalidShape ? "provider_failed" : "rejected", correctionId: attempt === 0 && (!(e instanceof ProviderError) || invalidShape) ? `${job.jobId}_diagnosis_1` : null } });
+        if ((e instanceof ProviderError && !invalidShape) || e instanceof BudgetError) break;
       }
     }
     if (!output) {
