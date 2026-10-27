@@ -1,0 +1,2 @@
+# OpenRouter execution does not require MLX, model weights or Transformers.
+Pillow==13.0.0

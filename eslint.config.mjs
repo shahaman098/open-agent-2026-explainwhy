@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     // own scripts (npm run contracts:typecheck / contracts:validate); not edited here.
     "packages/contracts/**",
     "src/vendor/**",
+    // Vendored Python Animation Studio; its browser UI is tested by its own suite.
+    "apps/animation-studio/**",
     ".local/**",
     "playwright-report/**",
     "test-results/**",

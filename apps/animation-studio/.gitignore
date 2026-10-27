@@ -1,0 +1,30 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.netrc
+.pypirc
+local-models.json
+
+# Environments, dependencies and caches
+.venv/
+.deps/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+
+# User inputs, generated jobs, test exports and model weights
+jobs/
+asset_library/
+qa/
+models/
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.log
+*.zip
