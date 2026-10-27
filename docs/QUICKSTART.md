@@ -31,14 +31,20 @@ Press Ctrl-C in that terminal to stop everything.
 
 ## 4. First run: give the agent something to investigate
 
-1. In **Control room**, click **Start / reset run**, then **+72h** to build normal history.
-2. Under **Inject incident**, pick a scenario (e.g. *Promo failure + ad decoy*), click
+1. In **Control room**, click **Start / reset run**, then **+72h** to build normal
+   history (wait until the charts fill in).
+2. Under **Inject incident**, pick a scenario (the default *Ad fatigue* works), click
    **Inject scenario**, then **+24h**.
-3. Open **Anomaly monitor**. When the incident appears, click **Open investigation**.
-4. The local model investigates. Follow it on the dashboard under **Investigations**,
-   then review the plan under **Approvals**.
+3. Open **Anomaly monitor**. The monitor detects the incident by itself within a few
+   seconds and opens an investigation.
+4. Go to **Overview → Investigations** and open that investigation.
+   - Click the **Evidence** step, then **Collect evidence**.
+   - Click the **Signal** step, then **Start AI investigation**. The local Nemotron
+     model now reasons over the evidence and writes a cited diagnosis.
+   - When it finishes, use **Decision / Plan → Generate solution plan**, then review
+     it under **Approvals**.
 
-Investigations on a small local model take a few minutes.
+Investigations on a small local model take several minutes.
 
 ## If something goes wrong
 
