@@ -1,0 +1,326 @@
+{
+  "description": "Extract from saved local NVIDIA investigation and planning records. This is a recorded snapshot, not a live status feed or a new model request.",
+  "data": "Synthetic UK GPU-channel operational data, unaffiliated with NVIDIA. Public quarterly financial references are separate.",
+  "scope": {
+    "businessId": "nvidia_demo",
+    "simulationRunId": "nvidia_channel_20261027",
+    "investigationId": "inv_nvidia_channel_20261027_966034799c06"
+  },
+  "diagnosis": {
+    "status": "completed",
+    "completedAt": "2026-10-27T22:56:27.608Z",
+    "reportId": "report_aij_8b1e744c3886975823584efa",
+    "createdAt": "2026-10-27T22:56:27.603Z",
+    "stopReason": "Relevant selected tools exhausted",
+    "evidenceIds": [
+      "evd_d5a65cb0354c35cf",
+      "evd_66e904cd21f71dd0",
+      "evd_1f02d055cde22d07",
+      "evd_8647cc0b4881472a",
+      "evd_f139622721466d99",
+      "evd_543910b7eab2587a",
+      "evd_a86cd1411d5ecd0d",
+      "evd_4f1a5891b6e26110",
+      "evd_d299b5a8d0c33a73",
+      "evd_e26125d32bf11ab5",
+      "evd_51941b64c9b18f0b",
+      "evd_633b6d31ea60eed8",
+      "evd_8887894b4cb7144d",
+      "evd_51d23d0cb8695246",
+      "evd_364e2578396da485",
+      "evd_fad7c04b301eeeaf"
+    ],
+    "diagnosis": {
+      "summary": "The qualified leading explanation is advertising inefficiency. Review the cited supporting and conflicting observations before choosing a response.",
+      "taskKey": "revenue_diagnosis_v1",
+      "createdAt": "2026-10-27T22:56:27.602Z",
+      "businessId": "nvidia_demo",
+      "hypotheses": [
+        {
+          "cause": "ad_inefficiency",
+          "strength": "moderate",
+          "evidenceIds": [
+            "evd_8647cc0b4881472a",
+            "evd_d5a65cb0354c35cf"
+          ],
+          "explanation": "advertising inefficiency is a qualified explanation consistent with the cited observations. This is a model assessment requiring human review, not an isolated causal effect.",
+          "counterEvidenceIds": []
+        },
+        {
+          "cause": "stockout",
+          "strength": "weak",
+          "evidenceIds": [],
+          "explanation": "product availability remains an alternative to test against the cited observations. This is a model assessment requiring human review, not an isolated causal effect. The cited counterevidence limits the interpretation.",
+          "counterEvidenceIds": [
+            "evd_4f1a5891b6e26110"
+          ]
+        }
+      ],
+      "diagnosisId": "diag_aij_8b1e744c3886975823584efa",
+      "modelCallId": "aij_8b1e744c3886975823584efa_diagnosis_0",
+      "primaryCause": "ad_inefficiency",
+      "schemaVersion": 1,
+      "requiresReview": true,
+      "investigationId": "inv_nvidia_channel_20261027_966034799c06",
+      "missingEvidence": [
+        "Compare campaign efficiency with conversion and order composition before changing a budget.",
+        "Compare availability with demand and out-of-stock checkout failures."
+      ]
+    },
+    "validation": {
+      "checks": [
+        "Canonical diagnosis schema",
+        "Business/run/investigation ownership",
+        "Evidence references exist and resolve",
+        "Timestamp cutoff",
+        "Duplicate references rejected",
+        "Numerical prose rejected; impact computed deterministically",
+        "Known contradiction disclosure",
+        "Single diagnosis shared by brief, report and handoff"
+      ],
+      "passed": true,
+      "semanticSupport": "model_assessed_not_deterministic_proof"
+    },
+    "handoff": {
+      "ready": true,
+      "executable": false,
+      "constraints": [
+        "Human review required",
+        "Stage five is read-only; no executable plan or business mutation",
+        "Synthetic data; external events cannot establish simulated causation"
+      ],
+      "diagnosisId": "diag_aij_8b1e744c3886975823584efa",
+      "evidenceIds": [
+        "evd_8887894b4cb7144d",
+        "evd_d5a65cb0354c35cf",
+        "evd_a86cd1411d5ecd0d",
+        "evd_4f1a5891b6e26110",
+        "evd_51d23d0cb8695246",
+        "evd_66e904cd21f71dd0",
+        "evd_d299b5a8d0c33a73",
+        "evd_1f02d055cde22d07",
+        "evd_fad7c04b301eeeaf",
+        "evd_364e2578396da485",
+        "evd_8647cc0b4881472a",
+        "evd_e26125d32bf11ab5",
+        "evd_f139622721466d99",
+        "evd_51941b64c9b18f0b",
+        "evd_543910b7eab2587a",
+        "evd_633b6d31ea60eed8"
+      ],
+      "uncertainty": [
+        "Compare campaign efficiency with conversion and order composition before changing a budget.",
+        "Compare availability with demand and out-of-stock checkout failures.",
+        "Relevant selected tools exhausted"
+      ],
+      "schemaVersion": 1,
+      "impactReference": "report_aij_8b1e744c3886975823584efa",
+      "investigationId": "inv_nvidia_channel_20261027_966034799c06",
+      "affectedEntities": [
+        "cmp_nv_compact_ai",
+        "cmp_nv_creator",
+        "cmp_nv_datacenter",
+        "cmp_nv_gaming",
+        "cmp_nv_workstation",
+        "paid_search",
+        "paid_social"
+      ],
+      "supportedFindings": [
+        "advertising inefficiency is a qualified explanation consistent with the cited observations. This is a model assessment requiring human review, not an isolated causal effect."
+      ],
+      "advisoryCandidates": [
+        "Investigate: Compare campaign efficiency with conversion and order composition before changing a budget.",
+        "Investigate: Compare availability with demand and out-of-stock checkout failures."
+      ]
+    },
+    "insufficientEvidence": null,
+    "calls": [
+      {
+        "task": "normal.investigation.v1",
+        "callId": "aij_8b1e744c3886975823584efa_reasoning_0",
+        "status": "completed",
+        "startedAt": "2026-10-27T22:55:49.274Z",
+        "completedAt": "2026-10-27T22:56:09.843Z",
+        "validationStatus": "validated",
+        "adapterVersion": "local-evidence-decisions-v1",
+        "promptVersion": "1.1.1",
+        "promptFingerprint": "5191b62e128734495c53f87f039276e0a5699279cd5a39bba05a9b9262d00c23",
+        "checksum": "09dfbb32300980ddfc7392bd46c86d1cd62c94432db012fd254cf778f030668c",
+        "metadata": {
+          "model": "explainwhy-nemotron",
+          "route": "http://127.0.0.1:11434/v1/chat/completions",
+          "provider": "nvidia",
+          "latencyMs": 20563,
+          "requestId": "1b1e0c8f-ee53-4f50-a7c7-af8bd858276e",
+          "inputTokens": 8934,
+          "totalTokens": 9093,
+          "outputTokens": 159,
+          "estimatedCostUsd": null,
+          "providerRequestId": null
+        },
+        "error": null
+      },
+      {
+        "task": "normal.root_cause_diagnosis.v1",
+        "callId": "aij_8b1e744c3886975823584efa_diagnosis_0",
+        "status": "completed",
+        "startedAt": "2026-10-27T22:56:10.076Z",
+        "completedAt": "2026-10-27T22:56:27.587Z",
+        "validationStatus": "validated",
+        "adapterVersion": "local-evidence-decisions-v1",
+        "promptVersion": "1.1.1",
+        "promptFingerprint": "eae89537269e838c2451740d1b10bfad0f034a2723d4f78422fe7d2e07d7aea4",
+        "checksum": "ded3199868a3d534b9e578bd9426d964aa28da5677da735b84ec9648f08388f7",
+        "metadata": {
+          "model": "explainwhy-nemotron",
+          "route": "http://127.0.0.1:11434/v1/chat/completions",
+          "provider": "nvidia",
+          "latencyMs": 17508,
+          "requestId": "3aa6b54a-3daf-4c08-bea7-99b9b12f485d",
+          "inputTokens": 8635,
+          "totalTokens": 8788,
+          "outputTokens": 153,
+          "estimatedCostUsd": null,
+          "providerRequestId": null
+        },
+        "error": null
+      }
+    ]
+  },
+  "planning": {
+    "savedAt": "2026-10-27T22:57:06.805Z",
+    "status": "awaiting_selection",
+    "eligible": true,
+    "blockedReasons": [],
+    "output": {
+      "strategies": [
+        {
+          "key": "observe",
+          "risk": "low",
+          "title": "Continue observation",
+          "actions": [],
+          "benefit": "Avoid changing business state while remaining uncertainty is reviewed.",
+          "advisory": [
+            "Review supporting and conflicting evidence with an operator."
+          ],
+          "downside": "Current exposure continues while evidence is gathered.",
+          "comparison": "Prefer observation when intervention risk outweighs the currently supported case for action.",
+          "evidenceIds": [
+            "evd_a86cd1411d5ecd0d",
+            "evd_4f1a5891b6e26110",
+            "evd_66e904cd21f71dd0",
+            "evd_d299b5a8d0c33a73",
+            "evd_1f02d055cde22d07",
+            "evd_8647cc0b4881472a",
+            "evd_e26125d32bf11ab5",
+            "evd_f139622721466d99",
+            "evd_51941b64c9b18f0b",
+            "evd_543910b7eab2587a",
+            "evd_633b6d31ea60eed8"
+          ],
+          "explanation": "Collect another comparable observation window before making an intervention.",
+          "feasibility": "Existing read-only metric and evidence tools are available.",
+          "uncertainty": "The diagnosis is a qualified model assessment and is not a controlled causal estimate.",
+          "reversibility": "No business mutation is proposed.",
+          "successCriteria": [
+            {
+              "metric": "cac_minor",
+              "target": null,
+              "direction": "decrease",
+              "measurementWindowMinutes": 240
+            }
+          ]
+        },
+        {
+          "key": "investigate",
+          "risk": "low",
+          "title": "Investigate the alternatives",
+          "actions": [],
+          "benefit": "Reduce uncertainty before choosing a business intervention.",
+          "advisory": [
+            "Compare campaign efficiency with conversion and order composition before changing a budget.",
+            "Compare availability with demand and out-of-stock checkout failures."
+          ],
+          "downside": "Additional investigation takes time and does not itself repair the issue.",
+          "comparison": "Prefer a targeted investigation when a specific control or mechanism remains unresolved.",
+          "evidenceIds": [
+            "evd_a86cd1411d5ecd0d",
+            "evd_4f1a5891b6e26110",
+            "evd_66e904cd21f71dd0",
+            "evd_d299b5a8d0c33a73",
+            "evd_1f02d055cde22d07",
+            "evd_8647cc0b4881472a",
+            "evd_e26125d32bf11ab5",
+            "evd_f139622721466d99",
+            "evd_51941b64c9b18f0b",
+            "evd_543910b7eab2587a",
+            "evd_633b6d31ea60eed8"
+          ],
+          "explanation": "Use discriminating follow-up evidence to compare the leading interpretation with competing explanations.",
+          "feasibility": "Existing read-only metric and evidence tools are available.",
+          "uncertainty": "The diagnosis is a qualified model assessment and is not a controlled causal estimate.",
+          "reversibility": "No business mutation is proposed.",
+          "successCriteria": [
+            {
+              "metric": "cac_minor",
+              "target": null,
+              "direction": "decrease",
+              "measurementWindowMinutes": 240
+            }
+          ]
+        }
+      ],
+      "recommendation": "Local Nemotron ranked continue observation as the preferred option for operator review. Compare it with the validated alternatives; nothing is approved or executed.",
+      "recommendedKey": "observe"
+    },
+    "checks": [
+      {
+        "errors": [],
+        "passed": true,
+        "actions": [],
+        "strategyKey": "observe"
+      },
+      {
+        "errors": [],
+        "passed": true,
+        "actions": [],
+        "strategyKey": "investigate"
+      }
+    ],
+    "selectedKey": null,
+    "plan": null,
+    "calls": [
+      {
+        "task": "normal.solution_planning.v1",
+        "callId": "plj_79f4020d746e89e51c3085e8_strategy_0",
+        "status": "completed",
+        "startedAt": "2026-10-27T22:56:52.375Z",
+        "completedAt": "2026-10-27T22:57:06.668Z",
+        "validationStatus": "validated",
+        "adapterVersion": "local-validated-options-v1",
+        "promptVersion": "solution-planner-v2",
+        "promptFingerprint": "4d2f8506e9302dfa0342e918567d3f4d5033a46b1703fe81608c21408f8fd782",
+        "checksum": "a8c45a95dd0a63392f3ee951d5b2f3df339e91e0dc28c337a2af67af03d165e6",
+        "metadata": {
+          "model": "explainwhy-nemotron",
+          "route": "http://127.0.0.1:11434/v1/chat/completions",
+          "provider": "nvidia",
+          "latencyMs": 14289,
+          "requestId": "a204b68e-7dca-4439-9613-188b382e5418",
+          "inputTokens": 7653,
+          "totalTokens": 7679,
+          "outputTokens": 26,
+          "estimatedCostUsd": null,
+          "providerRequestId": null
+        },
+        "error": null
+      }
+    ]
+  },
+  "limits": [
+    "The snapshot was saved before human strategy selection; the running application may have advanced.",
+    "The model chose a qualified interpretation. Reference validation is not proof of causation.",
+    "The two strategies are advisory. These records contain no approved or executed business action.",
+    "This is one synthetic investigation and does not establish general model accuracy."
+  ]
+}
