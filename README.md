@@ -1,6 +1,8 @@
 <img width="8931" height="3240" alt="Normal — business intelligence and operations" src="https://github.com/user-attachments/assets/80916a0e-baf5-40fa-b5b5-7ccf4f6ab7c3" />
 
-# Normal
+# ExplainWhy Agent
+
+**Open Agent Hackathon 2026** — Track 02 (*The Agent That Can Explain Why*) · built for evidence-backed investigation across fragmented business data (NVIDIA Nemotron verification path).
 
 **Find the business problem. Check the evidence. Approve the next step. See what happened.**
 
