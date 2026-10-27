@@ -57,7 +57,7 @@ export function internalCardView(item: EvidenceItem): InternalCard {
     series: series.success ? series.data : [], campaigns: campaigns.success ? campaigns.data.slice(0, 3).map((campaign) => {
       const metadata = item.campaignMetadata?.find((entry) => entry.campaignId === campaign.campaignId);
       return { ...campaign, ...(metadata ? { name: metadata.name, platform: metadata.platform } : {}),
-        ...(item.simulationRunId ? { url: `/dashboard/campaigns/${encodeURIComponent(campaign.campaignId)}?run=${encodeURIComponent(item.simulationRunId)}` } : {}) };
+        ...(item.simulationRunId ? { url: `/dashboard/campaigns/${encodeURIComponent(campaign.campaignId)}?run=${encodeURIComponent(item.simulationRunId)}&businessId=${encodeURIComponent(evidence.businessId)}` } : {}) };
     }) : [], warnings: item.warnings });
 }
 

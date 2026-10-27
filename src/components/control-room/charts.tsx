@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { AnimateChart } from "@/components/presentation/AnimateChart";
 
 export interface Point { x: string; label: string; value: number | null }
 
@@ -12,6 +13,8 @@ interface ChartProps {
   kind: "bar" | "line";
   /** Test hook so E2E can count the plotted marks. */
   testId?: string;
+  unit?: string;
+  scope?: { businessId: string; simulationRunId: string };
 }
 
 const W = 640; const H = 220; const PAD = { l: 44, r: 12, t: 12, b: 28 };
@@ -30,7 +33,7 @@ function ticks(max: number): number[] {
  * Single-series chart (bar or line) with a crosshair/hover tooltip, recessive
  * hairline grid, a sparse end-label and a table view. One axis only.
  */
-export function Chart({ title, subtitle, points, format, kind, testId }: ChartProps) {
+export function Chart({ title, subtitle, points, format, kind, testId, unit = "count", scope }: ChartProps) {
   const [hover, setHover] = useState<number | null>(null);
   const [table, setTable] = useState(false);
   const id = useId();
@@ -45,12 +48,13 @@ export function Chart({ title, subtitle, points, format, kind, testId }: ChartPr
   const barW = Math.min(24, Math.max(4, (plotW / n) - 2));
   const last = points.length - 1;
   const hovered = hover !== null ? points[hover] : null;
+  const animationPoints = points.length ? points.map(point => ({ label: point.label, value: point.value, ...(Number.isFinite(Date.parse(point.x)) ? { x: Date.parse(point.x) } : {}) })) : [{ label: "No observation", value: null }];
 
   return (
     <div className="card">
       <div className="card-head">
         <div><h3>{title}</h3>{subtitle ? <div className="muted small">{subtitle}</div> : null}</div>
-        <button className="btn sm" onClick={() => setTable((t) => !t)} aria-pressed={table}>{table ? "Chart" : "Table"}</button>
+        <div className="chart-actions"><AnimateChart compact scope={scope} presentation={{ title, subtitle, synthetic: true, charts: [{ title, subtitle, kind, unit, source: "Recorded metric snapshots", series: [{ name: title, points: animationPoints }] }] }}/><button className="btn sm" onClick={() => setTable((t) => !t)} aria-pressed={table}>{table ? "Chart" : "Table"}</button></div>
       </div>
       {table ? (
         <div className="card-body scroll-x">

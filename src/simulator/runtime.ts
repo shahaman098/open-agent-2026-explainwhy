@@ -87,7 +87,7 @@ export async function startRun(input: unknown, db?: Db): Promise<RunSummary> {
   if (existing) await deleteRun(d, req.businessId, simulationRunId);
 
   const now = new Date().toISOString();
-  const { products: catalogue } = await getReferenceCatalogue(d);
+  const { products: catalogue } = await getReferenceCatalogue(d, req.businessId);
   const { world } = createInitialWorld({
     businessId: req.businessId, simulationRunId, seed: req.seed, catalogue,
     virtualStartAt: req.virtualStartAt, minutesPerTick: req.minutesPerTick, createdAt: now,
@@ -102,8 +102,8 @@ export async function startRun(input: unknown, db?: Db): Promise<RunSummary> {
     { businessId: req.businessId },
     {
       $setOnInsert: {
-        schemaVersion: 1, businessId: req.businessId, name: req.businessId === DEFAULT_BUSINESS_ID ? DEFAULT_BUSINESS_NAME : `${req.businessId} (simulated)`,
-        currency: "GBP", timezone: "Europe/London", industry: "Sportswear retail (unaffiliated simulation)", createdAt: now,
+        schemaVersion: 1, businessId: req.businessId, name: req.businessId === "nvidia_demo" ? "NVIDIA — Synthetic UK channel demo" : req.businessId === DEFAULT_BUSINESS_ID ? DEFAULT_BUSINESS_NAME : `${req.businessId} (simulated)`,
+        currency: "GBP", timezone: "Europe/London", industry: req.businessId === "nvidia_demo" ? "GPU channel operations (synthetic)" : "Sportswear retail (unaffiliated simulation)", createdAt: now,
       },
       ...(req.makeActive ? { $set: { activeSimulationRunId: simulationRunId } } : {}),
     },
@@ -247,7 +247,8 @@ export async function injectScenario(input: unknown, businessId: string, db?: Db
   const state = await loadState(d, businessId, req.simulationRunId);
   if (!state) throw new SimulatorError(`Run ${req.simulationRunId} not found`, "run_not_found", 404);
   return withRunLock(d, businessId, req.simulationRunId, async () => {
-    const params = deriveScenarioParams(req.scenario, req.severity, SCENARIO_TARGETS);
+    const targets = businessId === "nvidia_demo" ? { viralProductId: "nv_rtx_5090", qualityIssueProductId: "nv_rtx_5070" } : SCENARIO_TARGETS;
+    const params = deriveScenarioParams(req.scenario, req.severity, targets);
     const now = new Date().toISOString();
     await d.collection<SimulatorStateDoc>(COLLECTIONS.simulatorState).updateOne(
       { businessId, simulationRunId: req.simulationRunId },
@@ -257,7 +258,7 @@ export async function injectScenario(input: unknown, businessId: string, db?: Db
       { simulationRunId: req.simulationRunId },
       ScenarioGroundTruth.parse({
         simulationRunId: req.simulationRunId, scenario: req.scenario, actualCauses: SCENARIO_ROOT_CAUSES[req.scenario],
-        hiddenFaultParameters: { ...params, severity: req.severity, injectedAtVirtualTime: state.virtualTime, targets: SCENARIO_TARGETS, decoyCauses: SCENARIO_DECOYS[req.scenario] ?? [] },
+        hiddenFaultParameters: { ...params, severity: req.severity, injectedAtVirtualTime: state.virtualTime, targets, decoyCauses: SCENARIO_DECOYS[req.scenario] ?? [] },
       }),
       { upsert: true },
     );

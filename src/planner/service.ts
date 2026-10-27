@@ -9,6 +9,7 @@ import { digest, LEASE_MS, jobScope, type CallDoc } from "@/intelligence/investi
 import type { ScopeT } from "@/intelligence/investigator/schemas";
 import { PlanningOutput, type PlanningJob, type PlanningView } from "./schemas";
 import { planningContext, contextHash, modelContext, PlannerError } from "./context";
+import { localPlanningRequest } from "./local-options";
 import { validateStrategy } from "./validation";
 
 export const PLANNER_TASK = "normal.solution_planning.v1", PLANNER_PROMPT_VERSION = "solution-planner-v2";
@@ -29,11 +30,12 @@ export async function readPlanning(db: Db, scope: ScopeT): Promise<PlanningView>
   let reasons: string[] = [], advisoryOnly = false, freshHash: string | null = null;
   try { const context = await planningContext(db, scope); advisoryOnly = context.advisoryOnly; freshHash = contextHash(context); } catch (e) { if (e instanceof PlannerError) reasons = [e.message]; else throw e; }
   const job = await db.collection<PlanningJob>(COLLECTIONS.planningJobs).findOne(scope, { projection: { _id: 0 }, sort: { createdAt: -1 } });
+  const diagnosisJob = await db.collection(COLLECTIONS.investigationJobs).findOne(scope, { projection: { status: 1, stage: 1, error: 1 } });
   const [doc, calls] = await Promise.all([
     job?.planId ? db.collection(COLLECTIONS.plans).findOne({ businessId: scope.businessId, simulationRunId: scope.simulationRunId, planId: job.planId, planVersion: job.planVersion }, { projection: { _id: 0 } }) : null,
     job ? db.collection<CallDoc>(COLLECTIONS.investigationCalls).find({ ...scope, jobId: job.jobId }, { projection: { _id: 0, result: 0 } }).sort({ startedAt: 1 }).toArray() : [],
   ]);
-  return { eligible: reasons.length === 0, blockedReasons: reasons, advisoryOnly, job, plan: doc ? canonicalPlan(doc) : null, calls, approvalIntegration: "pending", stale: Boolean(job && freshHash && job.contextHash !== freshHash) };
+  return { diagnosis: diagnosisJob ? { status: String(diagnosisJob.status), stage: String(diagnosisJob.stage), error: diagnosisJob.error ? String(diagnosisJob.error) : null } : null, eligible: reasons.length === 0, blockedReasons: reasons, advisoryOnly, job, plan: doc ? canonicalPlan(doc) : null, calls, approvalIntegration: "pending", stale: Boolean(job && freshHash && job.contextHash !== freshHash) };
 }
 export async function startPlanning(db: Db, scope: ScopeT): Promise<PlanningJob> {
   const context = await planningContext(db, scope); await ensurePlannerIndexes(db);
@@ -97,9 +99,11 @@ export async function processPlanning(db: Db, job: PlanningJob, model: (request:
   try {
     const context = await planningContext(db, jobScope(job));
     if (contextHash(context) !== job.contextHash) throw new PlannerError("Planning input changed before generation. Review the current state.", "stale_state");
-    const request: ModelRequest = { model: providerConfig().plannerModel, system: PLANNER_SYSTEM, input: { ...modelContext(context), validationRepair: job.repair ? job.checks.filter((check) => !check.passed).map((check) => ({ strategy: check.strategyKey, errors: check.errors })) : null }, schema: PlanningOutput, schemaName: "solution_strategies", sessionId: job.jobId, maxOutputTokens: 10000 };
+    let request: ModelRequest = { model: providerConfig().plannerModel, system: PLANNER_SYSTEM, input: { ...modelContext(context), validationRepair: job.repair ? job.checks.filter((check) => !check.passed).map((check) => ({ strategy: check.strategyKey, errors: check.errors })) : null }, schema: PlanningOutput, schemaName: "solution_strategies", sessionId: job.jobId, maxOutputTokens: 10000 };
+    const localAdapter = providerConfig().local ? localPlanningRequest(context, request) : null;
+    request = localAdapter?.request || request;
     if (Buffer.byteLength(JSON.stringify(request.input), "utf8") > 160000) throw new PlannerError("Planning context exceeds the bounded input budget; narrow the evidence before generation.", "input_budget");
-    const checksum = digest(request.input), fingerprint = promptFingerprint(request, PLANNER_TASK, PLANNER_PROMPT_VERSION);
+    const checksum = digest(request.input), fingerprint = promptFingerprint(request, PLANNER_TASK, localAdapter?.version || PLANNER_PROMPT_VERSION);
     const previous = await calls.findOne({ callId });
     let response: ModelResponse;
     if (previous?.status === "completed" && previous.result && "value" in previous.result) {
@@ -110,8 +114,9 @@ export async function processPlanning(db: Db, job: PlanningJob, model: (request:
       await checkpoint(db, job, { stage: "strategy_generation" });
       await calls.insertOne({ ...jobScope(job), callId, jobId: job.jobId, task: PLANNER_TASK, promptVersion: PLANNER_PROMPT_VERSION, promptFingerprint: fingerprint, checksum,
         status: "pending", startedAt: now(), completedAt: null, metadata: null, result: null, error: null, ambiguous: false, reservedTokens: Buffer.byteLength(JSON.stringify(request.input)) + 16000,
-        outputDiagnosisId: job.diagnosisId, validationStatus: null, correctionId: null, adapterVersion: null });
+        outputDiagnosisId: job.diagnosisId, validationStatus: null, correctionId: null, adapterVersion: localAdapter?.version || null });
       response = await model(request);
+      if (localAdapter) response = { ...response, value: localAdapter.expand(response.value), localDecision: response.value, renderingVersion: localAdapter.version };
       await calls.updateOne({ callId, status: "pending" }, { $set: { status: "completed", completedAt: now(), metadata: response.metadata, result: response } });
     }
     const output = PlanningOutput.parse(response.value);

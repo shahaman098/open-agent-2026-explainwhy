@@ -1,0 +1,53 @@
+.explainwhy-app .local-analysis { margin: 0 0 20px; overflow: hidden; scroll-margin-top: 20px; }
+.explainwhy-app .local-analysis-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; border-bottom: 1px solid #e5e5e5; }
+.explainwhy-app .local-analysis-title { display: flex; align-items: center; gap: 12px; }
+.explainwhy-app .local-analysis-icon { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid #cdddbe; border-radius: 9px; color: #3c5b2e; background: #eff7e8; }
+.explainwhy-app .local-analysis h2 { margin: 0; font: 500 22px/1.3 "Poppins:Medium", Poppins, sans-serif; letter-spacing: -.03em; }
+.explainwhy-app .local-analysis-title p { margin-top: 3px; color: #777; font-size: 11px; }
+.explainwhy-app .local-analysis-status { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.explainwhy-app .local-analysis-status > span { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; }
+.explainwhy-app .local-analysis-status > span:first-child { color: #666; }
+.explainwhy-app .local-analysis-summary { padding: 22px 22px 18px; }
+.explainwhy-app .local-analysis-summary > span { color: #777; font-size: 10px; text-transform: uppercase; letter-spacing: .07em; }
+.explainwhy-app .local-analysis-summary h3 { margin: 6px 0 9px; font: 500 21px/1.35 "Poppins:Medium", Poppins, sans-serif; letter-spacing: -.025em; }
+.explainwhy-app .local-analysis-summary > p { max-width: 1100px; color: #444; font-size: 13px; line-height: 1.8; }
+.explainwhy-app .local-analysis-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; padding: 0 22px 22px; }
+.explainwhy-app .local-analysis-fact { padding: 16px; border: 1px solid #deded8; border-radius: 9px; background: #fafaf8; }
+.explainwhy-app .local-analysis-fact > span, .explainwhy-app .local-analysis-fact > strong, .explainwhy-app .local-analysis-fact > small { display: block; }
+.explainwhy-app .local-analysis-fact > span { color: #666; font-size: 11px; }
+.explainwhy-app .local-analysis-fact > strong { margin-top: 5px; font: 600 25px/1.3 "Poppins:SemiBold", Poppins, sans-serif; letter-spacing: -.03em; }
+.explainwhy-app .local-analysis-fact > small { margin-top: 4px; color: #777; font-size: 10px; }
+.explainwhy-app .local-analysis-fact > p { margin-top: 12px; color: #555; font-size: 11px; line-height: 1.7; }
+.explainwhy-app .local-analysis-checks { padding: 18px 22px; border-top: 1px solid #e5e5e5; }
+.explainwhy-app .local-analysis-checks h3 { font-size: 13px; font-weight: 600; }
+.explainwhy-app .local-analysis-checks ol { display: flex; flex-wrap: wrap; gap: 18px 28px; margin-top: 10px; padding: 0; list-style: none; }
+.explainwhy-app .local-analysis-checks li { flex: 1 1 240px; }
+.explainwhy-app .local-analysis-checks li > span { color: #56713e; font-size: 10px; text-transform: capitalize; }
+.explainwhy-app .local-analysis-checks li p { margin-top: 4px; color: #444; font-size: 12px; line-height: 1.7; }
+.explainwhy-app .local-analysis-checks li small { display: block; margin-top: 5px; color: #888; font-size: 10px; }
+.explainwhy-app .local-analysis-receipt { padding: 16px 22px; border-top: 1px solid #e5e5e5; }
+.explainwhy-app .local-analysis-receipt summary { cursor: pointer; font-size: 11px; font-weight: 600; }
+.explainwhy-app .local-analysis-receipt p { margin-top: 10px; color: #777; font-size: 11px; line-height: 1.7; }
+.explainwhy-app .local-analysis-receipt dl { margin-top: 14px; }
+.explainwhy-app .local-analysis-receipt dl > div { display: grid; grid-template-columns: minmax(140px, 1fr) 3fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 11px; }
+.explainwhy-app .local-analysis-receipt dd small { display: block; margin-top: 4px; color: #888; line-height: 1.7; }
+.explainwhy-app .local-analysis footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 13px 22px; background: #f8f8f5; border-top: 1px solid #e5e5e5; color: #777; font-size: 10px; line-height: 1.7; }
+.explainwhy-app .local-analysis-empty { display: flex; min-height: 170px; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 25px; color: #777; text-align: center; }
+.explainwhy-app .local-analysis-empty strong { color: #555; font-size: 13px; font-weight: 500; }
+.explainwhy-app .local-analysis-empty p { font-size: 11px; line-height: 1.7; }
+.explainwhy-app .local-analysis-error, .explainwhy-app .local-analysis-stale { margin: 14px 22px 0; padding: 12px 14px; border-radius: 7px; background: #fff4df; color: #7f622e; font-size: 12px; line-height: 1.7; }
+.explainwhy-app .local-analysis-error { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.explainwhy-app .local-analysis-investigations { display: flex; flex-wrap: wrap; gap: 14px; padding: 0 22px 18px; }
+.explainwhy-app .local-analysis-investigations a { color: #111; font-size: 11px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.explainwhy-app .local-analysis-compact .local-analysis-head { align-items: flex-start; }
+.explainwhy-app .local-analysis-compact .local-analysis-status { gap: 8px; }
+.local-analysis-spin { animation: local-analysis-turn 1.2s linear infinite; }
+@keyframes local-analysis-turn { to { transform: rotate(360deg); } }
+@media (max-width: 600px) {
+  .explainwhy-app .local-analysis-head { padding: 16px; }
+  .explainwhy-app .local-analysis h2 { font-size: 19px; }
+  .explainwhy-app .local-analysis-facts { grid-template-columns: minmax(0, 1fr); padding-inline: 16px; }
+  .explainwhy-app .local-analysis-summary, .explainwhy-app .local-analysis-checks { padding: 18px 16px; }
+  .explainwhy-app .local-analysis-receipt dl > div { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) { .local-analysis-spin { animation: none; } }

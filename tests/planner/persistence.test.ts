@@ -81,8 +81,8 @@ describe("durable planner MongoDB persistence; model output is an explicit test 
     const scope = await seed("blocked");
     await db.collection(COLLECTIONS.investigationJobs).updateOne(scope, { $set: { status: "failed", error: "provider failure" } });
     await expect(startPlanning(db, scope)).rejects.toThrow("non-provisional");
-    await expect(startPlanning(db, { ...scope, simulationRunId: "foreign_run" })).rejects.toThrow("saved Stage 5 report");
-    await expect(startPlanning(db, { ...scope, businessId: "foreign_business" })).rejects.toThrow("saved Stage 5 report");
+    await expect(startPlanning(db, { ...scope, simulationRunId: "foreign_run" })).rejects.toThrow("validated diagnosis");
+    await expect(startPlanning(db, { ...scope, businessId: "foreign_business" })).rejects.toThrow("validated diagnosis");
     expect((await readPlanning(db, scope)).eligible).toBe(false);
     expect(await db.collection(COLLECTIONS.planningJobs).countDocuments(scope)).toBe(0);
   });

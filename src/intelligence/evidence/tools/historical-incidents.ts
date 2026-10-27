@@ -64,8 +64,16 @@ export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
       businessId: ctx.businessId, simulationRunId: ctx.simulationRunId, investigationId: { $in: prior.map((item) => item.investigationId) },
       observedThrough: { $lte: ctx.cutoff }, availableAt: { $lte: availableBefore },
     }, { projection: { _id: 0 } }).sort({ availableAt: -1 }).limit(50).toArray();
+    // Generic executive summaries omit the incident's searchable subject. Rehydrate that metadata
+    // from the same scoped canonical records without mutating the immutable report snapshot.
+    const indexedMemories = memories.map((memory) => {
+      const source = rows.find((row) => row.investigationId === memory.investigationId);
+      return source ? { ...memory, title: source.title,
+        metrics: [...new Set([...source.metrics, ...memory.metrics])],
+        themes: [...new Set([...source.themes, ...memory.themes])] } : memory;
+    });
     const hmem = input.includeOtherRuns ? null : recallHistoricalMemories({ ...ctx, availableBefore },
-      `${current?.title ?? ""} ${[...currentThemes].join(" ")} ${[...currentMetrics].join(" ")}`, memories);
+      `${current?.title ?? ""} ${[...currentThemes].join(" ")} ${[...currentMetrics].join(" ")}`, indexedMemories);
     const recalledSource = hmem?.memories[0]?.source;
     const top = rows.find((row) => `investigations:${row.investigationId}` === recalledSource) ?? rows[0]!;
     const category = THEME_CATEGORY[incidentBy.get(top.investigationId)?.primaryTheme ?? ""] ?? "technical";

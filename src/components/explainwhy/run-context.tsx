@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createContext, startTransition, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { api, type RunsResponse } from "./api";
+import { workspaceFromSearch } from "@/lib/workspaces";
 
 interface RunState {
   businessId: string;
@@ -22,8 +23,14 @@ interface RunState {
 const RunContext = createContext<RunState | null>(null);
 
 export function RunProvider({ children }: { children: ReactNode }) {
+  const params = useSearchParams();
+  return <ScopedRunProvider key={workspaceFromSearch(params.toString())}>{children}</ScopedRunProvider>;
+}
+
+function ScopedRunProvider({ children }: { children: ReactNode }) {
   const router = useRouter(), pathname = usePathname(), params = useSearchParams();
   const requested = params.get("run");
+  const businessId = workspaceFromSearch(params.toString());
   const [runs, setRuns] = useState<RunsResponse["runs"]>([]);
   const [activeRunId, setActive] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -32,12 +39,12 @@ export function RunProvider({ children }: { children: ReactNode }) {
 
   const reloadRuns = useCallback(async () => {
     try {
-      const r = await api<RunsResponse>("/api/dev/simulator/runs");
+      const r = await api<RunsResponse>(`/api/dev/simulator/runs?businessId=${encodeURIComponent(businessId)}`);
       setRuns(r.runs); setActive(r.activeSimulationRunId); setError(null);
     } catch (e) {
       if ((e as { status?: number }).status === 404) setUnavailable(true); else setError((e as Error).message);
     } finally { setLoaded(true); }
-  }, []);
+  }, [businessId]);
   useEffect(() => {
     let cancelled = false;
     void (async () => { if (!cancelled) await reloadRuns(); })();
@@ -62,7 +69,7 @@ export function RunProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
   const value = useMemo<RunState>(() => ({
-    businessId: "nike_demo", runs, activeRunId, runId, loaded, unavailable, error, reloadRuns,
+    businessId, runs, activeRunId, runId, loaded, unavailable, error, reloadRuns,
     setRun: (id: string) => {
       if (selectedRunRef.current === id) return;
       selectedRunRef.current = id;
@@ -71,8 +78,8 @@ export function RunProvider({ children }: { children: ReactNode }) {
       next.set("run", id);
       startTransition(() => router.replace(`${pathname}?${next.toString()}`));
     },
-    withRun: (href: string) => (runId ? `${href}${href.includes("?") ? "&" : "?"}run=${encodeURIComponent(runId)}` : href),
-  }), [runs, activeRunId, runId, loaded, unavailable, error, reloadRuns, pathname, router]);
+    withRun: (href: string) => { const url = new URL(href, "http://local"); if (runId) url.searchParams.set("run", runId); if (businessId !== "nike_demo") url.searchParams.set("businessId", businessId); return url.pathname + url.search + url.hash; },
+  }), [businessId, runs, activeRunId, runId, loaded, unavailable, error, reloadRuns, pathname, router]);
   return <RunContext.Provider value={value}>{children}</RunContext.Provider>;
 }
 

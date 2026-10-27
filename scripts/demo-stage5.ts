@@ -27,7 +27,7 @@ async function main() {
       counts.push([name, count, hash.digest("hex")]);
     }
     const state = await db.collection(COLLECTIONS.simulatorState).findOne({ businessId, simulationRunId: "demo_nike" });
-    const active = (await db.collection(COLLECTIONS.businesses).findOne({ businessId }))?.activeSimulationRunId;
+    const active = (await db.collection(COLLECTIONS.businesses).findOne({ businessId }))?.activeSimulationRunId ?? null;
     return { counts, stateHash: digest(state), active };
   };
   const preparationPath = `docs/stage5-runs/${simulationRunId}_prepared.json`;

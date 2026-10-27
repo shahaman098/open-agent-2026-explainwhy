@@ -1,0 +1,1005 @@
+{
+  "metrics": {
+    "businessId": "nike_demo",
+    "simulationRunId": "stage5_1793122398859",
+    "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+    "jobId": "aij_d807253e32adb8894f0adb73",
+    "status": "failed",
+    "primaryCause": "unknown",
+    "expectedScenarioAfterInference": "ad_fatigue",
+    "canonicalEvidence": 0,
+    "citedEvidence": 0,
+    "unresolvedCitations": 0,
+    "modelCalls": 3,
+    "mubitRequestIds": [],
+    "tokens": 0,
+    "estimatedCostUsd": null,
+    "demoPreserved": true,
+    "workspace": "/dashboard/investigations/inv_stage5_1793122398859_d07498fe5b17?run=stage5_1793122398859"
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_d807253e32adb8894f0adb73",
+      "businessId": "nike_demo",
+      "simulationRunId": "stage5_1793122398859",
+      "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+      "status": "failed",
+      "stage": "failed",
+      "createdAt": "2026-10-27T17:34:07.956Z",
+      "updatedAt": "2026-10-27T17:38:08.106Z",
+      "startedAt": "2026-10-27T17:34:07.995Z",
+      "completedAt": "2026-10-27T17:38:08.106Z",
+      "round": 0,
+      "toolCount": 0,
+      "researchCount": 0,
+      "sourceCount": 0,
+      "callCount": 2,
+      "reservedTokens": 39805,
+      "actualTokens": 0,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 0,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-05T12:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-04T06:00:00.000Z",
+        "endAt": "2026-10-05T12:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-03T00:00:00.000Z",
+        "endAt": "2026-10-04T06:00:00.000Z"
+      },
+      "evidenceIds": [],
+      "sourceIds": [],
+      "hypotheses": [],
+      "steps": [
+        {
+          "stepId": "aij_d807253e32adb8894f0adb73_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-27T17:34:07.995Z",
+          "completedAt": "2026-10-27T17:34:07.995Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_d807253e32adb8894f0adb73_s1",
+          "type": "reasoning",
+          "status": "failed",
+          "identifier": "nvidia/nemotron-3.5-super-vl",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-27T17:34:08.001Z",
+          "completedAt": "2026-10-27T17:36:08.038Z",
+          "resultSummary": "",
+          "evidenceIds": [],
+          "error": "Provider unavailable: transport_or_timeout"
+        },
+        {
+          "stepId": "aij_d807253e32adb8894f0adb73_s2",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "nvidia/nemotron-3.5-super-vl",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-27T17:36:08.045Z",
+          "completedAt": "2026-10-27T17:38:08.096Z",
+          "resultSummary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "evidenceIds": [],
+          "error": "Provider unavailable: transport_or_timeout; deterministic fallback report"
+        },
+        {
+          "stepId": "aij_d807253e32adb8894f0adb73_s3",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-27T17:38:08.096Z",
+          "completedAt": "2026-10-27T17:38:08.096Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_d807253e32adb8894f0adb73_s4",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-27T17:38:08.096Z",
+          "completedAt": "2026-10-27T17:38:08.096Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": "Provider unavailable during diagnosis: transport_or_timeout; no accepted model diagnosis",
+      "stopReason": "Provider unavailable: transport_or_timeout",
+      "reportId": "report_aij_d807253e32adb8894f0adb73",
+      "attempts": 1
+    },
+    "report": {
+      "claims": [
+        {
+          "kind": "hypothesis",
+          "claim": "The available evidence does not justify a reliable causal conclusion.",
+          "claimId": "diag_aij_d807253e32adb8894f0adb73_claim_0",
+          "support": "insufficient_evidence",
+          "sourceIds": [],
+          "evidenceIds": [],
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ],
+          "counterEvidenceIds": []
+        }
+      ],
+      "impact": {
+        "unit": null,
+        "delta": null,
+        "value": null,
+        "metric": null,
+        "status": "unknown",
+        "baseline": null,
+        "evidenceId": null,
+        "limitations": [
+          "No financial loss estimate is justified."
+        ],
+        "schemaVersion": 1,
+        "interpretation": "A unique comparable business-wide revenue measurement is unavailable."
+      },
+      "ledger": [],
+      "handoff": {
+        "ready": false,
+        "executable": false,
+        "constraints": [
+          "Human review required",
+          "Stage five is read-only; no executable plan or business mutation",
+          "Synthetic data; external events cannot establish simulated causation"
+        ],
+        "diagnosisId": "diag_aij_d807253e32adb8894f0adb73",
+        "evidenceIds": [],
+        "uncertainty": [
+          "transport_or_timeout",
+          "Provider unavailable: transport_or_timeout"
+        ],
+        "schemaVersion": 1,
+        "impactReference": "report_aij_d807253e32adb8894f0adb73",
+        "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+        "affectedEntities": [
+          "cmp_apparel_search",
+          "cmp_basketball_search",
+          "cmp_football_mercurial",
+          "cmp_lifestyle_af1",
+          "cmp_running_pegasus",
+          "paid_search",
+          "paid_social"
+        ],
+        "supportedFindings": [],
+        "advisoryCandidates": [
+          "Investigate: transport_or_timeout"
+        ]
+      },
+      "version": 1,
+      "reportId": "report_aij_d807253e32adb8894f0adb73",
+      "sections": [
+        {
+          "text": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "title": "Executive summary",
+          "evidenceIds": []
+        },
+        {
+          "text": "No verified internal evidence was available.",
+          "title": "Observed evidence",
+          "evidenceIds": []
+        },
+        {
+          "text": "unknown (weak): The available evidence does not justify a reliable causal conclusion.",
+          "title": "Competing explanations",
+          "evidenceIds": []
+        },
+        {
+          "text": "Insufficient evidence for causal comparison.",
+          "title": "Causal challenges and uncertainty",
+          "evidenceIds": []
+        },
+        {
+          "text": "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.",
+          "title": "External research",
+          "evidenceIds": []
+        },
+        {
+          "text": "A unique comparable business-wide revenue measurement is unavailable.",
+          "title": "Business impact",
+          "evidenceIds": []
+        },
+        {
+          "text": "Review: transport_or_timeout",
+          "title": "Advisory next steps",
+          "evidenceIds": []
+        }
+      ],
+      "timeline": [
+        {
+          "type": "context",
+          "error": null,
+          "status": "completed",
+          "stepId": "aij_d807253e32adb8894f0adb73_s0",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-27T17:34:07.995Z",
+          "identifier": "canonical_context",
+          "completedAt": "2026-10-27T17:34:07.995Z",
+          "evidenceIds": [],
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded."
+        },
+        {
+          "type": "reasoning",
+          "error": "Provider unavailable: transport_or_timeout",
+          "status": "failed",
+          "stepId": "aij_d807253e32adb8894f0adb73_s1",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-27T17:34:08.001Z",
+          "identifier": "nvidia/nemotron-3.5-super-vl",
+          "completedAt": "2026-10-27T17:36:08.038Z",
+          "evidenceIds": [],
+          "resultSummary": ""
+        },
+        {
+          "type": "diagnosis",
+          "error": "Provider unavailable: transport_or_timeout; deterministic fallback report",
+          "status": "completed",
+          "stepId": "aij_d807253e32adb8894f0adb73_s2",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-27T17:36:08.045Z",
+          "identifier": "nvidia/nemotron-3.5-super-vl",
+          "completedAt": "2026-10-27T17:38:08.096Z",
+          "evidenceIds": [],
+          "resultSummary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations."
+        },
+        {
+          "type": "validation",
+          "error": null,
+          "status": "completed",
+          "stepId": "aij_d807253e32adb8894f0adb73_s3",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-27T17:38:08.096Z",
+          "identifier": "deterministic_validator",
+          "completedAt": "2026-10-27T17:38:08.096Z",
+          "evidenceIds": [],
+          "resultSummary": "Validation passed; semantic support remains a model assessment."
+        },
+        {
+          "type": "report",
+          "error": null,
+          "status": "completed",
+          "stepId": "aij_d807253e32adb8894f0adb73_s4",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-27T17:38:08.096Z",
+          "identifier": "report_composer_v1",
+          "completedAt": "2026-10-27T17:38:08.096Z",
+          "evidenceIds": [],
+          "resultSummary": "Report composed from the single validated diagnosis."
+        }
+      ],
+      "createdAt": "2026-10-27T17:38:08.097Z",
+      "diagnosis": {
+        "summary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "taskKey": "revenue_diagnosis_v1",
+        "createdAt": "2026-10-27T17:38:08.096Z",
+        "businessId": "nike_demo",
+        "hypotheses": [
+          {
+            "cause": "unknown",
+            "strength": "weak",
+            "evidenceIds": [],
+            "explanation": "The available evidence does not justify a reliable causal conclusion.",
+            "counterEvidenceIds": []
+          }
+        ],
+        "diagnosisId": "diag_aij_d807253e32adb8894f0adb73",
+        "modelCallId": "aij_d807253e32adb8894f0adb73_system_insufficient",
+        "primaryCause": "unknown",
+        "schemaVersion": 1,
+        "requiresReview": true,
+        "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+        "missingEvidence": [
+          "transport_or_timeout"
+        ]
+      },
+      "hypotheses": [],
+      "validation": {
+        "checks": [
+          "Canonical diagnosis schema",
+          "Business/run/investigation ownership",
+          "Evidence references exist and resolve",
+          "Timestamp cutoff",
+          "Duplicate references rejected",
+          "Numerical prose rejected; impact computed deterministically",
+          "Known contradiction disclosure",
+          "Single diagnosis shared by brief, report and handoff"
+        ],
+        "passed": true,
+        "semanticSupport": "model_assessed_not_deterministic_proof"
+      },
+      "diagnosisId": "diag_aij_d807253e32adb8894f0adb73",
+      "schemaVersion": 1,
+      "executiveBrief": {
+        "impact": "A unique comparable business-wide revenue measurement is unavailable.",
+        "review": [
+          "transport_or_timeout"
+        ],
+        "certainty": "Insufficient evidence to select a reliable primary explanation.",
+        "explanation": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "whatChanged": "The detector observed changes in the incident metrics shown above."
+      },
+      "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+      "insufficientEvidence": {
+        "known": [],
+        "reason": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "unknown": [
+          "transport_or_timeout"
+        ],
+        "usefulNextEvidence": [
+          "transport_or_timeout"
+        ],
+        "plausibleExplanations": [
+          "The available evidence does not justify a reliable causal conclusion."
+        ],
+        "conclusionsNotJustified": [
+          "A definitive single root cause",
+          "A causal financial loss estimate",
+          "A verified real-world cause of this synthetic incident"
+        ],
+        "externalResearchUnavailable": true
+      }
+    },
+    "sources": [],
+    "calls": [
+      {
+        "task": "normal.investigation.v1",
+        "error": "Model request failed: transport_or_timeout",
+        "jobId": "aij_d807253e32adb8894f0adb73",
+        "callId": "aij_d807253e32adb8894f0adb73_reasoning_0",
+        "status": "failed",
+        "checksum": "23272c704ddd1327e5e6194fd9868d16e6b9ea42750235705c4bb4fb4ed25601",
+        "metadata": {
+          "model": "nvidia/nemotron-3.5-super-vl",
+          "route": "http://127.0.0.1:1234/v1/chat/completions",
+          "provider": "nvidia",
+          "latencyMs": 120003
+        },
+        "ambiguous": true,
+        "startedAt": "2026-10-27T17:34:08.007Z",
+        "businessId": "nike_demo",
+        "completedAt": "2026-10-27T17:36:08.013Z",
+        "correctionId": null,
+        "inputSnapshot": {
+          "tools": [
+            {
+              "name": "revenue_analysis",
+              "title": "Revenue analysis",
+              "category": "sales",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "metric_snapshots",
+                  "description": "persisted hourly global snapshots (sessions, orders, net revenue, refunds)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "order.completed and web.session_started canonical events"
+                }
+              ],
+              "description": "Revenue, order volume, conversion and average order value over time, by product/category/channel, decomposed against a baseline window. Reads canonical order events and persisted hourly metric snapshots."
+            },
+            {
+              "name": "advertising_analysis",
+              "title": "Advertising analysis",
+              "category": "advertising",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "ad.metrics_observed hourly campaign observations (deduplicated per campaign/window)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "web.session_started events carrying a campaignId"
+                }
+              ],
+              "description": "Impressions, clicks, CTR, spend, CPA, ROAS, frequency and attributed sessions per campaign, comparing affected campaigns with the rest and with a baseline window. Reads canonical ad.metrics_observed and web.session_started events."
+            },
+            {
+              "name": "checkout_analysis",
+              "title": "Checkout and conversion analysis",
+              "category": "technical",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "web.session_started, checkout.failed and order.completed canonical events"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "metric_snapshots",
+                  "description": "persisted hourly global snapshots (sessions, orders)"
+                }
+              ],
+              "description": "Session volume, conversion rate, checkout failures by failure code and device, and purchase completion before versus after. Reads canonical session, checkout.failed and order events plus hourly snapshots."
+            },
+            {
+              "name": "inventory_analysis",
+              "title": "Inventory analysis",
+              "category": "inventory",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "inventory.level_changed canonical events (available/reserved units)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "order.completed product lines and checkout.failed with failureCode out_of_stock"
+                }
+              ],
+              "description": "Available inventory at the window end, stockout events, depletion during the window and order velocity versus baseline per product. Reads canonical inventory.level_changed, order.completed and out-of-stock checkout.failed events."
+            },
+            {
+              "name": "shipping_analysis",
+              "title": "Shipping analysis",
+              "category": "fulfillment",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "metric_snapshots",
+                  "description": "persisted hourly global snapshots: shipments due (promise in hour) and delayedShipments (not delivered by promise)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "delivery.status_changed canonical events (shipped, delivered, delayed, lost)"
+                }
+              ],
+              "description": "Due-date cohort late-delivery rate versus baseline, delivery status transitions, lost parcels, average recorded delay and the open backlog past promise. Uses the existing cohort-aware shipping metrics; never an event-ratio delay rate."
+            },
+            {
+              "name": "customer_feedback_analysis",
+              "title": "Customer feedback analysis",
+              "category": "reviews",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "review.created canonical events (rating 1–5 and synthetic text)"
+                }
+              ],
+              "description": "Review volume, low-star (≤2) share, average rating and delivery-related complaint mentions overall and per product, versus baseline. Reads canonical review.created events; every review is simulated."
+            },
+            {
+              "name": "public_reference_context",
+              "title": "Public Nike reference context",
+              "category": "sales",
+              "dataSources": [
+                {
+                  "origin": "public_reference",
+                  "collection": "reference_products",
+                  "description": "verified public product references",
+                  "externalSource": "nike.com/gb (retrieved once, dated)"
+                },
+                {
+                  "origin": "public_reference",
+                  "collection": "reference_financials",
+                  "description": "published quarterly results, USD millions",
+                  "externalSource": "investors.nike.com"
+                }
+              ],
+              "description": "Verified public Nike records already stored by ExplainWhy Agent: product names and list prices observed on nike.com/gb and published NIKE, Inc. quarterly figures, each with source URL and observation date. Context only; never an explanation of a simulated hourly anomaly."
+            },
+            {
+              "name": "historical_incidents",
+              "title": "Meterless H-MEM historical recall",
+              "category": "technical",
+              "dataSources": [
+                {
+                  "origin": "normal_internal",
+                  "collection": "investigations",
+                  "description": "canonical investigations"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "incidents",
+                  "description": "correlated incident records (themes, affected entities, status)"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "anomalies",
+                  "description": "canonical anomalies (metrics)"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "diagnoses",
+                  "description": "recorded diagnoses, if any"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "plans",
+                  "description": "recorded proposed plans, if any"
+                }
+              ],
+              "description": "Meterless H-MEM hybrid recall over earlier sourced investigations in this simulation run. Returns a provenance and trust-ledger trace. Prior findings are context only, not evidence of the current cause. Other-run comparisons use the separate pattern-overlap path."
+            },
+            {
+              "name": "zetaris_campaign_analysis",
+              "title": "Zetaris campaign evidence",
+              "category": "advertising",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "description": "Federated advertising observations joined to campaign catalogue",
+                  "externalSource": "Zetaris SQL API"
+                }
+              ],
+              "description": "Read-only Zetaris SQL join of registered advertising observations and campaign catalogue. Tenant, run, time window and affected campaigns are fixed by the server. All returned metrics must match canonical synthetic events; stale or incomplete exports fail closed."
+            }
+          ],
+          "evidence": [],
+          "incident": {
+            "title": "Advertising performance deterioration across 5 campaigns",
+            "cutoff": "2026-10-05T12:00:00.000Z",
+            "window": {
+              "endAt": "2026-10-05T12:00:00.000Z",
+              "startAt": "2026-10-04T06:00:00.000Z"
+            },
+            "affected": {
+              "channels": [
+                "paid_search",
+                "paid_social"
+              ],
+              "products": [],
+              "campaigns": [
+                "cmp_apparel_search",
+                "cmp_basketball_search",
+                "cmp_football_mercurial",
+                "cmp_lifestyle_af1",
+                "cmp_running_pegasus"
+              ],
+              "categories": []
+            },
+            "anomalies": [
+              {
+                "actual": 0.003424312619599154,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.020398255714918406,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.003812636165577342,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.019433323067446873,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.0016417665407978984,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.017218209306232152,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.00563014291901256,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.03980497744142046,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.0024245689655172415,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.01070615034168565,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.006532823454429573,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-04T12:00:00.000Z"
+                },
+                "baseline": 0.02914174798027489,
+                "direction": "decrease"
+              },
+              {
+                "actual": 7717,
+                "metric": "cac_minor",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-04T12:00:00.000Z"
+                },
+                "baseline": 2090.621212121212,
+                "direction": "increase"
+              }
+            ]
+          },
+          "hypotheses": null,
+          "instruction": "Do not include numeric assertions in prose; evidence measurements already carry numerical values. Source IDs are context only, not canonical evidence IDs.",
+          "toolOutcomes": [],
+          "externalContext": [],
+          "researchEnabled": false,
+          "roundsRemaining": 5,
+          "exhaustedChoices": [],
+          "historicalMemory": [],
+          "validationRepair": null,
+          "evidenceLimitations": []
+        },
+        "promptVersion": "1.1.0",
+        "adapterVersion": null,
+        "reservedTokens": 19866,
+        "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+        "simulationRunId": "stage5_1793122398859",
+        "validationStatus": "provider_failed",
+        "outputDiagnosisId": null,
+        "promptFingerprint": "78cd86074f4bf66e13148203085334fa6bc1e0be7301a3c517cec4042bd0f22e"
+      },
+      {
+        "task": "normal.root_cause_diagnosis.v1",
+        "error": "Model request failed: transport_or_timeout",
+        "jobId": "aij_d807253e32adb8894f0adb73",
+        "callId": "aij_d807253e32adb8894f0adb73_diagnosis_0",
+        "status": "failed",
+        "checksum": "68a1b058e2490e7729587108d7de55ba92b5fa744ac7be2ccade07d7ea04258b",
+        "metadata": {
+          "model": "nvidia/nemotron-3.5-super-vl",
+          "route": "http://127.0.0.1:1234/v1/chat/completions",
+          "provider": "nvidia",
+          "latencyMs": 120002
+        },
+        "ambiguous": true,
+        "startedAt": "2026-10-27T17:36:08.057Z",
+        "businessId": "nike_demo",
+        "completedAt": "2026-10-27T17:38:08.063Z",
+        "correctionId": null,
+        "inputSnapshot": {
+          "tools": [
+            {
+              "name": "revenue_analysis",
+              "title": "Revenue analysis",
+              "category": "sales",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "metric_snapshots",
+                  "description": "persisted hourly global snapshots (sessions, orders, net revenue, refunds)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "order.completed and web.session_started canonical events"
+                }
+              ],
+              "description": "Revenue, order volume, conversion and average order value over time, by product/category/channel, decomposed against a baseline window. Reads canonical order events and persisted hourly metric snapshots."
+            },
+            {
+              "name": "advertising_analysis",
+              "title": "Advertising analysis",
+              "category": "advertising",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "ad.metrics_observed hourly campaign observations (deduplicated per campaign/window)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "web.session_started events carrying a campaignId"
+                }
+              ],
+              "description": "Impressions, clicks, CTR, spend, CPA, ROAS, frequency and attributed sessions per campaign, comparing affected campaigns with the rest and with a baseline window. Reads canonical ad.metrics_observed and web.session_started events."
+            },
+            {
+              "name": "checkout_analysis",
+              "title": "Checkout and conversion analysis",
+              "category": "technical",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "web.session_started, checkout.failed and order.completed canonical events"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "metric_snapshots",
+                  "description": "persisted hourly global snapshots (sessions, orders)"
+                }
+              ],
+              "description": "Session volume, conversion rate, checkout failures by failure code and device, and purchase completion before versus after. Reads canonical session, checkout.failed and order events plus hourly snapshots."
+            },
+            {
+              "name": "inventory_analysis",
+              "title": "Inventory analysis",
+              "category": "inventory",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "inventory.level_changed canonical events (available/reserved units)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "order.completed product lines and checkout.failed with failureCode out_of_stock"
+                }
+              ],
+              "description": "Available inventory at the window end, stockout events, depletion during the window and order velocity versus baseline per product. Reads canonical inventory.level_changed, order.completed and out-of-stock checkout.failed events."
+            },
+            {
+              "name": "shipping_analysis",
+              "title": "Shipping analysis",
+              "category": "fulfillment",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "metric_snapshots",
+                  "description": "persisted hourly global snapshots: shipments due (promise in hour) and delayedShipments (not delivered by promise)"
+                },
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "delivery.status_changed canonical events (shipped, delivered, delayed, lost)"
+                }
+              ],
+              "description": "Due-date cohort late-delivery rate versus baseline, delivery status transitions, lost parcels, average recorded delay and the open backlog past promise. Uses the existing cohort-aware shipping metrics; never an event-ratio delay rate."
+            },
+            {
+              "name": "customer_feedback_analysis",
+              "title": "Customer feedback analysis",
+              "category": "reviews",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "collection": "business_events",
+                  "description": "review.created canonical events (rating 1–5 and synthetic text)"
+                }
+              ],
+              "description": "Review volume, low-star (≤2) share, average rating and delivery-related complaint mentions overall and per product, versus baseline. Reads canonical review.created events; every review is simulated."
+            },
+            {
+              "name": "public_reference_context",
+              "title": "Public Nike reference context",
+              "category": "sales",
+              "dataSources": [
+                {
+                  "origin": "public_reference",
+                  "collection": "reference_products",
+                  "description": "verified public product references",
+                  "externalSource": "nike.com/gb (retrieved once, dated)"
+                },
+                {
+                  "origin": "public_reference",
+                  "collection": "reference_financials",
+                  "description": "published quarterly results, USD millions",
+                  "externalSource": "investors.nike.com"
+                }
+              ],
+              "description": "Verified public Nike records already stored by ExplainWhy Agent: product names and list prices observed on nike.com/gb and published NIKE, Inc. quarterly figures, each with source URL and observation date. Context only; never an explanation of a simulated hourly anomaly."
+            },
+            {
+              "name": "historical_incidents",
+              "title": "Meterless H-MEM historical recall",
+              "category": "technical",
+              "dataSources": [
+                {
+                  "origin": "normal_internal",
+                  "collection": "investigations",
+                  "description": "canonical investigations"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "incidents",
+                  "description": "correlated incident records (themes, affected entities, status)"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "anomalies",
+                  "description": "canonical anomalies (metrics)"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "diagnoses",
+                  "description": "recorded diagnoses, if any"
+                },
+                {
+                  "origin": "normal_internal",
+                  "collection": "plans",
+                  "description": "recorded proposed plans, if any"
+                }
+              ],
+              "description": "Meterless H-MEM hybrid recall over earlier sourced investigations in this simulation run. Returns a provenance and trust-ledger trace. Prior findings are context only, not evidence of the current cause. Other-run comparisons use the separate pattern-overlap path."
+            },
+            {
+              "name": "zetaris_campaign_analysis",
+              "title": "Zetaris campaign evidence",
+              "category": "advertising",
+              "dataSources": [
+                {
+                  "origin": "simulated",
+                  "description": "Federated advertising observations joined to campaign catalogue",
+                  "externalSource": "Zetaris SQL API"
+                }
+              ],
+              "description": "Read-only Zetaris SQL join of registered advertising observations and campaign catalogue. Tenant, run, time window and affected campaigns are fixed by the server. All returned metrics must match canonical synthetic events; stale or incomplete exports fail closed."
+            }
+          ],
+          "limited": true,
+          "evidence": [],
+          "incident": {
+            "title": "Advertising performance deterioration across 5 campaigns",
+            "cutoff": "2026-10-05T12:00:00.000Z",
+            "window": {
+              "endAt": "2026-10-05T12:00:00.000Z",
+              "startAt": "2026-10-04T06:00:00.000Z"
+            },
+            "affected": {
+              "channels": [
+                "paid_search",
+                "paid_social"
+              ],
+              "products": [],
+              "campaigns": [
+                "cmp_apparel_search",
+                "cmp_basketball_search",
+                "cmp_football_mercurial",
+                "cmp_lifestyle_af1",
+                "cmp_running_pegasus"
+              ],
+              "categories": []
+            },
+            "anomalies": [
+              {
+                "actual": 0.003424312619599154,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.020398255714918406,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.003812636165577342,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.019433323067446873,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.0016417665407978984,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.017218209306232152,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.00563014291901256,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.03980497744142046,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.0024245689655172415,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-05T06:00:00.000Z"
+                },
+                "baseline": 0.01070615034168565,
+                "direction": "decrease"
+              },
+              {
+                "actual": 0.006532823454429573,
+                "metric": "ctr",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-04T12:00:00.000Z"
+                },
+                "baseline": 0.02914174798027489,
+                "direction": "decrease"
+              },
+              {
+                "actual": 7717,
+                "metric": "cac_minor",
+                "window": {
+                  "endAt": "2026-10-05T12:00:00.000Z",
+                  "startAt": "2026-10-04T12:00:00.000Z"
+                },
+                "baseline": 2090.621212121212,
+                "direction": "increase"
+              }
+            ]
+          },
+          "hypotheses": null,
+          "stopReason": "Provider unavailable: transport_or_timeout",
+          "instruction": "Do not include numeric assertions in prose; evidence measurements already carry numerical values. Source IDs are context only, not canonical evidence IDs.",
+          "toolOutcomes": [],
+          "externalContext": [],
+          "researchEnabled": false,
+          "roundsRemaining": 5,
+          "exhaustedChoices": [],
+          "historicalMemory": [],
+          "validationRepair": null,
+          "evidenceLimitations": []
+        },
+        "promptVersion": "1.1.0",
+        "adapterVersion": null,
+        "reservedTokens": 19939,
+        "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+        "simulationRunId": "stage5_1793122398859",
+        "validationStatus": "provider_failed",
+        "outputDiagnosisId": null,
+        "promptFingerprint": "5dc157d6ffe7d364ea209e6ab5f99e4526bf633a83c6d7be7da62c221d917cc1"
+      },
+      {
+        "task": "system.insufficient_evidence",
+        "error": "No accepted model diagnosis; deterministic fallback",
+        "jobId": "aij_d807253e32adb8894f0adb73",
+        "callId": "aij_d807253e32adb8894f0adb73_system_insufficient",
+        "status": "failed",
+        "checksum": "08dcbd5250dce5dd46aea34f62976b966daa4eeaf46a7d082abb4d4deaaa5692",
+        "metadata": null,
+        "ambiguous": false,
+        "startedAt": "2026-10-27T17:38:08.089Z",
+        "businessId": "nike_demo",
+        "completedAt": "2026-10-27T17:38:08.089Z",
+        "correctionId": null,
+        "promptVersion": "1.1.0",
+        "adapterVersion": null,
+        "reservedTokens": 0,
+        "investigationId": "inv_stage5_1793122398859_d07498fe5b17",
+        "simulationRunId": "stage5_1793122398859",
+        "validationStatus": "validated",
+        "outputDiagnosisId": "diag_aij_d807253e32adb8894f0adb73"
+      }
+    ],
+    "researchTraces": []
+  }
+}

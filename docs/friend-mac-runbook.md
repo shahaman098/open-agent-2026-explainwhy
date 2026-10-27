@@ -225,6 +225,7 @@ EXPLAINWHY_MODEL_PROVIDER="nvidia"
 NVIDIA_INFERENCE_MODE="local"
 NVIDIA_BASE_URL="http://127.0.0.1:11434/v1"
 NVIDIA_LOCAL_MODEL="explainwhy-nemotron"
+NVIDIA_LOCAL_TIMEOUT_MS="300000"
 NEMOTRON_INVESTIGATOR_MODEL="explainwhy-nemotron"
 NEMOTRON_DIAGNOSIS_MODEL="explainwhy-nemotron"
 NEMOTRON_PLANNER_MODEL="explainwhy-nemotron"
@@ -246,6 +247,10 @@ ZETARIS_CAMPAIGNS_RELATION="REPLACE_AFTER_REGISTRATION"
 EXPLAINWHY_ANIMATION_ENABLED="true"
 ANIMATION_STUDIO_BASE_URL="http://127.0.0.1:8765"
 ```
+
+Local requests allow five minutes by default; `NVIDIA_LOCAL_TIMEOUT_MS` accepts
+1000–600000 ms. The overall investigation budget still applies. Cloud requests
+keep their two-minute limit.
 
 Local inference needs no NVIDIA cloud key. H-MEM needs no API key or separate
 server. The independent verifier is optional and is not required to prove Nemotron
@@ -470,7 +475,7 @@ try {
   const cutoff = memories.map(m=>m.observedThrough).sort().at(-1);
   const recall = recallHistoricalMemories({...scope,
     investigationId:'manual_hmem_verification', cutoff,
-    availableBefore:new Date().toISOString()}, memories[0].title, memories);
+    availableBefore:new Date().toISOString()}, [memories[0].title, ...memories[0].summaries].join(" "), memories);
   const passed = recall.memories.length > 0 && recall.ledger.some(e=>e.action==='read');
   const result = {passed, fixture:false, check:'saved-report engine recall', recall};
   await writeFile('.local/sponsor-verification/hmem-live.json', JSON.stringify(result,null,2));

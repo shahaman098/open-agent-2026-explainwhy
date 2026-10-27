@@ -6,6 +6,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { api, q, type Bundle, type CollectionSummary, type EvidenceList, type Trace } from "./api";
 import { useRun } from "./run-context";
 import { EvidenceExplorer } from "./EvidenceExplorer";
+import { LocalAnalysis } from "./LocalAnalysis";
 import { AIInvestigation } from "./AIInvestigation";
 import { EvidenceToolTrace } from "./EvidenceToolTrace";
 import { PageSkeleton } from "./PageSkeleton";
@@ -18,7 +19,7 @@ interface Data { bundle: Bundle; evidence: EvidenceList; trace: Trace }
 export function InvestigationWorkspace() {
   const investigationId = decodeURIComponent(useParams<{ id: string }>().id);
   const archiveBusinessId = useSearchParams().get("businessId");
-  const { runId, loaded, withRun } = useRun();
+  const { businessId, runId, loaded, withRun } = useRun();
   const [result, setResult] = useState<{ runId: string | null; data: Data | null; notFound: boolean; error: string | null } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -49,7 +50,7 @@ export function InvestigationWorkspace() {
   const collect = async (mode: "initial" | "refresh") => {
     setBusy(true); setError(null);
     try {
-      const summary = await api<CollectionSummary>(`/api/dev/investigations/${encodeURIComponent(investigationId)}/collect-evidence`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ...(runId ? { simulationRunId: runId } : {}), collectionMode: mode }) });
+      const summary = await api<CollectionSummary>(`/api/dev/investigations/${encodeURIComponent(investigationId)}/collect-evidence`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ businessId, ...(runId ? { simulationRunId: runId } : {}), collectionMode: mode }) });
       setLastRun({ runId, summary }); await load(runId);
     } catch (e) {
       setError((e as { code?: string }).code === "evidence_collection_in_progress" ? "Evidence collection is already running for this investigation; it will appear when finished." : (e as Error).message);
@@ -66,7 +67,7 @@ export function InvestigationWorkspace() {
   const { bundle, evidence, trace } = data;
   const inv = bundle.investigation, latest = evidence.latestCollection;
   return <InvestigationStory key={`story:${bundle.simulationRunId}:${inv.investigationId}`} bundle={bundle} evidenceItems={evidence.items}
-    investigationDetails={<AIInvestigation investigationId={inv.investigationId} businessId={inv.businessId} simulationRunId={bundle.simulationRunId} evidenceItems={evidence.items} onComplete={() => void load(runId)} />}
+    investigationDetails={<><LocalAnalysis businessId={inv.businessId} simulationRunId={bundle.simulationRunId} compact/><AIInvestigation investigationId={inv.investigationId} businessId={inv.businessId} simulationRunId={bundle.simulationRunId} evidenceItems={evidence.items} onComplete={() => void load(runId)} /></>}
     evidenceDetails={(sources, report) => <>
       <div className="card" data-testid="evidence-panel" id="evidence-controls">
         <div className="card-head"><h3>Evidence retrieval</h3>
@@ -91,6 +92,6 @@ export function InvestigationWorkspace() {
       <details className="canvas-detail-section"><summary>Evidence collection and tool timeline</summary><EvidenceToolTrace collections={trace.collections} runs={trace.toolRuns} /></details>
     </>}
     decisionDetails={<><SolutionPlanning investigationId={inv.investigationId} businessId={inv.businessId} simulationRunId={bundle.simulationRunId} evidenceItems={evidence.items} />
-      <section className="card" data-testid="execution-intake"><div className="card-head"><h3>Approval and execution</h3></div><div className="card-body"><p>Review the saved plan or check completed actions.</p><div className="row"><a className="btn primary" href={`/dashboard/approvals?run=${encodeURIComponent(bundle.simulationRunId)}`}>Open Approvals</a><a className="btn" href={`/dashboard/activity?run=${encodeURIComponent(bundle.simulationRunId)}`}>Execution activity</a></div></div></section></>}
+      <section className="card" data-testid="execution-intake"><div className="card-head"><h3>Approval and execution</h3></div><div className="card-body"><p>Review the saved plan or check completed actions.</p><div className="row"><a className="btn primary" href={withRun("/dashboard/approvals")}>Open Approvals</a><a className="btn" href={withRun("/dashboard/activity")}>Execution activity</a></div></div></section></>}
   />;
 }

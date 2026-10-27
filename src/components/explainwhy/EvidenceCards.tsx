@@ -5,6 +5,7 @@ import { virtualDate } from "@/lib/format";
 import type { EvidenceItem } from "./api";
 import type { ExternalSourceT } from "@/intelligence/investigator/schemas";
 import { externalCardView, internalCardView, type InternalCard } from "./evidence-card-model";
+import { AnimateChart } from "@/components/presentation/AnimateChart";
 
 function amount(value: number, unit: string) {
   if (unit.startsWith("GBP minor")) return `£${(value / 100).toLocaleString("en-GB", { maximumFractionDigits: 2 })}${unit.endsWith("/hour") ? "/h" : ""}`;
@@ -14,14 +15,14 @@ function amount(value: number, unit: string) {
 function Trend({ card }: { card: InternalCard }) {
   if (card.series.length > 1) {
     const max = Math.max(1, ...card.series.map((point) => point.value));
-    return <div className="investigation-trend" role="img" aria-label={`Actual daily values: ${card.series.map((point) => `${point.day} ${amount(point.value, "GBP minor units")}`).join(", ")}`}>{card.series.map((point) => <span key={point.day} style={{ height: `${Math.max(4, point.value / max * 100)}%` }} title={`${point.day}: ${amount(point.value, "GBP minor units")}`} />)}</div>;
+    return <><div className="investigation-trend" role="img" aria-label={`Actual daily values: ${card.series.map((point) => `${point.day} ${amount(point.value, "GBP minor units")}`).join(", ")}`}>{card.series.map((point) => <span key={point.day} style={{ height: `${Math.max(4, point.value / max * 100)}%` }} title={`${point.day}: ${amount(point.value, "GBP minor units")}`} />)}</div><div className="chart-inline-animation"><AnimateChart compact presentation={{ title: card.title, synthetic: true, charts: [{ title: "Daily revenue", kind: "bar", unit: "GBP minor units", source: `Evidence ${card.id}`, series: [{ name: "Revenue", points: card.series.map(point => ({ label: point.day, value: point.value })) }] }] }}/></div></>;
   }
   const measure = card.measurements.find((item) => item.baseline !== undefined && item.value >= 0 && item.baseline >= 0);
   if (!measure) return null;
   const max = Math.max(1, measure.value, measure.baseline!);
-  return <div className="investigation-comparison" role="img" aria-label={`${measure.metric}: observed ${amount(measure.value, measure.unit)}, baseline ${amount(measure.baseline!, measure.unit)}`}>
+  return <><div className="investigation-comparison" role="img" aria-label={`${measure.metric}: observed ${amount(measure.value, measure.unit)}, baseline ${amount(measure.baseline!, measure.unit)}`}>
     <span>Observed</span><div><i style={{ width: `${Math.max(2, measure.value / max * 100)}%` }} /></div><span>Baseline</span><div><i style={{ width: `${Math.max(2, measure.baseline! / max * 100)}%` }} /></div>
-  </div>;
+  </div><div className="chart-inline-animation"><AnimateChart compact presentation={{ title: card.title, synthetic: true, charts: [{ title: measure.metric.replaceAll("_", " "), kind: "comparison", unit: measure.metric === "roas" ? "multiple" : measure.unit, source: `Evidence ${card.id}`, series: [{ name: "Comparison", points: [{ label: "Baseline", value: measure.baseline! }, { label: "Observed", value: measure.value }] }] }] }}/></div></>;
 }
 
 export function InternalEvidenceCard({ item, compact = false }: { item: EvidenceItem; compact?: boolean }) {

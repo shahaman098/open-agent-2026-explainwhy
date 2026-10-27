@@ -17,7 +17,7 @@ export async function GET(request: Request): Promise<Response> {
     const businessId = businessIdFrom(request);
     const db = await getDb();
     const runId = new URL(request.url).searchParams.get("simulationRunId") ?? await getActiveRunId(businessId, db);
-    const { products: catalogue, servedFrom } = await getReferenceCatalogue(db);
+    const { products: catalogue, servedFrom } = await getReferenceCatalogue(db, businessId);
     const byRef = new Map(catalogue.map((c) => [c.referenceProductId, c]));
     if (!runId) {
       return Response.json({ simulationRunId: null, virtualTime: null, servedFrom, banners: [], products: [], notice: "No active simulation run. Start one from /dev/simulator." });

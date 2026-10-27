@@ -48,6 +48,7 @@ X
 import { useRouter } from "next/navigation";
 import { Suspense,useCallback,useEffect,useMemo,useState } from "react";
 import { CampaignHistory } from "./CampaignHistory";
+import { workspaceName } from "@/lib/workspaces";
 
 // Small solid caret used on Meta's dropdown buttons
 function Caret({ className = "w-[9px] h-[9px]" }: { className?: string }) {
@@ -276,7 +277,7 @@ function shortRangeDate(isoDate: string): string {
 
 function MetaAdsManager({ campaignId }: { campaignId: string }) {
   const router = useRouter();
-  const { runId, runs, loaded, unavailable, setRun, withRun } = useRun();
+  const { businessId, runId, runs, loaded, unavailable, setRun, withRun } = useRun();
   const selectedRun = runs.find((run) => run.simulationRunId === runId);
   const [data, setData] = useState<AdsData>({ campaigns: [], events: [], metrics: [], simulationRunId: "", window: { startAt: "", endAt: "" } });
   const [error, setError] = useState("");
@@ -527,7 +528,7 @@ function MetaAdsManager({ campaignId }: { campaignId: string }) {
                 <rect x="7.5" y="5.6" width="3" height="1" rx="0.5" fill="#fff" />
                 <rect x="7.5" y="7.4" width="2" height="1" rx="0.5" fill="#fff" />
               </svg>
-              <span className="flex-1 min-w-0 truncate text-left">Nike Demo Account · {runId ?? "No run selected"}</span>
+              <span className="flex-1 min-w-0 truncate text-left">{workspaceName(businessId)} Demo Account · {runId ?? "No run selected"}</span>
               <Caret className="w-[10px] h-[10px] ml-[6px] flex-shrink-0" />
             </button>
 
@@ -756,7 +757,7 @@ function MetaAdsManager({ campaignId }: { campaignId: string }) {
           </div>
         </div>
 
-        {showHistory&&detail&&<CampaignHistory name={data.campaigns.find(c=>c.campaignId===campaignId)?.name??campaignId} data={detail.daily} comparison={detail.comparison.find(c=>c.campaignId===campaignId)} />}
+        {showHistory&&detail&&<CampaignHistory scope={{businessId,simulationRunId:runId}} name={data.campaigns.find(c=>c.campaignId===campaignId)?.name??campaignId} data={detail.daily} comparison={detail.comparison.find(c=>c.campaignId===campaignId)} />}
 
         {/* Action toolbar (white strip joined to the active tab) */}
         <div className="h-[44px] px-[7px] bg-white flex items-center justify-between gap-[7px] text-[12px] whitespace-nowrap flex-shrink-0 overflow-x-auto">

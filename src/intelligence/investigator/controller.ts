@@ -11,6 +11,7 @@ import { DIAGNOSIS_SYSTEM, DIAGNOSIS_TASK, INVESTIGATOR_SYSTEM, MEMORY_CONTEXT_P
 import { HypothesisSet, ReasoningOutput, SourceAssessments, type ExternalSourceT, type NemotronVerificationT, type ScopeT, type StepT } from "./schemas";
 import { claimInvestigation, digest, jobScope, renewLease, saveJob, stateView, type CallDoc, type JobDoc } from "./store";
 import { fallbackHypotheses, loadVerifiedEvidence, rejectNumericalProse, validateDiagnosis, validateReferences, type EvidencePacket } from "./validation";
+import { localInvestigationRequest } from "./local-decisions";
 import { composeReport } from "./reports";
 import { deduplicateSources, research, researchProvider, verifyExternalSource, type ResearchResult } from "./research";
 import { SOURCE_PROMPT_VERSION, SOURCE_TASK, sourceTaskRequest } from "./source-task";
@@ -68,8 +69,14 @@ async function durableCall<T extends ModelResponse | ResearchResult>(db: Db, job
 
 /** The task fingerprint excludes session IDs and evidence, while checksum retains per-call input identity. */
 async function durableModelCall(db: Db, job: JobDoc, key: string, task: string, request: ModelRequest, services: Services, promptVersion = PROMPT_VERSION) {
-  return durableCall(db, job, key, task, request.input, () => services.model(request), request.maxOutputTokens ?? 6000,
-    promptFingerprint(request, task, promptVersion), request.input);
+  const adapter = providerConfig().local ? localInvestigationRequest(request) : null;
+  const sent = adapter?.request || request;
+  const result = await durableCall(db, job, key, task, sent.input, async () => {
+    const response = await services.model(sent);
+    return adapter ? { ...response, value: adapter.expand(response.value), localDecision: response.value, renderingVersion: adapter.version } : response;
+  }, sent.maxOutputTokens ?? 6000, promptFingerprint(sent, task, adapter?.version || promptVersion), sent.input);
+  if (adapter) await db.collection<CallDoc>(COLLECTIONS.investigationCalls).updateOne({ callId: `${job.jobId}_${key}` }, { $set: { adapterVersion: adapter.version } });
+  return result;
 }
 
 export function toolSelection(ctx: InvestigationContext, choice: ReasoningOutputTChoice) {
@@ -254,7 +261,7 @@ export async function processInvestigation(db: Db, job: JobDoc, services: Servic
         output = candidate; finalCallId = `${job.jobId}_diagnosis_${attempt}`;
       } catch (e) {
         if (String(e).includes("lease_lost_or_cancelled")) throw e;
-        repair = e instanceof ProviderError ? e.code : e instanceof Error ? e.message : "invalid_output";
+        repair = e instanceof ProviderError ? `${e.code}${e.details ? `: ${e.details}` : ""}` : e instanceof Error ? e.message : "invalid_output";
         if (e instanceof ProviderError && e.code !== "invalid_structured_output") diagnosisProviderFailure = e.code;
         await db.collection<CallDoc>(COLLECTIONS.investigationCalls).updateOne({ callId: `${job.jobId}_diagnosis_${attempt}` }, { $set: { validationStatus: e instanceof ProviderError && e.code !== "invalid_structured_output" ? "provider_failed" : "rejected", correctionId: attempt === 0 && !(e instanceof ProviderError) ? `${job.jobId}_diagnosis_1` : null } });
         if (e instanceof ProviderError || e instanceof BudgetError) break;

@@ -10,6 +10,7 @@ export type DataOriginT = z.infer<typeof DataOrigin>;
 
 export const ReferenceProductCategory = z.enum([
   "running", "basketball", "lifestyle", "football", "apparel",
+  "gaming", "creator", "workstation", "datacenter", "compact_ai",
 ]);
 export type ReferenceProductCategoryT = z.infer<typeof ReferenceProductCategory>;
 
@@ -23,7 +24,7 @@ export const ReferenceProduct = z.object({
   currency: z.literal("GBP"),
   styleCode: z.string().min(1).optional(),
   sourceUrl: z.string().url(),
-  sourceSite: z.literal("nike.com/gb"),
+  sourceSite: z.enum(["nike.com/gb", "nvidia.com"]),
   dataOrigin: DataOrigin,
   retrievedAt: z.string().datetime({ offset: true }),
   retrievalMethod: z.string().min(1),
@@ -49,7 +50,7 @@ export const ReferenceFinancialFigure = z.object({
 
 export const ReferenceFinancials = z.object({
   referenceId: z.string().min(1),
-  company: z.literal("NIKE, Inc."),
+  company: z.enum(["NIKE, Inc.", "NVIDIA Corporation"]),
   fiscalPeriod: z.string().min(1),
   periodEndedOn: z.string().min(1),
   releasedOn: z.string().min(1),

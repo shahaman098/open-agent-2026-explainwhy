@@ -8,6 +8,7 @@ import { money, num, pct, virtualDate } from "@/lib/format";
 import { api, q } from "./api";
 import { PageSkeleton } from "./PageSkeleton";
 import { useRun } from "./run-context";
+import { AnimateChart } from "@/components/presentation/AnimateChart";
 
 interface Observation {
   anomalyId: string; metric: string; direction: string; actualValue: number; baselineValue: number; changePercent: number;
@@ -101,6 +102,7 @@ function snapshotValue(metric: string, snapshot: Snapshot): number | null {
   }
 }
 function MetricChart({ observation, snapshots }: { observation: Observation; snapshots: Snapshot[] }) {
+  const { businessId, runId } = useRun();
   const points = snapshots.map((snapshot) => ({ at: Date.parse(snapshot.window.startAt), value: snapshotValue(observation.metric, snapshot), id: snapshot.snapshotId }))
     .filter((point): point is { at: number; value: number; id: string } => point.value !== null && Number.isFinite(point.at))
     .sort((a, b) => a.at - b.at);
@@ -115,6 +117,7 @@ function MetricChart({ observation, snapshots }: { observation: Observation; sna
   const path = points.map((point, index) => `${index ? "L" : "M"}${x(point.at).toFixed(1)} ${y(point.value).toFixed(1)}`).join(" ");
   const observedTone = tone(observation.metric, observation.changePercent);
   return <div className={`inbox-chart inbox-tone-${observedTone}`}>
+    <div className="chart-inline-animation"><AnimateChart compact scope={runId ? { businessId, simulationRunId: runId } : undefined} presentation={{ title: LABELS[observation.metric] ?? observation.metric, synthetic: true, charts: [{ title: LABELS[observation.metric] ?? observation.metric, kind: "line", unit: observation.metric.endsWith("minor") ? "GBP minor units" : observation.metric === "ctr" || observation.metric.endsWith("rate") ? "ratio" : "count", baseline: observation.baselineValue, source: "Linked source metric snapshots", series: [{ name: "Observed", points: [...snapshots].sort((a, b) => a.window.startAt.localeCompare(b.window.startAt)).map(snapshot => ({ label: new Date(snapshot.window.startAt).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", timeZone: "UTC" }), value: snapshotValue(observation.metric, snapshot), x: Date.parse(snapshot.window.startAt) })) }] }] }}/></div>
     <div className="inbox-chart-legend"><span><i className="inbox-legend-observed" />Observed</span><span><i className="inbox-legend-baseline" />Baseline {metricValue(observation.metric, observation.baselineValue)}</span></div>
     <svg viewBox="0 0 460 210" role="img" aria-label={`${LABELS[observation.metric] ?? observation.metric} over time, compared with baseline`}>
       {[0, 1, 2].map((line) => <line key={line} className="inbox-chart-grid" x1="42" x2="432" y1={36 + line * 69} y2={36 + line * 69} />)}
@@ -211,6 +214,7 @@ export function SignalsPage() {
     document.body.style.overflow = "hidden";
     closeButton.current?.focus();
     const onKey = (event: KeyboardEvent) => {
+      if (document.querySelector("dialog.chart-presentation-dialog[open]")) return;
       if (event.key === "Escape") { event.preventDefault(); close(); return; }
       if (event.key !== "Tab" || !drawer.current) return;
       const focusable = [...drawer.current.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')];

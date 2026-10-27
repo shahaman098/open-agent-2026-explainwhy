@@ -24,6 +24,14 @@ describe("Meterless H-MEM application adapter", () => {
     expect(recallHistoricalMemories(scope, query, candidates).memories).toEqual([]);
     expect(recallHistoricalMemories(scope, query, candidates).ledger).toEqual([]);
   });
+  it("recalls a sparsely worded finding by its canonical investigation subject", () => {
+    const title = "Advertising performance deterioration across 5 campaigns";
+    const report = { ...prior, title, metrics: ["ctr", "cac_minor"], themes: ["unknown"],
+      summaries: ["The incident is not fully explained by available evidence; the primary cause remains unknown."] };
+    const recall = recallHistoricalMemories(scope, `${title} ctr cac_minor`, [report]);
+    expect(recall.memories[0]?.source).toBe("investigations:prior");
+    expect(recallHistoricalMemories(scope, "Shipping delivery delays and carrier performance", [report]).memories).toEqual([]);
+  });
   it("preserves the upstream source requirement and exact wrong-feedback penalty", () => {
     const engine = new HMEM({ clock: () => 0 });
     expect(() => engine.add({ content: "A report", source: "" })).toThrow(/source/);

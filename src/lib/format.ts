@@ -34,4 +34,5 @@ export function shortTime(iso: string): string {
 }
 export const CATEGORY_LABEL: Record<string, string> = {
   running: "Running", basketball: "Basketball", lifestyle: "Lifestyle", football: "Football", apparel: "Apparel",
+  gaming: "Gaming GPUs", creator: "Creator GPUs", workstation: "Workstations", datacenter: "AI servers", compact_ai: "Compact AI",
 };

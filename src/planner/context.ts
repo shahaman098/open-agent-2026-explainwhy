@@ -41,7 +41,7 @@ export async function planningContext(db: Db, scope: ScopeT): Promise<PlanningCo
     return { scope, diagnosis: report.diagnosis, report, evidence, campaigns: [], delayedOrders: [], storefront: { banners: [], activeBanners: [], promotions: [], virtualTime: state.cutoff, updatedAt: state.updatedAt }, alreadyNotified: [], affectedCampaigns: [], cutoff: state.cutoff, advisoryOnly: true, archived: true };
   }
   const view = await readInvestigation(db, scope);
-  if (!view.state || !view.report) throw new PlannerError("A saved Stage 5 report is required.");
+  if (!view.state || !view.report) throw new PlannerError("Complete the investigation to save a validated diagnosis before generating a solution plan.");
   if (view.state.status !== "completed" || view.state.error || view.report.insufficientEvidence || !view.report.validation.passed || !view.report.handoff.ready || view.report.diagnosis.primaryCause === "unknown")
     throw new PlannerError("Planning requires a completed, non-provisional diagnosis with sufficient verified evidence and a ready handoff.");
   const raw = await db.collection(COLLECTIONS.diagnoses).findOne({ ...scope, diagnosisId: view.report.diagnosisId }, { projection: { _id: 0, simulationRunId: 0 } });

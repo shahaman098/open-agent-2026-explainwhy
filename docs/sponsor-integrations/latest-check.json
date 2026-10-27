@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-10-27T12:21:00.593Z",
+  "checkedAt": "2026-10-27T20:44:08.320Z",
   "meterless": {
     "passed": true,
     "fixture": true,
     "recall": {
       "engine": "Meterless H-MEM reference",
       "upstreamCommit": "1742dec56a66e58eef9dda2d2b865823758ca8cd",
-      "implementation": "deterministic hash embeddings; canonical MongoDB history rehydrated per query",
+      "implementation": "deterministic hash embeddings; canonical Supabase history rehydrated per query",
       "scope": {
         "businessId": "sponsor_fixture",
         "simulationRunId": "fixture_run",
@@ -14,22 +14,22 @@
         "availableBefore": "2026-10-27T12:00:00.000Z"
       },
       "contextOnly": true,
-      "context": "[MEMORY CONTEXT]\n## general\n- [WK] Advertising campaign clicks spend investigation. Themes: advertising. Metrics: clicks, spend. Check tracking and campaign delivery before making changes. (entities: advertising, themes, metrics, check) <mem-1>\n[/MEMORY CONTEXT]",
+      "context": "[MEMORY CONTEXT]\n## general\n- [WK] Advertising campaign clicks spend investigation. Check tracking and campaign delivery before making changes. (entities: advertising, check) <mem-1>\n[/MEMORY CONTEXT]",
       "trace": {
         "retrievalReason": "hybrid ranking for \"Advertising campaign clicks spend investigation\" (domain: general)",
         "strategy": "minimal",
         "scores": {
-          "mem-1": 0.4497
+          "mem-1": 0.4987
         }
       },
       "memories": [
         {
           "id": "mem-1",
           "source": "investigations:prior",
-          "content": "Advertising campaign clicks spend investigation. Themes: advertising. Metrics: clicks, spend. Check tracking and campaign delivery before making changes.",
+          "content": "Advertising campaign clicks spend investigation. Check tracking and campaign delivery before making changes.",
           "confidence": 0.7,
           "layer": "working",
-          "relevance": 0.4497489602719421,
+          "relevance": 0.4987010720440261,
           "provenance": {
             "origin": "document",
             "learnedAt": 1793016000000,
@@ -58,17 +58,19 @@
     }
   },
   "zetaris": {
-    "enabled": false,
-    "configured": false,
-    "missing": [
-      "ZETARIS_BASE_URL",
-      "ZETARIS_API_KEY",
-      "ZETARIS_ORG_ID",
-      "ZETARIS_ADS_RELATION",
-      "ZETARIS_CAMPAIGNS_RELATION"
-    ],
-    "liveQueryVerified": false,
-    "status": "not_checked"
+    "enabled": true,
+    "configured": true,
+    "liveQueryVerified": true,
+    "status": "queried",
+    "receipt": {
+      "requestId": "71f92707-75d4-4b08-861f-9adb2df188b9",
+      "fetchedAt": "2026-10-27T20:44:08.301Z",
+      "rowCount": 545,
+      "pages": 6,
+      "closed": true
+    },
+    "canonicalEvidenceVerified": false,
+    "note": "Connectivity and schema check only. Collect investigation evidence to verify every metric against canonical events."
   },
   "submissionComplianceVerified": false
 }

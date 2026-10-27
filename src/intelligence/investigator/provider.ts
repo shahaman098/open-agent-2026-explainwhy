@@ -27,6 +27,9 @@ export function providerConfig() {
     ...configuredModels(),
     reasoning: z.enum(["low", "medium", "high"]).parse(process.env.EXPLAINWHY_REASONING_DEPTH || "low"),
     structuredOutput: z.enum(["json_schema", "guided_json", "prompt"]).parse(process.env.NVIDIA_STRUCTURED_OUTPUT || "json_schema"),
+    requestTimeoutMs: endpoint.local
+      ? z.coerce.number().int().min(1000).max(600_000).parse(process.env.NVIDIA_LOCAL_TIMEOUT_MS || 300_000)
+      : 120_000,
   };
 }
 
@@ -70,7 +73,7 @@ export function promptFingerprint(request: ModelRequest, task: string, version: 
     schema: request.schema ? jsonSchema(request.schema) : null, schemaName: request.schemaName || null,
     tools: request.tools || [], forceTool: request.forceTool || null })).digest("hex");
 }
-export interface ModelResponse { value: unknown; toolCalls: Array<{ id: string; name: string; arguments: unknown }>; metadata: CallMetadata }
+export interface ModelResponse { localDecision?: unknown; renderingVersion?: string; value: unknown; toolCalls: Array<{ id: string; name: string; arguments: unknown }>; metadata: CallMetadata }
 const finite = (x: unknown) => typeof x === "number" && Number.isFinite(x) && x >= 0 ? x : null;
 
 function assignRequestId(metadata: CallMetadata, response: Response, data: Record<string, unknown>) {
@@ -118,7 +121,7 @@ export async function callModel(req: ModelRequest): Promise<ModelResponse> {
 
 /** NVIDIA API catalog (Nemotron). Structured output: json_schema response_format, NIM guided_json, or schema-in-prompt. */
 async function callNvidiaModel(req: ModelRequest, config: ReturnType<typeof providerConfig>): Promise<ModelResponse> {
-  const schema = req.schema ? geminiGenerationSchema(req.schema) : null;
+  const schema = req.schema ? geminiGenerationSchema(req.schema, config.local) : null;
   const system = schema && config.structuredOutput === "prompt" ? `${req.system}\nReturn exactly one JSON object, with no markdown, that matches this JSON Schema:\n${JSON.stringify(schema)}` : req.system;
   const { body, metadata } = await gatewayRequest(`${config.base}/chat/completions`, {
     model: req.model, messages: [{ role: "system", content: system }, ...(req.sessionId ? [{ role: "user", content: `Investigation session: ${req.sessionId}` }] : []), { role: "user", content: JSON.stringify(req.input) }],
@@ -127,7 +130,7 @@ async function callNvidiaModel(req: ModelRequest, config: ReturnType<typeof prov
     ...(schema && config.structuredOutput === "json_schema" ? { response_format: { type: "json_schema", json_schema: { name: req.schemaName || "normal_output", schema } } } : {}),
     ...(schema && config.structuredOutput === "guided_json" ? { nvext: { guided_json: schema } } : {}),
     ...(req.tools?.length ? { tools: req.tools.map((t) => ({ type: "function", function: t })), tool_choice: req.forceTool ? { type: "function", function: { name: req.forceTool } } : "auto" } : {}),
-  }, "nvidia", req.model, 120_000);
+  }, "nvidia", req.model, config.requestTimeoutMs);
   return parseChatCompletion(body, req, metadata);
 }
 
@@ -158,12 +161,13 @@ function jsonPayload(text: string, structured: boolean): string {
   return fenced ? fenced[1] : answer;
 }
 
-/** Avoid oversized Gemini decoding grammars. Exact string/array limits remain enforced by local Zod. */
-function geminiGenerationSchema(schema: z.ZodTypeAny): Record<string, unknown> {
+/** Large maxima explode local decoding grammars. Keep local minimum requirements; Zod enforces every bound. */
+function geminiGenerationSchema(schema: z.ZodTypeAny, preserveMinimums = false): Record<string, unknown> {
+  const omitted = new Set(["maxLength", "maxItems", ...(preserveMinimums ? [] : ["minLength", "minItems"])]);
   const simplify = (value: unknown): unknown => {
     if (Array.isArray(value)) return value.map(simplify);
     if (value && typeof value === "object") return Object.fromEntries(Object.entries(value)
-      .filter(([key]) => !["minLength", "maxLength", "minItems", "maxItems"].includes(key))
+      .filter(([key]) => !omitted.has(key))
       .map(([key, child]) => [key, key === "properties" && child && typeof child === "object"
         ? Object.fromEntries(Object.entries(child).map(([name, property]) => [name, simplify(property)]))
         : simplify(child)]));

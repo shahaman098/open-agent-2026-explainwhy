@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Suspense, type ReactNode } from "react";
 import { RunProvider, useRun } from "./run-context";
 import { RunSelector } from "./RunSelector";
 import { LoadingScreen } from "./LoadingScreen";
 import { ExplainWhyLogo } from "./ExplainWhyLogo";
+import { workspaceName } from "@/lib/workspaces";
+import "./nvidia-results.css";
 
 const NAV = [
   { href: "/dashboard", label: "Overview" },
@@ -16,11 +18,13 @@ const NAV = [
   { href: "/dashboard/approvals", label: "Approvals" },
   { href: "/dashboard/activity", label: "Activity" },
   { href: "/dashboard/outcomes", label: "Outcomes" },
+  { href: "/dashboard/integrations", label: "Integrations" },
 ];
 
 function Shell({ children, title, hidePageHeading = false }: { children: ReactNode; title: string; hidePageHeading?: boolean }) {
   const pathname = usePathname();
-  const { withRun, runId, unavailable, error } = useRun();
+  const router = useRouter();
+  const { businessId, withRun, runId, unavailable, error } = useRun();
   return (
     <div className="explainwhy-app">
       <header className="topbar explainwhy-topbar"><div className="shell explainwhy-topbar-inner">
@@ -32,7 +36,7 @@ function Shell({ children, title, hidePageHeading = false }: { children: ReactNo
             return <Link key={n.href} href={href} className={`explainwhy-nav-link ${active ? "active" : ""}`} aria-current={active ? "page" : undefined}>{n.label}</Link>;
           })}
         </nav>
-        <div className="workspace explainwhy-workspace"><span className="nike"><Image src="/assets/3ccd4.png" alt="" width={36} height={36} priority /></span><span className="explainwhy-workspace-label"><strong>Nike</strong><small>Workspace</small></span><RunSelector /><span className="chevrons" aria-hidden="true">⌃<br />⌄</span></div>
+        <div className="workspace explainwhy-workspace"><span className="nike">{businessId === "nvidia_demo" ? <span className="nvidia-workspace-mark">NV</span> : <Image src="/assets/3ccd4.png" alt="" width={36} height={36} priority />}</span><span className="explainwhy-workspace-label"><select className="workspace-business-select" aria-label="Business workspace" value={businessId} title={workspaceName(businessId)} onChange={event => router.push(`/dashboard?businessId=${event.target.value}`)}><option value="nike_demo">Nike</option><option value="nvidia_demo">NVIDIA</option></select><small>Workspace</small></span><RunSelector /><span className="chevrons" aria-hidden="true">⌃<br />⌄</span></div>
       </div></header>
       <main className="shell cr explainwhy-dashboard dashboard">
         {!hidePageHeading ? <div className="cr-head">

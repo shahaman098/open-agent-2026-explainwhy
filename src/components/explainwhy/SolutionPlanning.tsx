@@ -1,6 +1,7 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { api, q, type EvidenceItem } from "./api";
+import { AIInvestigation } from "./AIInvestigation";
 import { InternalEvidenceCard } from "./EvidenceCards";
 import type { PlanningView } from "@/planner/schemas";
 
@@ -14,13 +15,34 @@ export function SolutionPlanning({ investigationId, businessId, simulationRunId,
   const scope = q({ businessId, simulationRunId });
   const url = `/api/investigations/${encodeURIComponent(investigationId)}/planning?${scope}`;
   const [view, setView] = useState<PlanningView | null>(null), [error, setError] = useState<string | null>(null), [busy, setBusy] = useState(false);
+  const continueToPlan = useRef(false), queueing = useRef(false);
+  const [showDiagnosis, setShowDiagnosis] = useState(false);
   const load = useCallback(async () => { const data = await api<PlanningView>(url); setView(data); }, [url]);
   useEffect(() => {
     let active = true;
-    const refresh = () => { void api<PlanningView>(url).then((data) => { if (active) setView(data); }).catch((e: Error) => { if (active) setError(e.message); }); };
+    const refresh = () => { void api<PlanningView>(url).then(async (data) => {
+      if (!active) return;
+      setView(data);
+      if (continueToPlan.current && data.eligible && !data.job && !queueing.current) {
+        queueing.current = true; continueToPlan.current = false;
+        try { await api(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "generate" }) }); if (active) await load(); }
+        catch (cause) { if (active) setError((cause as Error).message); }
+        finally { queueing.current = false; }
+      } else if (continueToPlan.current && data.diagnosis && ["failed", "insufficient_evidence", "cancelled"].includes(data.diagnosis.status)) {
+        continueToPlan.current = false; setShowDiagnosis(true);
+        setError("The investigation did not produce an accepted diagnosis. Review its evidence and limitations before planning.");
+      }
+    }).catch((e: Error) => { if (active) setError(e.message); }); };
     refresh(); const timer = setInterval(refresh, 2500);
     return () => { active = false; clearInterval(timer); };
-  }, [url]);
+  }, [url, load]);
+  const prepareDiagnosis = async () => {
+    if (view?.diagnosis && !["queued", "running"].includes(view.diagnosis.status)) { setShowDiagnosis(true); return; }
+    setBusy(true); setError(null); continueToPlan.current = true;
+    try { await api(`/api/investigations/${encodeURIComponent(investigationId)}/ai?${scope}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "start" }) }); await load(); }
+    catch (cause) { continueToPlan.current = false; setError((cause as Error).message); }
+    finally { setBusy(false); }
+  };
   const act = async (input: { action: "generate" | "select" | "submit" | "repair" | "refresh"; strategyKey?: string }) => {
     setBusy(true); setError(null);
     try { await api(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(input) }); await load(); }
@@ -28,18 +50,22 @@ export function SolutionPlanning({ investigationId, businessId, simulationRunId,
   };
   const job = view?.job, output = job?.output, plan = view?.plan;
   const working = job?.status === "queued" || job?.status === "running";
+  const diagnosing = view?.diagnosis?.status === "queued" || view?.diagnosis?.status === "running";
   const selected = output?.strategies.find((strategy) => strategy.key === job?.selectedKey);
   const handoff = plan ? `/api/plans/${encodeURIComponent(plan.planId)}?${scope}&planVersion=${plan.planVersion}` : null;
+  const approvalsUrl = `/dashboard/approvals?${q({ run: simulationRunId, businessId })}`;
   const evidenceCards = (ids: string[]) => <div className="investigation-inline-evidence">{[...new Set(ids)].slice(0, 2).map((id) => { const item = evidenceItems.find((item) => item.evidence.evidenceId === id); return item ? <InternalEvidenceCard key={id} item={item} compact /> : <a key={id} className="investigation-citation" href={`#evidence-${encodeURIComponent(id)}`}>Evidence {id.slice(-8)}</a>; })}</div>;
   return <section className="card solution-planning" data-testid="solution-planning">
-    <div className="card-head"><div><span className="eyebrow">Plan and review</span><h3>Solution planning</h3></div><span className="pill" data-testid="planning-status">{job?.status.replaceAll("_", " ") || (view?.eligible ? "ready to generate" : "blocked")}</span></div>
+    <div className="card-head"><div><span className="eyebrow">Plan and review</span><h3>Solution planning</h3></div><span className="pill" data-testid="planning-status">{job?.status.replaceAll("_", " ") || (view?.eligible ? "ready to generate" : diagnosing ? "investigating" : "diagnosis required")}</span></div>
     <div className="card-body">
       <p className="small muted">Compare options, choose a validated plan, then submit it for approval. No action runs here.</p>
       {error || job?.error ? <div className="alert error" role="alert">{error || job?.error}</div> : null}
       {view?.blockedReasons.map((reason) => <p key={reason} className="planning-blocked" data-testid="planning-blocked">{reason}</p>)}
       {view?.advisoryOnly ? <div className="alert info">Advice only: no supported action is available for this diagnosis.</div> : null}
       {view?.stale ? <div className="alert info">Evidence changed. Refresh before submitting this plan. <button className="btn sm" disabled={busy || working} data-testid="refresh-planning" onClick={() => void act({ action: "refresh" })}>Refresh plan</button></div> : null}
-      {!job ? <button className="btn primary" onClick={() => void act({ action: "generate" })} disabled={!view?.eligible || busy} data-testid="generate-plan">{busy ? "Queuing…" : "Generate solution plan"}</button> : null}
+      {!job ? <button className="btn primary" onClick={() => view?.eligible ? void act({ action: "generate" }) : void prepareDiagnosis()} disabled={!view || busy || diagnosing} data-testid="generate-plan">{busy ? "Queuing…" : diagnosing ? "Nemotron is completing the diagnosis…" : view?.eligible ? "Generate solution plan" : view?.diagnosis ? "Review diagnosis" : "Run diagnosis and generate plan"}</button> : null}
+      {diagnosing ? <p className="small muted" role="status">Local Nemotron is comparing verified evidence. Planning starts only after the diagnosis passes validation.</p> : null}
+      {showDiagnosis ? <AIInvestigation investigationId={investigationId} businessId={businessId} simulationRunId={simulationRunId} evidenceItems={evidenceItems} onComplete={() => void load()}/> : null}
       {job?.status === "awaiting_selection" && !job.repair && job.checks.some((check) => !check.passed) ? <button className="btn" disabled={busy || !view?.eligible} data-testid="repair-strategies" onClick={() => void act({ action: "repair" })}>Fix validation issues</button> : null}
       {working ? <div className="planning-progress" aria-live="polite"><span className="spinner" /><strong>{job.stage.replaceAll("_", " ")}</strong><span>{job.status === "queued" ? "Waiting for the planner." : "Comparing options and checking actions."}</span></div> : null}
       {output ? <>
@@ -69,7 +95,7 @@ export function SolutionPlanning({ investigationId, businessId, simulationRunId,
               <p className="small"><strong>Rollback / contingency:</strong> {check?.rollback}</p><p className="small"><strong>Partial failure:</strong> {check?.partialFailure}</p>{evidenceCards(action.evidenceIds)}</details></article>;
         })}
         <h5>Monitoring and success criteria</h5><ul className="small">{selected.successCriteria.map((criterion, i) => <li key={i}>{criterion.metric.replaceAll("_", " ")} · {criterion.direction} · {criterion.measurementWindowMinutes} minute window{criterion.target === null ? " · no precise outcome promised" : ` · observed target ${criterion.target}`}</li>)}</ul>
-        {plan ? <div className="planning-handoff" data-testid="planning-handoff"><strong>{job?.status === "submitted" ? "Ready for approval" : "Prepare for approval"}</strong><p>Submitting saves this plan for human review. It does not approve or run actions.</p><div className="row"><a className="btn" href={`/dashboard/approvals?run=${encodeURIComponent(simulationRunId)}`}>Open Approvals</a><button className="btn primary" disabled={busy || !view?.eligible || job?.status === "submitted"} onClick={() => void act({ action: "submit" })} data-testid="prepare-handoff">{job?.status === "submitted" ? "Handoff prepared" : "Prepare handoff"}</button><a className="btn" href={handoff!} target="_blank" rel="noreferrer" data-testid="plan-handoff-link">Plan handoff ↗</a></div></div> : null}
+        {plan ? <div className="planning-handoff" data-testid="planning-handoff"><strong>{job?.status === "submitted" ? "Ready for approval" : "Prepare for approval"}</strong><p>Submitting saves this plan for human review. It does not approve or run actions.</p><div className="row"><a className="btn" href={approvalsUrl}>Open Approvals</a><button className="btn primary" disabled={busy || !view?.eligible || job?.status === "submitted"} onClick={() => void act({ action: "submit" })} data-testid="prepare-handoff">{job?.status === "submitted" ? "Handoff prepared" : "Prepare handoff"}</button><a className="btn" href={handoff!} target="_blank" rel="noreferrer" data-testid="plan-handoff-link">Plan handoff ↗</a></div></div> : null}
       </div> : null}
       {job?.history.length ? <details data-testid="planning-history"><summary>Planning history · {job.history.length} version(s)</summary>{job.history.map((entry) => <p className="small" key={entry.planVersion}>Version {entry.planVersion} · {entry.strategyKey} · {entry.status.replaceAll("_", " ")} · {new Date(entry.at).toLocaleString("en-GB")}</p>)}</details> : null}
       {view?.calls.length ? <details data-testid="planning-calls"><summary>Model requests and usage</summary>{view.calls.map((call) => <p className="small" key={call.callId}>{call.status} · {call.metadata?.provider === "nvidia" ? "NVIDIA" : "Mubit"} · request {call.metadata?.requestId || "not returned"} · {call.metadata?.totalTokens ?? "unknown"} tokens · cost {call.metadata?.estimatedCostUsd == null ? "unknown" : call.metadata.estimatedCostUsd}<br />Task {call.task} · {call.promptVersion}<br />Fingerprint <code>{call.promptFingerprint}</code><br />Input checksum <code>{call.checksum}</code></p>)}</details> : null}

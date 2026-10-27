@@ -10,6 +10,7 @@ import { HEALTHY_PARAMS } from "@/simulator/scenarios";
 import type { SimulatorStateDoc, World } from "@/simulator/state";
 import { pad } from "@/simulator/time";
 import type { SimulatedCampaign, SimulatedCustomer, SimulatedStorefront } from "@/types/domain";
+import { NVIDIA_CAMPAIGNS, NVIDIA_CATEGORIES } from "./nvidia-profile";
 
 export interface BootstrapOptions {
   businessId: string;
@@ -36,7 +37,7 @@ export function createInitialWorld(opts: BootstrapOptions): { world: World; rng:
 
   const products = buildSimulatedProducts(opts.businessId, opts.simulationRunId, opts.catalogue, virtualStartAt);
 
-  const campaigns: SimulatedCampaign[] = CAMPAIGN_SEEDS.map((seed) => {
+  const campaigns: SimulatedCampaign[] = (opts.businessId === "nvidia_demo" ? NVIDIA_CAMPAIGNS : CAMPAIGN_SEEDS).map((seed) => {
     const expectedDaily = (seed.dailyBudgetMinor * 1000) / seed.cpmMinor;
     // Prime the rolling window with steady-state hourly impressions so frequency starts realistic.
     const rolling: number[] = [];
@@ -56,7 +57,7 @@ export function createInitialWorld(opts: BootstrapOptions): { world: World; rng:
   for (let i = 1; i <= config.initialCustomers; i++) {
     const interestCount = rng.chance(0.35) ? 2 : 1;
     const interests = new Set<SimulatedCustomer["interests"][number]>();
-    while (interests.size < interestCount) interests.add(rng.pick(CATEGORIES));
+    while (interests.size < interestCount) interests.add(rng.pick(opts.businessId === "nvidia_demo" ? NVIDIA_CATEGORIES : CATEGORIES));
     customers.push({
       businessId: opts.businessId, simulationRunId: opts.simulationRunId, customerId: `cust_${opts.simulationRunId}_${pad(i)}`,
       displayName: `${rng.pick(FIRST_NAMES)} ${rng.pick(LAST_INITIALS)}.`,

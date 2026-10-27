@@ -179,11 +179,31 @@ describe("durable investigation persistence (MongoDB; model responses are fixtur
     const cancelled = await seed("cancel"); await startInvestigation(db, cancelled); await cancelInvestigation(db, cancelled);
     expect(await claimInvestigation(db, cancelled)).toBeNull();
   });
+  it("passes previously collected and source-resolved evidence into the first model request", async () => {
+    const target = await seed("precollected");
+    const evidenceId = `${target.investigationId}_evidence`;
+    await db.collection(COLLECTIONS.evidence).insertOne({
+      schemaVersion: 1, ...target, evidenceId, category: "advertising", title: "Observed change",
+      observation: "A detector recorded an advertising change.", measurements: [],
+      sourceRecords: [{ collection: COLLECTIONS.anomalies, recordId: `${target.investigationId}_a` }],
+      retrievedAt: new Date().toISOString(),
+    });
+    await db.collection(COLLECTIONS.investigations).updateOne(target, { $set: { evidenceIds: [evidenceId] } });
+    await startInvestigation(db, target);
+    const job = (await claimInvestigation(db, target))!;
+    const model = vi.fn().mockResolvedValueOnce({ value: { ...decision, nextTools: [] }, metadata, toolCalls: [] })
+      .mockResolvedValueOnce({ value: diagnosis, metadata, toolCalls: [] });
+    await processInvestigation(db, job, { model, research: vi.fn(), verifySource: vi.fn() });
+    expect(model.mock.calls[0][0].input.evidence).toEqual([expect.objectContaining({ evidenceId })]);
+    expect((await readInvestigation(db, target)).state?.evidenceIds).toContain(evidenceId);
+  });
   it("rejects evidence from another investigation even within the same run", async () => {
     const a = await seed("scope_a"), b = await seed("scope_b");
     const id = `${scope.simulationRunId}_foreign`;
     await db.collection(COLLECTIONS.evidence).insertOne({ ...a, evidenceId: id });
-    const packet = await loadVerifiedEvidence(db, b, [id], window.endAt);
+    await db.collection(COLLECTIONS.investigations).updateOne(b, { $set: { evidenceIds: [id] } });
+    const job = await startInvestigation(db, b);
+    const packet = await loadVerifiedEvidence(db, b, job.evidenceIds, window.endAt);
     expect(packet.evidence).toEqual([]); expect(packet.limitations[0]).toContain("outside investigation scope");
   });
   it("a final exhausted worker crash becomes failed", async () => {

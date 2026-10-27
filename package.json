@@ -13,6 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "dev:analysis": "node scripts/dev-with-analysis.mjs",
+    "analysis:watch": "node --conditions=react-server --import tsx scripts/dashboard-analysis-worker.ts",
     "monitor:watch": "node --conditions=react-server --import tsx scripts/monitor-watch.ts",
     "monitor:check": "node --conditions=react-server --import tsx scripts/monitor-watch.ts --check",
     "verify": "npm run contracts:typecheck && npm run contracts:validate && npm run typecheck && npm run lint && npm run test",
@@ -53,6 +55,7 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "^0.0.1",
+    "sharp": "0.35.5",
     "zod": "^3.25.76"
   },
   "devDependencies": {

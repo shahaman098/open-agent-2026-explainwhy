@@ -12,6 +12,7 @@ import { api, q, type Bundle, type EvidenceItem } from "./api";
 import { internalCardView, scopedExternalSources } from "./evidence-card-model";
 import { ComparisonPreview, InvestigationCanvas, type CanvasBlock } from "./InvestigationCanvas";
 import { AssessmentDetail, type OutcomeDetailRow } from "./Outcomes";
+import { workspaceName } from "@/lib/workspaces";
 
 type InvestigationView = { state: StateT | null; report: ReportT | null; sources: ExternalSourceT[] };
 type ReviewRow = { plan: ProposedPlanT; approval: PlanApprovalT | null; run: { status: string } | null; executions: ActionExecutionT[] };
@@ -104,8 +105,8 @@ export function InvestigationStory({ bundle, evidenceItems, investigationDetails
   const area = incident?.primaryTheme ? label(incident.primaryTheme) : report?.diagnosis.primaryCause.startsWith("ad_") ? "Paid advertising" : report?.diagnosis.primaryCause.includes("checkout") || report?.diagnosis.primaryCause.includes("discount") ? "Checkout" : "Business operations";
   const mainFinding = report?.diagnosis.summary || incident?.summary || bundle.findings[0]?.label || "Diagnosis pending. Open Signal to start the investigation.";
   const uncertainty = report?.handoff.uncertainty[0] || report?.executiveBrief.certainty || "The current observations do not establish a cause.";
-  const approvalUrl = `/dashboard/approvals?run=${encodeURIComponent(runId)}`;
-  const outcomeUrl = `/dashboard/outcomes?run=${encodeURIComponent(runId)}`;
+  const approvalUrl = `/dashboard/approvals?${q({ run: runId, businessId })}`;
+  const outcomeUrl = `/dashboard/outcomes?${q({ run: runId, businessId })}`;
   const sources = scopedExternalSources(data?.ai?.sources ?? [], { businessId, simulationRunId: runId, investigationId });
   const ranked = [...bundle.anomalies].sort((a, b) => ["critical", "high", "medium", "low"].indexOf(a.severity) - ["critical", "high", "medium", "low"].indexOf(b.severity) || Math.abs(b.changePercent) - Math.abs(a.changePercent));
   const signalAnomalies = ranked.filter((item, index) => ranked.findIndex((other) => other.metric === item.metric) === index).slice(0, 3);
@@ -138,7 +139,7 @@ export function InvestigationStory({ bundle, evidenceItems, investigationDetails
     decision: <><section className="canvas-detail-intro"><span>Assessment</span><h3>{report ? label(report.diagnosis.primaryCause) : "Diagnosis pending"}</h3><p>{short(mainFinding, 180)}</p><div className="canvas-detail-caution"><strong>Uncertainty</strong><p>{short(uncertainty, 140)}</p></div>{report?.insufficientEvidence ? <p className="small">Evidence gap: {short(report.insufficientEvidence.reason, 140)}</p> : null}</section>{decisionDetails}</>,
     outcome: <><section className="canvas-detail-intro"><span>Outcome</span><h3>{outcomeTitle}</h3><p>{short(assessment?.summary || "Results use the approved action and follow-up business records.", 160)}</p><div className="canvas-detail-links"><Link href={approvalUrl}>Approvals ↗</Link><Link href={outcomeUrl}>All outcomes ↗</Link></div></section>{data?.outcomes.filter((row) => !plan || row.plan.planId === plan.planId && row.plan.planVersion === plan.planVersion).map((row) => <AssessmentDetail key={row.execution.executionId} row={row} assessment={row.latest} runId={runId} onFeedbackSaved={load} compact />)}{!data?.outcomes.length ? <div className="canvas-detail-section"><p>No executed action has an outcome receipt yet.</p>{data?.review?.executions.map((entry) => <p key={entry.executionId}>{label(entry.status)} · {entry.error?.message || entry.result?.verification || "Awaiting completion"}</p>)}</div> : null}</>,
   };
-  return <InvestigationCanvas recordId={investigationId} title={investigation.title} summary={short(mainFinding, 190)} business="Nike — Unaffiliated Simulation" run={runId} area={area} severity={severity ? `${label(severity)} ${incident ? "severity" : "signal"}` : null} lifecycle={stage} loading={!data}
+  return <InvestigationCanvas recordId={investigationId} title={investigation.title} summary={short(mainFinding, 190)} business={`${workspaceName(businessId)} — Synthetic operations`} run={runId} area={area} severity={severity ? `${label(severity)} ${incident ? "severity" : "signal"}` : null} lifecycle={stage} loading={!data}
     error={data?.errors.length ? `Some live status is unavailable: ${data.errors.join(" · ")}` : resource.error}
     blocks={{ signal: signalBlocks.length ? signalBlocks : [{ title: report ? "Saved finding" : "Investigation pending", detail: short(report?.handoff.supportedFindings[0] || mainFinding, 100) }],
       evidence: [{ title: evidenceItems.length ? `${verified} verified records` : "Evidence pending", detail: primaryEvidence ? primaryEvidence.evidence.category === "advertising" ? "Campaign comparison" : primaryEvidence.evidence.title : "Collect and inspect source records", preview }], decision: decisionBlocks,

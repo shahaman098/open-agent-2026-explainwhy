@@ -36,6 +36,37 @@ describe("local Nemotron", () => {
     await expect(callModel({ model: "nemotron-3-nano:4b", system: "s", input: {} })).rejects.toThrow();
     expect(transport).toHaveBeenCalledTimes(1);
   });
+  it.each([
+    ["local", "", 300_000],
+    ["local", "450000", 450_000],
+    ["cloud", "450000", 120_000],
+  ])("sets the request deadline for %s inference", async (mode, override, expected) => {
+    vi.stubEnv("NVIDIA_INFERENCE_MODE", mode);
+    vi.stubEnv("NVIDIA_BASE_URL", mode === "local" ? "http://127.0.0.1:1234/v1" : "https://integrate.api.nvidia.com/v1");
+    vi.stubEnv("NVIDIA_LOCAL_TIMEOUT_MS", override);
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(Response.json({ choices: [{ finish_reason: "stop", message: { content: '{"ok":true}' } }] })));
+    const deadline = vi.spyOn(AbortSignal, "timeout");
+    try {
+      await callModel({ model: "test", system: "s", input: {}, schema: z.object({ ok: z.boolean() }) });
+      expect(deadline).toHaveBeenCalledWith(expected);
+    } finally { deadline.mockRestore(); }
+  });
+  it.each(["0", "600001", "NaN"])("rejects an invalid local deadline %s", (value) => {
+    vi.stubEnv("NVIDIA_LOCAL_TIMEOUT_MS", value);
+    expect(providerConfig).toThrow();
+  });
+  it("preserves local decoding minimums without expanding large repetition maxima", async () => {
+    const transport = vi.fn().mockResolvedValue(Response.json({ choices: [{ finish_reason: "stop", message: { content: '{"reason":"Need evidence","choices":["sales","ads"]}' } }] }));
+    vi.stubGlobal("fetch", transport);
+    await callModel({ model: "test", system: "s", input: {}, schema: z.object({
+      reason: z.string().min(1).max(100), choices: z.array(z.string()).min(2).max(3),
+    }) });
+    const sent = JSON.parse(transport.mock.calls[0][1].body).response_format.json_schema.schema;
+    expect(sent.properties.reason.minLength).toBe(1);
+    expect(sent.properties.choices.minItems).toBe(2);
+    expect(sent.properties.reason.maxLength).toBeUndefined();
+    expect(sent.properties.choices.maxItems).toBeUndefined();
+  });
 });
 describe("Bright Data public research", () => {
   it("uses the documented JSON SERP API and discards unsafe/duplicate URLs", async () => {

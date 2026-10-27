@@ -37,6 +37,7 @@ export interface PlanningJob extends ScopeT {
   generation?: number;
 }
 export interface PlanningView {
+  diagnosis?: { status: string; stage: string; error: string | null } | null;
   eligible: boolean; blockedReasons: string[]; advisoryOnly: boolean; job: PlanningJob | null;
   plan: ProposedPlanT | null; calls: Array<{ callId: string; status: string; task: string; promptVersion: string; promptFingerprint?: string | null; checksum: string; metadata: Partial<CallMetadata> | null; error: string | null }>;
   approvalIntegration: "pending";

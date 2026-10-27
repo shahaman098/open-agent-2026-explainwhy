@@ -4,6 +4,7 @@ import {
   FIRST_NAMES, HOUR_WEIGHTS, LAST_INITIALS, ORGANIC_CHANNELS, ORGANIC_CHANNEL_WEIGHTS, STANDARD_DELIVERY_HOURS,
 } from "@/simulator/config";
 import { buildSimulatorEvent } from "@/simulator/events";
+import { NVIDIA_CATEGORIES } from "./nvidia-profile";
 import type { Rng } from "@/simulator/rng";
 import type { TickOutput, World } from "@/simulator/state";
 import { addHours, addMinutes, dayKey, minutesBetween, pad } from "@/simulator/time";
@@ -210,7 +211,7 @@ export class TickEngine {
   private sampleVisitor(channel: Channel, device: Device): Omit<SimulatedCustomer, "businessId" | "simulationRunId" | "customerId" | "createdAt" | "lastSeenAt" | "ordersPlaced"> {
     const interestCount = this.rng.chance(0.35) ? 2 : 1;
     const interests = new Set<SimulatedCustomer["interests"][number]>();
-    while (interests.size < interestCount) interests.add(this.rng.pick(CATEGORIES));
+    while (interests.size < interestCount) interests.add(this.rng.pick(this.state.businessId === "nvidia_demo" ? NVIDIA_CATEGORIES : CATEGORIES));
     return {
       displayName: `${this.rng.pick(FIRST_NAMES)} ${this.rng.pick(LAST_INITIALS)}.`,
       preferredDevice: device, acquisitionChannel: channel, interests: [...interests],
@@ -257,7 +258,7 @@ export class TickEngine {
     if (!primary) return undefined;
 
     const quantity = primary.category === "apparel" && this.rng.chance(0.15) ? 2 : 1;
-    const priceFactor = Math.min(1.3, Math.max(0.4, 1.25 - visitor.priceSensitivity * (primary.priceMinor / 12000)));
+    const priceFactor = Math.min(1.3, Math.max(0.4, 1.25 - visitor.priceSensitivity * (primary.priceMinor / (this.businessId === "nvidia_demo" ? 200000 : 12000))));
     let p = this.state.config.baseConversion * CHANNEL_CONVERSION_FACTOR[channel] * (0.5 + visitor.purchasePropensity)
       * priceFactor * (0.5 + visitor.satisfaction);
     if (campaign) p *= this.params.paidConversionMultiplier;
@@ -472,13 +473,14 @@ export class TickEngine {
         ? 0.2 + 0.35 * (customer?.deliverySensitivity ?? 0.6) * Math.min(1.2, delayHours / 48)
         : 0;
       const qualityPenalty = this.params.qualityIssueProductId === product.productId ? this.params.qualityPenalty : 0;
-      const expectationGap = (customer?.priceSensitivity ?? 0.6) * 0.08 * (product.priceMinor / 15000);
+      const expectationGap = (customer?.priceSensitivity ?? 0.6) * 0.08 * (product.priceMinor / (this.businessId === "nvidia_demo" ? 1200000 : 15000));
       const productSatisfaction = product.qualityScore - qualityPenalty;
       const score = productSatisfaction - deliveryPenalty - expectationGap + this.rng.normal(0, 0.08);
       const rating = Math.min(5, Math.max(1, Math.round(1 + 4 * score)));
-      const pool = deliveryPenalty > 0.15 && rating <= 3 ? REVIEW_TEXTS.delivery
-        : qualityPenalty > 0 && rating <= 3 ? REVIEW_TEXTS.quality
-        : rating >= 4 ? REVIEW_TEXTS.positive : REVIEW_TEXTS.neutral;
+      const texts = this.businessId === "nvidia_demo" ? { delivery: ["The GPU arrived later than the promised date.", "Dispatch updates did not explain the hardware delivery delay."], quality: ["The system did not pass my initial stability checks.", "Cooling performance was below my expectations."], positive: ["The GPU runs my rendering workloads reliably.", "Straightforward setup and stable performance."], neutral: ["Hardware performs as expected; delivery communication could be clearer."] } : REVIEW_TEXTS;
+      const pool = deliveryPenalty > 0.15 && rating <= 3 ? texts.delivery
+        : qualityPenalty > 0 && rating <= 3 ? texts.quality
+        : rating >= 4 ? texts.positive : texts.neutral;
       const review: SimulatedReview = {
         businessId: this.businessId, simulationRunId: this.runId, reviewId: this.nextId("review", "rev"),
         productId: product.productId, orderId: s.orderId, customerId: s.customerId, rating,
@@ -502,7 +504,7 @@ export class TickEngine {
       const viral = this.params.viralProductId === product.productId;
       this.emit("social.mention_observed", {
         mentionId, platform: this.rng.pick(PLATFORMS),
-        content: this.rng.pick(MENTION_TEXTS).replace("{product}", product.name),
+        content: this.rng.pick(MENTION_TEXTS).replace("{product}", product.name).replace(/wearing/g, this.businessId === "nvidia_demo" ? "using" : "wearing"),
         views: Math.round(this.rng.uniform(viral ? 20000 : 300, viral ? 400000 : 8000)),
         productId: product.productId,
       }, this.randomTimeInTick(), `mention:${mentionId}`);

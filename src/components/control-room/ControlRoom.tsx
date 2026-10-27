@@ -7,6 +7,7 @@ import { Chart } from "@/components/control-room/charts";
 import { ExplainWhyLogo } from "@/components/explainwhy/ExplainWhyLogo";
 import { PageSkeleton } from "@/components/explainwhy/PageSkeleton";
 import type { Breakdown, LedgerEvent, RunsResponse, StateResponse } from "@/components/control-room/types";
+import { workspaceApiPath, workspaceFromSearch } from "@/lib/workspaces";
 
 const SCENARIOS = ["healthy", "ad_fatigue", "delivery_delays", "viral_demand", "negative_reviews", "promo_checkout_failure", "promo_checkout_failure_ad_decoy"] as const;
 const SCENARIO_LABEL: Record<string, string> = {
@@ -19,7 +20,7 @@ const EVENT_TYPES = ["", "order.completed", "web.session_started", "ad.metrics_o
 interface Data { state: StateResponse; breakdown: Breakdown; events: LedgerEvent[] }
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(path, { cache: "no-store", ...init });
+  const res = await fetch(workspaceApiPath(path), { cache: "no-store", ...init });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) {
     const message = body?.error?.message ?? `Request failed (${res.status})`;
@@ -235,10 +236,10 @@ export function ControlRoom() {
                 </div>
 
                 <div className="grid two">
-                  <Chart title="Net revenue by virtual day" subtitle={`${shortDate(data.breakdown.window.startAt)} – ${shortDate(data.breakdown.window.endAt)}`} points={dailyPoints} format={(v) => moneyCompact(v)} kind="bar" testId="revenue-chart" />
-                  <Chart title="Orders by virtual day" points={ordersPoints} format={(v) => num(v)} kind="bar" />
-                  <Chart title="Ad click-through rate, hourly (last 72h)" points={ctrPoints} format={(v) => (v === null ? "—" : `${v.toFixed(2)}%`)} kind="line" testId="ctr-chart" />
-                  <Chart title="Late delivery rate by virtual day" points={latePoints} format={(v) => (v === null ? "—" : `${v.toFixed(0)}%`)} kind="line" />
+                  <Chart scope={{ businessId: workspaceFromSearch(window.location.search), simulationRunId: data.state.run.simulationRunId }} unit="GBP minor units" title="Net revenue by virtual day" subtitle={`${shortDate(data.breakdown.window.startAt)} – ${shortDate(data.breakdown.window.endAt)}`} points={dailyPoints} format={(v) => moneyCompact(v)} kind="bar" testId="revenue-chart" />
+                  <Chart scope={{ businessId: workspaceFromSearch(window.location.search), simulationRunId: data.state.run.simulationRunId }} title="Orders by virtual day" points={ordersPoints} format={(v) => num(v)} kind="bar" />
+                  <Chart scope={{ businessId: workspaceFromSearch(window.location.search), simulationRunId: data.state.run.simulationRunId }} unit="%" title="Ad click-through rate, hourly (last 72h)" points={ctrPoints} format={(v) => (v === null ? "—" : `${v.toFixed(2)}%`)} kind="line" testId="ctr-chart" />
+                  <Chart scope={{ businessId: workspaceFromSearch(window.location.search), simulationRunId: data.state.run.simulationRunId }} unit="%" title="Late delivery rate by virtual day" points={latePoints} format={(v) => (v === null ? "—" : `${v.toFixed(0)}%`)} kind="line" />
                 </div>
 
                 <div className="card">

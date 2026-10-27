@@ -22,8 +22,8 @@ export async function resolveSources(db: Db, scope: { businessId: string; simula
     const wanted = [...ids];
     let found: Set<string>;
     const idField: Record<string, string> = { [COLLECTIONS.businessEvents]: "eventId", [COLLECTIONS.metricSnapshots]: "snapshotId", [COLLECTIONS.investigations]: "investigationId", [COLLECTIONS.incidents]: "incidentId", [COLLECTIONS.anomalies]: "anomalyId" };
-    if (collection === REFERENCE_PRODUCTS) found = new Set((await getReferenceCatalogue(db)).products.map((p) => p.referenceProductId));
-    else if (collection === REFERENCE_FINANCIALS) found = new Set((await getReferenceFinancials(db)).records.map((r) => r.referenceId));
+    if (collection === REFERENCE_PRODUCTS) found = new Set((await getReferenceCatalogue(db, scope.businessId)).products.map((p) => p.referenceProductId));
+    else if (collection === REFERENCE_FINANCIALS) found = new Set((await getReferenceFinancials(db, scope.businessId)).records.map((r) => r.referenceId));
     else if (idField[collection]) {
       const field = idField[collection];
       // `collection` is one of the COLLECTIONS values enumerated in idField above; nothing caller-supplied reaches here.

@@ -4,6 +4,7 @@ import {useEffect,useState} from 'react';
 import type {ActionExecutionT,ActionProposalT} from '@explainwhy/contracts';
 import type {BusinessOutcomeAssessmentT} from '@/outcomes/schema';
 import {api,q} from './api';
+import {AnimateChart} from '@/components/presentation/AnimateChart';
 
 interface Row{execution:ActionExecutionT;plan:{planId:string;planVersion:number;investigationId:string;objective:string;summary?:string;successCriteria?:BusinessOutcomeAssessmentT['successCriteria']};action:ActionProposalT;
   receipt:{idempotencyKey:string;actionId:string;toolName:string;recordedAt:string;verification:string;emittedEventIds:string[];affectedEntityIds:string[];state:unknown}|null;
@@ -29,6 +30,7 @@ function MetricChart({assessment}:{assessment:BusinessOutcomeAssessmentT}){
   if(!before?.series.length&&!after?.series.length)return <div className="outcome-empty-plot">No post-action campaign observations have been recorded in this run.</div>;
   const max=Math.max(1,...(before?.series??[]).map(s=>s.spendMinor),...(after?.series??[]).map(s=>s.spendMinor));
   return <div className="outcome-chart" aria-label="Recorded campaign spend by simulated hour">
+    <div className="chart-inline-animation"><AnimateChart compact scope={{businessId:assessment.businessId,simulationRunId:assessment.simulationRunId}} presentation={{title:'Recorded campaign spend',synthetic:true,charts:[{title:'Advertising spend',kind:'line',unit:'GBP minor units',source:`Assessment ${assessment.assessmentId}`,series:[{name:'Before',points:before?.series.length?before.series.map(s=>({label:new Date(s.startAt).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',timeZone:'UTC'}),x:Date.parse(s.startAt),value:s.spendMinor})):[{label:'No observation',value:null}]},{name:'After',points:after?.series.length?after.series.map(s=>({label:new Date(s.startAt).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',timeZone:'UTC'}),x:Date.parse(s.startAt),value:s.spendMinor})):[{label:'No observation',value:null}]}]}]}}/></div>
     {[['Before',before],['After',after]] .map(([label,part])=>{const o=part as typeof before;return <div className="outcome-chart-row" key={label as string}>
       <div className="outcome-chart-caption"><strong>{label as string}</strong><small>{o?.coveredMinutes??0}/{o?.requiredMinutes??0} min observed</small></div>
       <div className="outcome-chart-bars">{o?.series.map(s=><span key={s.startAt} className={label==='After'?'post':''} style={{height:`${Math.max(3,s.spendMinor/max*100)}%`}} title={`${new Date(s.startAt).toLocaleString('en-GB')} · ${pounds(s.spendMinor)} spend · ${s.attributedOrders} attributed orders`} />)}</div>
@@ -47,8 +49,9 @@ function FeedbackPanel({assessment,feedback,onSaved}:{assessment:BusinessOutcome
 }
 
 export function AssessmentDetail({row,assessment,runId,onFeedbackSaved,compact=false}:{row:Row;assessment:BusinessOutcomeAssessmentT|null;runId:string;onFeedbackSaved:()=>Promise<void>;compact?:boolean}){
-  const approvalUrl=`/dashboard/approvals?run=${encodeURIComponent(runId)}`;
-  const investigationUrl=`/dashboard/investigations/${encodeURIComponent(row.plan.investigationId)}?run=${encodeURIComponent(runId)}`;
+  const businessId=row.execution.businessId;
+  const approvalUrl=`/dashboard/approvals?${q({run:runId,businessId})}`;
+  const investigationUrl=`/dashboard/investigations/${encodeURIComponent(row.plan.investigationId)}?${q({run:runId,businessId})}`;
   return <div className={`outcome-detail${compact?' outcome-detail-compact':''}`} data-testid="outcome-detail">
     <div className="outcome-detail-head"><div><span className="outcome-eyebrow">{compact?'Action result':'Intervention dossier'}</span><h2>{row.action.title}</h2><p>{compact?compactCopy(row.plan.objective):row.plan.objective}</p></div><span className={`outcome-state ${assessment?.businessEffect??'inconclusive'}`}>{assessment?statusLabel(assessment.status):'Not assessed'}</span></div>
     <div className="outcome-proof"><div><small>Execution</small><strong>{row.execution.status}</strong><span>{compact?compactCopy(row.execution.result?.verification??'No verification recorded'):row.execution.result?.verification??'No verification recorded'}</span></div><div><small>Business effect</small><strong>{assessment?statusLabel(assessment.businessEffect):'Unmeasured'}</strong><span>{compact?compactCopy(assessment?.summary??'Run a read-only assessment to inspect subsequent records.'):assessment?.summary??'Run a read-only assessment to inspect subsequent records.'}</span></div></div>
@@ -87,8 +90,8 @@ export function InvestigationOutcomes({investigationId,businessId,simulationRunI
   const [data,setData]=useState<ResponseData|null>(null);
   useEffect(()=>{let active=true;void api<ResponseData>(`/api/outcomes?${q({businessId,simulationRunId,investigationId})}`).then(r=>{if(active)setData(r)}).catch(()=>{if(active)setData(null)});return()=>{active=false}},[businessId,simulationRunId,investigationId]);
   return <section className="card" data-testid="investigation-outcomes"><div className="card-head"><h3>Outcome verification</h3><span className="pill">{data?.rows.length??0} executed</span></div><div className="card-body"><p className="muted small">Executed action state and later business observations are assessed separately.</p>
-    {data?.rows.map(r=><div className="outcome-investigation-row" key={r.execution.executionId}><strong>{r.action.title}</strong><span>Execution {r.execution.status} · {r.latest?statusLabel(r.latest.status):'not assessed'} · {r.latest?statusLabel(r.latest.businessEffect):'business effect unmeasured'}</span><Link href={`/dashboard/outcomes?run=${encodeURIComponent(simulationRunId)}&action=${encodeURIComponent(r.action.actionId)}`}>Inspect outcome ↗</Link></div>)}
+    {data?.rows.map(r=><div className="outcome-investigation-row" key={r.execution.executionId}><strong>{r.action.title}</strong><span>Execution {r.execution.status} · {r.latest?statusLabel(r.latest.status):'not assessed'} · {r.latest?statusLabel(r.latest.businessEffect):'business effect unmeasured'}</span><Link href={`/dashboard/outcomes?${q({run:simulationRunId,businessId,action:r.action.actionId})}`}>Inspect outcome ↗</Link></div>)}
     {!data?.rows.length?<p className="muted small">No executed action for this investigation in this run.</p>:null}
-    <Link className="btn sm" href={`/dashboard/outcomes?run=${encodeURIComponent(simulationRunId)}`}>Open Outcomes</Link>
+    <Link className="btn sm" href={`/dashboard/outcomes?${q({run:simulationRunId,businessId})}`}>Open Outcomes</Link>
   </div></section>;
 }

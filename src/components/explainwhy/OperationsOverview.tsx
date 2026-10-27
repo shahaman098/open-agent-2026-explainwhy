@@ -7,6 +7,11 @@ import { money, moneyCompact, num, virtualDate } from "@/lib/format";
 import { api, q, type AnomalyRow, type IncidentRow, type InvestigationRow, type MonitorStatus } from "./api";
 import { useRun } from "./run-context";
 import { PageSkeleton } from "./PageSkeleton";
+import { AnimateChart } from "@/components/presentation/AnimateChart";
+import type { ChartSpec } from "@/lib/presentation/schema";
+import { workspaceName } from "@/lib/workspaces";
+import { LocalAnalysis } from "./LocalAnalysis";
+import { NvidiaPublicResults } from "./NvidiaPublicResults";
 
 interface Campaign {
   campaignId: string; name: string; platform: string;
@@ -96,6 +101,7 @@ function SignalCarousel({ signals, withRun }: { signals: Signal[]; withRun: (hre
 }
 
 function CampaignCarousel({ campaigns, metrics, withRun }: { campaigns: Campaign[]; metrics: CampaignMetric[]; withRun: (href: string) => string }) {
+  const { businessId } = useRun();
   const [activeCampaign, setActiveCampaign] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   if (campaigns.length === 0) return <article className="card campaign-card" data-testid="campaign-carousel"><div className="campaign-head"><h2>Current Campaigns</h2></div><div className="campaign-empty">No campaign records exist in this run.</div></article>;
@@ -116,7 +122,7 @@ function CampaignCarousel({ campaigns, metrics, withRun }: { campaigns: Campaign
         const targetCategory = campaign.targetCategory || "All categories";
         const platformLabel = campaign.platform === "meta_ads" ? "Meta" : campaign.platform === "google_ads" ? "Google" : "Ads";
         return <Link className={`campaign-slide${campaignIndex === index ? " active" : ""}`} key={campaign.campaignId} href={withRun(`/dashboard/campaigns/${encodeURIComponent(campaign.campaignId)}`)} target="_blank" rel="noopener noreferrer" aria-label={`Open ${campaign.name || campaign.campaignId} in Meta Ads Manager in a new tab`} onMouseEnter={() => setActiveCampaign(campaignIndex)}>
-          <Image src={`/assets/${images[campaignIndex % images.length]}`} alt="" fill sizes="(max-width: 650px) 82vw, (max-width: 880px) 35vw, (max-width: 1600px) 25vw, 440px" />
+          <Image src={`/assets/${(businessId === "nvidia_demo" ? campaign.targetCategory === "gaming" || campaign.targetCategory === "creator" ? "nvidia-gpu.svg" : campaign.targetCategory === "datacenter" ? "nvidia-network.svg" : "nvidia-ai.svg" : images[campaignIndex % images.length])}`} alt="" fill sizes="(max-width: 650px) 82vw, (max-width: 880px) 35vw, (max-width: 1600px) 25vw, 440px" />
           <span className="campaign-shade" />
           <span className="campaign-status">{campaign.status === "active" ? "Live" : "Paused"}</span>
           <span className="campaign-copy"><small>{platformLabel} · {targetCategory}</small><strong>{campaign.name || campaign.campaignId}</strong><span className="campaign-facts"><span>Budget {money(campaign.dailyBudgetMinor)}/day</span>{metric ? <><span>30d spend {money(metric.spendMinor)}</span><span>{num(metric.attributedOrders)} attributed orders</span></> : <span>No delivery data yet</span>}</span></span>
@@ -127,8 +133,10 @@ function CampaignCarousel({ campaigns, metrics, withRun }: { campaigns: Campaign
   );
 }
 
-function RevenueTrend({ daily, total }: { daily: Snapshot[]; total: Snapshot | null }) {
-  const [period, setPeriod] = useState<"Days" | "Week" | "Month">("Month");
+function dailyPresentation(title: string, daily: Snapshot[], metric: keyof Snapshot["counters"], unit: string, kind: "bar" | "line" = "bar"): ChartSpec {
+  return { title, kind, unit, subtitle: daily.length ? `${virtualDate(daily[0].window.startAt)} → ${virtualDate(daily.at(-1)!.window.endAt)}` : "No daily observations", source: "Persisted daily metric snapshots", summary: { label: "Selected period", value: daily.reduce((sum, item) => sum + item.counters[metric], 0) }, series: [{ name: title, points: daily.length ? daily.map(item => ({ label: new Date(item.window.startAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" }), value: item.counters[metric], x: Date.parse(item.window.startAt) })) : [{ label: "No observation", value: null }] }] };
+}
+function RevenueTrend({ daily, total, scope, period, setPeriod }: { daily: Snapshot[]; total: Snapshot | null; scope: { businessId: string; simulationRunId: string }; period: "Days" | "Week" | "Month"; setPeriod: (value: "Days" | "Week" | "Month") => void }) {
   const sorted = [...daily].sort((a, b) => a.window.startAt.localeCompare(b.window.startAt));
   const count = period === "Days" ? 1 : period === "Week" ? 7 : 30;
   const series = sorted.slice(-count);
@@ -146,7 +154,7 @@ function RevenueTrend({ daily, total }: { daily: Snapshot[]; total: Snapshot | n
   const axisTicks = [4, 3, 2, 1, 0].map((part) => axisMax * part / 4);
   return (
     <article className="card revenue-card" data-testid="revenue-trend">
-      <div className="card-heading"><h2>Revenue Trend</h2><div className="periods">{(["Days", "Week", "Month"] as const).map((item) => <button key={item} className={period === item ? "selected" : ""} onClick={() => setPeriod(item)}>{item}</button>)}</div></div>
+      <div className="card-heading"><h2>Revenue Trend</h2><div className="chart-actions"><AnimateChart compact scope={scope} presentation={{ title: `Revenue trend · ${period}`, synthetic: true, charts: [dailyPresentation("Revenue", series, "revenueMinor", "GBP minor units")] }}/><div className="periods">{(["Days", "Week", "Month"] as const).map((item) => <button key={item} className={period === item ? "selected" : ""} onClick={() => setPeriod(item)}>{item}</button>)}</div></div></div>
       <div className="revenue-total"><small className="eyebrow">Revenue · Selected period</small><div className="revenue-line"><strong>{money(revenue)}</strong>{change !== null ? <span>{change >= 0 ? "+" : ""}{change.toFixed(1)}% <Trend direction={change >= 0 ? "up" : "down"} /></span> : null}</div><p>{change !== null ? "Compared with the previous full period" : `${series.length} persisted daily snapshots · previous full period unavailable`}</p></div>
       {series.length ? <div className="chart" role="img" aria-label={`${period} revenue from persisted daily snapshots, vertical scale from zero to ${money(axisMax)}`}><div className="axis">{axisTicks.map((tick) => <span key={tick}>{moneyCompact(tick)}</span>)}</div><div className="bars">{series.map((item, index) => <div className="bar-slot" key={item.window.startAt} title={`${virtualDate(item.window.startAt)}: ${money(item.counters.revenueMinor)}`}><div className="bar-plot"><div className="bar" style={{ height: `${item.counters.revenueMinor > 0 ? Math.max(1, item.counters.revenueMinor / axisMax * 100) : 0}%`, background: ["#5b8a42", "#84c263", "#668356", "#a5df86"][index % 4] }} /></div><span>{new Date(item.window.startAt).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</span></div>)}</div></div> : <div className="campaign-empty">No daily metric snapshots are available for this run yet.</div>}
     </article>
@@ -154,8 +162,9 @@ function RevenueTrend({ daily, total }: { daily: Snapshot[]; total: Snapshot | n
 }
 
 export function OperationsOverview() {
-  const { runId, withRun, loaded } = useRun();
+  const { runId, businessId, withRun, loaded } = useRun();
   const [riskOpen, setRiskOpen] = useState(false);
+  const [revenuePeriod, setRevenuePeriod] = useState<"Days" | "Week" | "Month">("Month");
   const [result, setResult] = useState<{ runId: string; data: Data | null; error: string | null } | null>(null);
   const selected = useRef<string | null>(null);
   const requestSequence = useRef(0);
@@ -189,6 +198,11 @@ export function OperationsOverview() {
   const sortedDaily = [...(breakdown.daily ?? [])].sort((a, b) => a.window.startAt.localeCompare(b.window.startAt));
   const latest = sortedDaily.at(-1) ?? null;
   const previous = sortedDaily.at(-2) ?? null;
+  const scope = { businessId, simulationRunId: state.run.simulationRunId };
+  const riskChart: ChartSpec = { title: "Operational risk", kind: "gauge", unit: "score", subtitle: "Highest active incident severity", source: "Persisted incident severity", series: [{ name: "Risk", points: [{ label: "Risk", value: riskScore }] }] };
+  const selectedRevenue = sortedDaily.slice(-(revenuePeriod === "Days" ? 1 : revenuePeriod === "Week" ? 7 : 30));
+  const dashboardCharts = [riskChart, dailyPresentation("Revenue trend", selectedRevenue, "revenueMinor", "GBP minor units"), dailyPresentation("Sessions", sortedDaily, "sessions", "count", "line"), dailyPresentation("Orders", sortedDaily, "orders", "count"), dailyPresentation("Advertising spend", sortedDaily, "adSpendMinor", "GBP minor units", "line")];
+  dashboardCharts.push({ title: "Campaign spend", subtitle: "Selected dashboard period", kind: "bar", unit: "GBP minor units", source: "Recorded campaign observations", series: [{ name: "Spend", points: breakdown.campaigns.length ? breakdown.campaigns.map(item => ({ label: state.campaigns.find(campaign => campaign.campaignId === item.campaignId)?.name ?? item.campaignId, value: item.spendMinor })) : [{ label: "No observation", value: null }] }] });
   const trendFor = (current: number | null | undefined, before: number | null | undefined): "up" | "down" | "flat" => current == null || before == null || before === 0 ? "flat" : current > before ? "up" : current < before ? "down" : "flat";
   const signalRows: Signal[] = [
     ...incidents.map((incident) => ({ id: incident.incidentId, title: incident.title, detail: `${incident.severity.level} impact · score ${incident.severity.score} · ${incident.status.replaceAll("_", " ")}`, level: incident.severity.level === "critical" || incident.severity.level === "high" ? "high" as const : "medium" as const, evidence: `${incident.summary} This incident is a persisted observation, not a diagnosis.`, ...(incident.investigationId ? { href: `/dashboard/investigations/${encodeURIComponent(incident.investigationId)}` } : {}), testId: "overview-incident" })),
@@ -198,15 +212,19 @@ export function OperationsOverview() {
     { title: "Monitoring completed", detail: monitor.lastAsOf ? `Business metrics evaluated through ${virtualDate(monitor.lastAsOf)}` : "No completed monitoring scan recorded for this run." },
     { title: "Anomalies detected", detail: `${anomalies.total} signals grouped into ${incidents.length} persisted incidents` },
     { title: "Evidence available", detail: `${investigations.total} investigations · ${investigations.items.reduce((count, item) => count + item.investigation.evidenceIds.length, 0)} evidence links` },
-    { title: "AI diagnosis", detail: investigations.items.some((item) => item.investigation.diagnosisId) ? `${investigations.items.filter((item) => item.investigation.diagnosisId).length} saved diagnoses in listed investigations · open an investigation to review` : "Open an investigation to start the Mubit investigator" },
+    { title: "AI diagnosis", detail: investigations.items.some((item) => item.investigation.diagnosisId) ? `${investigations.items.filter((item) => item.investigation.diagnosisId).length} saved diagnoses in listed investigations · open an investigation to review` : "Open an investigation to start AI diagnosis" },
   ];
 
   return (
     <div className="explainwhy-overview" data-testid="explainwhy-overview">
+      {businessId === "nvidia_demo" ? <NvidiaPublicResults scope={scope}/> : null}
+      {businessId === "nvidia_demo" ? <div className="nvidia-synthetic-heading"><strong>GPU channel operations · GBP</strong><span>SYNTHETIC DEMO DATA</span></div> : null}
+      <LocalAnalysis businessId={businessId} simulationRunId={scope.simulationRunId}/>
+      <div className="overview-presentation-toolbar"><p>Your dashboard, ready for your next presentation.</p><AnimateChart label="Animate dashboard" scope={scope} presentation={{ title: `${workspaceName(businessId)} · Operations overview`, subtitle: `${revenuePeriod === "Month" ? "Month view" : `Revenue: ${revenuePeriod} · KPI window`} · ${virtualDate(breakdown.window.startAt)} → ${virtualDate(breakdown.window.endAt)}`, synthetic: true, charts: dashboardCharts }}/></div>
       <div className="layout explainwhy-overview-grid">
         <section className="left-column top-column">
           <article className="card risk-card" data-testid="overview-run">
-            <div className="risk-head"><h2>Operational Risk</h2><span className="period">Selected period: Month</span></div>
+            <div className="risk-head"><h2>Operational Risk</h2><AnimateChart compact scope={scope} presentation={{ title: "Operational risk", synthetic: true, charts: [riskChart] }}/><span className="period">Month</span></div>
             <button className="gauge-btn" onClick={() => setRiskOpen(true)} aria-label={riskScore === null ? "Show risk details" : `Show why the risk score is ${riskScore}`}><Gauge score={riskScore} /></button>
             <div className="risk-labels"><span>Low</span><span>High</span></div>
             <p>Calculated from persisted business anomalies, not an arbitrary score.</p>
@@ -221,7 +239,7 @@ export function OperationsOverview() {
           </article>
         </section>
 
-        <section className="left-column bottom-column"><RevenueTrend daily={breakdown.daily ?? []} total={total} /></section>
+        <section className="left-column bottom-column"><RevenueTrend daily={breakdown.daily ?? []} total={total} scope={scope} period={revenuePeriod} setPeriod={setRevenuePeriod} /></section>
 
         <section className="right-column bottom-column">
           <article className="card metric-card" data-testid="overview-kpis" id="metrics">
@@ -230,7 +248,7 @@ export function OperationsOverview() {
               { label: "Sessions", value: total ? num(total.counters.sessions) : "—", direction: trendFor(latest?.counters.sessions, previous?.counters.sessions) },
               { label: "Orders", value: total ? num(total.counters.orders) : "—", direction: trendFor(latest?.counters.orders, previous?.counters.orders) },
               { label: "AdSpend", value: total ? moneyCompact(total.counters.adSpendMinor) : "—", direction: trendFor(latest?.counters.adSpendMinor, previous?.counters.adSpendMinor) },
-            ].map((item) => <div className="metric" key={item.label}><span>{item.label}</span><div><strong title={item.value}>{item.value}</strong><Trend direction={item.direction} color={item.direction === "down" ? "red" : "green"} size={15} /></div></div>)}
+            ].map((item) => <div className="metric" key={item.label}><span>{item.label} <AnimateChart compact scope={scope} presentation={{ title: item.label === "AdSpend" ? "Advertising spend" : item.label, synthetic: true, charts: [dailyPresentation(item.label, sortedDaily, item.label === "Revenue" ? "revenueMinor" : item.label === "Sessions" ? "sessions" : item.label === "Orders" ? "orders" : "adSpendMinor", item.label === "Revenue" || item.label === "AdSpend" ? "GBP minor units" : "count")] }}/></span><div><strong title={item.value}>{item.value}</strong><Trend direction={item.direction} color={item.direction === "down" ? "red" : "green"} size={15} /></div></div>)}
           </article>
 
           <article className="card activity-card" data-testid="overview-activity" id="activity">

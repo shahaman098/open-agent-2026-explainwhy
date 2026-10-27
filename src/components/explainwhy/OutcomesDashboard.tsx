@@ -8,6 +8,8 @@ import type { BusinessOutcomeAssessmentT } from "@/outcomes/schema";
 import { api, q } from "./api";
 import type { OutcomeDetailRow } from "./Outcomes";
 import { useRun } from "./run-context";
+import { AnimateChart } from "@/components/presentation/AnimateChart";
+import type { ChartSpec } from "@/lib/presentation/schema";
 
 type Row = OutcomeDetailRow;
 type Assessment = BusinessOutcomeAssessmentT;
@@ -83,8 +85,8 @@ function resultTitle(assessment: Assessment | null) {
   if (assessment.businessEffect === "unchanged") return "No observed return improvement";
   return "Result inconclusive";
 }
-function runHref(path: string, runId: string) {
-  return path + (path.includes("?") ? "&" : "?") + "run=" + encodeURIComponent(runId);
+function runHref(path: string, runId: string, businessId: string) {
+  return path + (path.includes("?") ? "&" : "?") + new URLSearchParams({ run: runId, businessId });
 }
 
 function trendSegments(series: Sample[], metric: Metric, cadence: number) {
@@ -115,6 +117,9 @@ function PerformanceChart({ assessment, metric }: { assessment: Assessment; metr
   const following = after?.series ?? [];
   const values = [...baseline, ...following].map((sample) => sampleValue(sample, metric)).filter((value): value is number => value != null);
   const trend = baseline.length > 1 || following.length > 1;
+  const unit = metric === "spendMinor" ? "GBP minor units" : metric === "ctr" ? "ratio" : metric === "roas" ? "multiple" : "count";
+  const chart: ChartSpec = { title: METRICS.find(entry => entry.key === metric)?.label ?? metric, subtitle: "Before and after execution · recorded observations", kind: trend ? "line" : "comparison", unit, source: `Assessment ${assessment.assessmentId}`, series: trend ? [{ name: "Before", points: baseline.length ? baseline.map(sample => ({ label: formattedDate(sample.startAt), value: sampleValue(sample, metric), x: Date.parse(sample.startAt) })) : [{ label: "No observation", value: null }] }, { name: "After", points: following.length ? following.map(sample => ({ label: formattedDate(sample.startAt), value: sampleValue(sample, metric), x: Date.parse(sample.startAt) })) : [{ label: "No observation", value: null }] }] : [{ name: "Comparison", points: [{ label: "Before", value: observationValue(before, metric) }, { label: "After", value: observationValue(after, metric) }] }] };
+  const animate = <div className="chart-inline-animation"><AnimateChart compact scope={{ businessId: assessment.businessId, simulationRunId: assessment.simulationRunId }} presentation={{ title: "Campaign performance", synthetic: true, charts: [chart] }}/></div>;
 
   if (trend && values.length) {
     const start = Date.parse(assessment.beforeWindow.startAt);
@@ -137,6 +142,7 @@ function PerformanceChart({ assessment, metric }: { assessment: Assessment; metr
     const beforeHours = Math.round((actionTime - start) / 3_600_000);
     const afterHours = Math.round((end - actionTime) / 3_600_000);
     return <figure className="outcome-viz" aria-label={METRICS.find((entry) => entry.key === metric)?.windowLabel}>
+      {animate}
       <svg viewBox="0 0 760 230" role="img" aria-label={"Recorded " + (METRICS.find((entry) => entry.key === metric)?.label ?? metric) + " before and after execution"}>
         {[0, 0.5, 1].map((fraction) => <g key={fraction}>
           <line x1="54" x2="704" y1={y(maximum * fraction)} y2={y(maximum * fraction)} stroke="#e7e9e5" strokeWidth="1" />
@@ -161,6 +167,7 @@ function PerformanceChart({ assessment, metric }: { assessment: Assessment; metr
   if (pairs.every((pair) => pair.value == null)) return <div className="outcome-no-chart">No comparable campaign observations are saved for this metric.</div>;
   const maximum = Math.max(0, ...pairs.map((pair) => pair.value ?? 0));
   return <figure className="outcome-aggregate" aria-label={"Recorded before and after " + metric}>
+    {animate}
     {pairs.map((pair) => <div className="outcome-aggregate-row" key={pair.label}>
       <strong>{pair.label}</strong>
       <div className="outcome-aggregate-track">{pair.value == null ? <span className="outcome-aggregate-missing">No observation</span> : <span className={pair.label === "After" ? "after" : "before"} style={{ width: (maximum ? pair.value / maximum * 100 : 0) + "%" }} />}</div>
@@ -239,13 +246,14 @@ function Feedback({ assessment, feedback, onSaved }: { assessment: Assessment; f
 }
 
 function ActionDetail({ row, runId, onFeedbackSaved }: { row: Row; runId: string; onFeedbackSaved: () => void }) {
+  const businessId = row.execution.businessId;
   const assessment = row.latest;
   const action = row.action;
   const isBudget = action.actionType === "ads.set_daily_budget";
   const intended = action.actionType === "customer.send_delay_notice" ? action.params.orderIds.length : null;
   const reached = typeof assessment?.operational.reachedRecipients === "number" ? assessment.operational.reachedRecipients : null;
-  const investigationHref = runHref("/dashboard/investigations/" + encodeURIComponent(row.plan.investigationId), runId);
-  const planHref = runHref("/dashboard/approvals", runId);
+  const investigationHref = runHref("/dashboard/investigations/" + encodeURIComponent(row.plan.investigationId), runId, businessId);
+  const planHref = runHref("/dashboard/approvals", runId, businessId);
   return <div className="outcome-action-dashboard" data-testid="outcome-detail">
     <section className="outcome-action-summary">
       <div className="outcome-action-title"><span className="outcome-kicker">Executed action</span><h2>{action.title}</h2><p>{actionTarget(action)}</p></div>
@@ -325,7 +333,7 @@ export function OutcomesPage() {
     {!loaded || runId && !data && !error ? <div className="outcome-loading">Loading saved outcomes…</div> : null}
     {error ? <div className="outcome-load-error" role="alert"><p>{error}</p><button className="btn sm" type="button" onClick={refresh}>Retry</button></div> : null}
     {loaded && !runId ? <div className="outcome-empty-state"><span className="outcome-empty-icon" aria-hidden="true">○</span><h2>Select a simulation run</h2><p>Choose a run above to inspect its executed actions and saved measurements.</p></div> : null}
-    {data && data.rows.length === 0 ? <div className="outcome-empty-state"><span className="outcome-empty-icon" aria-hidden="true">○</span><h2>No executed actions in this run</h2><p>{runId === "demo_nike" ? "The storefront demo has no executed actions. " : ""}Choose an execution run from the selector above to view verified changes and performance.</p><Link href={runHref("/dashboard/approvals", runId!)}>View plans in this run ↗</Link></div> : null}
+    {data && data.rows.length === 0 ? <div className="outcome-empty-state"><span className="outcome-empty-icon" aria-hidden="true">○</span><h2>No executed actions in this run</h2><p>{runId === "demo_nike" ? "The storefront demo has no executed actions. " : ""}Choose an execution run from the selector above to view verified changes and performance.</p><Link href={runHref("/dashboard/approvals", runId!, businessId)}>View plans in this run ↗</Link></div> : null}
     {data && data.rows.length > 0 && row ? <>
       <div className="outcomes-dashboard-toolbar"><div><strong>{data.rows.length} executed {data.rows.length === 1 ? "action" : "actions"}</strong></div><div className="outcomes-toolbar-actions"><button className="btn sm" type="button" onClick={refresh}>Refresh</button><button className="btn sm primary" type="button" disabled={busy} onClick={() => void evaluate()}>{busy ? "Evaluating…" : row.latest ? "Recheck assessment" : "Evaluate outcome"}</button></div></div>
       {data.rows.length > 1 ? <nav className="outcome-action-switcher" aria-label="Executed actions">{data.rows.map((item) => <button type="button" key={item.execution.executionId} className={item.execution.executionId === row.execution.executionId ? "selected" : ""} aria-current={item.execution.executionId === row.execution.executionId ? "true" : undefined} onClick={() => selectAction(item.action.actionId)} data-testid={"outcome-action-" + item.action.actionId}><strong>{item.action.title}</strong><span>{item.latest ? resultTitle(item.latest) : "Not assessed"}</span></button>)}</nav> : null}

@@ -1,5 +1,6 @@
 import type { ReferenceProductT } from "@/reference/schemas";
 import type { SimulatedProduct } from "@/types/domain";
+import { NVIDIA_ASSUMPTIONS } from "./nvidia-profile";
 
 /**
  * Synthetic operational assumptions layered on top of the public catalogue.
@@ -44,7 +45,7 @@ export function buildSimulatedProducts(
 ): SimulatedProduct[] {
   const byRef = new Map(catalogue.map((p) => [p.referenceProductId, p]));
   const products: SimulatedProduct[] = [];
-  for (const a of OPERATIONAL_ASSUMPTIONS) {
+  for (const a of businessId === "nvidia_demo" ? NVIDIA_ASSUMPTIONS : OPERATIONAL_ASSUMPTIONS) {
     const ref = byRef.get(a.referenceProductId);
     if (!ref) throw new Error(`Operational assumption ${a.productId} references unknown catalogue product ${a.referenceProductId}`);
     const verifiedPublicPrice = ref.dataOrigin !== "synthetic" && ref.verification === "verified_verbatim";

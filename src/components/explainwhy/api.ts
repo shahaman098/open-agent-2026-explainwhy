@@ -1,10 +1,11 @@
 /** Client-side API helper and response types shared by the unified dashboard. All data comes from real routes. */
+import { workspaceApiPath } from "@/lib/workspaces";
 export class ApiRequestError extends Error {
   constructor(message: string, readonly status: number, readonly code?: string) { super(message); this.name = "ApiRequestError"; }
 }
 
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(path, { cache: "no-store", ...init });
+  const res = await fetch(workspaceApiPath(path), { cache: "no-store", ...init });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new ApiRequestError(body?.error?.message ?? `Request failed (${res.status})`, res.status, body?.error?.code);
   return body as T;

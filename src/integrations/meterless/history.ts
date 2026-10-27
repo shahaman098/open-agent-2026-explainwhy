@@ -1,5 +1,5 @@
 import "server-only";
-import { HMEM } from "@/vendor/meterless-hmem";
+import { HMEM, tokenize } from "@/vendor/meterless-hmem";
 
 export const HMEM_UPSTREAM = "1742dec56a66e58eef9dda2d2b865823758ca8cd";
 export interface HistoricalMemory {
@@ -20,10 +20,10 @@ export function recallHistoricalMemories(scope: { businessId: string; simulation
       !Number.isFinite(Date.parse(prior.observedThrough)) || Date.parse(prior.observedThrough) > Date.parse(scope.cutoff)) continue;
     clock = Date.parse(prior.availableAt);
     engine.add({
-      content: `${prior.title}. Themes: ${prior.themes.join(", ")}. Metrics: ${prior.metrics.join(", ")}. ${prior.summaries.join(" ")}`.slice(0, 2000),
+      content: `${prior.title}. ${prior.summaries.join(" ")}`.slice(0, 2000),
       type: "factual", layer: "working", confidence: 0.7, source: `investigations:${prior.investigationId}`,
       provenance: { origin: "document", learnedAt: clock, label: "Prior investigation report, context only", refs: [prior.investigationId, prior.reportId] },
-      chatId, goalRunId: scope.simulationRunId, tags: [...prior.themes, ...prior.metrics].slice(0, 20),
+      chatId, goalRunId: scope.simulationRunId, tags: [...new Set([...tokenize(prior.title), ...prior.themes, ...prior.metrics])].slice(0, 20),
     });
   }
   clock = Date.parse(scope.availableBefore);

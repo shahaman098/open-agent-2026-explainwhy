@@ -1121,7 +1121,8 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
 .explainwhy-app .explainwhy-overview-grid > :nth-child(5) { animation-delay: .23s; }
 .explainwhy-app .card { transition: box-shadow .22s ease, border-color .22s ease; }
 .explainwhy-app .card:hover { box-shadow: 0 8px 24px #1b231310; }
-.explainwhy-app .explainwhy-nav-link { transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
+.explainwhy-app .explainwhy-nav { gap: 14px; }
+.explainwhy-app .explainwhy-nav-link { font-size: 16px; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
 .explainwhy-app .explainwhy-nav-link:hover { transform: translateY(-1px); }
 .explainwhy-app .btn, .explainwhy-app .campaign-controls button, .explainwhy-app .help { transition: transform .18s cubic-bezier(.2,.8,.25,1), box-shadow .18s ease, background-color .18s ease; }
 .explainwhy-app .btn:hover:not(:disabled), .explainwhy-app .campaign-controls button:hover, .explainwhy-app .help:hover { transform: translateY(-2px); box-shadow: 0 5px 12px #1112; }

@@ -1,0 +1,50 @@
+.explainwhy-app .integrations-page {
+  display: grid;
+  gap: 20px;
+  padding: 0 0 16px;
+  color: #111;
+}
+
+.explainwhy-app .integration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.explainwhy-app .integration-card { display: flex; flex-direction: column; padding: 22px; }
+.explainwhy-app .integration-card-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.explainwhy-app .integration-icon { display: grid; flex: none; width: 40px; height: 40px; place-items: center; border: 1px solid #deded9; border-radius: 9px; background: #f4f4f1; color: #111; }
+.explainwhy-app .zetaris-icon { font: 700 25px/1 "Poppins:Bold", Poppins, sans-serif; }
+.explainwhy-app .integration-required { color: #777; font-size: 11px; }
+.explainwhy-app .integration-card-head .integration-badge { margin-left: auto; }
+.explainwhy-app .integration-badge { text-transform: none; white-space: normal; }
+.explainwhy-app .integration-badge.ok { background: #e1f5d8; color: #2d7514; }
+.explainwhy-app .integration-badge.neutral { background: #fff0d8; color: #86570e; }
+.explainwhy-app .integration-card h2 { margin: 17px 0 7px; font: 500 24px/1.25 "Poppins:Medium", Poppins, sans-serif; letter-spacing: -.035em; }
+.explainwhy-app .integration-card > p { max-width: 530px; margin: 0; color: #666; font-size: 12px; line-height: 1.7; }
+.explainwhy-app .integration-stat { display: flex; align-items: center; gap: 17px; padding: 22px 0 18px; }
+.explainwhy-app .integration-stat strong { font: 600 48px/1 "Poppins:SemiBold", Poppins, sans-serif; letter-spacing: -.055em; }
+.explainwhy-app .integration-stat span { color: #666; font-size: 12px; line-height: 1.7; }
+.explainwhy-app .integration-proof { display: flex; align-items: flex-start; gap: 9px; padding: 4px 0; color: #444; font-size: 12px; line-height: 1.6; }
+.explainwhy-app .integration-proof svg { flex: none; margin-top: 2px; color: #4b7338; }
+.explainwhy-app .integration-card-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-top: 15px; padding-top: 17px; border-top: 1px solid #e5e5e5; }
+.explainwhy-app .integration-card-foot small { color: #777; font-size: 11px; }
+.explainwhy-app .integrations-page a:not(.btn) { display: inline-flex; align-items: center; gap: 5px; color: #111; font-size: 12px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.explainwhy-app .integration-runtime-log { overflow: hidden; }
+.explainwhy-app .integration-runtime-log summary { display: flex; align-items: center; gap: 16px; padding: 19px 22px; cursor: pointer; list-style: none; }
+.explainwhy-app .integration-runtime-log summary::-webkit-details-marker { display: none; }
+.explainwhy-app .integration-runtime-log summary::after { margin-left: auto; content: "+"; color: #555; font-size: 23px; line-height: 1; }
+.explainwhy-app .integration-runtime-log[open] summary::after { content: "−"; }
+.explainwhy-app .integration-runtime-log summary span { font: 500 16px/1.3 "Poppins:Medium", Poppins, sans-serif; }
+.explainwhy-app .integration-runtime-log summary small { color: #777; font-size: 11px; }
+.explainwhy-app .integration-runtime-log pre { max-height: 360px; margin: 0 20px 20px; padding: 20px; overflow: auto; border-radius: 9px; background: #171717; color: #e8e8e2; white-space: pre-wrap; overflow-wrap: anywhere; font: 11px/1.9 ui-monospace, monospace; }
+.explainwhy-app .integration-note { margin: 0; color: #777; font-size: 10px; line-height: 1.8; }
+.explainwhy-app .integration-note span { display: block; }
+.explainwhy-app .integration-note a { margin-top: 7px; }
+.explainwhy-app .integrations-page :is(a, button, summary):focus-visible { outline: 3px solid #9dcc7d; outline-offset: 4px; }
+@media (max-width: 900px) {
+  .explainwhy-app .integration-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 550px) {
+  .explainwhy-app .integrations-page { gap: 14px; }
+  .explainwhy-app .integration-card { padding: 17px; }
+  .explainwhy-app .integration-card-head .integration-badge { margin-left: 0; }
+  .explainwhy-app .integration-runtime-log summary { flex-wrap: wrap; gap: 5px 12px; padding: 17px; }
+  .explainwhy-app .integration-runtime-log summary small { flex-basis: 100%; order: 1; }
+  .explainwhy-app .integration-runtime-log pre { margin: 0 12px 12px; padding: 14px; }
+}
