@@ -89,7 +89,7 @@ if npm run --silent investigator:check >.local/model-check.log 2>&1; then
 else
   note "Model check FAILED (details: .local/model-check.log)."
   note "The app will start, but investigations may fall back to 'insufficient evidence'."
-  note "A larger model usually fixes this, e.g.: EXPLAINWHY_BASE_MODEL=<bigger nemotron tag> after: ollama rm $MODEL_ALIAS"
+  note "A larger model usually fixes this; see 'Better diagnoses' in docs/QUICKSTART.md."
 fi
 
 say "Setup complete. Start ExplainWhy with: ./scripts/local/start.sh"

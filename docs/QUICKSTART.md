@@ -46,6 +46,27 @@ Press Ctrl-C in that terminal to stop everything.
 
 Investigations on a small local model take several minutes.
 
+## Better diagnoses: use a bigger Nemotron
+
+The default `nemotron-3-nano:4b` runs on any Apple Silicon Mac and the whole pipeline
+works with it, but it often cannot follow the investigation format closely enough to
+commit to a cause. Its reports then end in **"Insufficient evidence"**. For real
+diagnoses, use a bigger model:
+
+- **Mac with 32 GB+ of memory (48 GB recommended):** switch to the 30B Nemotron
+  (a 24 GB download):
+
+  ```sh
+  ollama rm explainwhy-nemotron
+  EXPLAINWHY_BASE_MODEL=nemotron-3-nano:30b ./scripts/local/setup.sh
+  ```
+
+- **Any Mac, using NVIDIA's hosted Nemotron (free API key from build.nvidia.com):**
+  in `.env.local`, set `NVIDIA_INFERENCE_MODE="cloud"`, add
+  `NVIDIA_API_KEY="nvapi-…"`, and delete the `NVIDIA_BASE_URL`,
+  `NVIDIA_LOCAL_MODEL` and three `NEMOTRON_*_MODEL` lines. Restart with
+  `./scripts/local/start.sh`.
+
 ## If something goes wrong
 
 | Problem | Fix |
