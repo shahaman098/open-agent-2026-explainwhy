@@ -2,7 +2,7 @@
 
 Audience: developers maintaining the integrated approval UI, orchestration and agent execution.
 
-Stage 7 selectively adapts `origin/kris` (`f9bc19d`) into Normal. MongoDB, canonical contracts and the existing
+Stage 7 integrates partner UI and orchestration patterns into ExplainWhy Agent. MongoDB, canonical contracts and the existing
 simulator adapters remain authoritative; the partner D1 backend and independent simulator are not imported.
 See [Stage 7 verification](stage7-verification.md) for execution results and
 [Stage 8 verification](stage8-verification.md) for subsequent outcome measurement.

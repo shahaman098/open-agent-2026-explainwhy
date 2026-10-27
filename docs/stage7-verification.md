@@ -6,10 +6,7 @@ No wholesale merge, D1 database, independent simulator, additional Mubit request
 
 ## Source and recovery
 
-Inspected `origin/kris` and `origin/sapling-quest`, both at `f9bc19d`, with unrelated Git history. Selected
-partner components and compatible orchestration patterns were adapted rather than merging histories.
-The starting checkout was clean at `4daa8cc`. The verified recovery bundle and checkpoint are at
-a private local checkpoint directory; private environment files remain outside the repository.
+Partner UI components and compatible orchestration patterns were adapted into this codebase without merging unrelated histories. Private environment files remain outside the repository.
 
 Read the installed Next.js route/migration documentation before implementation. Shared contract definitions
 and adapter mutation functions are unchanged.

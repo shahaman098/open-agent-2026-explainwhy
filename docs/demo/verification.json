@@ -1,5 +1,5 @@
 {
-  "file": "Normal_NightShift_Demo.mp4",
+  "file": "ExplainWhy_Demo.mp4",
   "sha256": "17fa3459fc2de48a177a9f6add5529feaa8e124f6e170cdeeb8bd41d96c37a0b",
   "duration_seconds": 110.16,
   "bytes": 4980760,
@@ -10,7 +10,7 @@
   ],
   "fps": "25/1",
   "voice_id": "rsG3bwQLHQmLztP16wvR",
-  "voice_name": "Kris Sah",
+  "voice_name": "narration",
   "voice_model": "eleven_multilingual_v2",
   "voice_settings": {
     "stability": 0.6,

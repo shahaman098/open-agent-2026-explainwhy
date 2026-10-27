@@ -5,17 +5,17 @@ export default function Home() {
     <>
       <main className="shell home">
         <div style={{ display: "grid", gap: 16 }}>
-          <span className="pill accent">Normal · Mubit Night Shift</span>
-          <h1>Making seamless operations the new normal.</h1>
+          <span className="pill accent">Open Agent Hackathon 2026 · ExplainWhy</span>
+          <h1>Evidence-backed operations investigation.</h1>
           <p className="lead">
-            Normal watches a business, detects operational problems, investigates likely causes and hands approved fixes to specialised agents.
+            ExplainWhy Agent watches a business, detects operational problems, investigates likely causes and hands approved fixes to specialised agents.
             This build runs a digital twin of a Nike-style ecommerce operation so the whole loop can be exercised end to end.
           </p>
         </div>
         <div className="grid home-cards">
           <Link href="/dashboard" className="card">
             <span className="pill accent">Operations</span>
-            <h2>Normal dashboard</h2>
+            <h2>Operations dashboard</h2>
             <p className="muted">One place to follow the pipeline — metrics, monitoring health, detected incidents, autonomous evidence retrieval and what is still to come.</p>
           </Link>
           <Link href="/demo-store" className="card">

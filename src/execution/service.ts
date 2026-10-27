@@ -14,7 +14,7 @@ import { z } from 'zod';
 import { readiness,validateGraph } from './dependencies';
 import { ExecutionError } from "./errors";
 
-// Adapted from origin/kris: validate-approval, orchestrator and execute-action.
+// Approval validation, orchestration and execute-action workflow.
 // Canonical contracts + MongoDB + Normal adapters replace the partner storage/tools.
 export const EXEC = { approvals: COLLECTIONS.planApprovals, runs: COLLECTIONS.agentRuns, missions: COLLECTIONS.agentMissions, actions: COLLECTIONS.actionExecutions, outcomes: COLLECTIONS.actionOutcomes } as const;
 export const ExecutionScope = z.object({ businessId: z.string().regex(/^[a-z0-9_]{1,64}$/), simulationRunId: z.string().regex(/^[a-z0-9_]{1,64}$/), planVersion: z.coerce.number().int().positive() }).strict();

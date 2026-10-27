@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Normal",
-  description: "Evidence-led business operations powered by Gemini 4 Argon through Mubit.",
+  title: "ExplainWhy Agent",
+  description: "Open Agent Hackathon 2026 — evidence-led business operations investigation.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

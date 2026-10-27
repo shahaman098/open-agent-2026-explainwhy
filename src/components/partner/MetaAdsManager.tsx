@@ -1,4 +1,4 @@
-// Partner Meta Ads Manager from origin/kris f9bc19d; Normal MongoDB binding.
+// Partner Meta Ads Manager UI bound to ExplainWhy Agent MongoDB adapters.
 "use client";
 
 import { api,q } from "@/components/normal/api";

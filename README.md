@@ -15,7 +15,7 @@ Our hackathon demonstration uses an **Nike shop simulation**. The orders, custom
 ## Start here
 
 <!-- current-demo:start -->
-**Watch the current product demo:** [Normal — continuous product and Mubit console recording](docs/demo/Normal_NightShift_Demo.mp4) · **1:50 · 4.98 MB**. The recording shows the dashboard, evidence, plan review, approved simulated actions, verified receipts and the signed-in Mubit console. It uses the requested Kris Sah voice with natural delivery and no added overlays or music. [Demo details and limits](docs/demo/README.md) · [Media verification](docs/demo/verification.json).
+**Watch the current product demo:** [ExplainWhy Agent — continuous product and Mubit console recording](docs/demo/ExplainWhy_Demo.mp4) · **1:50 · 4.98 MB**. The recording shows the dashboard, evidence, plan review, approved simulated actions, verified receipts and the signed-in Mubit console. Natural synthesized narration with no added overlays or music. [Demo details and limits](docs/demo/README.md) · [Media verification](docs/demo/verification.json).
 <!-- current-demo:end -->
 
 If you have two minutes, follow this evidence trail:
@@ -144,9 +144,9 @@ Across the 15 healthy runs, one incident was recorded. Checkout escalation and s
 | Stage 8 outcome assessment | **27/27 focused tests** and **1/1** desktop acceptance; build and TypeScript passed | [Stage 8 verification](docs/stage8-verification.md) |
 | Investigation decision canvas | **4/4** focused desktop checks; TypeScript and build passed | [Canvas verification](docs/investigation-redesign-verification.md) |
 | Adapter-training integration | **83/83 focused tests**, TypeScript, production build, focused lint and **15/15** contract examples passed; saved pilot recomputed offline | [Training validation and reproduction](docs/training-integration.md#validation) |
-| Full regression | Fresh submission checks passed **385/385 tests across 62 files** and **66/66 browser tests across desktop and mobile**. Contracts (15/15), TypeScript, ESLint (0 errors, 14 warnings) and the isolated production build passed. | [Submission verification](docs/submission-verification-2026-10-25.md), [historical results](docs/stage5-verification.md#focused-verification-policy-and-latest-results) |
+| Full regression | Recorded checks passed **385/385 tests across 62 files** and **66/66 browser tests across desktop and mobile**. Contracts (15/15), TypeScript, ESLint (0 errors, 14 warnings) and the isolated production build passed. | [Stage 8 verification](docs/stage8-verification.md), [historical results](docs/stage5-verification.md#focused-verification-policy-and-latest-results) |
 
-The focused test counts overlap in places and should not be added together. The original stage-specific reports predate the complete desktop/mobile regression; the current submission verification records the latest full suite. The canvas report also records a failed global unchanged-data guard while other workers changed monitoring state; it does not claim global preservation.
+The focused test counts overlap in places and should not be added together. The original stage-specific reports predate the complete desktop/mobile regression. The canvas report also records a failed global unchanged-data guard while other workers changed monitoring state; it does not claim global preservation.
 
 ## Architecture
 
@@ -272,4 +272,4 @@ The intended next step is to collect more comparable outcomes and test whether v
 - [Stage 7 approval/execution verification](docs/stage7-verification.md)
 - [Stage 8 outcome verification](docs/stage8-verification.md) and [investigation canvas verification](docs/investigation-redesign-verification.md)
 - [Data dictionary](docs/data-dictionary.md) and [simulation state](docs/simulator-state.md)
-- [Official Mubit documentation](https://docs.mubit.ai/) and [Night Shift brief and judging criteria](https://luma.com/nightshift-london)
+- [Official Mubit documentation](https://docs.mubit.ai/) and [Open Agent Hackathon 2026](https://hackathon.genai.works/dashboard)
