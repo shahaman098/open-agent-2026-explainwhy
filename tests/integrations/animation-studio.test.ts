@@ -41,6 +41,11 @@ describe("Animation Studio boundary", () => {
   it.each(["http://example.com", "http://127.0.0.1:8765/path", "http://user:password@127.0.0.1:8765", "http://127.0.0.1:8765/?secret=x"])("rejects endpoint %s", (base) => {
     vi.stubEnv("ANIMATION_STUDIO_BASE_URL", base); expect(studioBase).toThrow();
   });
+  it("reports a malformed endpoint as a handled animation error, not a TypeError", () => {
+    vi.stubEnv("ANIMATION_STUDIO_BASE_URL", "not a url");
+    expect(() => studioBase()).toThrow(AnimationError);
+    expect(() => studioBase()).toThrow("invalid_animation_endpoint");
+  });
   it("uses the per-launch token and the existing data-only endpoint", async () => {
     const packet = financialAnimation(scope, item(), "revenue_minor"), transport = vi.fn().mockResolvedValueOnce(Response.json({ token: "test-session-token-only", ready: true }))
       .mockResolvedValueOnce(Response.json({ id: "0123456789abcdef", status: "queued" }, { status: 202 }));

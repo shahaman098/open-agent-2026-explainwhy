@@ -38,9 +38,9 @@ type Receipt = NemotronVerificationT["receipts"][number];
 type Fetch = typeof fetch;
 
 interface ChatResult { content: string; logprobs: Array<{ token: string; logprob: number }>; receipt: Omit<Receipt, "task" | "cause" | "status" | "error"> }
-async function chat(fetchImpl: Fetch, config: ReturnType<typeof nemotronConfig>, model: string, messages: Array<{ role: string; content: string }>, maxTokens: number | null): Promise<ChatResult> {
+async function chat(fetchImpl: Fetch, config: ReturnType<typeof nemotronConfig>, model: string, messages: Array<{ role: string; content: string }>, maxTokens: number | null, timeoutMs = 90_000): Promise<ChatResult> {
   const started = Date.now();
-  const response = await fetchImpl(`${config.base}/chat/completions`, { method: "POST", redirect: "error", signal: AbortSignal.timeout(90_000),
+  const response = await fetchImpl(`${config.base}/chat/completions`, { method: "POST", redirect: "error", signal: AbortSignal.timeout(timeoutMs),
     headers: { "content-type": "application/json", accept: "application/json", authorization: `Bearer ${config.key}` },
     // Reward models take only the conversation to score; sampling settings apply to generation.
     body: JSON.stringify(maxTokens === null ? { model, messages } : { model, messages, temperature: 0, top_p: 1, max_tokens: maxTokens, stream: false }) });
@@ -95,28 +95,36 @@ export async function verifyDiagnosis(diagnosis: DiagnosisModelOutputT, evidence
   const causes = new Set(diagnosis.hypotheses.map((h) => h.cause));
   const allowed = new Set(evidence.map((e) => e.evidenceId));
   const packet = { candidateCauses: [...causes].filter((c) => c !== "unknown"), evidence: evidenceView(evidence) };
+  // One overall deadline: sequential judge and reward calls must not hold an investigation for many minutes.
+  const budgetMs = Number(process.env.NEMOTRON_VERIFIER_BUDGET_MS) > 0 ? Number(process.env.NEMOTRON_VERIFIER_BUDGET_MS) : 180_000;
+  const deadline = Date.now() + budgetMs, remaining = () => Math.min(90_000, deadline - Date.now());
+  let outOfBudget = false, judgeUnreachable = false;
 
   let judge: z.infer<typeof JudgeOutput> | null = null, repair: string | null = null;
   for (let attempt = 0; attempt < 2 && !judge; attempt++) {
+    if (remaining() <= 0) { outOfBudget = true; break; }
     try {
-      const r = await chat(fetchImpl, config, config.judgeModel, [{ role: "system", content: JUDGE_SYSTEM }, { role: "user", content: JSON.stringify(repair ? { ...packet, validationRepair: repair } : packet) }], 2000);
+      const r = await chat(fetchImpl, config, config.judgeModel, [{ role: "system", content: JUDGE_SYSTEM }, { role: "user", content: JSON.stringify(repair ? { ...packet, validationRepair: repair } : packet) }], 2000, remaining());
       try { judge = parseJudge(r.content, causes, allowed); receipts.push({ ...r.receipt, task: "judge", cause: null, status: "completed", error: null }); }
       catch (e) { repair = e instanceof z.ZodError ? "Output did not match the required JSON shape" : e instanceof Error ? e.message.slice(0, 200) : "invalid_output"; receipts.push({ ...r.receipt, task: "judge", cause: null, status: "rejected", error: repair }); }
     } catch (e) {
       const receipt = (e as { receipt?: ChatResult["receipt"] }).receipt;
       receipts.push({ model: config.judgeModel, requestId: null, latencyMs: 0, inputTokens: null, outputTokens: null, ...receipt, task: "judge", cause: null, status: "failed", error: e instanceof Error ? e.message.slice(0, 200) : "request_failed" });
+      judgeUnreachable = true;
       break;
     }
   }
 
   const rewardScores: NemotronVerificationT["rewardScores"] = [];
-  if (config.rewardModel) {
+  // A transport/HTTP failure on the judge means the endpoint is down; reward calls would only wait out their timeouts.
+  if (config.rewardModel && !judgeUnreachable && !outOfBudget) {
     for (const h of diagnosis.hypotheses.filter((x) => x.cause !== "unknown").slice(0, 6)) {
+      if (remaining() <= 0) { outOfBudget = true; break; }
       const cited = evidence.filter((e) => h.evidenceIds.includes(e.evidenceId) || h.counterEvidenceIds.includes(e.evidenceId)).slice(0, REWARD_MAX_EVIDENCE);
       const question = `Given only this verified evidence, what best explains the incident?\n${JSON.stringify(evidenceView(cited.length ? cited : evidence.slice(0, REWARD_MAX_EVIDENCE), REWARD_OBSERVATION_CHARS))}`;
       const answer = `${h.cause.replaceAll("_", " ")}: ${h.explanation} Supporting evidence: ${h.evidenceIds.join(", ") || "none"}. Contradicting evidence: ${h.counterEvidenceIds.join(", ") || "none"}.`;
       try {
-        const r = await chat(fetchImpl, config, config.rewardModel, [{ role: "user", content: question }, { role: "assistant", content: answer }], null);
+        const r = await chat(fetchImpl, config, config.rewardModel, [{ role: "user", content: question }, { role: "assistant", content: answer }], null, remaining());
         const scores = parseRewardScores(r.content, r.logprobs);
         receipts.push({ ...r.receipt, task: "reward", cause: h.cause, status: scores ? "completed" : "rejected", error: scores ? null : "reward_scores_not_found" });
         if (scores) rewardScores.push({ cause: h.cause, ...scores });
@@ -136,6 +144,8 @@ export async function verifyDiagnosis(diagnosis: DiagnosisModelOutputT, evidence
   const rewardExpected = config.rewardModel ? diagnosis.hypotheses.filter((x) => x.cause !== "unknown").slice(0, 6).length : 0;
   if (!judge) limitations.push("The judge assessment was unavailable or rejected; see receipts.");
   if (rewardScores.length < rewardExpected) limitations.push("Some reward scores were unavailable; see receipts.");
+  if (judgeUnreachable && config.rewardModel) limitations.push("Reward scoring was skipped because the NVIDIA endpoint did not answer the judge request.");
+  if (outOfBudget) limitations.push("Verification stopped at its time budget; remaining checks were not run.");
   return NemotronVerification.parse({
     schemaVersion: 1, status: !judge && !rewardScores.length ? "failed" : judge && rewardScores.length === rewardExpected ? "completed" : "partial",
     judgeModel: config.judgeModel, rewardModel: config.rewardModel, verifiedAt: new Date().toISOString(),

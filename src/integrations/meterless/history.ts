@@ -37,3 +37,20 @@ export function recallHistoricalMemories(scope: { businessId: string; simulation
   };
 }
 export type MemoryRecall = ReturnType<typeof recallHistoricalMemories>;
+
+const strings = (value: unknown) => Array.isArray(value) && value.every((item) => typeof item === "string");
+function isHistoricalMemory(value: unknown): value is HistoricalMemory {
+  const m = value as Partial<Record<keyof HistoricalMemory, unknown>> | null;
+  return !!m && typeof m === "object" && (["businessId", "simulationRunId", "investigationId", "title", "observedThrough", "availableAt", "reportId"] as const).every((k) => typeof m[k] === "string")
+    && strings(m.metrics) && strings(m.themes) && strings(m.summaries);
+}
+/** Stored history is untrusted at runtime: skip malformed records, and if recall itself fails, degrade to no recall
+ * so the ordinary pattern-overlap comparison still returns. */
+export function safeRecallHistoricalMemories(scope: Parameters<typeof recallHistoricalMemories>[0], query: string, candidates: unknown[]): { recall: MemoryRecall | null; warning: string | null } {
+  const valid = candidates.filter(isHistoricalMemory), skipped = candidates.length - valid.length;
+  try {
+    return { recall: recallHistoricalMemories(scope, query, valid), warning: skipped ? `${skipped} malformed H-MEM record(s) were skipped` : null };
+  } catch {
+    return { recall: null, warning: "Meterless H-MEM recall failed; the historical comparison is returned without recalled memories" };
+  }
+}
