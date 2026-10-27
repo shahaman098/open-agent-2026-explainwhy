@@ -36,13 +36,14 @@ Sometimes the right answer is to keep investigating. The NVIDIA example above re
 
 ## What powers it
 
-| Technology | Its job |
-| --- | --- |
-| **Zetaris** | Query advertising observations and the campaign catalogue through SQL, then check returned measurements against source events. |
-| **Meterless H-MEM** | Store published investigation findings and retrieve relevant prior context, with source references and a recall ledger. |
-| **NVIDIA Nemotron** | Compare evidence, produce a qualified diagnosis, rank validated local planning options, and summarise dashboard changes. Local inference runs through Ollama. |
-| **Postgres** | Keep events, evidence, reports, approvals, and execution receipts durable and scoped to the right business and run. |
-| **Next.js + TypeScript** | Connect the investigation workspace, review screens, and background services. |
+| Technology | Its job | Where it runs | Status |
+| --- | --- | --- | --- |
+| **NVIDIA Nemotron** | Compare evidence, produce a qualified diagnosis, rank validated local planning options, and summarise dashboard changes. | Locally through Ollama, or NVIDIA's hosted API | Verified locally: [recorded diagnosis and planning snapshot](docs/demo/nvidia-local-proof.json) |
+| **Zetaris** | Query advertising observations and the campaign catalogue through SQL, then check returned measurements against source events. | Local Zetaris in Docker | Live query returned data in the [latest check](docs/sponsor-integrations/latest-check.json); row-by-row reconciliation with canonical events not yet verified |
+| **Meterless H-MEM** | Store published investigation findings and retrieve relevant prior context, with source references and a recall ledger. | In-process (vendored engine) | Engine recall verified on a labelled fixture; in-app recall needs an earlier published report |
+| **Bright Data** | Bounded public web research; results are discovery candidates checked before use. | Bright Data SERP API | Implemented and optional; a live run on the demo host is not yet verified |
+| **Postgres** | Keep events, evidence, reports, approvals, and execution receipts durable and scoped to the right business and run. | Local Docker or Supabase | Core; used by every run |
+| **Next.js + TypeScript** | Connect the investigation workspace, review screens, and background services. | Local Node.js 24 | Core |
 
 Orders, checkout, inventory, and shipping tools read the app's canonical records directly. Optional Bright Data research and the separate Animation Studio integration are covered in the [full setup guide](docs/friend-mac-runbook.md).
 
@@ -68,5 +69,15 @@ The repository includes a [recorded local Nemotron diagnosis and planning snapsh
 The demo's retail operations, customers, prices, and business actions are synthetic. Public NVIDIA financial disclosures are dated USD references, kept separate from the simulated GBP operations. Neither demo workspace is affiliated with the brands it uses.
 
 This is a working hackathon prototype. Production roles and access control, live advertising and store connectors, and causal measurement of business impact remain future work.
+
+## Next steps
+
+1. **Record one complete live sponsor run:** a single investigation that uses hosted Nemotron, Zetaris and H-MEM together, saved as a receipt.
+2. **Publish a frozen comparison:** ExplainWhy versus Nemotron alone on identical evidence, counting wrong diagnoses, unresolved cases and unsupported claims.
+3. **Verify Zetaris row reconciliation** against canonical events, and test the planted advertising decoy with the result recorded either way.
+
+## Team and credits
+
+Built by Team **Black Clover**. Chart animations use the bundled [Animation Studio](apps/animation-studio) by [gtrg55](https://github.com/gtrg55/animation_studio). Meterless H-MEM is vendored with its upstream license in `src/vendor/meterless-hmem`.
 
 Built for **Open Agent Hackathon 2026 · Track 02: The Agent That Can Explain Why**.
