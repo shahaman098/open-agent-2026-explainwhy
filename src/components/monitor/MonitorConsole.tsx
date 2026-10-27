@@ -125,10 +125,14 @@ export function MonitorConsole() {
 
   const initialLoading = (!runs || (runId !== null && status === null)) && !error && !unavailable;
   return (
-    <>
-      <header className="topbar"><div className="shell topbar-inner">
-        <Link href="/" className="brand explainwhy-legacy-brand"><ExplainWhyLogo /><small>· Anomaly monitor</small></Link>
-        <div className="row"><Link href="/dev/simulator" className="btn sm">Control room</Link><Link href="/demo-store" className="btn sm">Demo store</Link></div>
+    <div className="explainwhy-app explainwhy-standalone">
+      <header className="topbar explainwhy-topbar"><div className="shell explainwhy-topbar-inner">
+        <Link href="/" className="explainwhy-brand brand"><ExplainWhyLogo /></Link>
+        <nav className="explainwhy-nav" aria-label="ExplainWhy Agent sections">
+          <Link href="/dev/simulator" className="explainwhy-nav-link">Control room</Link>
+          <Link href="/dev/monitor" className="explainwhy-nav-link active" aria-current="page">Anomaly monitor</Link>
+          <Link href="/demo-store" className="explainwhy-nav-link">Demo store</Link>
+        </nav>
       </div></header>
       <main className="shell cr">
         <div className="cr-head">
@@ -231,6 +235,6 @@ export function MonitorConsole() {
         </div>
         </>}
       </main>
-    </>
+    </div>
   );
 }

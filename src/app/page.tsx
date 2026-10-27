@@ -1,8 +1,21 @@
 import Link from "next/link";
+import { ExplainWhyLogo } from "@/components/explainwhy/ExplainWhyLogo";
 
 export default function Home() {
   return (
-    <>
+    <div className="explainwhy-app explainwhy-standalone">
+      <header className="topbar explainwhy-topbar">
+        <div className="shell explainwhy-topbar-inner">
+          <Link href="/" className="explainwhy-brand brand"><ExplainWhyLogo /></Link>
+          <nav className="explainwhy-nav" aria-label="ExplainWhy Agent sections">
+            <Link href="/" className="explainwhy-nav-link active" aria-current="page">Home</Link>
+            <Link href="/dashboard" className="explainwhy-nav-link">Overview</Link>
+            <Link href="/dev/simulator" className="explainwhy-nav-link">Control room</Link>
+            <Link href="/dev/monitor" className="explainwhy-nav-link">Anomaly monitor</Link>
+            <Link href="/demo-store" className="explainwhy-nav-link">Demo store</Link>
+          </nav>
+        </div>
+      </header>
       <main className="shell home">
         <div style={{ display: "grid", gap: 16 }}>
           <span className="pill accent">Open Agent Hackathon 2026 · ExplainWhy</span>
@@ -30,6 +43,6 @@ export default function Home() {
           </Link>
         </div>
       </main>
-    </>
+    </div>
   );
 }

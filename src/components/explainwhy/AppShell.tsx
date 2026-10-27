@@ -7,6 +7,7 @@ import { Suspense, type ReactNode } from "react";
 import { RunProvider, useRun } from "./run-context";
 import { RunSelector } from "./RunSelector";
 import { LoadingScreen } from "./LoadingScreen";
+import { ExplainWhyLogo } from "./ExplainWhyLogo";
 
 const NAV = [
   { href: "/dashboard", label: "Overview" },
@@ -23,7 +24,7 @@ function Shell({ children, title, hidePageHeading = false }: { children: ReactNo
   return (
     <div className="explainwhy-app">
       <header className="topbar explainwhy-topbar"><div className="shell explainwhy-topbar-inner">
-        <Link href={withRun("/dashboard")} className="explainwhy-brand brand" aria-label={`ExplainWhy Agent · ${title}`}><Image className="explainwhy-header-logo" src="/assets/Logo.svg" alt="" width={885} height={182} priority /></Link>
+        <Link href={withRun("/dashboard")} className="explainwhy-brand brand" aria-label={`ExplainWhy Agent · ${title}`}><ExplainWhyLogo /></Link>
         <nav className="explainwhy-nav" aria-label="ExplainWhy Agent sections" data-testid="dashboard-nav">
           {NAV.map((n) => {
             const href = withRun(n.href);

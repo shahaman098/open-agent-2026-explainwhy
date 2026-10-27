@@ -484,11 +484,11 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
 .explainwhy-app .explainwhy-notice strong { color: #000; }
 .explainwhy-app .explainwhy-topbar { position: relative; top: auto; z-index: 5; border: 0; background: #fff; backdrop-filter: none; }
 .explainwhy-app .explainwhy-topbar-inner { width: min(100%, 1370px); min-height: clamp(90px, 8.13vw, 117px); height: auto; display: flex; align-items: center; gap: clamp(18px, 1.8vw, 26px); padding: 0; }
-.explainwhy-app .explainwhy-brand { display: flex; width: clamp(150px, 11vw, 170px); height: auto; min-width: 0; flex: 0 0 auto; align-items: center; justify-content: center; }
+.explainwhy-app .explainwhy-brand { display: flex; width: auto; height: auto; min-width: 0; flex: 0 0 auto; align-items: center; justify-content: flex-start; }
 .explainwhy-app .explainwhy-header-logo { display: block; width: 100%; height: auto; object-fit: contain; }
-.explainwhy-app .explainwhy-logo { display: flex; align-items: center; gap: 0; }
-.explainwhy-app .explainwhy-logo-mark { display: block; width: clamp(70px, 6.25vw, 90px); height: clamp(70px, 6.25vw, 90px); flex: 0 0 auto; border: 0; border-radius: 0; background: transparent; color: inherit; object-fit: contain; }
-.explainwhy-app .explainwhy-logo-word { display: none; }
+.explainwhy-app .explainwhy-logo { display: flex; align-items: center; gap: 10px; }
+.explainwhy-app .explainwhy-logo-mark { display: block; width: clamp(40px, 3.06vw, 44px); height: clamp(40px, 3.06vw, 44px); flex: 0 0 auto; border: 0; border-radius: 0; background: transparent; color: inherit; object-fit: contain; }
+.explainwhy-app .explainwhy-logo-word { display: block; color: #000; font-family: "Poppins:Bold", Poppins, sans-serif; font-size: clamp(28px, 2.22vw, 32px); font-weight: 700; line-height: 1; letter-spacing: -.055em; white-space: nowrap; }
 .explainwhy-app .explainwhy-nav { display: flex; min-width: 0; flex: 1 1 auto; align-items: center; justify-content: center; gap: clamp(12px, 1.25vw, 18px); margin: 0; padding: 0; overflow: visible; }
 .explainwhy-app .explainwhy-nav-link { display: inline-flex; min-height: 0; align-items: center; padding: 5px 0; border: 0; border-radius: 0; color: #000; font-family: "Poppins:Medium", Poppins, sans-serif; font-size: clamp(16px, 1.5vw, 22px); font-weight: 500; line-height: 1.45; letter-spacing: -.015em; white-space: nowrap; }
 .explainwhy-app .explainwhy-nav-link:hover { background: transparent; }
@@ -2057,3 +2057,96 @@ body:has([data-meta-copy-page]) > .demo-disclaimer { display: none; }
 .plan-execution strong { display: block; color: #111; font-size: 12px; }
 .plan-execution p { margin-top: 3px; }
 @media (max-width: 850px) { .plan-review-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }.record-index-head { flex-wrap: wrap; }.record-table-scroll { scrollbar-width: thin; } }
+
+/* Standalone ExplainWhy pages use the same monochrome system as the dashboard. */
+.explainwhy-app.explainwhy-standalone {
+  --bg: #fff;
+  --surface: #fff;
+  --surface-2: #f5f5f5;
+  --ink: #000;
+  --ink-2: #3f3f3f;
+  --ink-3: #666;
+  --line: #3f3f3f;
+  --accent: #000;
+  --accent-ink: #fff;
+  --accent-soft: #fff;
+  --warn: #000;
+  --warn-soft: #fff;
+  --danger: #000;
+  --danger-soft: #fff;
+  --ok: #000;
+  --ok-soft: #fff;
+  --c1: #000;
+  --c2: #3f3f3f;
+  --c3: #777;
+  --c4: #999;
+  --c5: #bbb;
+  --c-muted: #ddd;
+  --shadow: none;
+  color-scheme: light;
+}
+.explainwhy-app.explainwhy-standalone .explainwhy-topbar-inner { padding-inline: clamp(16px, 2.1vw, 32px); }
+.explainwhy-app.explainwhy-standalone .card:hover, .explainwhy-app.explainwhy-standalone .btn:hover:not(:disabled) { box-shadow: none; }
+.explainwhy-app.explainwhy-standalone .muted,
+.explainwhy-app.explainwhy-standalone .field,
+.explainwhy-app.explainwhy-standalone .card-head span,
+.explainwhy-app.explainwhy-standalone .kpi .label,
+.explainwhy-app.explainwhy-standalone .kpi .sub,
+.explainwhy-app.explainwhy-standalone .empty,
+.explainwhy-app.explainwhy-standalone .legend { color: #666; }
+.explainwhy-app.explainwhy-standalone .btn { height: 38px; padding: 0 16px; border: 2px solid #3f3f3f; border-radius: 30px; background: #fff; color: #000; font-family: "Poppins:Medium", Poppins, sans-serif; font-size: 13px; font-weight: 500; }
+.explainwhy-app.explainwhy-standalone .btn.sm { height: 32px; padding: 0 12px; font-size: 12px; }
+.explainwhy-app.explainwhy-standalone .btn:hover:not(:disabled) { background: #f5f5f5; }
+.explainwhy-app.explainwhy-standalone .btn.primary, .explainwhy-app.explainwhy-standalone .btn.accent { border-color: #000; background: #000; color: #fff; }
+.explainwhy-app.explainwhy-standalone .btn.primary:hover:not(:disabled), .explainwhy-app.explainwhy-standalone .btn.accent:hover:not(:disabled) { background: #3f3f3f; color: #fff; }
+.explainwhy-app.explainwhy-standalone .chip { height: 34px; padding: 0 14px; border: 2px solid #3f3f3f; border-radius: 30px; background: #fff; color: #000; font-size: 12px; }
+.explainwhy-app.explainwhy-standalone .chip.active { border-color: #000; background: #000; color: #fff; }
+.explainwhy-app.explainwhy-standalone .input, .explainwhy-app.explainwhy-standalone .select { height: 40px; border: 2px solid #3f3f3f; border-radius: 10px; background: #fff; color: #000; font-family: "Poppins:Medium", Poppins, sans-serif; }
+.explainwhy-app.explainwhy-standalone .input:focus, .explainwhy-app.explainwhy-standalone .select:focus { border-color: #3f3f3f; box-shadow: none; }
+.explainwhy-app.explainwhy-standalone :focus-visible { outline-color: #000; }
+.explainwhy-app.explainwhy-standalone .pill { padding: 3px 10px; border: 2px solid #3f3f3f; border-radius: 30px; background: #fff; color: #000; font-size: 11px; }
+.explainwhy-app.explainwhy-standalone .pill.accent,
+.explainwhy-app.explainwhy-standalone .pill.ok,
+.explainwhy-app.explainwhy-standalone .pill.warn,
+.explainwhy-app.explainwhy-standalone .pill.danger { border-color: #3f3f3f; background: #fff; color: #000; }
+.explainwhy-app.explainwhy-standalone .alert,
+.explainwhy-app.explainwhy-standalone .alert.error,
+.explainwhy-app.explainwhy-standalone .alert.ok,
+.explainwhy-app.explainwhy-standalone .alert.info { padding: 11px 14px; border: 2px solid #3f3f3f; border-radius: 12px; background: #fff; color: #000; }
+.explainwhy-app.explainwhy-standalone th, .explainwhy-app.explainwhy-standalone td { padding: 12px 10px; border-bottom: 1px solid #3f3f3f; background: #fff; color: #000; font-family: "Poppins:Medium", Poppins, sans-serif; font-size: 12px; vertical-align: middle; }
+.explainwhy-app.explainwhy-standalone th { color: #666; font-size: 10px; }
+.explainwhy-app.explainwhy-standalone tr:last-child td { border-bottom: 0; }
+.explainwhy-app.explainwhy-standalone .scroll-x table { min-width: 640px; }
+.explainwhy-app.explainwhy-standalone .card-head h3 { font-family: "Poppins:SemiBold", Poppins, sans-serif; font-size: 16px; font-weight: 600; }
+.explainwhy-app.explainwhy-standalone .order { border: 2px solid #3f3f3f; border-radius: 12px; background: #fff; color: #000; }
+.explainwhy-app.explainwhy-standalone .range { accent-color: #000; }
+.explainwhy-app.explainwhy-standalone .spinner { border-color: #ddd; border-top-color: #000; }
+.explainwhy-app.explainwhy-standalone .home { width: min(100%, 1370px); padding: clamp(40px, 6vw, 80px) clamp(16px, 2.1vw, 32px) 96px; gap: 40px; }
+.explainwhy-app.explainwhy-standalone .home h1 { color: #000; font-family: "Poppins:Bold", Poppins, sans-serif; font-weight: 700; letter-spacing: -.045em; }
+.explainwhy-app.explainwhy-standalone .home p.lead { color: #3f3f3f; line-height: 1.65; }
+.explainwhy-app.explainwhy-standalone .home-cards .card { padding: clamp(22px, 2vw, 28px); color: #000; }
+.explainwhy-app.explainwhy-standalone .home-cards .card:hover { border-color: #000; box-shadow: none; }
+.explainwhy-app.explainwhy-standalone .cr { width: min(100%, 1370px); padding: 12px clamp(16px, 2.1vw, 32px) 64px; gap: 20px; }
+.explainwhy-app.explainwhy-standalone .cr-head h1 { color: #000; font-family: "Poppins:Medium", Poppins, sans-serif; font-size: clamp(26px, 3vw, 36px); font-weight: 500; letter-spacing: -.04em; }
+.explainwhy-app.explainwhy-standalone .cr-head .muted { margin-top: 5px; }
+.explainwhy-app.explainwhy-standalone .controls h4 { color: #666; }
+.explainwhy-app.explainwhy-standalone .kpi .value { color: #000; font-family: "Poppins:SemiBold", Poppins, sans-serif; }
+.explainwhy-app.explainwhy-standalone .cr-grid .chart { display: block; width: 100%; height: auto; margin-top: 0; }
+.explainwhy-app.explainwhy-standalone .events { font-family: "Poppins:Medium", Poppins, sans-serif; }
+.explainwhy-app.explainwhy-standalone .event { border: 1px solid #ddd; background: #fff; color: #000; }
+.explainwhy-app.explainwhy-standalone code, .explainwhy-app.explainwhy-standalone .mono { font-family: "Poppins:Medium", Poppins, sans-serif; }
+.explainwhy-app.explainwhy-standalone .skeleton-card { border: 2px solid #3f3f3f; box-shadow: none; }
+.explainwhy-app.explainwhy-standalone [data-testid="monitor-worker-status"] { padding: 16px 18px; }
+.explainwhy-app.explainwhy-standalone [data-testid="monitor-worker-status"] .alert { margin-top: 10px; }
+@media (max-width: 880px) {
+  .explainwhy-app .explainwhy-brand { width: auto; }
+  .explainwhy-app.explainwhy-standalone .explainwhy-topbar-inner { margin-bottom: 0; padding: 0 16px 12px; }
+  .explainwhy-app.explainwhy-standalone .explainwhy-nav { justify-content: flex-start; }
+}
+@media (max-width: 650px) {
+  .explainwhy-app.explainwhy-standalone .home { padding: 32px 16px 64px; gap: 28px; }
+  .explainwhy-app.explainwhy-standalone .home-cards { grid-template-columns: minmax(0, 1fr); }
+  .explainwhy-app.explainwhy-standalone .cr { padding: 8px 12px 48px; }
+  .explainwhy-app.explainwhy-standalone .cr-head { align-items: flex-start; }
+  .explainwhy-app.explainwhy-standalone .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
