@@ -31,5 +31,5 @@ main().catch((error: unknown) => {
   console.error("[monitor-watch]", describeDbError(error));
   process.exitCode = 1;
 }).finally(async () => {
-  if (globalThis._normalMongoClientPromise) await (await getMongoClient()).close();
+  if (globalThis._explainwhyMongoClientPromise) await (await getMongoClient()).close();
 });

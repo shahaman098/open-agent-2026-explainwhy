@@ -8,7 +8,7 @@ import { groupEvents } from "@/intelligence/signals/rows";
 import { SignalSeries } from "@/intelligence/signals/series";
 import { SIGNALS_BY_ID } from "@/intelligence/detection/rules";
 import { evaluatePoint } from "@/intelligence/detection/signal";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe2.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe2.txt");
 const log = (s: string) => appendFileSync(OUT, s + "\n");
 it("probe2", () => {
   writeFileSync(OUT, "");

@@ -6,7 +6,7 @@ import { COLLECTIONS,ensureIndexes } from '@/lib/collections';
 import { DELAY_BANNER_MESSAGE } from '@/planner/context';
 import { canonicalPlan,plannerHandoff } from '@/planner/service';
 import { withRunLock } from '@/simulator/runtime';
-import { ActionExecution,ActionOutcome,AgentMission,PlanApproval,type ActionExecutionT,type ActionProposalT } from '@normal/contracts';
+import { ActionExecution,ActionOutcome,AgentMission,PlanApproval,type ActionExecutionT,type ActionProposalT } from '@explainwhy/contracts';
 import type { Db } from 'mongodb';
 import { randomUUID } from 'node:crypto';
 import 'server-only';
@@ -15,7 +15,7 @@ import { readiness,validateGraph } from './dependencies';
 import { ExecutionError } from "./errors";
 
 // Approval validation, orchestration and execute-action workflow.
-// Canonical contracts + MongoDB + Normal adapters replace the partner storage/tools.
+// Canonical contracts + MongoDB + ExplainWhy adapters replace the partner storage/tools.
 export const EXEC = { approvals: COLLECTIONS.planApprovals, runs: COLLECTIONS.agentRuns, missions: COLLECTIONS.agentMissions, actions: COLLECTIONS.actionExecutions, outcomes: COLLECTIONS.actionOutcomes } as const;
 export const ExecutionScope = z.object({ businessId: z.string().regex(/^[a-z0-9_]{1,64}$/), simulationRunId: z.string().regex(/^[a-z0-9_]{1,64}$/), planVersion: z.coerce.number().int().positive() }).strict();
 export type ExecutionScopeT = z.infer<typeof ExecutionScope> & {planId:string};

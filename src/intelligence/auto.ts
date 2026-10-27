@@ -13,11 +13,11 @@ const AUTO_MONITOR_BACKOFF_MS = 1_500;
 /**
  * Schedules a monitoring scan after a successful simulator tick has been persisted and its response sent. Runs outside
  * the tick's lock and response path, so simulated purchases and ticks are never blocked. Enabled in development unless
- * NORMAL_AUTO_MONITOR=false; elsewhere only when NORMAL_AUTO_MONITOR=true. Repeated scans are idempotent and a
+ * EXPLAINWHY_AUTO_MONITOR=false; elsewhere only when EXPLAINWHY_AUTO_MONITOR=true. Repeated scans are idempotent and a
  * scan that finds the lock held retries with bounded backoff.
  */
 export function scheduleAutoMonitor(businessId: string, simulationRunId: string): boolean {
-  const flag = process.env.NORMAL_AUTO_MONITOR;
+  const flag = process.env.EXPLAINWHY_AUTO_MONITOR;
   const enabled = flag === "true" || (flag !== "false" && process.env.NODE_ENV === "development");
   if (!enabled) return false;
   try {

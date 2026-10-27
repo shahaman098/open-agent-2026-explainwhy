@@ -1,7 +1,7 @@
 import "server-only";
 import type { Db, Filter } from "mongodb";
 import { z } from "zod";
-import { Evidence, type EvidenceT } from "@normal/contracts";
+import { Evidence, type EvidenceT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 import type { EvidenceCollectionDoc, EvidenceDetailDoc, ToolRunDoc } from "./persistence";

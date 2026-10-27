@@ -1,9 +1,9 @@
 // Partner Meta Ads Manager UI bound to ExplainWhy Agent MongoDB adapters.
 "use client";
 
-import { api,q } from "@/components/normal/api";
-import { PageSkeleton } from "@/components/normal/PageSkeleton";
-import { RunProvider,useRun } from "@/components/normal/run-context";
+import { api,q } from "@/components/explainwhy/api";
+import { PageSkeleton } from "@/components/explainwhy/PageSkeleton";
+import { RunProvider,useRun } from "@/components/explainwhy/run-context";
 import { money } from "@/lib/format";
 import {
 AlignLeft,
@@ -171,7 +171,7 @@ interface CampaignItem {
   conversionValue: number;
   roas: number;
   status: string;
-  isNormalAgentTarget?: boolean;
+  isExplainWhyAgentTarget?: boolean;
 }
 
 interface AdSetItem {
@@ -440,7 +440,7 @@ function MetaAdsManager({ campaignId }: { campaignId: string }) {
     return <div data-meta-copy-page className="h-screen flex items-center justify-center bg-[#f3f4f8] text-sm text-[#65676b]">Loading simulation…</div>;
   }
   if (unavailable || !runId) {
-    return <div data-meta-copy-page className="h-screen flex flex-col items-center justify-center gap-3 bg-[#f3f4f8] text-sm text-[#65676b]"><strong className="text-[#1c2b33]">No simulation run is available</strong><span>Start a run from the Normal dashboard, then reopen Ads Manager.</span><a className="text-[#0a66c2] font-semibold" href={withRun("/dashboard")}>Return to Normal</a></div>;
+    return <div data-meta-copy-page className="h-screen flex flex-col items-center justify-center gap-3 bg-[#f3f4f8] text-sm text-[#65676b]"><strong className="text-[#1c2b33]">No simulation run is available</strong><span>Start a run from the ExplainWhy dashboard, then reopen Ads Manager.</span><a className="text-[#0a66c2] font-semibold" href={withRun("/dashboard")}>Return to dashboard</a></div>;
   }
 
   return (
@@ -462,7 +462,7 @@ function MetaAdsManager({ campaignId }: { campaignId: string }) {
 
         <button
           className="relative mt-[14px] w-[34px] h-[34px] flex items-center justify-center text-[#1c2b33] rounded-[6px] hover:bg-[#f2f4f7] cursor-pointer"
-          onClick={() => router.push(withRun("/dashboard/activity"))} title="Normal activity"
+          onClick={() => router.push(withRun("/dashboard/activity"))} title="ExplainWhy activity"
         >
           <Bell className="w-[20px] h-[20px] stroke-[1.75]" />
         </button>
@@ -509,7 +509,7 @@ function MetaAdsManager({ campaignId }: { campaignId: string }) {
       <div className="flex-1 flex flex-col min-w-0 tracking-[-0.2px]">
       <header className="h-[48px] pl-[10px] pr-[7px] flex items-center justify-between gap-3 flex-shrink-0 relative z-30">
         <div className="flex items-center min-w-0">
-          <a className="text-xs text-blue-700 mr-3" href={withRun("/dashboard")}>← Normal</a><h1 className="text-[15px] font-bold text-[#1c2b33] flex-shrink-0">Campaigns</h1>
+          <a className="text-xs text-blue-700 mr-3" href={withRun("/dashboard")}>← ExplainWhy</a><h1 className="text-[15px] font-bold text-[#1c2b33] flex-shrink-0">Campaigns</h1>
 
           {/* Account selector */}
           <div className="relative ml-[12px] min-w-0">
@@ -854,7 +854,7 @@ function MetaAdsManager({ campaignId }: { campaignId: string }) {
         {showAuditDrawer && (
           <div className="bg-[#1c2b36] text-white p-4 border-b border-zinc-800 text-xs space-y-2 max-h-48 overflow-y-auto">
             <div className="flex justify-between items-center font-bold text-zinc-300">
-              <span>Normal Operations Audit History</span>
+              <span>ExplainWhy Operations Audit History</span>
               <button onClick={() => setShowAuditDrawer(false)} className="text-zinc-400 hover:text-white">
                 ✕ Close
               </button>

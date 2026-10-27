@@ -1,6 +1,6 @@
 import "server-only";
 import type { Db } from "mongodb";
-import { Anomaly, Investigation, type AnomalyT, type InvestigationT } from "@normal/contracts";
+import { Anomaly, Investigation, type AnomalyT, type InvestigationT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import type { FindingDoc, IncidentDoc } from "@/intelligence/detection/persistence";
 import { loadCatalogue } from "@/intelligence/monitor";

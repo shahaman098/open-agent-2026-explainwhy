@@ -26,8 +26,8 @@ export async function ensureInvestigatorIndexes(db: Db) {
   ]);
 }
 export function defaultBudget() {
-  return Budget.parse({ maxRounds: Number(process.env.NORMAL_INVESTIGATION_MAX_ROUNDS || 5), maxTools: 12, maxResearchRounds: process.env.NORMAL_EXTERNAL_RESEARCH_ENABLED === "true" ? 2 : 0, maxSources: 8, maxCalls: 10,
-    maxTokens: Number(process.env.NORMAL_INVESTIGATION_MAX_TOKENS || 180000), maxWallMs: Number(process.env.NORMAL_INVESTIGATION_TIMEOUT_MS || 600000), maxCostUsd: process.env.NORMAL_INVESTIGATION_MAX_COST_USD ? Number(process.env.NORMAL_INVESTIGATION_MAX_COST_USD) : null });
+  return Budget.parse({ maxRounds: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_ROUNDS || 5), maxTools: 12, maxResearchRounds: process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED === "true" ? 2 : 0, maxSources: 8, maxCalls: 10,
+    maxTokens: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_TOKENS || 180000), maxWallMs: Number(process.env.EXPLAINWHY_INVESTIGATION_TIMEOUT_MS || 600000), maxCostUsd: process.env.EXPLAINWHY_INVESTIGATION_MAX_COST_USD ? Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_COST_USD) : null });
 }
 export async function startInvestigation(db: Db, input: unknown): Promise<JobDoc> {
   const scope = Scope.parse(input);
@@ -38,7 +38,7 @@ export async function startInvestigation(db: Db, input: unknown): Promise<JobDoc
   if (!ctx) throw new Error("investigation_not_found");
   if (["planned", "closed"].includes(ctx.investigation.status)) throw new Error("investigation_closed");
   const budget = defaultBudget();
-  if (budget.maxCostUsd !== null && (!process.env.NORMAL_INPUT_USD_PER_MILLION || !process.env.NORMAL_OUTPUT_USD_PER_MILLION || budget.maxResearchRounds > 0)) throw new Error("cost_cap_requires_rates_and_research_disabled");
+  if (budget.maxCostUsd !== null && (!process.env.EXPLAINWHY_INPUT_USD_PER_MILLION || !process.env.EXPLAINWHY_OUTPUT_USD_PER_MILLION || budget.maxResearchRounds > 0)) throw new Error("cost_cap_requires_rates_and_research_disabled");
   await ensureInvestigatorIndexes(db);
   const now = new Date().toISOString();
   const seed: JobDoc = { schemaVersion: 1, jobId: `aij_${digest(scope).slice(0, 24)}`, ...scope, status: "queued", stage: "queued", createdAt: now, updatedAt: now, startedAt: null, completedAt: null, round: 0, toolCount: 0, researchCount: 0, sourceCount: 0, callCount: 0, reservedTokens: 0, actualTokens: 0, estimatedCostUsd: 0, budget, cutoff: ctx.cutoff, incidentWindow: ctx.incidentWindow, baselineWindow: ctx.baselineWindow || null, evidenceIds: [], sourceIds: [], hypotheses: [], steps: [], error: null, stopReason: null, reportId: null, attempts: 0, leaseToken: null, leaseUntil: null, plan: null, executedChoices: [], researchDone: false, affected: [...ctx.affected.campaigns, ...ctx.affected.products, ...ctx.affected.channels], deadline: null };

@@ -5,7 +5,7 @@ import type { Db } from "mongodb";
 import { z } from "zod";
 import {
   InjectScenarioRequest, ScenarioGroundTruth, SimulatorRun, SimulatorTickRequest, SimulatorTickResponse,
-} from "@normal/contracts";
+} from "@explainwhy/contracts";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { getDb, describeDbError } from "@/lib/mongodb";
 import { publishCommittedWindows } from "@/simulator/monitoring";

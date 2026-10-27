@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { externalCardView, internalCardView, scopedExternalSources, supportsPublicClaim } from "@/components/normal/evidence-card-model";
-import type { EvidenceItem } from "@/components/normal/api";
+import { externalCardView, internalCardView, scopedExternalSources, supportsPublicClaim } from "@/components/explainwhy/evidence-card-model";
+import type { EvidenceItem } from "@/components/explainwhy/api";
 import type { ExternalSourceT } from "@/intelligence/investigator/schemas";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { ExternalEvidenceCard } from "@/components/normal/EvidenceCards";
+import { ExternalEvidenceCard } from "@/components/explainwhy/EvidenceCards";
 
 const item: EvidenceItem = { evidence: { businessId: "nike_eval", evidenceId: "ev_1", category: "sales", title: "Revenue change", observation: "Observed revenue declined.",
   window: { startAt: "2026-10-04T00:00:00Z", endAt: "2026-10-05T00:00:00Z" }, measurements: [{ metric: "revenue", value: 90, baseline: 120, unit: "GBP minor units" }],

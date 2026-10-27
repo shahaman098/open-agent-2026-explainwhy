@@ -1,6 +1,6 @@
 # Stage 8 acceptance — 25 October 2026
 
-Normal now links approved execution records to subsequent observations and persists separate business-outcome
+ExplainWhy now links approved execution records to subsequent observations and persists separate business-outcome
 assessments. The selected run's Outcomes page shows operational verification, measurement coverage, plan criteria,
 source records, uncertainty and assessment history. Stage 7's canonical `ActionOutcome` retains its original
 meaning: immediate adapter read-back verification. Stage 8 does not turn an executed API call into a claimed
@@ -19,7 +19,7 @@ business improvement.
   action/run and optional later `windowStartAt`. `POST /api/outcomes/feedback` stores one separate, immutable
   human note/rating per assessment. Existing development/demo access gating and same-origin mutation checks apply;
   production user identity and RBAC remain future work.
-- `src/components/normal/Outcomes.tsx` replaces the prior general metrics panel at `/dashboard/outcomes` with
+- `src/components/explainwhy/Outcomes.tsx` replaces the prior general metrics panel at `/dashboard/outcomes` with
   a desktop action list and detail dossier. The detail shows the exact reviewed plan and investigation links,
   original execution receipt, applied before/after values, observed metric chart, criterion results, source
   references, limitations and saved window history. No observed post data renders as unavailable, not zero.

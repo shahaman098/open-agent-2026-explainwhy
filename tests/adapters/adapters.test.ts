@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { BusinessEvent } from "@normal/contracts";
+import { BusinessEvent } from "@explainwhy/contracts";
 import {
   AdapterError, listDelayedOrders, publishBanner, readCampaign, readCampaigns, readOrdersShipping, readStorefront, readTestInbox,
   sendDelayNotice, setDailyBudget, verifyAction,

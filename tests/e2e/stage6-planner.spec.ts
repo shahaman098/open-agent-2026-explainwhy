@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { PlanHandoff, planReferenceErrors } from "@normal/contracts";
+import { PlanHandoff, planReferenceErrors } from "@explainwhy/contracts";
 
 // Default: replay the saved report and strategies. E2E_LIVE_MODELS=1 permits fresh provider work.
 test("completed investigation retains strategies and a non-executed canonical approval handoff", async ({ page, request }) => {

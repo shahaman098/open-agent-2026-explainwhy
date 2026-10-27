@@ -11,8 +11,8 @@ function Card({ children, className = "" }: { children: ReactNode; className?: s
 }
 
 export function PageSkeleton({ variant = "section", label = "Loading page data" }: { variant?: Variant; label?: string }) {
-  if (variant === "overview") return <div className="normal-overview" role="status" aria-label={label} data-testid="page-skeleton">
-    <div className="layout normal-overview-grid page-skeleton skeleton-overview">
+  if (variant === "overview") return <div className="explainwhy-overview" role="status" aria-label={label} data-testid="page-skeleton">
+    <div className="layout explainwhy-overview-grid page-skeleton skeleton-overview">
       <section className="left-column top-column"><Card className="card risk-card skeleton-risk"><Line width="52%" tall /><div className="skeleton-gauge" /><Line width="70%" /></Card></section>
       <section className="right-column top-column"><Card className="card signals-card top-signals-card skeleton-signals"><Line width="37%" tall />{[0, 1, 2].map((n) => <div className="skeleton-list-row" key={n}><Line width="12%" /><div><Line width="82%" /><Line width="58%" /></div></div>)}</Card></section>
       <section className="left-column bottom-column"><Card className="card revenue-card skeleton-revenue"><Line width="48%" tall /><Line width="66%" tall /><div className="skeleton-chart">{[42, 66, 54, 82, 72, 90, 60].map((height, n) => <div className="skeleton-bar" style={{ height: `${height}%` }} key={n} />)}</div></Card></section>

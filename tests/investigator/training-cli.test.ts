@@ -12,7 +12,7 @@ const directories: string[] = [];
 const cases = sourceDataset();
 const savedCalls = JSON.parse(readFileSync(resolve(root, "docs/training/source-support-v1/calls.json"), "utf8"));
 function fixture() {
-  const cwd = mkdtempSync(resolve(tmpdir(), "normal-training-cli-")); directories.push(cwd);
+  const cwd = mkdtempSync(resolve(tmpdir(), "explainwhy-training-cli-")); directories.push(cwd);
   const directory = resolve(cwd, "docs/training/source-support-v1"); mkdirSync(directory, { recursive: true });
   const guard = resolve(cwd, "no-network.mjs");
   writeFileSync(guard, "globalThis.fetch = async () => { throw new Error('Network is forbidden in this test'); };\n");

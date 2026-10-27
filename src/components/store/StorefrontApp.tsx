@@ -6,12 +6,12 @@ import { CATEGORY_LABEL, money, shortDate, virtualDate } from "@/lib/format";
 import { ProductCard } from "@/components/store/ProductCard";
 import { ProductDrawer } from "@/components/store/ProductDrawer";
 import { CartDrawer } from "@/components/store/CartDrawer";
-import { NormalLogo } from "@/components/normal/NormalLogo";
-import { PageSkeleton } from "@/components/normal/PageSkeleton";
+import { ExplainWhyLogo } from "@/components/explainwhy/ExplainWhyLogo";
+import { PageSkeleton } from "@/components/explainwhy/PageSkeleton";
 import type { CartLine, StoreCatalogue, StoreOrder, StoreProduct } from "@/components/store/types";
 
-const CART_KEY = "normal.demo-store.cart.v1";
-const ORDER_KEYS_KEY = "normal.demo-store.order-keys.v1";
+const CART_KEY = "explainwhy.demo-store.cart.v1";
+const ORDER_KEYS_KEY = "explainwhy.demo-store.order-keys.v1";
 const CATEGORIES = ["running", "basketball", "lifestyle", "football", "apparel"];
 
 function readStorage<T>(key: string, fallback: T): T {
@@ -120,7 +120,7 @@ export function StorefrontApp() {
     <>
       <header className="topbar">
         <div className="shell topbar-inner">
-          <Link href="/" className="brand normal-legacy-brand"><NormalLogo /><small>· Demo store</small></Link>
+          <Link href="/" className="brand explainwhy-legacy-brand"><ExplainWhyLogo /><small>· Demo store</small></Link>
           <div className="row">
             {catalogue?.virtualTime ? <span className="pill" title="Simulated clock of the active run">Virtual time · {virtualDate(catalogue.virtualTime)}</span> : null}
             <button className="btn cart-btn" onClick={() => setCartOpen(true)} aria-label={`Open cart, ${cartCount} items`}>

@@ -1,7 +1,7 @@
 import "server-only";
 import type { Db } from "mongodb";
 import { z } from "zod";
-import { Evidence, type EvidenceT } from "@normal/contracts";
+import { Evidence, type EvidenceT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { describeDbError, getDb } from "@/lib/mongodb";
 import { loadInvestigationContext, type InvestigationContext } from "./context";

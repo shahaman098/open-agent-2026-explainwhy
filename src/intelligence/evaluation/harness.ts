@@ -5,7 +5,7 @@
  * detection core. Scenario labels and parameters are used here solely to inject incidents and to score results
  * afterwards; they are never passed to `detect()` or `correlate()`.
  */
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 import { NIKE_REFERENCE_CATALOGUE } from "@/reference/nike-catalogue";
 import { createInitialWorld } from "@/simulator/bootstrap";
 import { OPERATIONAL_ASSUMPTIONS } from "@/simulator/catalogue";

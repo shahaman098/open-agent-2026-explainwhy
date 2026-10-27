@@ -1,6 +1,6 @@
 import "server-only";
 import type { Db } from "mongodb";
-import { DiagnosisModelOutput, Evidence, type DiagnosisModelOutputT, type EvidenceT, type MetricSnapshotT } from "@normal/contracts";
+import { DiagnosisModelOutput, Evidence, type DiagnosisModelOutputT, type EvidenceT, type MetricSnapshotT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { resolveSources } from "../evidence/verification";
 import { type HypothesisSetT, type ImpactT, type ScopeT, BusinessImpactAssessment } from "./schemas";

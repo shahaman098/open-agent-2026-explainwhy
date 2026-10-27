@@ -9,7 +9,7 @@ import { COLLECTIONS } from '@/lib/collections';
 import { getDb } from '@/lib/mongodb';
 import { NIKE_REFERENCE_CATALOGUE } from '@/reference/nike-catalogue';
 import { productImages } from '@/reference/product-images';
-import { ActionExecution,ActionOutcome,AgentMission,PlanApproval } from '@normal/contracts';
+import { ActionExecution,ActionOutcome,AgentMission,PlanApproval } from '@explainwhy/contracts';
 import type { Db } from 'mongodb';
 import { existsSync,readFileSync } from 'node:fs';
 import { afterAll,beforeAll,describe,expect,it,vi } from 'vitest';
@@ -19,7 +19,7 @@ const seed=(shipping=false)=>seedExecutionFixture(db,`${prefix}_${n++}`,shipping
 const approve=async(scope:Awaited<ReturnType<typeof seed>>)=>{const h=await loadExecutable(db,scope);return approvePlan(db,scope,{decision:'approved',approvedActionIds:h.plan.actions.map(a=>a.actionId)},'test_human')};
 beforeAll(async()=>{db=await getDb()});
 afterAll(async()=>{for(const c of [...Object.values(COLLECTIONS),...Object.values(EXEC)])await db?.collection(c).deleteMany({simulationRunId:{$regex:`^${prefix}`}})});
-describe('partner approval + Normal execution',()=>{
+describe('partner approval + ExplainWhy execution',()=>{
  it('requires exact human approval and rejects wrong version, owner, scope and decision',async()=>{
   const scope=await seed();await expect(executePlan(db,scope,'missing','test_human')).rejects.toThrow('approval');
   await expect(approvePlan(db,{...scope,planVersion:2},{decision:'approved',approvedActionIds:['x']},'test_human')).rejects.toThrow();

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { RootCause, type EvidenceT } from "@normal/contracts";
+import { RootCause, type EvidenceT } from "@explainwhy/contracts";
 import { deterministicImpact, fallbackHypotheses, validateDiagnosis, validateReferences } from "@/intelligence/investigator/validation";
 import { HypothesisSet } from "@/intelligence/investigator/schemas";
 const cause = RootCause.options[0];

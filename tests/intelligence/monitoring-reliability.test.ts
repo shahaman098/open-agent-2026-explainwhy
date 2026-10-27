@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import type { Db } from "mongodb";
-import { Anomaly, Investigation } from "@normal/contracts";
+import { Anomaly, Investigation } from "@explainwhy/contracts";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { getDb, getMongoClient } from "@/lib/mongodb";
 import { ingestEvents } from "@/ingestion/service";
@@ -69,7 +69,7 @@ describe("monitoring retries after a real persisted incident", () => {
   it("a connection restart and repeated notifications do not recreate a closed investigation", async () => {
     const before = await ids();
     await db.collection(COLLECTIONS.investigations).updateOne({ ...scope, investigationId: before[1][0] }, { $set: { status: "closed" } });
-    await (await getMongoClient()).close(); globalThis._normalMongoClientPromise = undefined; db = await getDb();
+    await (await getMongoClient()).close(); globalThis._explainwhyMongoClientPromise = undefined; db = await getDb();
     await Promise.all([scheduleWindow(db, incident), scheduleWindow(db, incident)]);
     expect(await reconcileWindows(db, scope)).toBe(0);
     expect(await processNext(db, scope)).toBeNull();

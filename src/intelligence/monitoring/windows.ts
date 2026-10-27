@@ -2,7 +2,7 @@ import "server-only";
 import { createHash } from "node:crypto";
 import type { Db } from "mongodb";
 import { z } from "zod";
-import { MetricSnapshot } from "@normal/contracts";
+import { MetricSnapshot } from "@explainwhy/contracts";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { HOUR_MS } from "@/intelligence/signals/rows";
 

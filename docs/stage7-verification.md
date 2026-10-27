@@ -1,7 +1,7 @@
 # Stage 7 acceptance — 25 October 2026
 
 Partner approval/execution and frontend replacement are implemented and pass the isolated demonstration.
-Normal's investigator, planner, canonical contracts, MongoDB and simulator adapters remain authoritative.
+ExplainWhy's investigator, planner, canonical contracts, MongoDB and simulator adapters remain authoritative.
 No wholesale merge, D1 database, independent simulator, additional Mubit request, commit or push was made.
 
 ## Source and recovery
@@ -18,19 +18,19 @@ and adapter mutation functions are unchanged.
   separate controls. Canonical `PlanApproval`, `AgentMission`, `ActionExecution` and `ActionOutcome` records are
   persisted alongside scoped agent runs and existing adapter receipts.
 - **Meta Ads Manager:** the partner-derived campaign interface is now `src/components/partner/MetaAdsManager.tsx`,
-  used by `/ads` and existing `/dashboard/campaigns/:id` deep links. The obsolete Normal component was removed.
+  used by `/ads` and existing `/dashboard/campaigns/:id` deep links. The obsolete ExplainWhy component was removed.
   The partner layout, navigation, table, cards, chart panel, filters, search and sorting remain. The existing
   campaign API supplies actual scoped budgets/status/platform, spend, impressions, clicks, CTR, attributed orders,
   revenue, ROAS, daily history, equal-length previous-period comparisons and action receipts. Unsupported direct
   mutations are disabled; budget review routes through Approvals. GBP minor units are converted only for display.
 - **Nike Storefront:** the partner storefront replaces `/demo-store`, with `/store` as an alias. Its product cards,
   filters, navigation, detail drawer, image thumbnails, bag and wishlist use the existing 17 MongoDB products.
-  Product IDs, prices, inventory and descriptions come from Normal records. Checkout uses the existing idempotent
+  Product IDs, prices, inventory and descriptions come from ExplainWhy Agent records. Checkout uses the existing idempotent
   checkout endpoint and server prices; no parallel order system was introduced. Approved active banners use the
   selected run's simulation clock. The interface explicitly identifies an unaffiliated simulation.
 - **Product imagery:** **17/17 products, 141 local images**. Working original reference imagery is retained;
   supplemental public Nike imagery is accepted only after exact style identity verification. Partner image
-  assignments that mismatched Normal products were not reused. A stable reference-ID/style manifest joins images
+  assignments that mismatched ExplainWhy products were not reused. A stable reference-ID/style manifest joins images
   to products without altering MongoDB catalogue records. Multiple images and detail thumbnails remain available;
   missing images have a graceful fallback. No image proxy or generated product imagery was added.
 - **Shopify:** the original partner synthetic orders, metrics, animation and visual presentation remain at

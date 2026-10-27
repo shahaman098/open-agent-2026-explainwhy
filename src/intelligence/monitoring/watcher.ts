@@ -9,7 +9,7 @@ import { reconcileWindows } from "./recovery";
 import { drainJobs } from "./process";
 import type { Scope } from "./jobs";
 
-export const WATCHER_ID = "normal-monitor-watch";
+export const WATCHER_ID = "explainwhy-monitor-watch";
 const WATCH_LEASE_MS = 120_000;
 const invalidResume = (e: unknown) => [260, 280, 286].includes((e as { code?: number }).code ?? 0);
 

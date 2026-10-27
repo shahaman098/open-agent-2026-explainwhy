@@ -5,7 +5,7 @@ import { ingestBatch } from "@/ingestion/service";
 
 /**
  * POST /api/ingest/events — canonical IngestBatch → IngestResult.
- * Authorisation: development, demo key, or `Authorization: Bearer <NORMAL_INGEST_API_KEY>`.
+ * Authorisation: development, demo key, or `Authorization: Bearer <EXPLAINWHY_INGEST_API_KEY>`.
  * Business scoping: optional `?businessId=` restricts the batch to one tenant.
  */
 export async function POST(request: Request): Promise<Response> {
@@ -17,7 +17,7 @@ export async function POST(request: Request): Promise<Response> {
     if (outcome.rejections.some((r) => r.index === -1)) {
       return apiError("validation_error", outcome.rejections[0].reason, 400);
     }
-    return Response.json(outcome.result, { headers: outcome.rejections.length ? { "x-normal-rejections": JSON.stringify(outcome.rejections.slice(0, 20)) } : {} });
+    return Response.json(outcome.result, { headers: outcome.rejections.length ? { "x-explainwhy-rejections": JSON.stringify(outcome.rejections.slice(0, 20)) } : {} });
   } catch (error) {
     return handleRouteError(error, "ingest/events");
   }

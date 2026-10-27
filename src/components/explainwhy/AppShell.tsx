@@ -21,19 +21,19 @@ function Shell({ children, title, hidePageHeading = false }: { children: ReactNo
   const pathname = usePathname();
   const { withRun, runId, unavailable, error } = useRun();
   return (
-    <div className="normal-app">
-      <header className="topbar normal-topbar"><div className="shell normal-topbar-inner">
-        <Link href={withRun("/dashboard")} className="normal-brand brand" aria-label={`Normal · ${title}`}><Image className="normal-header-logo" src="/assets/Logo.svg" alt="" width={885} height={182} priority /></Link>
-        <nav className="normal-nav" aria-label="Normal sections" data-testid="dashboard-nav">
+    <div className="explainwhy-app">
+      <header className="topbar explainwhy-topbar"><div className="shell explainwhy-topbar-inner">
+        <Link href={withRun("/dashboard")} className="explainwhy-brand brand" aria-label={`ExplainWhy Agent · ${title}`}><Image className="explainwhy-header-logo" src="/assets/Logo.svg" alt="" width={885} height={182} priority /></Link>
+        <nav className="explainwhy-nav" aria-label="ExplainWhy Agent sections" data-testid="dashboard-nav">
           {NAV.map((n) => {
             const href = withRun(n.href);
             const active = pathname === n.href || (n.href !== "/dashboard" && pathname.startsWith(`${n.href}/`));
-            return <Link key={n.href} href={href} className={`normal-nav-link ${active ? "active" : ""}`} aria-current={active ? "page" : undefined}>{n.label}</Link>;
+            return <Link key={n.href} href={href} className={`explainwhy-nav-link ${active ? "active" : ""}`} aria-current={active ? "page" : undefined}>{n.label}</Link>;
           })}
         </nav>
-        <div className="workspace normal-workspace"><span className="nike"><Image src="/assets/3ccd4.png" alt="" width={36} height={36} priority /></span><span className="normal-workspace-label"><strong>Nike</strong><small>Workspace</small></span><RunSelector /><span className="chevrons" aria-hidden="true">⌃<br />⌄</span></div>
+        <div className="workspace explainwhy-workspace"><span className="nike"><Image src="/assets/3ccd4.png" alt="" width={36} height={36} priority /></span><span className="explainwhy-workspace-label"><strong>Nike</strong><small>Workspace</small></span><RunSelector /><span className="chevrons" aria-hidden="true">⌃<br />⌄</span></div>
       </div></header>
-      <main className="shell cr normal-dashboard dashboard">
+      <main className="shell cr explainwhy-dashboard dashboard">
         {!hidePageHeading ? <div className="cr-head">
           <div><h1>{title}</h1><div className="muted small">Selected run · {runId ?? "No run selected"}</div></div>
         </div> : null}

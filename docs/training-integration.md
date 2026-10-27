@@ -18,13 +18,13 @@ The [frozen manifest](training/source-support-v1/manifest.json), [calls and actu
 
 Mubit's [first-adapter guide](https://docs.mubit.ai/guides/first-adapter) describes automatic training from kept calls of one task, with a default first-training threshold of 25 kept examples. The console's kept count and task status are authoritative; training must be enabled in the workspace. Its [model-ID guide](https://docs.mubit.ai/guides/model-ids) explicitly says an adapter cannot be invoked by naming it as a model: comparison currently runs in console Try models.
 
-Production and this runner now share `sourceTaskRequest` in `src/intelligence/investigator/source-task.ts`. Instructions, model, schema, output-format name and tool settings match. The production prompt text has not changed. Normal's own fingerprint identifies the protocol locally; it is **not** claimed to equal Mubit's task ID. Variable source IDs and passages remain user input.
+Production and this runner now share `sourceTaskRequest` in `src/intelligence/investigator/source-task.ts`. Instructions, model, schema, output-format name and tool settings match. The production prompt text has not changed. ExplainWhy's own fingerprint identifies the protocol locally; it is **not** claimed to equal Mubit's task ID. Variable source IDs and passages remain user input.
 
-The provider supports the documented `x-middleware-record` header. Collection uses `full`; the provider baseline uses `metadata`, so Mubit records no held-out request/answer for training. See the [HTTP guide](https://docs.mubit.ai/guides/connect-http). Try models comparisons are documented as not stored and training nothing. Normal's local `ModelCorrection` records remain local; no undocumented correction endpoint is called.
+The provider supports the documented `x-middleware-record` header. Collection uses `full`; the provider baseline uses `metadata`, so Mubit records no held-out request/answer for training. See the [HTTP guide](https://docs.mubit.ai/guides/connect-http). Try models comparisons are documented as not stored and training nothing. ExplainWhy's local `ModelCorrection` records remain local; no undocumented correction endpoint is called.
 
 ## Reproduce or resume
 
-Run from the Normal checkout. Only `baseline` and `collect` require a configured Mubit key in `.env.local`; `prepare`, `report` and importing a saved comparison work offline:
+Run from the ExplainWhy checkout. Only `baseline` and `collect` require a configured Mubit key in `.env.local`; `prepare`, `report` and importing a saved comparison work offline:
 
 ```sh
 npm run training:source -- prepare

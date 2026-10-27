@@ -2,7 +2,7 @@
 
 ## Your side: intelligence pipeline
 
-1. Put the `@normal/contracts` package into `packages/contracts` (both developers import from it).
+1. Put the `@explainwhy/contracts` package into `packages/contracts` (both developers import from it).
 2. Build an ingestion endpoint that validates `IngestBatch`, applies `eventBusinessRules()`, deduplicates and stores canonical immutable events.
 3. Create a seeded simulator with healthy web sessions, orders, ads, shipping and review events. Each simulated API produces the exact same event shape as a real connector.
 4. Aggregate events into `MetricSnapshot`. Conversion rate = orders/sessions when denominator nonzero; CTR = clicks/impressions; late delivery rate = delayedShipments/shipments. If denominator is zero, use `null`, not 0.
@@ -29,4 +29,4 @@ Use `/api/plans/:id` to return the exact `PlanHandoff` fixture shape. Partner sh
 
 ## Mubit caution
 
-Mubit provides an LLM gateway and task-adapter pipeline. In Normal, `ModelCall` and `ModelCorrection` are Normal's **own** records. They are not guaranteed to match a documented Mubit feedback endpoint. Confirm correction-to-training ingestion and programmatic adapter inference with the event staff. Always distinguish original provider model predictions from updated adapter results, and show independent held-out evaluation.
+Mubit provides an LLM gateway and task-adapter pipeline. In ExplainWhy, `ModelCall` and `ModelCorrection` are ExplainWhy's **own** records. They are not guaranteed to match a documented Mubit feedback endpoint. Confirm correction-to-training ingestion and programmatic adapter inference with the event staff. Always distinguish original provider model predictions from updated adapter results, and show independent held-out evaluation.

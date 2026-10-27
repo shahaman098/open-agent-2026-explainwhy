@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 import { computeSnapshots } from "@/analytics/metrics";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";

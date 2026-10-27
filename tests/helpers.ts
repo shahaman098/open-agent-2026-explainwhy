@@ -1,4 +1,4 @@
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 import { deleteRun } from "@/simulator/persistence";

@@ -11,7 +11,7 @@ test.describe.serial("anomaly monitor", () => {
     expect((await request.post("/api/dev/simulator/inject", { data: { simulationRunId: RUN, scenario: "ad_fatigue", severity: 0.8 } })).ok()).toBe(true);
     const tick = await request.post("/api/dev/simulator/tick", { data: { simulationRunId: RUN, ticks: 24 } });
     expect(tick.ok()).toBe(true);
-    expect(tick.headers()["x-normal-auto-monitor"]).toBe("scheduled");
+    expect(tick.headers()["x-explainwhy-auto-monitor"]).toBe("scheduled");
   });
 
   test("automatic post-tick monitoring analyses the newest hour without a manual scan", async ({ request }) => {

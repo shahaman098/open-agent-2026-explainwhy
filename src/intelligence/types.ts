@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import type { MetricName } from "@normal/contracts";
+import type { MetricName } from "@explainwhy/contracts";
 
 export type CanonicalMetric = z.infer<typeof MetricName>;
 export type Theme = "sales" | "traffic" | "advertising" | "conversion" | "fulfilment" | "inventory" | "reputation" | "demand";

@@ -3,9 +3,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 // Never seed or reset browser fixtures in the developer's demo database.
-process.env.MONGODB_DB = process.env.E2E_MONGODB_DB ?? "normal_e2e";
-process.env.NORMAL_AUTO_MONITOR = "true";
-process.env.E2E_ARTIFACT_DIR ??= join(tmpdir(), "normal-e2e-artifacts");
+process.env.MONGODB_DB = process.env.E2E_MONGODB_DB ?? "explainwhy_e2e";
+process.env.EXPLAINWHY_AUTO_MONITOR = "true";
+process.env.E2E_ARTIFACT_DIR ??= join(tmpdir(), "explainwhy-e2e-artifacts");
 
 /**
  * E2E tests run against `next dev` so the dev-only simulator routes are available.
@@ -24,7 +24,7 @@ export default defineConfig({
   use: { baseURL: process.env.E2E_BASE_URL ?? "http://localhost:3101", trace: "retain-on-failure" },
   webServer: process.env.E2E_BASE_URL ? undefined : {
     command: "npx next dev -p 3101",
-    env: { NORMAL_NEXT_DIST_DIR: ".next/e2e" },
+    env: { EXPLAINWHY_NEXT_DIST_DIR: ".next/e2e" },
     url: "http://localhost:3101",
     reuseExistingServer: false,
     timeout: 180_000,

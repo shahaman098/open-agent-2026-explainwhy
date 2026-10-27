@@ -1,7 +1,7 @@
 import type { SeverityLevel } from "@/intelligence/types";
 
 /** Bumped whenever rule semantics or thresholds change; recorded on every canonical Anomaly. */
-export const DETECTOR_VERSION = "normal-detector-1.1.0";
+export const DETECTOR_VERSION = "explainwhy-detector-1.1.0";
 
 export interface DetectionConfig {
   /** Same-hour / trailing baseline windows considered (most recent first). */

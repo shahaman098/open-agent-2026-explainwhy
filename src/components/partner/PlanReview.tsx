@@ -1,13 +1,13 @@
 "use client";
 
-import type { ActionProposalT, AgentMissionT, PlanApprovalT } from "@normal/contracts";
+import type { ActionProposalT, AgentMissionT, PlanApprovalT } from "@explainwhy/contracts";
 import type { PlanHandoffT } from "@/execution/types";
 import { agentDisplayName } from "@/agents/roles";
 import { ArrowUpRight, Check, CircleAlert } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export interface ExecutionView { approval: PlanApprovalT | null; reviewedHandoff: PlanHandoffT | null; run: { status: string; startedAt: string } | null; executions: import("@normal/contracts").ActionExecutionT[]; missions: AgentMissionT[] }
+export interface ExecutionView { approval: PlanApprovalT | null; reviewedHandoff: PlanHandoffT | null; run: { status: string; startedAt: string } | null; executions: import("@explainwhy/contracts").ActionExecutionT[]; missions: AgentMissionT[] }
 
 const sentence = (value: string, max = 270) => {
   const first = value.trim().split(/\n|(?<=[.!?])\s+/)[0];

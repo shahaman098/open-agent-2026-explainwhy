@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it } from "vitest";
-import { Anomaly, MetricSnapshot } from "@normal/contracts";
+import { Anomaly, MetricSnapshot } from "@explainwhy/contracts";
 import { computeSnapshots, snapshotTickWindows } from "@/analytics/metrics";
 import { simulate, harnessCatalogue } from "@/intelligence/evaluation/harness";
 import { SCENARIO_HOURS } from "@/intelligence/evaluation/evaluate";

@@ -5,12 +5,12 @@ import {
   ActionExecution, Anomaly, BusinessEvent, Diagnosis, Evidence, IngestBatch, Investigation,
   MetricSnapshot, ModelCorrection, PlanApproval, PlanHandoff, ProposedPlan, SimulatorRun,
   eventBusinessRules, planReferenceErrors,
-} from "@normal/contracts";
+} from "@explainwhy/contracts";
 
 const examplesDir = resolve(process.cwd(), "packages/contracts/examples");
 const fixture = (name: string) => JSON.parse(readFileSync(resolve(examplesDir, name), "utf8"));
 
-describe("@normal/contracts fixtures (Milestone 0 gate)", () => {
+describe("@explainwhy/contracts fixtures (Milestone 0 gate)", () => {
   const cases = [
     ["order-event.json", BusinessEvent], ["ad-event.json", BusinessEvent], ["review-event.json", BusinessEvent],
     ["metric-snapshot.json", MetricSnapshot], ["anomaly.json", Anomaly], ["investigation.json", Investigation],

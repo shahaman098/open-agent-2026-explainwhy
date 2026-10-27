@@ -1,6 +1,6 @@
 import "server-only";
 
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 import { COLLECTIONS, RECEIPTS_COLLECTION, findReceipt, resolveContext } from "@/adapters/_shared";
 import type { ActionContext } from "@/adapters/types";
 import { readCampaign } from "@/adapters/campaigns";

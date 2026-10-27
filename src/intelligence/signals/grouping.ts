@@ -1,4 +1,4 @@
-import type { AnomalyT } from "@normal/contracts";
+import type { AnomalyT } from "@explainwhy/contracts";
 
 export type SignalSeverity = "low" | "medium" | "high" | "critical";
 

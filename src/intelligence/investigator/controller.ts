@@ -1,6 +1,6 @@
 import "server-only";
 import type { Db } from "mongodb";
-import { Diagnosis, DiagnosisModelOutput, type DiagnosisModelOutputT } from "@normal/contracts";
+import { Diagnosis, DiagnosisModelOutput, type DiagnosisModelOutputT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { loadInvestigationContext, type InvestigationContext } from "../evidence/context";
 import { executeTool } from "../evidence/orchestrator";
@@ -28,7 +28,7 @@ function budgetCheck(job: JobDoc, reserve: number) {
   if (job.deadline !== null && Date.now() > job.deadline) throw new BudgetError("Investigation wall-clock budget reached");
   if (job.callCount >= job.budget.maxCalls || job.reservedTokens + reserve > job.budget.maxTokens) throw new BudgetError("Investigation model-call or token budget reached");
   if (job.budget.maxCostUsd !== null) {
-    const maxRate = Math.max(Number(process.env.NORMAL_INPUT_USD_PER_MILLION), Number(process.env.NORMAL_OUTPUT_USD_PER_MILLION));
+    const maxRate = Math.max(Number(process.env.EXPLAINWHY_INPUT_USD_PER_MILLION), Number(process.env.EXPLAINWHY_OUTPUT_USD_PER_MILLION));
     if (!Number.isFinite(maxRate) || (job.reservedTokens + reserve) * maxRate / 1e6 > job.budget.maxCostUsd) throw new BudgetError("Investigation cost budget reached");
   }
 }

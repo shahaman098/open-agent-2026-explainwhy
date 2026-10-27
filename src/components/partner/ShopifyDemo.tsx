@@ -137,7 +137,7 @@ const SYNTHETIC_ORDERS: ShopifyOrder[] = [
       { time: "Today, 14:23", event: "Payment confirmed via Apple Pay", status: "success" },
       { time: "Today, 15:10", event: "Dispatched from Northampton Distribution Hub", status: "success" },
       { time: "Today, 16:45", event: "Delayed at Royal Mail Leeds Sorting Center (Mechanical sorting failure)", status: "error" },
-      { time: "Today, 17:05", event: "Normal Agent: Automated delivery notice email sent to customer with tracking update", status: "warning" }
+      { time: "Today, 17:05", event: "ExplainWhy Agent: Automated delivery notice email sent to customer with tracking update", status: "warning" }
     ]
   },
   {
@@ -163,7 +163,7 @@ const SYNTHETIC_ORDERS: ShopifyOrder[] = [
       { time: "Today, 11:06", event: "Payment verified via Visa Debit", status: "success" },
       { time: "Today, 12:30", event: "Dispatched from Northampton Logistics Depot", status: "success" },
       { time: "Today, 14:15", event: "Transit bottleneck identified at Leeds Mail Center", status: "error" },
-      { time: "Today, 14:30", event: "Normal Agent: Delivery protection status active", status: "warning" }
+      { time: "Today, 14:30", event: "ExplainWhy Agent: Delivery protection status active", status: "warning" }
     ]
   },
   {
@@ -973,7 +973,7 @@ export default function ShopifyDashboardPage() {
                   <div className="flex h-4 w-4 items-center justify-center rounded bg-[#1a1a1a] text-[9px] font-bold text-white border border-[#333]">
                     N
                   </div>
-                  <span>Normal Operations</span>
+                  <span>ExplainWhy Operations</span>
                 </div>
                 <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
               </a>
@@ -1223,7 +1223,7 @@ export default function ShopifyDashboardPage() {
                       {showLatestReport ? (
                         <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e3f1df] px-2 py-0.5 text-[11px] font-medium text-[#008060] border border-[#b4e3ad]">
                           <Check className="h-3 w-3" />
-                          <span>Budget throttled to £30/d by Normal</span>
+                          <span>Budget throttled to £30/d by ExplainWhy</span>
                         </span>
                       ) : (
                         <span className="inline-flex items-center rounded-full bg-[#f1f2f4] px-2 py-0.5 text-[11px] font-medium text-[#5c5f62]">
@@ -1244,7 +1244,7 @@ export default function ShopifyDashboardPage() {
                     <td className="px-4 py-3 text-right tabular-nums font-bold">£14,820.00</td>
                     <td className="px-4 py-3">
                       <span className="inline-flex items-center rounded-full bg-[#f1f2f4] px-2 py-0.5 text-[11px] font-medium text-[#5c5f62]">
-                        Active · Normal monitoring
+                        Active · ExplainWhy monitoring
                       </span>
                     </td>
                   </tr>
@@ -1266,7 +1266,7 @@ export default function ShopifyDashboardPage() {
                         </span>
                       ) : (
                         <span className="inline-flex items-center rounded-full bg-[#f1f2f4] px-2 py-0.5 text-[11px] font-medium text-[#5c5f62]">
-                          Healthy · Normal traffic
+                          Healthy · ExplainWhy traffic
                         </span>
                       )}
                     </td>
@@ -1626,7 +1626,7 @@ export default function ShopifyDashboardPage() {
                   <div className="p-2.5 rounded-lg border border-red-200 bg-red-50/70 flex items-center justify-between">
                     <div>
                       <div className="font-bold text-red-950">Leeds Royal Mail Hub (North England)</div>
-                      <div className="text-[11px] text-red-800">Conveyor breakdown · 38 parcels held · Normal actively mitigating</div>
+                      <div className="text-[11px] text-red-800">Conveyor breakdown · 38 parcels held · ExplainWhy actively mitigating</div>
                     </div>
                     <span className="text-[10px] font-bold px-2 py-0.5 bg-red-600 text-white rounded">DELAYED</span>
                   </div>
@@ -1649,7 +1649,7 @@ export default function ShopifyDashboardPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div className="p-2.5 rounded-lg border border-[#e1e3e5] bg-white">
-                    <div className="font-bold text-[#202223]">Normal Operations</div>
+                    <div className="font-bold text-[#202223]">ExplainWhy Operations</div>
                     <div className="text-[11px] text-emerald-700 font-medium">Autonomous Loop Active</div>
                   </div>
                   <div className="p-2.5 rounded-lg border border-[#e1e3e5] bg-white">
@@ -1703,7 +1703,7 @@ export default function ShopifyDashboardPage() {
 
             <div className="flex-1 py-4 space-y-4 overflow-y-auto text-xs">
               <div className="bg-[#f6f6f7] p-3 rounded-lg border border-[#e1e3e5]">
-                <p className="font-semibold text-[#202223]">Normal Operations Agent Update:</p>
+                <p className="font-semibold text-[#202223]">ExplainWhy Operations Agent Update:</p>
                 <p className="mt-1 text-[#4a4a4a]">
                   Root cause identified: Royal Mail Leeds Hub conveyor sensor malfunction. 38 parcels delayed past promised 48-hour delivery window.
                 </p>

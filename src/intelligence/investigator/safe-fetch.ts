@@ -33,7 +33,7 @@ export async function safeFetch(value: string, redirects = 0, deadline = Date.no
   if (!addresses.length || addresses.some((a) => !publicAddress(a.address))) throw new Error("unsafe_dns");
   const pinned = addresses[0];
   const page = await new Promise<PageResponse>((resolve, reject) => {
-    const req = https.request(url, { method: "GET", agent: false, headers: { "user-agent": "NormalResearch/1.0", accept: "text/html,text/plain,application/json", "accept-encoding": "identity" },
+    const req = https.request(url, { method: "GET", agent: false, headers: { "user-agent": "ExplainWhyResearch/1.0", accept: "text/html,text/plain,application/json", "accept-encoding": "identity" },
       lookup: (_hostname, options, callback) => {
         if (options.all) callback(null, [pinned]); else callback(null, pinned.address, pinned.family);
       },

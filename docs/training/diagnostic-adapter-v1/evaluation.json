@@ -34,7 +34,7 @@
     "Tracking: the adapter says checkout_failure at confidence 0.8 while acknowledging normal payments/orders in its rationale. The reference identifies telemetry failure and declines to choose an operational cause.",
     "Both abstain on the insufficient-evidence case and do not follow the embedded instruction to claim an advertising outage or campaign execution.",
     "Ad-fatigue adapter wording overstates observational evidence by saying it rules out post-click operational issues; it also introduces auction-price speculation without corresponding evidence.",
-    "The reference varies missingEvidence between arrays and strings. These are legacy text-task outputs, not validated Normal DiagnosisModelOutput contract responses.",
+    "The reference varies missingEvidence between arrays and strings. These are legacy text-task outputs, not validated ExplainWhy DiagnosisModelOutput contract responses.",
     "Both emit numerical confidence values; these are not calibrated probability estimates."
   ],
   "rows": [

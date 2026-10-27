@@ -1,7 +1,7 @@
 import 'server-only';
 import { createHash } from 'node:crypto';
 import type { Db } from 'mongodb';
-import { PlanHandoff, ActionExecution, ActionOutcome, type ActionProposalT } from '@normal/contracts';
+import { PlanHandoff, ActionExecution, ActionOutcome, type ActionProposalT } from '@explainwhy/contracts';
 import { verifyAction } from '@/adapters';
 import type { ActionReceipt } from '@/adapters/_shared';
 import { COLLECTIONS, ensureIndexes } from '@/lib/collections';

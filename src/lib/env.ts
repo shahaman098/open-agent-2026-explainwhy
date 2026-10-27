@@ -5,8 +5,8 @@ import "server-only";
  *
  * Allowed when:
  *  - NODE_ENV === "development" (local hacking), or
- *  - NORMAL_DEMO_MODE === "true" AND the request carries header
- *    `x-normal-demo-key` equal to NORMAL_DEMO_KEY (separately configured demo).
+ *  - EXPLAINWHY_DEMO_MODE === "true" AND the request carries header
+ *    `x-explainwhy-demo-key` equal to EXPLAINWHY_DEMO_KEY (separately configured demo).
  *
  * Everything else is answered with 404 so the routes are indistinguishable from
  * non-existent ones in production.
@@ -16,20 +16,20 @@ export function isDevelopment(): boolean {
 }
 
 export function demoModeConfigured(): boolean {
-  return process.env.NORMAL_DEMO_MODE === "true" && Boolean(process.env.NORMAL_DEMO_KEY);
+  return process.env.EXPLAINWHY_DEMO_MODE === "true" && Boolean(process.env.EXPLAINWHY_DEMO_KEY);
 }
 
 export function isPrivilegedRequest(request: Request | undefined): boolean {
   if (isDevelopment()) return true;
   if (!demoModeConfigured() || !request) return false;
-  const provided = request.headers.get("x-normal-demo-key");
-  return provided !== null && timingSafeEqualString(provided, process.env.NORMAL_DEMO_KEY ?? "");
+  const provided = request.headers.get("x-explainwhy-demo-key");
+  return provided !== null && timingSafeEqualString(provided, process.env.EXPLAINWHY_DEMO_KEY ?? "");
 }
 
-/** Ingest API: development, or a configured NORMAL_INGEST_API_KEY presented as a bearer token. */
+/** Ingest API: development, or a configured EXPLAINWHY_INGEST_API_KEY presented as a bearer token. */
 export function isIngestAuthorised(request: Request): boolean {
   if (isPrivilegedRequest(request)) return true;
-  const expected = process.env.NORMAL_INGEST_API_KEY;
+  const expected = process.env.EXPLAINWHY_INGEST_API_KEY;
   if (!expected) return false;
   const header = request.headers.get("authorization") ?? "";
   const token = header.startsWith("Bearer ") ? header.slice(7) : "";

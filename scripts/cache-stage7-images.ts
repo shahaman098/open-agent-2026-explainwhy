@@ -5,7 +5,7 @@ import {NIKE_REFERENCE_CATALOGUE} from '../src/reference/nike-catalogue';
 async function main(){
  const manifest:Record<string,unknown>={};mkdirSync('public/assets/products',{recursive:true});
  await Promise.all(NIKE_REFERENCE_CATALOGUE.map(async(p)=>{
-  const cache=`/private/tmp/normal-nike-pages/${p.referenceProductId}.html`;
+  const cache=`/private/tmp/explainwhy-nike-pages/${p.referenceProductId}.html`;
   const html=existsSync(cache)?readFileSync(cache,'utf8'):await (await fetch(p.sourceUrl)).text();
   const match=html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
   const selected=match?JSON.parse(match[1]).props?.pageProps?.selectedProduct:null;

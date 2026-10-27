@@ -1,5 +1,5 @@
 import type {PlanHandoffT} from "@/execution/types";
-import { ActionProposalT, ActionExecutionT } from "@normal/contracts";
+import { ActionProposalT, ActionExecutionT } from "@explainwhy/contracts";
 import { ExecutionError } from "./errors";
 
 /** Rejects plans with duplicate action IDs, missing dependencies or cycles. */

@@ -1,5 +1,5 @@
 import "server-only";
-import { ActionProposal, ProposedPlan, PlanHandoff, planReferenceErrors, type ActionProposalT, type ProposedPlanT } from "@normal/contracts";
+import { ActionProposal, ProposedPlan, PlanHandoff, planReferenceErrors, type ActionProposalT, type ProposedPlanT } from "@explainwhy/contracts";
 import { ADAPTER_LIMITS } from "@/adapters/types";
 import { DELAY_BANNER_MESSAGE, type PlanningContext } from "./context";
 import type { ActionCheck, StrategyCheck, StrategyT } from "./schemas";

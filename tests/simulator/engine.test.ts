@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BusinessEvent, type BusinessEventT } from "@normal/contracts";
+import { BusinessEvent, type BusinessEventT } from "@explainwhy/contracts";
 import { NIKE_REFERENCE_CATALOGUE } from "@/reference/nike-catalogue";
 import { cloneWorld, createInitialWorld } from "@/simulator/bootstrap";
 import { TickEngine } from "@/simulator/engine";

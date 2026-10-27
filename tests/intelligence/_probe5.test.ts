@@ -6,7 +6,7 @@ import { writeFileSync, appendFileSync } from "node:fs";
 import { harnessCatalogue, simulate } from "@/intelligence/evaluation/harness";
 import { groupEvents } from "@/intelligence/signals/rows";
 import { SignalSeries } from "@/intelligence/signals/series";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe5.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe5.txt");
 it("trend", () => {
   writeFileSync(OUT, "");
   for (const seed of [42, 7, 1234]) {

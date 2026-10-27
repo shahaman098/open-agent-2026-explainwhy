@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { Diagnosis, type EvidenceT } from "@normal/contracts";
+import { Diagnosis, type EvidenceT } from "@explainwhy/contracts";
 import { composeReport } from "@/intelligence/investigator/reports";
 import { ExternalSource, type StateT } from "@/intelligence/investigator/schemas";
 

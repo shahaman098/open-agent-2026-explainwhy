@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import type { Db } from "mongodb";
-import { Anomaly, Investigation, MetricSnapshot, type AnomalyT, type MetricSnapshotT } from "@normal/contracts";
+import { Anomaly, Investigation, MetricSnapshot, type AnomalyT, type MetricSnapshotT } from "@explainwhy/contracts";
 import { GET as anomaliesRoute } from "@/app/api/anomalies/route";
 import { GET as incidentsRoute } from "@/app/api/incidents/route";
 import { GET as investigationRoute } from "@/app/api/investigations/[id]/route";
@@ -26,7 +26,7 @@ const strip = <T extends Record<string, unknown>>(d: T) => { const { _id: _i, si
 const req = (path: string, init: RequestInit & { json?: unknown; demo?: boolean } = {}) => {
   const headers = new Headers(init.headers);
   if (init.json !== undefined) headers.set("content-type", "application/json");
-  if (init.demo !== false) headers.set("x-normal-demo-key", DEMO_KEY);
+  if (init.demo !== false) headers.set("x-explainwhy-demo-key", DEMO_KEY);
   return new Request(`http://localhost/api${path}`, { ...init, headers, body: init.json !== undefined ? JSON.stringify(init.json) : undefined });
 };
 async function counts(db: Db, run: string) {
@@ -68,7 +68,7 @@ describe("anomaly detection persistence and APIs (Milestone 4)", () => {
   beforeAll(async () => {
     db = await getDb();
     await ensureIndexes(db);
-    process.env.NORMAL_DEMO_MODE = "true"; process.env.NORMAL_DEMO_KEY = DEMO_KEY;
+    process.env.EXPLAINWHY_DEMO_MODE = "true"; process.env.EXPLAINWHY_DEMO_KEY = DEMO_KEY;
     for (const r of [RUN_A, RUN_B]) await resetTestRun(r);
     await startRun({ businessId: TEST_BUSINESS, simulationRunId: RUN_A, seed: 42, makeActive: false });
     for (let i = 0; i < 2; i++) await tickRun({ simulationRunId: RUN_A, ticks: 36 }, { businessId: TEST_BUSINESS });
@@ -79,7 +79,7 @@ describe("anomaly detection persistence and APIs (Milestone 4)", () => {
   }, 900_000);
   afterAll(async () => {
     for (const r of [RUN_A, RUN_B]) await resetTestRun(r);
-    delete process.env.NORMAL_DEMO_MODE; delete process.env.NORMAL_DEMO_KEY;
+    delete process.env.EXPLAINWHY_DEMO_MODE; delete process.env.EXPLAINWHY_DEMO_KEY;
   }, 120_000);
 
   it("the MongoDB aggregation and the in-memory grouping produce identical rows and identical detections", async () => {
@@ -314,12 +314,12 @@ describe("anomaly detection persistence and APIs (Milestone 4)", () => {
   });
 
   it("routes are protected and return canonical shapes", async () => {
-    process.env.NORMAL_DEMO_MODE = "false";
+    process.env.EXPLAINWHY_DEMO_MODE = "false";
     expect((await monitorRoute(req("/dev/monitor/run", { method: "POST", json: { businessId: TEST_BUSINESS, simulationRunId: RUN_A }, demo: false }))).status).toBe(404);
     expect((await anomaliesRoute(req(`/anomalies?businessId=${TEST_BUSINESS}`, { demo: false }))).status).toBe(404);
     expect((await investigationsRoute(req(`/investigations?businessId=${TEST_BUSINESS}`, { demo: false }))).status).toBe(404);
     expect((await incidentsRoute(req(`/incidents?businessId=${TEST_BUSINESS}`, { demo: false }))).status).toBe(404);
-    process.env.NORMAL_DEMO_MODE = "true";
+    process.env.EXPLAINWHY_DEMO_MODE = "true";
     const run = await monitorRoute(req("/dev/monitor/run", { method: "POST", json: { businessId: TEST_BUSINESS, simulationRunId: RUN_A } }));
     expect(run.status).toBe(200);
     expect((await run.json()).repeatScan).toBe(true);

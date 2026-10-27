@@ -10,7 +10,7 @@ import { SIGNALS_BY_ID } from "@/intelligence/detection/rules";
 import { evaluatePoint } from "@/intelligence/detection/signal";
 import { replayKey } from "@/intelligence/detection/engine";
 import { DEFAULT_CONFIG } from "@/intelligence/config";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe9.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe9.txt");
 it("nr7", () => {
   writeFileSync(OUT, "");
   const t = simulate({ seed: 7, healthyHours: 72, scenario: "negative_reviews", severity: 0.8, scenarioHours: 240 });

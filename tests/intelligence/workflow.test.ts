@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { Anomaly, Investigation } from "@normal/contracts";
+import { Anomaly, Investigation } from "@explainwhy/contracts";
 import { GET as investigationRoute } from "@/app/api/investigations/[id]/route";
 import { computeSnapshots } from "@/analytics/metrics";
 import { COLLECTIONS } from "@/lib/collections";
@@ -32,12 +32,12 @@ async function snapshotCounts() {
 
 describe("end-to-end detection workflow (Milestone 6)", () => {
   beforeAll(async () => {
-    process.env.NORMAL_DEMO_MODE = "true"; process.env.NORMAL_DEMO_KEY = DEMO_KEY;
+    process.env.EXPLAINWHY_DEMO_MODE = "true"; process.env.EXPLAINWHY_DEMO_KEY = DEMO_KEY;
     for (const r of [RUN, RUN_B]) await resetTestRun(r);
   }, 120_000);
   afterAll(async () => {
     for (const r of [RUN, RUN_B]) await resetTestRun(r);
-    delete process.env.NORMAL_DEMO_MODE; delete process.env.NORMAL_DEMO_KEY;
+    delete process.env.EXPLAINWHY_DEMO_MODE; delete process.env.EXPLAINWHY_DEMO_KEY;
   }, 120_000);
 
   let baselineCtr = 0;
@@ -82,7 +82,7 @@ describe("end-to-end detection workflow (Milestone 6)", () => {
   });
 
   it("13-14. the investigation is retrievable through its API and its evidence references resolve", async () => {
-    const res = await investigationRoute(new Request(`http://localhost/api/investigations/${investigationId}?businessId=${TEST_BUSINESS}&simulationRunId=${RUN}`, { headers: { "x-normal-demo-key": DEMO_KEY } }), { params: Promise.resolve({ id: investigationId }) });
+    const res = await investigationRoute(new Request(`http://localhost/api/investigations/${investigationId}?businessId=${TEST_BUSINESS}&simulationRunId=${RUN}`, { headers: { "x-explainwhy-demo-key": DEMO_KEY } }), { params: Promise.resolve({ id: investigationId }) });
     expect(res.status).toBe(200);
     const bundle = await res.json();
     expect(Investigation.safeParse(bundle.investigation).success).toBe(true);
@@ -99,7 +99,7 @@ describe("end-to-end detection workflow (Milestone 6)", () => {
     const before = await snapshotCounts();
     const client = await getMongoClient();
     await client.close();
-    globalThis._normalMongoClientPromise = undefined;
+    globalThis._explainwhyMongoClientPromise = undefined;
     expect(await snapshotCounts()).toEqual(before);
     const inv = await (await getDb()).collection(COLLECTIONS.investigations).findOne({ investigationId });
     expect(Investigation.safeParse(strip(inv!)).success).toBe(true);
@@ -148,8 +148,8 @@ describe("end-to-end detection workflow (Milestone 6)", () => {
 
   it("auto-monitoring after ticks is opt-in outside development and never runs outside a request scope", () => {
     expect(scheduleAutoMonitor(TEST_BUSINESS, RUN)).toBe(false);
-    process.env.NORMAL_AUTO_MONITOR = "true";
+    process.env.EXPLAINWHY_AUTO_MONITOR = "true";
     expect(scheduleAutoMonitor(TEST_BUSINESS, RUN)).toBe(false); // no request scope in a unit test → safely skipped
-    delete process.env.NORMAL_AUTO_MONITOR;
+    delete process.env.EXPLAINWHY_AUTO_MONITOR;
   });
 });

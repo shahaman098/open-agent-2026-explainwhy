@@ -1,6 +1,6 @@
 import { beforeAll, afterAll, describe, expect, it, vi } from "vitest";
 import type { Db } from "mongodb";
-import { Anomaly, Investigation, RootCause } from "@normal/contracts";
+import { Anomaly, Investigation, RootCause } from "@explainwhy/contracts";
 import anomalyFixture from "../../packages/contracts/examples/anomaly.json";
 import { getDb } from "@/lib/mongodb";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
@@ -25,7 +25,7 @@ async function seed(name: string) {
   return { ...scope, investigationId };
 }
 beforeAll(async () => {
-  vi.stubEnv("MUBIT_API_KEY", "test_mock_key"); vi.stubEnv("NORMAL_EXTERNAL_RESEARCH_ENABLED", "false");
+  vi.stubEnv("MUBIT_API_KEY", "test_mock_key"); vi.stubEnv("EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED", "false");
   db = await getDb(); await ensureIndexes(db);
   await db.collection(COLLECTIONS.businessEvents).insertOne({ ...scope, eventId: `${scope.simulationRunId}_event`, type: "ad.metrics_observed", occurredAt: window.startAt, provenance: { connectorId: "stage5_test", sourceRecordId: scope.simulationRunId }, payload: { window } });
   await db.collection(COLLECTIONS.monitoringWindows).insertOne({ ...scope, windowKey: `${scope.simulationRunId}_window`, windowEnd: window.endAt, status: "ready" });

@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /**
  * Supplementary (non-canonical) schemas for public reference observations.
- * These are NOT part of @normal/contracts; they describe provenance-tagged
+ * These are NOT part of @explainwhy/contracts; they describe provenance-tagged
  * records about publicly observable Nike information.
  */
 export const DataOrigin = z.enum(["official_public", "third_party_public", "synthetic"]);

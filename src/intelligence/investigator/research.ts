@@ -138,13 +138,13 @@ export function textUrlCandidates(text: string): CandidateT[] {
   return found.slice(0, 8);
 }
 export async function research(delegation: z.infer<typeof ResearchDelegation>, window: WindowT, cutoff: string): Promise<ResearchResult> {
-  if (process.env.NORMAL_EXTERNAL_RESEARCH_ENABLED !== "true") throw new ProviderError("research_disabled", false, false);
+  if (process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED !== "true") throw new ProviderError("research_disabled", false, false);
   const config = providerConfig();
   const body = { contents: [{ role: "user", parts: [{ text: publicResearchPrompt(delegation, window, cutoff) }] }], tools: [{ google_search: {} }], generationConfig: { maxOutputTokens: 2000, thinkingConfig: { thinkingLevel: "low" } } };
   let response;
   try { response = await gatewayRequest(`${config.geminiBase}/v1beta/models/${encodeURIComponent(config.researchModel)}:generateContent`, body, "mubit", config.researchModel); }
   catch (e) {
-    if (!(e instanceof ProviderError) || e.ambiguous || process.env.NORMAL_DIRECT_GEMINI_FALLBACK !== "true") throw e;
+    if (!(e instanceof ProviderError) || e.ambiguous || process.env.EXPLAINWHY_DIRECT_GEMINI_FALLBACK !== "true") throw e;
     response = await gatewayRequest(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(config.researchModel)}:generateContent`, body, "google_direct", config.researchModel);
   }
   const candidates = response.body.candidates as Array<{ content?: { parts?: Array<{ text?: string }> }; groundingMetadata?: { webSearchQueries?: string[]; groundingChunks?: Array<{ web?: { uri?: string; title?: string } }>; groundingSupports?: Array<{ segment?: { text?: string }; groundingChunkIndices?: number[] }> } }> | undefined;

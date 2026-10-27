@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { Diagnosis } from "@normal/contracts";
+import { Diagnosis } from "@explainwhy/contracts";
 import { getDb, getMongoClient } from "../src/lib/mongodb";
 import { COLLECTIONS } from "../src/lib/collections";
 import { canonicalJson } from "../src/intelligence/evidence/provenance";

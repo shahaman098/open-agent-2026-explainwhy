@@ -9,7 +9,7 @@ export default async function preserveActiveDemoRun() {
   if (!process.env.MONGODB_URI) throw new Error("MONGODB_URI is required for database-backed browser tests");
   await promisify(execFile)(process.execPath, ["--conditions=react-server", "--import", "tsx", "tests/e2e/seed.mts"], { timeout: 300_000 });
   const client = await MongoClient.connect(process.env.MONGODB_URI);
-  const dbName = process.env.MONGODB_DB || "normal_dev";
+  const dbName = process.env.MONGODB_DB || "explainwhy_dev";
   let active: string | undefined;
   try {
     active = (await client.db(dbName).collection("businesses").findOne({ businessId: "nike_demo" }))?.activeSimulationRunId as string | undefined;

@@ -6,7 +6,7 @@ import { writeFileSync, appendFileSync } from "node:fs";
 import { harnessCatalogue, simulate } from "@/intelligence/evaluation/harness";
 import { groupEvents } from "@/intelligence/signals/rows";
 import { SignalSeries, type Field } from "@/intelligence/signals/series";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe12.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe12.txt");
 it("dispersion (dev seeds only)", () => {
   writeFileSync(OUT, "");
   const acc = new Map<string, number[]>();

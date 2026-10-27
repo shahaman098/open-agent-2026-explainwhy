@@ -1,7 +1,7 @@
 import type { SignalDef } from "@/intelligence/detection/signal";
 import { parseSegmentKey } from "@/intelligence/types";
 
-/** Canonical `SourceReference` shape from @normal/contracts (collection + recordId), reused for detection evidence. */
+/** Canonical `SourceReference` shape from @explainwhy/contracts (collection + recordId), reused for detection evidence. */
 export interface SourceRef {
   collection: string;
   recordId: string;

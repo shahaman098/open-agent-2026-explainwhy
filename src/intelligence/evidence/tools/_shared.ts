@@ -1,5 +1,5 @@
 import type { Db, Document, Filter } from "mongodb";
-import type { MetricSnapshotT } from "@normal/contracts";
+import type { MetricSnapshotT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import type { Measurement, SourceRef, ToolContext, WindowT } from "../types";
 

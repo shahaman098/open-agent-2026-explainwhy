@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import {useEffect,useState} from 'react';
-import type {ActionExecutionT,ActionProposalT} from '@normal/contracts';
+import type {ActionExecutionT,ActionProposalT} from '@explainwhy/contracts';
 import type {BusinessOutcomeAssessmentT} from '@/outcomes/schema';
 import {api,q} from './api';
 

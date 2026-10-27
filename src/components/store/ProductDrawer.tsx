@@ -34,7 +34,7 @@ export function ProductDrawer({ product, onClose, onAdd }: { product: StoreProdu
           <div className="provenance">
             <strong style={{ color: "var(--ink-2)" }}>Where this comes from</strong>
             <span>Name and {product.priceOrigin === "official_public_list_price" ? "list price are public references" : "price are synthetic placeholders"}{product.reference ? <> observed on <a href={product.reference.sourceUrl} target="_blank" rel="noreferrer noopener">nike.com/gb</a> on {shortDate(product.reference.retrievedAt)}{product.reference.styleCode ? ` (style ${product.reference.styleCode})` : ""}</> : null}.</span>
-            <span>Stock level, sales and reviews are simulated by Normal and are not Nike data.</span>
+            <span>Stock level, sales and reviews are simulated by ExplainWhy and are not Nike data.</span>
           </div>
           <label className="field">Quantity
             <div className="qty">

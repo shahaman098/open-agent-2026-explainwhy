@@ -1,8 +1,8 @@
 {
-  "name": "@normal/contracts",
+  "name": "@explainwhy/contracts",
   "version": "1.0.0",
   "private": true,
-  "description": "Normal v1 shared Zod contracts and cross-record invariants. Single source of truth for every canonical schema.",
+  "description": "ExplainWhy v1 shared Zod contracts and cross-record invariants. Single source of truth for every canonical schema.",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",

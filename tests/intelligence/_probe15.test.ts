@@ -8,7 +8,7 @@ import { groupEvents } from "@/intelligence/signals/rows";
 import { SignalSeries } from "@/intelligence/signals/series";
 import { SIGNALS_BY_ID } from "@/intelligence/detection/rules";
 import { evaluatePoint } from "@/intelligence/detection/signal";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe15.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe15.txt");
 it("nr99", () => {
   writeFileSync(OUT, "");
   const t = simulate({ seed: 99, healthyHours: 72, scenario: "negative_reviews", severity: 0.8, scenarioHours: 336 });

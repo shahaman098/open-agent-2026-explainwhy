@@ -1,6 +1,6 @@
 import type { Db } from "mongodb";
 import { z } from "zod";
-import type { EvidenceT } from "@normal/contracts";
+import type { EvidenceT } from "@explainwhy/contracts";
 import type { CatalogueLabel } from "@/intelligence/types";
 
 /** Stable tool names; the future Mubit investigator selects from exactly this set. */

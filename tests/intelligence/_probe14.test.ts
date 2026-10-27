@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { it } from "vitest";
 import { writeFileSync, appendFileSync } from "node:fs";
 import { DEV_SEEDS, HELD_OUT_ROUND_1, HELD_OUT_SEEDS, deliveryDelayWithHistory, negativeReviewEvidence, scoreScenario } from "@/intelligence/evaluation/evaluate";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe14.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe14.txt");
 it("evidence", () => {
   writeFileSync(OUT, "");
   for (const seed of [...DEV_SEEDS, ...HELD_OUT_SEEDS, ...HELD_OUT_ROUND_1]) {

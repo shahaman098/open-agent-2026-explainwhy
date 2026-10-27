@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Diagnosis, RootCause } from "@normal/contracts";
+import { Diagnosis, RootCause } from "@explainwhy/contracts";
 import { TOOL_NAMES, Window } from "../evidence/types";
 
 const Text = z.string().min(1).max(2000);

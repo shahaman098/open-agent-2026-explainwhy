@@ -2,7 +2,7 @@ import "server-only";
 
 import type { ClientSession, Db } from "mongodb";
 import { z } from "zod";
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { getDb, getMongoClient } from "@/lib/mongodb";
 import { ingestEvents } from "@/ingestion/service";

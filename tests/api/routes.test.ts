@@ -1,5 +1,5 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
-import { IngestResult, MetricSnapshot, PlanHandoff, SimulatorRun, SimulatorTickResponse } from "@normal/contracts";
+import { IngestResult, MetricSnapshot, PlanHandoff, SimulatorRun, SimulatorTickResponse } from "@explainwhy/contracts";
 import { POST as startRoute } from "@/app/api/dev/simulator/start/route";
 import { POST as tickRoute } from "@/app/api/dev/simulator/tick/route";
 import { POST as injectRoute } from "@/app/api/dev/simulator/inject/route";
@@ -26,29 +26,29 @@ const biz = `businessId=${TEST_BUSINESS}`;
 function req(path: string, init: RequestInit & { json?: unknown; demo?: boolean } = {}): Request {
   const headers = new Headers(init.headers);
   if (init.json !== undefined) headers.set("content-type", "application/json");
-  if (init.demo) headers.set("x-normal-demo-key", DEMO_KEY);
+  if (init.demo) headers.set("x-explainwhy-demo-key", DEMO_KEY);
   return new Request(`${base}${path}`, { ...init, headers, body: init.json !== undefined ? JSON.stringify(init.json) : init.body });
 }
 
 describe("API routes", () => {
   beforeAll(async () => {
     await resetTestRun(RUN);
-    process.env.NORMAL_DEMO_MODE = "true";
-    process.env.NORMAL_DEMO_KEY = DEMO_KEY;
-    delete process.env.NORMAL_INGEST_API_KEY;
+    process.env.EXPLAINWHY_DEMO_MODE = "true";
+    process.env.EXPLAINWHY_DEMO_KEY = DEMO_KEY;
+    delete process.env.EXPLAINWHY_INGEST_API_KEY;
   });
-  afterEach(() => { process.env.NORMAL_DEMO_MODE = "true"; process.env.NORMAL_DEMO_KEY = DEMO_KEY; });
+  afterEach(() => { process.env.EXPLAINWHY_DEMO_MODE = "true"; process.env.EXPLAINWHY_DEMO_KEY = DEMO_KEY; });
   afterAll(async () => {
     await resetTestRun(RUN);
-    delete process.env.NORMAL_DEMO_MODE; delete process.env.NORMAL_DEMO_KEY;
+    delete process.env.EXPLAINWHY_DEMO_MODE; delete process.env.EXPLAINWHY_DEMO_KEY;
   });
 
   it("dev/demo routes are hidden (404) without the demo key and when demo mode is off", async () => {
     expect(process.env.NODE_ENV).not.toBe("development");
     expect((await startRoute(req("/dev/simulator/start", { method: "POST", json: {} }))).status).toBe(404);
     expect((await stateRoute(req(`/dev/simulator/state?${biz}`))).status).toBe(404);
-    expect((await tickRoute(req("/dev/simulator/tick", { method: "POST", json: {}, headers: { "x-normal-demo-key": "wrong" } }))).status).toBe(404);
-    process.env.NORMAL_DEMO_MODE = "false";
+    expect((await tickRoute(req("/dev/simulator/tick", { method: "POST", json: {}, headers: { "x-explainwhy-demo-key": "wrong" } }))).status).toBe(404);
+    process.env.EXPLAINWHY_DEMO_MODE = "false";
     expect((await startRoute(req("/dev/simulator/start", { method: "POST", json: {}, demo: true }))).status).toBe(404);
   });
 
@@ -93,9 +93,9 @@ describe("API routes", () => {
   });
 
   it("ingest route requires credentials, validates the batch, scopes the tenant and returns IngestResult", async () => {
-    process.env.NORMAL_DEMO_MODE = "false";
+    process.env.EXPLAINWHY_DEMO_MODE = "false";
     expect((await ingestRoute(req("/ingest/events", { method: "POST", json: { schemaVersion: 1, events: [] } }))).status).toBe(401);
-    process.env.NORMAL_INGEST_API_KEY = "ingest-secret";
+    process.env.EXPLAINWHY_INGEST_API_KEY = "ingest-secret";
     const bad = await ingestRoute(req("/ingest/events", { method: "POST", json: { schemaVersion: 1, events: [] }, headers: { authorization: "Bearer ingest-secret" } }));
     expect(bad.status).toBe(400);
     const db = await getDb();
@@ -109,7 +109,7 @@ describe("API routes", () => {
     expect(body).toMatchObject({ accepted: 1, duplicates: 1, rejected: 0 });
     const scoped = await ingestRoute(req(`/ingest/events?businessId=other_biz`, { method: "POST", json: { schemaVersion: 1, events: [{ ...fresh, eventId: "evt_route_ing_2", provenance: { ...fresh.provenance, sourceRecordId: "route-ing-2" } }] }, headers: { authorization: "Bearer ingest-secret" } }));
     expect((await scoped.json()).rejected).toBe(1);
-    delete process.env.NORMAL_INGEST_API_KEY;
+    delete process.env.EXPLAINWHY_INGEST_API_KEY;
   });
 
   it("metrics routes return validated snapshots and consistent breakdowns, with safe defaults and validation", async () => {

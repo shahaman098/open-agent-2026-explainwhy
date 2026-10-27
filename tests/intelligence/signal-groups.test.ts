@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { AnomalyT } from "@normal/contracts";
+import type { AnomalyT } from "@explainwhy/contracts";
 import { groupSignalObservations, type SignalObservationInput } from "@/intelligence/signals/grouping";
 
 const window = (hour: number) => ({ startAt: `2026-10-04T${String(hour).padStart(2, "0")}:00:00.000Z`, endAt: `2026-10-04T${String(hour + 1).padStart(2, "0")}:00:00.000Z` });

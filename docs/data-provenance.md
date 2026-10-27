@@ -1,6 +1,6 @@
 # Data origin and provenance
 
-Normal's Nike digital twin mixes two kinds of information. They are stored, labelled and displayed separately.
+ExplainWhy's Nike digital twin mixes two kinds of information. They are stored, labelled and displayed separately.
 
 ## 1. Public Nike reference data (real, cited, context only)
 

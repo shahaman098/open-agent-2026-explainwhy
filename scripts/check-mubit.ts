@@ -11,7 +11,7 @@ async function main() {
   if (tool.toolCalls.length !== 1) throw new Error("Expected one tool call");
   schema.parse(tool.toolCalls[0].arguments);
   console.log(JSON.stringify({ check: "function_call", calls: tool.toolCalls, ...tool.metadata }));
-  try { await callModel({ model: "normal-invalid-connectivity-model", system: "Reply ok.", input: "ok", maxOutputTokens: 16 }); throw new Error("Invalid model unexpectedly succeeded"); }
+  try { await callModel({ model: "explainwhy-invalid-connectivity-model", system: "Reply ok.", input: "ok", maxOutputTokens: 16 }); throw new Error("Invalid model unexpectedly succeeded"); }
   catch (error) { if (!(error instanceof ProviderError)) throw error; console.log(JSON.stringify({ check: "invalid_model", code: error.code, ...error.metadata })); }
   if (process.argv.includes("--research")) {
     const result = await gatewayRequest(`${c.geminiBase}/v1beta/models/${encodeURIComponent(c.researchModel)}:generateContent`, { contents: [{ role: "user", parts: [{ text: "Use Google Search to find the official Google Search status dashboard. Return its source URL and no operational advice." }] }], tools: [{ google_search: {} }], generationConfig: { maxOutputTokens: 1500, thinkingConfig: { thinkingLevel: "low" } } }, "mubit", c.researchModel);

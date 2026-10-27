@@ -1,7 +1,7 @@
 "use client";
 
 import type { PlanHandoffT } from "@/execution/types";
-import type { ProposedPlanT } from "@normal/contracts";
+import type { ProposedPlanT } from "@explainwhy/contracts";
 import { ArrowUpRight, Filter, Search } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";

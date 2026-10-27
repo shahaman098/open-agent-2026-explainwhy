@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-/** Read-only desktop verification against an already running Normal server. */
+/** Read-only desktop verification against an already running ExplainWhy server. */
 export default defineConfig({
   testDir: "./tests/e2e",
   testMatch: "signals-inbox.spec.ts",

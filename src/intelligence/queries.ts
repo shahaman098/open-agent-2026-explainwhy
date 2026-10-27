@@ -2,7 +2,7 @@ import "server-only";
 
 import type { Db, Filter } from "mongodb";
 import { z } from "zod";
-import { Anomaly, Investigation, MetricName, MetricSnapshot, type AnomalyT, type InvestigationT, type MetricSnapshotT } from "@normal/contracts";
+import { Anomaly, Investigation, MetricName, MetricSnapshot, type AnomalyT, type InvestigationT, type MetricSnapshotT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 import type { FindingDoc, IncidentDoc } from "@/intelligence/detection/persistence";

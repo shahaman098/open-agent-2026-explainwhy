@@ -1,4 +1,4 @@
-<img width="8931" height="3240" alt="Normal — business intelligence and operations" src="https://github.com/user-attachments/assets/80916a0e-baf5-40fa-b5b5-7ccf4f6ab7c3" />
+<img width="8931" height="3240" alt="ExplainWhy — business intelligence and operations" src="https://github.com/user-attachments/assets/80916a0e-baf5-40fa-b5b5-7ccf4f6ab7c3" />
 
 # ExplainWhy Agent
 
@@ -8,7 +8,7 @@
 
 A small ecommerce business can see that sales have fallen. Finding the reason usually means moving between advertising reports, orders, delivery updates and customer feedback, then deciding what to do with incomplete information.
 
-We built Normal to bring that work into one place. It watches business activity, groups unusual changes into an investigation, uses Mubit to compare possible explanations, and proposes a response that a person can review. Approved actions run through restricted tools. Normal saves the changes and assesses later observations against the plan's success criteria.
+We built ExplainWhy Agent to bring that work into one place. It watches business activity, groups unusual changes into an investigation, uses Mubit to compare possible explanations, and proposes a response that a person can review. Approved actions run through restricted tools. ExplainWhy saves the changes and assesses later observations against the plan's success criteria.
 
 Our hackathon demonstration uses an **Nike shop simulation**. The orders, customers, advertising activity and deliveries are synthetic. The model requests, database records, validation checks and recorded changes described below are genuine development/demo results. Nothing here changes a real advertising account, sends a real customer email or takes a real payment.
 
@@ -38,12 +38,12 @@ The main story follows a deteriorating advertising campaign:
 
 | Step | What happens | Where to inspect it |
 | --- | --- | --- |
-| Detect | Recorded activity produces an advertising incident. Normal compares the affected period with its baseline. | [Investigation artifact](docs/stage5-runs/stage5_1792885194280.json), [detector](src/intelligence/detection/engine.ts) |
+| Detect | Recorded activity produces an advertising incident. ExplainWhy compares the affected period with its baseline. | [Investigation artifact](docs/stage5-runs/stage5_1792885194280.json), [detector](src/intelligence/detection/engine.ts) |
 | Investigate | The Mubit investigator checks competing explanations and calls read-only evidence tools. The saved report includes citations and uncertainty. | [Investigator controller](src/intelligence/investigator/controller.ts), [report audit](docs/stage5-runs/report-audit-final.json) |
 | Plan | Mubit compares a targeted budget reduction, a broader reduction and further investigation without changes. Deterministic checks reject unsupported proposals. | [Planner artifact](docs/stage6-runs/advertising-plan.json), [planner validation](src/planner/validation.ts) |
 | Review | A person approves an exact plan version and selected actions. Approval and execution are separate steps. | [Approval/execution screenshot](docs/stage7-runs/approval-execution.png), [approval route](src/app/api/plans/[id]/approve/route.ts) |
-| Execute and check | The approved marketing action changes the simulated campaign budget from **£90 to £67.50/day**. Normal reads the result back and records the receipt and event. | [Audit](docs/stage7-runs/audit.json), [browser record](docs/stage7-runs/browser.json), [execution implementation](src/execution/) |
-| Assess | Normal compares later campaign observations with the approved plan's criteria and keeps the original receipt separate from the business assessment. | [Stage 8 report](docs/stage8-verification.md), [assessment implementation](src/outcomes/), [Outcomes screenshot](docs/stage8-runs/outcomes-controlled.png) |
+| Execute and check | The approved marketing action changes the simulated campaign budget from **£90 to £67.50/day**. ExplainWhy reads the result back and records the receipt and event. | [Audit](docs/stage7-runs/audit.json), [browser record](docs/stage7-runs/browser.json), [execution implementation](src/execution/) |
+| Assess | ExplainWhy compares later campaign observations with the approved plan's criteria and keeps the original receipt separate from the business assessment. | [Stage 8 report](docs/stage8-verification.md), [assessment implementation](src/outcomes/), [Outcomes screenshot](docs/stage8-runs/outcomes-controlled.png) |
 
 The campaign is `cmp_basketball_search`. Its proposed 25% reduction is tied to campaign-specific evidence, including zero attributed orders in the observed window. It is a cautious intervention, not a prediction that revenue will recover.
 
@@ -59,7 +59,7 @@ This demonstrates approval, ordered execution and read-back for customer care. T
 
 ![Recorded simulated campaign state after the approved budget change](docs/stage7-runs/meta-after.png)
 
-Normal is configured to use **Gemini 4 Argon (`gemini-4-argon`) through Mubit** for investigation, source-support checks, diagnosis, solution planning and optional grounded research. The [provider](src/intelligence/investigator/provider.ts) uses Mubit's native `/gemini/v1beta/models/gemini-4-argon:generateContent` route by default. Set `MUBIT_GEMINI_TRANSPORT=openai` to use the Gemini `/gemini/v1beta/openai/chat/completions` route with complete request/reply display in the console. Both routes have verified Gemini training tasks and validate structured responses locally. See [Mubit's Gemini connection guide](https://docs.mubit.ai/guides/connect-gemini). All four server-side model settings in [.env.example](.env.example) default to Gemini 4 Argon; never expose `MUBIT_API_KEY` through a `NEXT_PUBLIC_` variable.
+ExplainWhy is configured to use **Gemini 4 Argon (`gemini-4-argon`) through Mubit** for investigation, source-support checks, diagnosis, solution planning and optional grounded research. The [provider](src/intelligence/investigator/provider.ts) uses Mubit's native `/gemini/v1beta/models/gemini-4-argon:generateContent` route by default. Set `MUBIT_GEMINI_TRANSPORT=openai` to use the Gemini `/gemini/v1beta/openai/chat/completions` route with complete request/reply display in the console. Both routes have verified Gemini training tasks and validate structured responses locally. See [Mubit's Gemini connection guide](https://docs.mubit.ai/guides/connect-gemini). All four server-side model settings in [.env.example](.env.example) default to Gemini 4 Argon; never expose `MUBIT_API_KEY` through a `NEXT_PUBLIC_` variable.
 
 The [Gemini source-support pilot](docs/training/gemini-source-support-evaluation-2026-10-25.md) completed two transport runs: 40 teacher calls and 24 held-out baseline cases per route, each scoring 18/24 against the authored synthetic labels. Both Gemini tasks are awaiting Mubit review with 0 kept examples; first training has not started, so adapter improvement remains unmeasured.
 
@@ -73,9 +73,9 @@ Historical request and evaluation artifacts retain the model IDs that actually p
 | Checkout strategy generation | Request `mreq_01a170a089347992a28b32b637d4f5a2` in the [checkout planning archive](docs/stage6-runs/checkout-advisory.json) | Mubit compared three advisory strategies for a coupon failure. There is no coupon-repair adapter, so this saved archive has no executable plan or approval handoff. |
 | External-source check | Discovery and passage-assessment IDs in [the source acceptance record](docs/stage5-runs/source_acceptance_1792885169199.json) | A narrow Nike employee-note claim was supported; an unsupported Google Ads outage claim was not. This was a separate source check, not causal evidence for the advertising incident. |
 
-Normal keeps a durable call ledger with the Mubit request ID, route, model, reported token use, output or error, prompt version, stable task fingerprint and per-input checksum. This lets a reviewer distinguish repeated tasks from changing case data. Provider errors and ambiguous billable requests are recorded rather than silently replayed. Cost remains unknown without configured rates. See [provider tests](tests/investigator/provider.test.ts) and [investigation validation tests](tests/investigator/validation.test.ts).
+ExplainWhy Agent keeps a durable call ledger with the Mubit request ID, route, model, reported token use, output or error, prompt version, stable task fingerprint and per-input checksum. This lets a reviewer distinguish repeated tasks from changing case data. Provider errors and ambiguous billable requests are recorded rather than silently replayed. Cost remains unknown without configured rates. See [provider tests](tests/investigator/provider.test.ts) and [investigation validation tests](tests/investigator/validation.test.ts).
 
-To exercise these paths locally, configure `MUBIT_API_KEY` and the relevant model IDs, start `npm run investigator:work` and `npm run planner:work`, then open an eligible investigation. Research is opt-in with `NORMAL_EXTERNAL_RESEARCH_ENABLED=true`. For the hackathon's Mubit-only setup, keep `NORMAL_DIRECT_GEMINI_FALLBACK=false`; enabling that fallback can send research directly to Google after an unambiguous Mubit failure. The saved [Stage 5](docs/stage5-verification.md) and [Stage 6](docs/stage6-verification.md) reports show the actual request history and acceptance limits.
+To exercise these paths locally, configure `MUBIT_API_KEY` and the relevant model IDs, start `npm run investigator:work` and `npm run planner:work`, then open an eligible investigation. Research is opt-in with `EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED=true`. For the hackathon's Mubit-only setup, keep `EXPLAINWHY_DIRECT_GEMINI_FALLBACK=false`; enabling that fallback can send research directly to Google after an unambiguous Mubit failure. The saved [Stage 5](docs/stage5-verification.md) and [Stage 6](docs/stage6-verification.md) reports show the actual request history and acceptance limits.
 
 ### Adapter training: what the console actually shows
 
@@ -176,11 +176,11 @@ flowchart LR
 | **Next.js 16, React 19 and TypeScript** | The [App Router](src/app/) provides the dashboards, simulated storefronts and HTTP API routes. React renders the operator and partner views; TypeScript is used across the app, workers and shared contracts. Versions and scripts are in [package.json](package.json). |
 | **Node.js and npm** | Run the web app, the independent monitoring/investigation/planning workers and the repeatable demo scripts. `tsx` runs the TypeScript worker and audit entry points. |
 | **MongoDB** | The [MongoDB driver](src/lib/mongodb.ts) connects to Atlas or another replica set. Scoped collections persist the immutable business-event ledger, metric snapshots, monitoring jobs, evidence, Mubit call records, diagnoses, plan versions, approvals, adapter receipts, execution history and outcome assessments. [Unique indexes](src/lib/collections.ts) support idempotency; [transactions](src/intelligence/detection/persistence.ts) commit linked records; [Change Streams](src/intelligence/monitoring/watcher.ts) wake the monitoring worker. See the [collection guide](docs/mongodb.md). |
-| **Gemini 4 Argon (`gemini-4-argon`) through Mubit** | The [Mubit gateway](src/intelligence/investigator/provider.ts) routes investigation, source-support checks, structured diagnosis and solution planning to Gemini 4 Argon through the native Gemini API by default, with an explicit Gemini OpenAI-compatible transport available for training capture. Normal records request IDs, actual model IDs, usage and validation results. |
-| **Gemini 4 Argon grounded research** | Optional [public-source research](src/intelligence/investigator/research.ts) uses the same Gemini model through Mubit with Google Search grounding. The [saved research request](docs/stage5-runs/research_1792885024061.json) records the actual model and route, including when grounding was unavailable. Normal independently checks retrieved sources before using them as context. Direct Google fallback is disabled in the documented Mubit-only setup. |
-| **Zod and `@normal/contracts`** | [Shared schemas](packages/contracts/README.md) validate events, evidence, diagnoses, plans and execution records at API, model-output and persistence boundaries. |
+| **Gemini 4 Argon (`gemini-4-argon`) through Mubit** | The [Mubit gateway](src/intelligence/investigator/provider.ts) routes investigation, source-support checks, structured diagnosis and solution planning to Gemini 4 Argon through the native Gemini API by default, with an explicit Gemini OpenAI-compatible transport available for training capture. ExplainWhy records request IDs, actual model IDs, usage and validation results. |
+| **Gemini 4 Argon grounded research** | Optional [public-source research](src/intelligence/investigator/research.ts) uses the same Gemini model through Mubit with Google Search grounding. The [saved research request](docs/stage5-runs/research_1792885024061.json) records the actual model and route, including when grounding was unavailable. ExplainWhy independently checks retrieved sources before using them as context. Direct Google fallback is disabled in the documented Mubit-only setup. |
+| **Zod and `@explainwhy/contracts`** | [Shared schemas](packages/contracts/README.md) validate events, evidence, diagnoses, plans and execution records at API, model-output and persistence boundaries. |
 | **TypeScript simulator and restricted adapters** | The [seeded digital twin](src/simulator/) generates synthetic shop, advertising, shipping and customer events. [Adapters](src/adapters/) apply only approved budget, delay-notice and banner actions to that twin; the Meta-style account, Nike-style shop and Shopify introduction are demo interfaces rather than live external accounts. |
-| **CSS, Tailwind utilities and Lucide** | [Custom CSS](src/app/globals.css) styles the dashboard and partner views; Tailwind utilities support selected components, and [Lucide icons](src/components/normal/InvestigationCanvas.tsx) label controls and states. |
+| **CSS, Tailwind utilities and Lucide** | [Custom CSS](src/app/globals.css) styles the dashboard and partner views; Tailwind utilities support selected components, and [Lucide icons](src/components/explainwhy/InvestigationCanvas.tsx) label controls and states. |
 | **Vitest, Playwright and ESLint** | [Vitest](vitest.config.mts) checks contracts, business rules and service integration; [Playwright](playwright.config.ts) checks browser flows; ESLint and TypeScript provide static checks. Recorded results and limits appear above. |
 
 The detector and evidence tools use allowed observations rather than hidden scenario labels; the [data-boundary test](tests/intelligence/leakage.test.ts) checks those module boundaries. The planner can read scoped current target state to validate a proposed action. Saved outcome history and human feedback do not automatically retrain Mubit or change the planner. The [API guide](docs/api.md) and [partner integration guide](docs/partner-integration.md) describe the interfaces; older roadmap sections are historical, while the Stage 5–8 reports record the later implementation.
@@ -190,11 +190,11 @@ The detector and evidence tools use allowed observations rather than hidden scen
 
 This illustration describes the broader product direction. The implemented flow and remaining limits are stated above and below.
 
-<img width="5760" height="3240" alt="Normal product architecture" src="https://github.com/user-attachments/assets/7fe85851-bedc-466a-84c1-6ab2cc665fc5" />
+<img width="5760" height="3240" alt="ExplainWhy Agent architecture" src="https://github.com/user-attachments/assets/7fe85851-bedc-466a-84c1-6ab2cc665fc5" />
 
 </details>
 
-## Run Normal locally
+## Run ExplainWhy Agent locally
 
 You need Node.js 22 or newer, npm, MongoDB Atlas or another MongoDB replica set, and a Mubit key with access to the configured models. Transactions and Change Streams need a replica set. The saved JSON reports can be reviewed without a database or provider account.
 

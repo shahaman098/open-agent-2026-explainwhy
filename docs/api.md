@@ -74,8 +74,8 @@ half-open `[startAt, endAt)` in **virtual** time.
 
 | Routes | Rule |
 |---|---|
-| `/api/dev/**` | `NODE_ENV=development`, or `NORMAL_DEMO_MODE=true` with header `x-normal-demo-key: $NORMAL_DEMO_KEY`; otherwise **404** |
-| `POST /api/ingest/events` | as above, or `Authorization: Bearer $NORMAL_INGEST_API_KEY`; otherwise **401** |
+| `/api/dev/**` | `NODE_ENV=development`, or `EXPLAINWHY_DEMO_MODE=true` with header `x-explainwhy-demo-key: $EXPLAINWHY_DEMO_KEY`; otherwise **404** |
+| `POST /api/ingest/events` | as above, or `Authorization: Bearer $EXPLAINWHY_INGEST_API_KEY`; otherwise **401** |
 | `/api/metrics*`, `/api/demo-store/*`, `GET /api/plans/:id` | public read (checkout is a public, bounded, server-priced mutation) |
 
 ### Simulator (dev/demo)
@@ -94,7 +94,7 @@ half-open `[startAt, endAt)` in **virtual** time.
 
 | Method | Path | Body → response |
 |---|---|---|
-| POST | `/api/ingest/events?businessId?` | canonical `IngestBatch` → canonical `IngestResult`. Per-event rejections are listed in header `x-normal-rejections`; a malformed envelope is **400**. Dedupe key: `(businessId, provenance.connectorId, provenance.sourceRecordId)`. |
+| POST | `/api/ingest/events?businessId?` | canonical `IngestBatch` → canonical `IngestResult`. Per-event rejections are listed in header `x-explainwhy-rejections`; a malformed envelope is **400**. Dedupe key: `(businessId, provenance.connectorId, provenance.sourceRecordId)`. |
 | GET | `/api/metrics?simulationRunId&startAt&endAt&bucket=window\|hour\|day&days=7&campaignId&productId&channel&device&persist=false` | `MetricSnapshot[]` (one per bucket; `completeness: partial` when the bucket ends after virtual time; rates `null` on zero denominators) |
 | GET | `/api/metrics/breakdown?simulationRunId&days=7` | UI wrapper `{ run, window, total: MetricSnapshot, daily: MetricSnapshot[], hourly (last 72h), products[] (units, revenue, stock), campaigns[] (CTR, CPA, ROAS, frequency) }` |
 | GET | `/api/demo-store/products` | `{ simulationRunId, virtualTime, servedFrom, banners[], promotions[], products[] }` — each product carries `priceOrigin` and `reference { sourceUrl, retrievedAt, dataOrigin, styleCode }` |

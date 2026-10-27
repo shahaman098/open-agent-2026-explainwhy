@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { ActionProposalT } from "@normal/contracts";
+import type { ActionProposalT } from "@explainwhy/contracts";
 import type { BusinessOutcomeAssessmentT } from "@/outcomes/schema";
 import { api, q } from "./api";
 import type { OutcomeDetailRow } from "./Outcomes";
@@ -258,7 +258,7 @@ function ActionDetail({ row, runId, onFeedbackSaved }: { row: Row; runId: string
       <div className="outcome-action-links"><Link href={investigationHref}>Investigation ↗</Link><Link href={planHref}>Reviewed plan v{row.plan.planVersion} ↗</Link><span>Recorded {formattedDate(row.execution.finishedAt)}</span></div>
     </section>
     <div className="outcome-analysis-grid"><PerformancePanel assessment={assessment} /><CriteriaPanel assessment={assessment} /></div>
-    <section className="outcome-explanation"><span className="outcome-kicker">Normal’s assessment</span><p>{assessmentCopy(assessment)}</p></section>
+    <section className="outcome-explanation"><span className="outcome-kicker">ExplainWhy’s assessment</span><p>{assessmentCopy(assessment)}</p></section>
     <div className="outcome-disclosures" aria-label="Outcome details">
       <details><summary>Original plan</summary><div className="outcome-disclosure-body"><p><strong>Objective</strong> {row.plan.objective}</p>{row.plan.summary ? <p><strong>Plan summary</strong> {row.plan.summary}</p> : null}<p><strong>Action rationale</strong> {action.rationale}</p><p><strong>Plan ID</strong> <code>{row.plan.planId}</code> · version {row.plan.planVersion}</p>{(row.plan.successCriteria ?? assessment?.successCriteria ?? []).map((criterion, index) => <p key={criterion.metric + index}>{criterionName(criterion.metric)} · {criterion.direction}{criterion.target != null ? " · target " + criterionText(criterion.metric, criterion.target) : ""} · {hours(criterion.measurementWindowMinutes)} window</p>)}</div></details>
       <details><summary>Execution receipt</summary><div className="outcome-disclosure-body">{row.receipt ? <pre>{JSON.stringify(row.receipt, null, 2)}</pre> : <p>Receipt unavailable in this scope.</p>}<p>{row.execution.result?.verification ?? "No verification note recorded."}</p></div></details>

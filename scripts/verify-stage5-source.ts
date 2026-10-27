@@ -5,7 +5,7 @@ import { callModel, gatewayRequest, promptFingerprint, providerConfig, ProviderE
 import { deduplicateSources, textUrlCandidates, verifyExternalSource } from "@/intelligence/investigator/research";
 import { SourceAssessments, type ExternalSourceT } from "@/intelligence/investigator/schemas";
 
-if (process.env.NODE_ENV !== "test" && process.env.NORMAL_ALLOW_SOURCE_ACCEPTANCE !== "true") throw new Error("Set NORMAL_ALLOW_SOURCE_ACCEPTANCE=true to run isolated live source acceptance");
+if (process.env.NODE_ENV !== "test" && process.env.EXPLAINWHY_ALLOW_SOURCE_ACCEPTANCE !== "true") throw new Error("Set EXPLAINWHY_ALLOW_SOURCE_ACCEPTANCE=true to run isolated live source acceptance");
 if (process.env.NODE_ENV !== "test") process.loadEnvFile(".env.local");
 
 const url = "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026";

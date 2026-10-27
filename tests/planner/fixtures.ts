@@ -1,5 +1,5 @@
 import handoff from "../../packages/contracts/examples/plan-handoff.json";
-import { Diagnosis, Evidence } from "@normal/contracts";
+import { Diagnosis, Evidence } from "@explainwhy/contracts";
 import type { PlanningContext } from "@/planner/context";
 import { DELAY_BANNER_MESSAGE } from "@/planner/context";
 import { PlanningOutput, type StrategyT } from "@/planner/schemas";

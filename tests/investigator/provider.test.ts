@@ -3,13 +3,13 @@ import { z } from "zod";
 import { callModel, promptFingerprint, gatewayRequest, jsonSchema, providerConfig, ProviderError } from "@/intelligence/investigator/provider";
 const schema = z.object({ ok: z.boolean() }).strict();
 const response = (content: unknown = { ok: true }, headers: Record<string, string> = { "x-middleware-request-id": "mreq_real" }) => new Response(JSON.stringify({ choices: [{ finish_reason: "stop", message: { content: JSON.stringify(content) } }], usage: { prompt_tokens: 10, completion_tokens: 4, total_tokens: 14 } }), { status: 200, headers });
-beforeEach(() => { vi.stubEnv("MUBIT_GEMINI_TRANSPORT", "native"); vi.stubEnv("MUBIT_API_KEY", "mbt_test"); vi.stubEnv("GEMINI_API_KEY", "google_test"); vi.stubEnv("NORMAL_DIRECT_GEMINI_FALLBACK", "false"); });
+beforeEach(() => { vi.stubEnv("MUBIT_GEMINI_TRANSPORT", "native"); vi.stubEnv("MUBIT_API_KEY", "mbt_test"); vi.stubEnv("GEMINI_API_KEY", "google_test"); vi.stubEnv("EXPLAINWHY_DIRECT_GEMINI_FALLBACK", "false"); });
 afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 describe("provider boundaries", () => {
   it("captures Gemini training through its own OpenAI-compatible endpoint with strict local validation", async () => {
     vi.stubEnv("MUBIT_GEMINI_TRANSPORT", "openai");
-    vi.stubEnv("NORMAL_INPUT_USD_PER_MILLION", "100");
-    vi.stubEnv("NORMAL_OUTPUT_USD_PER_MILLION", "100");
+    vi.stubEnv("EXPLAINWHY_INPUT_USD_PER_MILLION", "100");
+    vi.stubEnv("EXPLAINWHY_OUTPUT_USD_PER_MILLION", "100");
     const mock = vi.fn().mockResolvedValue(response());
     vi.stubGlobal("fetch", mock);
     const result = await callModel({ model: "gemini-4-argon", system: "s", input: {}, schema, recording: "full" });
@@ -126,5 +126,5 @@ describe("provider boundaries", () => {
     expect(schema.parse(result.toolCalls[0].arguments)).toEqual({ ok: true }); expect(JSON.parse(mock.mock.calls[0][1].body).reasoning_effort).toBe("none");
   });
   it("does not enable direct research implicitly", async () => { await expect(gatewayRequest("https://generativelanguage.googleapis.com/v1beta/models/test:generateContent", {}, "google_direct", "test")).rejects.toBeInstanceOf(ProviderError); });
-  it("attributes explicitly enabled direct research correctly and sends only its key", async () => { vi.stubEnv("NORMAL_DIRECT_GEMINI_FALLBACK", "true"); const mock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ usageMetadata: { promptTokenCount: 5, candidatesTokenCount: 3, thoughtsTokenCount: 2, totalTokenCount: 10 } }))); vi.stubGlobal("fetch", mock); const r = await gatewayRequest("https://generativelanguage.googleapis.com/v1beta/models/test:generateContent", {}, "google_direct", "test"); expect(r.metadata).toMatchObject({ provider: "google_direct", requestId: null, totalTokens: 10, outputTokens: 5 }); expect(mock.mock.calls[0][1].headers).toEqual({ "content-type": "application/json", "x-goog-api-key": "google_test" }); });
+  it("attributes explicitly enabled direct research correctly and sends only its key", async () => { vi.stubEnv("EXPLAINWHY_DIRECT_GEMINI_FALLBACK", "true"); const mock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ usageMetadata: { promptTokenCount: 5, candidatesTokenCount: 3, thoughtsTokenCount: 2, totalTokenCount: 10 } }))); vi.stubGlobal("fetch", mock); const r = await gatewayRequest("https://generativelanguage.googleapis.com/v1beta/models/test:generateContent", {}, "google_direct", "test"); expect(r.metadata).toMatchObject({ provider: "google_direct", requestId: null, totalTokens: 10, outputTokens: 5 }); expect(mock.mock.calls[0][1].headers).toEqual({ "content-type": "application/json", "x-goog-api-key": "google_test" }); });
 });

@@ -67,4 +67,4 @@ async function main() {
   writeFileSync(`docs/stage5-runs/${simulationRunId}.json`, JSON.stringify({ metrics, result }, null, 2));
   console.log(JSON.stringify(metrics, null, 2));
 }
-main().catch((e: unknown) => { console.error(e instanceof Error ? e.message : "Demo failed"); process.exitCode = 1; }).finally(async () => { if (globalThis._normalMongoClientPromise) await (await getMongoClient()).close(); });
+main().catch((e: unknown) => { console.error(e instanceof Error ? e.message : "Demo failed"); process.exitCode = 1; }).finally(async () => { if (globalThis._explainwhyMongoClientPromise) await (await getMongoClient()).close(); });

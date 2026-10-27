@@ -1,7 +1,7 @@
 import "server-only";
 
 import { z } from "zod";
-import { ActionProposal } from "@normal/contracts";
+import { ActionProposal } from "@explainwhy/contracts";
 import { ingestEvents } from "@/ingestion/service";
 import { buildSimulatorEvent } from "@/simulator/events";
 import type { SimulatedStorefront, StorefrontBanner } from "@/types/domain";
@@ -10,7 +10,7 @@ import { ADAPTER_LIMITS, AdapterError, type ActionContext, type AdapterResult } 
 
 const PublishBannerParams = ActionProposal.options[2].shape.params;
 if (ActionProposal.options[2].shape.actionType.value !== "storefront.publish_banner") {
-  throw new Error("@normal/contracts ActionProposal option order changed; update adapter param selection");
+  throw new Error("@explainwhy/contracts ActionProposal option order changed; update adapter param selection");
 }
 export type PublishBannerParamsT = z.infer<typeof PublishBannerParams>;
 

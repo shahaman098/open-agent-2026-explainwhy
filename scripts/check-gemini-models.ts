@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
-import { DiagnosisModelOutput } from "@normal/contracts";
+import { DiagnosisModelOutput } from "@explainwhy/contracts";
 import { ReasoningOutput } from "../src/intelligence/investigator/schemas";
 import { callModel, providerConfig, ProviderError } from "../src/intelligence/investigator/provider";
 import { PlanningOutput } from "../src/planner/schemas";

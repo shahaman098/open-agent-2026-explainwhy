@@ -18,7 +18,7 @@ flowchart LR
     ING[ingestBatch\nZod strict · eventBusinessRules · tenant scope\nunique (businessId, connectorId, sourceRecordId)]
   end
 
-  subgraph Mongo["MongoDB normal_dev"]
+  subgraph Mongo["MongoDB explainwhy_dev"]
     ST[(simulator_state)]
     DOM[(simulated_* domain records)]
     EV[(business_events\nimmutable ledger)]

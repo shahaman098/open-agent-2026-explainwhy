@@ -1,7 +1,7 @@
 import "server-only";
 
 import { z } from "zod";
-import { ActionProposal } from "@normal/contracts";
+import { ActionProposal } from "@explainwhy/contracts";
 import { ingestEvents } from "@/ingestion/service";
 import { buildSimulatorEvent } from "@/simulator/events";
 import type { SimulatedCampaign } from "@/types/domain";
@@ -11,7 +11,7 @@ import { ADAPTER_LIMITS, AdapterError, type ActionContext, type AdapterResult } 
 /** Exact params of the canonical `ads.set_daily_budget` action. */
 const SetDailyBudgetParams = ActionProposal.options[0].shape.params;
 if (ActionProposal.options[0].shape.actionType.value !== "ads.set_daily_budget") {
-  throw new Error("@normal/contracts ActionProposal option order changed; update adapter param selection");
+  throw new Error("@explainwhy/contracts ActionProposal option order changed; update adapter param selection");
 }
 export type SetDailyBudgetParamsT = z.infer<typeof SetDailyBudgetParams>;
 

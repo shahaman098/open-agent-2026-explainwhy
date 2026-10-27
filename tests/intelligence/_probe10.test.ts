@@ -3,13 +3,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { it } from "vitest";
 import { writeFileSync, appendFileSync } from "node:fs";
-import { Anomaly } from "@normal/contracts";
+import { Anomaly } from "@explainwhy/contracts";
 import { getDb } from "@/lib/mongodb";
 import { COLLECTIONS } from "@/lib/collections";
 import { computeSnapshots } from "@/analytics/metrics";
 import type { FindingDoc } from "@/intelligence/detection/persistence";
 import { TEST_BUSINESS } from "../helpers";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe10.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe10.txt");
 it("diag", async () => {
   writeFileSync(OUT, "");
   const db = await getDb();

@@ -43,7 +43,7 @@ await db.collection('model_calls').createIndex({ businessId: 1, taskKey: 1, crea
 await db.collection('model_corrections').createIndex({ businessId: 1, diagnosisId: 1 });
 ```
 
-**Data model note:** Keep source-provider IDs separate from Normal IDs, and use currency as an explicit field. Do not count refunds twice when computing net revenue. Do not add users' email addresses to LLM evidence packages unless necessary and authorised. Limit access to supplier and customer data. Use stable seed/run IDs to make demo repeatable.
+**Data model note:** Keep source-provider IDs separate from ExplainWhy IDs, and use currency as an explicit field. Do not count refunds twice when computing net revenue. Do not add users' email addresses to LLM evidence packages unless necessary and authorised. Limit access to supplier and customer data. Use stable seed/run IDs to make demo repeatable.
 
 ## Implemented monitoring storage
 

@@ -26,7 +26,7 @@
       "@/*": [
         "./src/*"
       ],
-      "@normal/contracts": [
+      "@explainwhy/contracts": [
         "./packages/contracts/src/index.ts"
       ]
     }

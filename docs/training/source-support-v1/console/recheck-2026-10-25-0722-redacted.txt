@@ -6,9 +6,9 @@ URL: https://app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_fa0a
     - link "All projects":
       - /url: /console/
       - generic: Mubit
-    - 'button "Project: normal-1792783517785903653"':
+    - 'button "Project: explainwhy-1792783517785903653"':
       - generic: "N"
-      - generic: normal-1792783517785903653
+      - generic: explainwhy-1792783517785903653
       - generic: production
     - paragraph: Project
     - list "Project":
@@ -67,14 +67,14 @@ URL: https://app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_fa0a
       - /url: /console/projects/ws-31028979027c7c75/integration
       - text: How Mubit works
     - paragraph:
-      - generic: Normal
+      - generic: ExplainWhy
     - 'button "[account email redacted], Admin: account menu"':
       - generic: EG
       - generic: [account email redacted]
       - generic: Admin
 - banner:
   - navigation "Breadcrumb":
-    - link "normal-1792783517785903653":
+    - link "explainwhy-1792783517785903653":
       - /url: /console/projects/ws-31028979027c7c75
     - generic: Task
   - button "Search pages":

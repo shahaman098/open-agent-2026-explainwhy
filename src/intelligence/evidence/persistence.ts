@@ -1,7 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import type { Db } from "mongodb";
-import type { EvidenceT, InvestigationT } from "@normal/contracts";
+import type { EvidenceT, InvestigationT } from "@explainwhy/contracts";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import type { ToolSelection } from "./policies";
 import type { DataOrigin, ToolName } from "./types";

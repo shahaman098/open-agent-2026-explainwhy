@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { SimulatorRun, SimulatorTickResponse } from "@normal/contracts";
+import { SimulatorRun, SimulatorTickResponse } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 import { loadState } from "@/simulator/persistence";

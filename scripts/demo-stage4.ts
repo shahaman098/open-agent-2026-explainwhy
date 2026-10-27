@@ -5,7 +5,7 @@ import { COLLECTIONS } from "../src/lib/collections";
 import { startRun, tickRun, injectScenario } from "../src/simulator/runtime";
 import { resolveSources } from "../src/intelligence/evidence/verification";
 import type { CollectionSummary } from "../src/intelligence/evidence/orchestrator";
-import type { EvidenceList, Trace, MonitorStatus } from "../src/components/normal/api";
+import type { EvidenceList, Trace, MonitorStatus } from "../src/components/explainwhy/api";
 
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 const baseUrl = process.argv[2] ?? "http://localhost:3000";
@@ -16,7 +16,7 @@ const query = new URLSearchParams(scope).toString();
 
 async function api<T>(path: string, data?: unknown): Promise<T> {
   const headers: Record<string, string> = { "content-type": "application/json" };
-  if (process.env.NORMAL_DEMO_KEY) headers["x-normal-demo-key"] = process.env.NORMAL_DEMO_KEY;
+  if (process.env.EXPLAINWHY_DEMO_KEY) headers["x-explainwhy-demo-key"] = process.env.EXPLAINWHY_DEMO_KEY;
   const response = await fetch(`${baseUrl}${path}`, { headers, ...(data === undefined ? {} : { method: "POST", body: JSON.stringify(data) }) });
   if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
   return response.json() as Promise<T>;
@@ -79,4 +79,4 @@ async function main() {
 }
 
 main().catch((error: unknown) => { console.error(describeDbError(error)); process.exitCode = 1; })
-  .finally(async () => { if (globalThis._normalMongoClientPromise) await (await getMongoClient()).close(); });
+  .finally(async () => { if (globalThis._explainwhyMongoClientPromise) await (await getMongoClient()).close(); });

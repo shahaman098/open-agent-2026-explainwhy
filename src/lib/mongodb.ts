@@ -2,12 +2,12 @@ import "server-only";
 
 import { MongoClient, type Db } from "mongodb";
 
-const DEFAULT_DB_NAME = "normal_dev";
+const DEFAULT_DB_NAME = "explainwhy_dev";
 
 // Cache the client on globalThis so Next.js dev hot reloads (which re-evaluate
 // this module) reuse one connection pool instead of opening a new one each time.
 declare global {
-  var _normalMongoClientPromise: Promise<MongoClient> | undefined;
+  var _explainwhyMongoClientPromise: Promise<MongoClient> | undefined;
 }
 
 export class DatabaseConfigError extends Error {
@@ -33,7 +33,7 @@ export function getDbName(): string {
 }
 
 async function connect(): Promise<MongoClient> {
-  const client = new MongoClient(getMongoUri(), { appName: "normal" });
+  const client = new MongoClient(getMongoUri(), { appName: "explainwhy" });
   try {
     return await client.connect();
   } catch (error) {
@@ -51,17 +51,17 @@ async function connect(): Promise<MongoClient> {
  * importing this module never opens a connection during build.
  */
 export function getMongoClient(): Promise<MongoClient> {
-  if (!globalThis._normalMongoClientPromise) {
-    globalThis._normalMongoClientPromise = connect().catch((error: unknown) => {
+  if (!globalThis._explainwhyMongoClientPromise) {
+    globalThis._explainwhyMongoClientPromise = connect().catch((error: unknown) => {
       // Drop the failed promise so the next request retries the connection.
-      globalThis._normalMongoClientPromise = undefined;
+      globalThis._explainwhyMongoClientPromise = undefined;
       throw error;
     });
   }
-  return globalThis._normalMongoClientPromise;
+  return globalThis._explainwhyMongoClientPromise;
 }
 
-/** Returns the Normal database (MONGODB_DB, default "normal_dev"). */
+/** Returns the ExplainWhy database (MONGODB_DB, default "explainwhy_dev"). */
 export async function getDb(dbName: string = getDbName()): Promise<Db> {
   const client = await getMongoClient();
   return client.db(dbName);

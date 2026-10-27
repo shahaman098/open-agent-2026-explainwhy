@@ -9,7 +9,7 @@ See [Stage 7 verification](stage7-verification.md) for execution results and
 
 ## What you consume
 
-- `GET /api/plans/:id` → canonical `PlanHandoff` `{ plan, diagnosis, evidence }` validated with `@normal/contracts`
+- `GET /api/plans/:id` → canonical `PlanHandoff` `{ plan, diagnosis, evidence }` validated with `@explainwhy/contracts`
   before it is returned. Stage 6 now produces real persisted proposals from completed investigations.
   Use `?businessId=...&simulationRunId=...&planVersion=...` for the exact reviewed version. The legacy
   `POST /api/dev/plans/seed-fixture` remains available for the canonical example.
@@ -98,7 +98,7 @@ callback events exist in the ledger (`stateMatches`, `callbackEventsPresent`).
 
 ### Guarantees
 
-- Params are parsed with the **exact** `@normal/contracts` `ActionProposal` param schemas; unknown keys fail.
+- Params are parsed with the **exact** `@explainwhy/contracts` `ActionProposal` param schemas; unknown keys fail.
 - Server-side limits always win over requested values (`ADAPTER_LIMITS`): max daily budget £1,000, max 4× budget
   change per action, ≤200 delay-notice recipients, banner ≤160 chars and ≤14 days.
 - Idempotent: the first execution for an `idempotencyKey` is recorded in `action_receipts`; replays return the

@@ -1,6 +1,6 @@
-# Normal — Nike Digital Twin: Annotated Contract & Integration Guide
+# ExplainWhy — Nike Digital Twin: Annotated Contract & Integration Guide
 
-**Project:** Normal — Making seamless operations the new normal  
+**Project:** ExplainWhy — Making seamless operations the new normal  
 **Scope:** Nike-branded, unaffiliated hackathon **simulation** using cited public reference data and synthetic internal operations.  
 **Authoritative runtime schemas:** [`../packages/contracts/src/contracts.ts`](../packages/contracts/src/contracts.ts)  
 **Cross-record checks:** [`../packages/contracts/src/invariants.ts`](../packages/contracts/src/invariants.ts)  
@@ -16,7 +16,7 @@
 | Public Nike reference material | Nike.com product title, public listed price, Nike IR quarterly numbers, official product page | Specific publicly accessed source, dated | Catalogue context; case-study labels | Store full source URL, access timestamp, and `official_public`/`third_party_public`; never call it internal Nike operational data |
 | Synthetic Nike operations | Individual orders, shoppers, sales conversion, ad budgets, fulfilment exceptions | Simulator state and domain records | Canonical event ingestion, dashboards, diagnosis | Label as simulated; source = `simulator`; never label as actual Nike transactions |
 | Canonical observed data | `BusinessEvent` | Ingestion service and persisted event records | Analytics, anomaly detection, evidence | Immutable and deduplicated; only defined enum values; do not inject hidden fault labels |
-| Derived metrics and conclusions | `MetricSnapshot`, eventual `Evidence`, `Diagnosis` | Analytics or validated model output with source references | Normal intelligence | Recompute from stored records; diagnosis is an inference, not hidden truth |
+| Derived metrics and conclusions | `MetricSnapshot`, eventual `Evidence`, `Diagnosis` | Analytics or validated model output with source references | ExplainWhy intelligence | Recompute from stored records; diagnosis is an inference, not hidden truth |
 | Hidden simulator ground truth | `ScenarioGroundTruth` | Private simulator/evaluation collections | Scenario assertion tests and independent evaluation ONLY | Never pass this to Mubit or any generated diagnosis/evidence context |
 | Executable business changes | `ProposedPlan`, `PlanApproval`, `AgentMission`, `ActionExecution`, `ActionOutcome` | Planner, owner approval, partner agent execution | Approved demo simulator side effects | No execution before version-specific approval, permissions, idempotency and read-back verification |
 
@@ -233,4 +233,4 @@ flowchart LR
 - Both must use the **same** `ProposedPlan`, `PlanHandoff`, `PlanApproval`, `ActionExecution` schemas.
 - The simulator team should supply safe, well-documented read/write adapters; the execution team supplies approval/policy checks. Never give generated model text raw DB write powers.
 
-**Simulator “done” means:** a user can simulate a Nike product purchase; MongoDB records a Zod-valid, deduplicated `order.completed`; inventory and revenue change correctly; incidents influence subsequent events; the numbers survive refresh/restart; authorised changes to campaign state affect later ticks; and tests prove these behaviours. It does **not** mean the entire Normal intelligence system is finished.
+**Simulator “done” means:** a user can simulate a Nike product purchase; MongoDB records a Zod-valid, deduplicated `order.completed`; inventory and revenue change correctly; incidents influence subsequent events; the numbers survive refresh/restart; authorised changes to campaign state affect later ticks; and tests prove these behaviours. It does **not** mean the entire ExplainWhy intelligence system is finished.

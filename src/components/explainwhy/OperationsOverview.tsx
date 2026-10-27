@@ -202,8 +202,8 @@ export function OperationsOverview() {
   ];
 
   return (
-    <div className="normal-overview" data-testid="normal-overview">
-      <div className="layout normal-overview-grid">
+    <div className="explainwhy-overview" data-testid="explainwhy-overview">
+      <div className="layout explainwhy-overview-grid">
         <section className="left-column top-column">
           <article className="card risk-card" data-testid="overview-run">
             <div className="risk-head"><h2>Operational Risk</h2><span className="period">Selected period: Month</span></div>
@@ -234,9 +234,9 @@ export function OperationsOverview() {
           </article>
 
           <article className="card activity-card" data-testid="overview-activity" id="activity">
-            <div className="activity-head"><h2>Normal Activity</h2><span>{activity.length} updates</span></div>
+            <div className="activity-head"><h2>ExplainWhy Agent activity</h2><span>{activity.length} updates</span></div>
             <ol aria-label="Recent activity" tabIndex={0}>{activity.map((item) => <li key={item.title}><strong>{item.title}</strong><span>{item.detail}</span></li>)}</ol>
-            <div className="activity-logo"><Image className="activity-logo-icon" src="/assets/Icon.svg" alt="Normal" width={141} height={140} /></div>
+            <div className="activity-logo"><Image className="activity-logo-icon" src="/assets/Icon.svg" alt="ExplainWhy Agent" width={141} height={140} /></div>
           </article>
           <CampaignCarousel campaigns={state.campaigns ?? []} metrics={breakdown.campaigns ?? []} withRun={withRun} />
         </section>

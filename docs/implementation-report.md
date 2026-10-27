@@ -46,7 +46,7 @@ Scenario labels never enter the policy (asserted by test).
 counter incremented. Concurrent requests contend on the collection lock; the loser receives
 `evidence_collection_in_progress` (409). A failed or empty tool never invalidates the others (`partial` status).
 
-### Deliverable B — unified dashboard (`src/components/normal/`, `src/app/dashboard/`)
+### Deliverable B — unified dashboard (`src/components/explainwhy/`, `src/app/dashboard/`)
 
 | Route / component | Content |
 |---|---|
@@ -67,7 +67,7 @@ gained an `eventId` lookup. All use the existing development/demo guard and busi
 
 The starting working tree contained 15 modified tracked files plus the evidence module, capability API, four new
 API route handlers, three dashboard pages, eleven dashboard components/helpers, and two new test specs. The audit
-read all tracked diffs and the new implementation. The interrupted log `/tmp/normal-vitest2.log` was recovered:
+read all tracked diffs and the new implementation. The interrupted log `/tmp/explainwhy-vitest2.log` was recovered:
 **44 files / 231 tests passed, exit 0, 1,276.00 s**. These are prior-session results, not inferred from the report.
 A dev server was already running on port 3001; no monitoring worker process was running.
 
@@ -119,7 +119,7 @@ on port 3001 remained available throughout.
 ### Existing demonstration and data preservation
 
 Before testing, `nike_demo.activeSimulationRunId` was `demo_nike`. A read-only SHA-256 inventory captured all
-24 nonempty run-scoped collections in `/tmp/normal-stage4-recovery/demo-before.json`: 5,790 canonical events,
+24 nonempty run-scoped collections in `/tmp/explainwhy-stage4-recovery/demo-before.json`: 5,790 canonical events,
 132 metric snapshots, 105 orders, 4,843 sessions, six anomalies, one incident, one investigation, seven evidence
 records, seven detail records, one collection and eight tool traces. The run was already at tick 96, virtual
 `2026-10-05T00:00:00.000Z`, so restoration of simulator data was unnecessary.
@@ -142,7 +142,7 @@ Isolated live demonstration via `npm run demo:stage4 -- http://localhost:3001`:
   checked hidden simulator labels or ground-truth fields.
 - Headless browser inspection confirmed the overview links to the correct run, the investigation is visible, the
   evidence explorer displays seven records, and the timeline shows eight executions (**6 completed, 2 empty**).
-- Afterward, all **24 saved `demo_nike` collection checksums matched** `/tmp/normal-stage4-recovery/demo-before.json`,
+- Afterward, all **24 saved `demo_nike` collection checksums matched** `/tmp/explainwhy-stage4-recovery/demo-before.json`,
   and `nike_demo.activeSimulationRunId` was `demo_nike`.
 - The first attempted isolated run (`demo_stage4_1792857559987`) exposed the script's former fixed three-job wait:
   it persisted an investigation after four jobs, then the script was stopped before evidence collection. That run
@@ -197,7 +197,7 @@ the earlier sessions was regenerated or reverted; one UI defect was fixed and th
 |---|---|---|
 | Simulator stage (Milestones 0–7 below) | first session (Claude) | contracts package, reference catalogue, engine/runtime/checkout, ingestion, analytics, adapters, scenarios, storefront, control room, full-system regression |
 | Detector core | first session, repaired by the second | baselines, seven rule families, correlation, severity, evaluation harness, `/dev/monitor`, canonical anomaly/investigation persistence |
-| Durable monitoring (see "Recovery audit") | second session (Codex) | signed-deviance fix (`normal-detector-1.1.0`), atomic graph publication, ready windows, unique jobs, atomic claims, renewable leases, bounded retries, reconciliation, Change Stream worker, resume-token checkpoints, scoped investigation lookup, worker health in the UI, evaluation report, docs |
+| Durable monitoring (see "Recovery audit") | second session (Codex) | signed-deviance fix (`explainwhy-detector-1.1.0`), atomic graph publication, ready windows, unique jobs, atomic claims, renewable leases, bounded retries, reconciliation, Change Stream worker, resume-token checkpoints, scoped investigation lookup, worker health in the UI, evaluation report, docs |
 | Final verification | this session | regression run to completion, one UI fix, live Method A + Method B demonstration, this section |
 
 The second session's uncommitted work (42 modified files, plus `src/intelligence/monitoring/`, `src/simulator/monitoring.ts`,
@@ -237,7 +237,7 @@ unchanged since the initial commit, so this predates both agent sessions; existi
 with its own idempotency key, and the notice sums the events. The contract was not touched. New E2E test
 `control-room.spec.ts › +72h exceeds the canonical 60-tick request limit…` (both projects).
 
-### Verification results (fresh, this session, against Atlas `normal_dev`)
+### Verification results (fresh, this session, against Atlas `explainwhy_dev`)
 
 | Check | Command | Result |
 |---|---|---|
@@ -280,13 +280,13 @@ been left in the database as a reference; remove it with a `reset: true` start o
 
 | Step | Observation |
 |---|---|
-| 72 healthy hours (two 36-tick requests) | both ticks returned `x-normal-auto-monitor: scheduled`; two 36-hour ready windows, each citing 36 persisted complete global snapshots; two jobs completed; `lastAsOf` = watermark; 0 investigations |
+| 72 healthy hours (two 36-tick requests) | both ticks returned `x-explainwhy-auto-monitor: scheduled`; two 36-hour ready windows, each citing 36 persisted complete global snapshots; two jobs completed; `lastAsOf` = watermark; 0 investigations |
 | worker not running | status API and UI reported *no current connection confirmed* |
 | `npm run monitor:watch` | Atlas replica set verified; worker doc `connected: true`, heartbeat and `lastReconciledAt` present; UI shows *connected (recent heartbeat)* |
 | inject `ad_fatigue` 0.8, +24 h | one 24-hour ready window (24/24 snapshots); Method A header `scheduled`; the worker's `lastScheduledJobKey` equalled the job created for that window — both triggers converged on **one** job, `attempts: 1`; result: 1 incident, 1 investigation `inv_t_live_1792830534_d07498fe5b17`, 6 canonical anomalies, 21 findings. First global CTR anomaly at 04 Oct 08:00, i.e. 8 virtual hours after injection |
 | hard-kill the watcher, +6 h | Method A alone processed the new window (`attempts: 1`, still 1 investigation). The crashed worker's heartbeat went stale and the status API flipped to `connected: false` within 45 s without any record update |
 | restart watcher | waited for the crashed owner's 120 s lease to expire ("already running" ×3), acquired a new token, resumed from the stored BSON token, checkpointed the insert it had missed; the already-completed job stayed at `attempts: 1` |
-| `NORMAL_AUTO_MONITOR=false`, +6 h | header `disabled`; the Change Stream alone scheduled and processed the window; `lastAsOf` advanced to the watermark; still 1 investigation |
+| `EXPLAINWHY_AUTO_MONITOR=false`, +6 h | header `disabled`; the Change Stream alone scheduled and processed the window; `lastAsOf` advanced to the watermark; still 1 investigation |
 | kill watcher, +6 h with direct processing disabled | durable ready window with no job (6 windows, 5 jobs) |
 | restart watcher | reconciliation and resume both found it; 6 windows, 6 jobs, all `completed` with `attempts: 1`; 1 investigation |
 | repeat `POST /api/dev/monitor/run` | `repeatScan: true`, 0 investigations created, 0 incidents created |
@@ -323,7 +323,7 @@ held-out seed) and none on the fresh held-out seeds. No threshold was adjusted i
 npm run dev                                  # app on :3000 (direct monitoring enabled in development)
 npm run monitor:check                        # verify Atlas Change Stream access
 npm run monitor:watch                        # standalone worker; Ctrl-C releases the lease
-NORMAL_AUTO_MONITOR=false npm run dev        # demonstrate the Change Stream path alone
+EXPLAINWHY_AUTO_MONITOR=false npm run dev        # demonstrate the Change Stream path alone
 npm run verify                               # contracts + typecheck + lint + vitest
 npm run build && npm run test:e2e            # production build; Playwright against next dev -p 3101
 ```
@@ -353,7 +353,7 @@ write/read check passed (2/2). Historical results below describe the earlier sim
 
 The detector fix uses signed root deviance for declining business counts/proportions while retaining
 robust variance inflation, baseline uncertainty, minimum samples and exact-tail guards. Detector version:
-`normal-detector-1.1.0`. The existing 56 focused detector tests and eight multi-seed evaluation tests passed.
+`explainwhy-detector-1.1.0`. The existing 56 focused detector tests and eight multi-seed evaluation tests passed.
 No detection assertion or threshold was relaxed.
 
 ### Completed implementation
@@ -467,13 +467,13 @@ manufacture confidence to satisfy an expected scenario name.
    not create another investigation.
 7. Stop the watcher with Ctrl-C and advance six hours. Method A still processes the ready window. Restart the
    watcher; its checkpoint/reconciliation must not duplicate the result.
-8. To demonstrate Method B alone, restart terminal A using `NORMAL_AUTO_MONITOR=false npm run dev` and keep
+8. To demonstrate Method B alone, restart terminal A using `EXPLAINWHY_AUTO_MONITOR=false npm run dev` and keep
    the watcher running. Advance another six hours; the stream schedules the same shared processor.
 9. To demonstrate missed-notification recovery, stop the watcher while direct processing is disabled, advance
    six hours, then restart the watcher. The ready record remains durable and reconciliation processes it.
 
 The status endpoint is `/api/dev/monitor/run?businessId=nike_demo&simulationRunId=YOUR_RUN_ID`. Production demo
-requests require the existing `x-normal-demo-key`; do not expose that key in shared screenshots or scripts.
+requests require the existing `x-explainwhy-demo-key`; do not expose that key in shared screenshots or scripts.
 
 ### Current limits
 
@@ -491,15 +491,15 @@ requests require the existing `x-normal-demo-key`; do not expose that key in sha
   and explicit business/run scoping are preserved.
 
 Stage: simulator, ingestion, analytics, demo interfaces. Business: **Nike — Unaffiliated Simulation** (`nike_demo`).
-Repository: Next.js 16.4.3 (App Router, Cache Components), React 19.3, MongoDB driver 7.7, Atlas `normal_dev`.
+Repository: Next.js 16.4.3 (App Router, Cache Components), React 19.3, MongoDB driver 7.7, Atlas `explainwhy_dev`.
 
 Every milestone below followed implement → test → run → fix → re-run. Test counts are from the final run; see
 "Final verification" for the exact commands and outcomes.
 
 ## Milestone 0 — Repository and contracts ✅
 
-- Moved the supplied bundle into `packages/contracts/` as the npm workspace `@normal/contracts` (single source of
-  truth; root tsconfig path alias `@normal/contracts` → `packages/contracts/src/index.ts`). `src/contracts.ts`,
+- Moved the supplied bundle into `packages/contracts/` as the npm workspace `@explainwhy/contracts` (single source of
+  truth; root tsconfig path alias `@explainwhy/contracts` → `packages/contracts/src/index.ts`). `src/contracts.ts`,
   `src/invariants.ts`, fixtures and the validation script are byte-identical **except** two import specifiers in the
   barrel/example files (`./contracts.js` → `./contracts`), because Turbopack cannot resolve `.js`-suffixed
   specifiers to `.ts` sources. No schema, enum or field changed. The package tsconfig uses `moduleResolution: Bundler`.
@@ -627,7 +627,7 @@ replay comparison included boundary-timestamped tick-72 events on one side). No 
 - Reference prices were observed on 2026-10-24 and may change; the UI states this.
 - E2E uses run `e2e_run` inside `nike_demo` and makes it the storefront's active run.
 
-## Historical simulator-stage verification (2026-10-24, against Atlas `normal_dev`)
+## Historical simulator-stage verification (2026-10-24, against Atlas `explainwhy_dev`)
 
 | Check | Command | Result |
 |---|---|---|

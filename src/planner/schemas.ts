@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SuccessCriterion, type ProposedPlanT, type EvidenceT } from "@normal/contracts";
+import { SuccessCriterion, type ProposedPlanT, type EvidenceT } from "@explainwhy/contracts";
 import type { ScopeT, ReportT, StateT } from "@/intelligence/investigator/schemas";
 import type { CallMetadata } from "@/intelligence/investigator/provider";
 

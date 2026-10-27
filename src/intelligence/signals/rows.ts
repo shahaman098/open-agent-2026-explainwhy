@@ -1,4 +1,4 @@
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 
 /**
  * Hour-grouped observations derived from the canonical `business_events` ledger only.

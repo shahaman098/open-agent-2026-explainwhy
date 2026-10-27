@@ -1,4 +1,4 @@
-# Normal dashboard · HTML design handoff
+# ExplainWhy dashboard · HTML design handoff
 
 Static HTML snapshots of all ten dashboard routes, including the Operations Overview (home page). Open any `.html` file directly in a browser. The overview contains the actual rendered dashboard markup, original application CSS, and embedded fonts in one file; the other pages use the shared `styles.css`.
 

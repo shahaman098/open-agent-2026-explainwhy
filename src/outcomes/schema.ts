@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { SuccessCriterion } from '@normal/contracts';
+import { SuccessCriterion } from '@explainwhy/contracts';
 
 export const OutcomeScope = z.object({
   businessId: z.string().regex(/^[a-z0-9_]{1,64}$/),

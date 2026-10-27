@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import type { Db } from "mongodb";
-import { PlanHandoff } from "@normal/contracts";
+import { PlanHandoff } from "@explainwhy/contracts";
 import { getDb } from "@/lib/mongodb";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { InvestigationState, type ScopeT } from "@/intelligence/investigator/schemas";

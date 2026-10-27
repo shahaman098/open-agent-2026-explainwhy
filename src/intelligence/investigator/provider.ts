@@ -69,7 +69,7 @@ const finite = (x: unknown) => typeof x === "number" && Number.isFinite(x) && x 
 export async function gatewayRequest(route: string, body: unknown, provider: CallMetadata["provider"], model: string, timeoutMs = 60_000, recording?: ModelRequest["recording"]): Promise<{ body: Record<string, unknown>; metadata: CallMetadata }> {
   const config = providerConfig();
   const direct = provider === "google_direct";
-  if (direct && (process.env.NORMAL_DIRECT_GEMINI_FALLBACK !== "true" || !process.env.GEMINI_API_KEY)) throw new ProviderError("direct_fallback_disabled", false, false);
+  if (direct && (process.env.EXPLAINWHY_DIRECT_GEMINI_FALLBACK !== "true" || !process.env.GEMINI_API_KEY)) throw new ProviderError("direct_fallback_disabled", false, false);
   const native = route.includes(":generateContent");
   const key = direct ? process.env.GEMINI_API_KEY! : config.key;
   const started = Date.now();
@@ -83,7 +83,7 @@ export async function gatewayRequest(route: string, body: unknown, provider: Cal
     // Never echo provider bodies: they can include submitted data or credentials.
     const errorPayload = await response.json().catch(() => ({})) as { error?: { code?: string; message?: string } };
     const diagnostic = String(errorPayload.error?.message || "").replace(/(?:mbt_|sk-|AIza)[A-Za-z0-9_-]+/g, "[redacted]").slice(0, 500);
-    if (process.env.NORMAL_PROVIDER_DIAGNOSTICS === "true") console.error(JSON.stringify({ status: response.status, diagnostic }));
+    if (process.env.EXPLAINWHY_PROVIDER_DIAGNOSTICS === "true") console.error(JSON.stringify({ status: response.status, diagnostic }));
     const retryable = response.headers.get("x-should-retry") !== "false" && [429, 503].includes(response.status);
     const retryAfter = Math.min(60_000, Math.max(1000, Number(response.headers.get("retry-after") || 1) * 1000));
     throw new ProviderError(`http_${response.status}`, retryable, response.status >= 500, metadata, retryAfter);
@@ -96,8 +96,8 @@ export async function gatewayRequest(route: string, body: unknown, provider: Cal
   metadata.inputTokens = finite(usage.prompt_tokens ?? usage.promptTokenCount);
   metadata.outputTokens = finite(usage.completion_tokens ?? (typeof usage.candidatesTokenCount === "number" ? usage.candidatesTokenCount + (finite(usage.thoughtsTokenCount) || 0) : null));
   metadata.totalTokens = finite(usage.total_tokens ?? usage.totalTokenCount);
-  const inputRate = finite(Number(process.env.NORMAL_INPUT_USD_PER_MILLION ?? NaN));
-  const outputRate = finite(Number(process.env.NORMAL_OUTPUT_USD_PER_MILLION ?? NaN));
+  const inputRate = finite(Number(process.env.EXPLAINWHY_INPUT_USD_PER_MILLION ?? NaN));
+  const outputRate = finite(Number(process.env.EXPLAINWHY_OUTPUT_USD_PER_MILLION ?? NaN));
   if (!model.startsWith("gemini-") && !native && inputRate !== null && outputRate !== null && metadata.inputTokens !== null && metadata.outputTokens !== null) metadata.estimatedCostUsd = (metadata.inputTokens * inputRate + metadata.outputTokens * outputRate) / 1e6;
   return { body: data, metadata };
 }

@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { BusinessEvent, MetricSnapshot, type BusinessEventT } from "@normal/contracts";
+import { BusinessEvent, MetricSnapshot, type BusinessEventT } from "@explainwhy/contracts";
 import { readCampaign, setDailyBudget, verifyAction } from "@/adapters";
 import { campaignBreakdown, computeSnapshots, snapshotTickWindows } from "@/analytics/metrics";
 import { COLLECTIONS } from "@/lib/collections";

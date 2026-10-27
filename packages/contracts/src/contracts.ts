@@ -1,4 +1,4 @@
-/** Normal v1 shared contracts. Runtime schemas use Zod 3.25.x. */
+/** ExplainWhy v1 shared contracts. Runtime schemas use Zod 3.25.x. */
 import { z } from 'zod';
 
 // ---------- Shared primitives ----------

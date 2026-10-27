@@ -3,7 +3,7 @@ Browser tab: 1331642560, Title: "Task — Middleware console", URL: "https://app
 	1 container app
 		2 container Console
 			3 link Description: All projects, Value: app.mubit.ai/console/
-			4 pop up button (collapsed) Description: Project: normal-1792783517785903653, Secondary Actions: Expand
+			4 pop up button (collapsed) Description: Project: explainwhy-1792783517785903653, Secondary Actions: Expand
 			5 container
 				6 text PROJECT
 				7 content list PROJECT
@@ -27,11 +27,11 @@ Browser tab: 1331642560, Title: "Task — Middleware console", URL: "https://app
 					25 link Description: Billing, Value: app.mubit.ai/console/billing
 			26 button Getting started
 			27 link Description: How Mubit works, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/integration
-			28 text Normal
+			28 text ExplainWhy
 			29 pop up button (collapsed) Description: [account redacted], Admin: account menu, Secondary Actions: Expand
 		30 container
 			31 container Breadcrumb
-				32 link Description: normal-1792783517785903653, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
+				32 link Description: explainwhy-1792783517785903653, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
 				33 text Task
 			34 pop up button (collapsed) Description: Search pages, Secondary Actions: Expand
 				35 text Search…

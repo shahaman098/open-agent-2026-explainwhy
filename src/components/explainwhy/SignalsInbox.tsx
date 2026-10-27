@@ -262,7 +262,7 @@ export function SignalsPage() {
       })}{incidents.length === 0 ? <div className="inbox-empty">No incidents detected for this run.</div> : null}</div>
       {list.total > list.items.length ? <p className="inbox-more">Showing {list.items.length} of {list.total} signal groups for this run.</p> : null}
     </div>
-    {selected && focusedObservation ? createPortal(<div className={`normal-app inbox-overlay${visible ? " is-open" : ""}`} data-testid="signal-drawer-overlay" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
+    {selected && focusedObservation ? createPortal(<div className={`explainwhy-app inbox-overlay${visible ? " is-open" : ""}`} data-testid="signal-drawer-overlay" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
       <section className="inbox-drawer" ref={drawer} role="dialog" aria-modal="true" aria-labelledby="inbox-drawer-title" data-testid="signal-drawer">
         <header className="inbox-drawer-head"><div><span className="inbox-eyebrow">INCIDENT DETAILS</span><h2 id="inbox-drawer-title">{selected.title}</h2></div><button ref={closeButton} className="inbox-close" type="button" onClick={close} aria-label="Close details"><X size={20} /></button></header>
         <div className="inbox-drawer-scroll">

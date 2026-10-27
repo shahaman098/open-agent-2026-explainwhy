@@ -1,4 +1,4 @@
-import { PlanHandoff, planReferenceErrors, type DiagnosisT, type EvidenceT, type ProposedPlanT } from "@normal/contracts";
+import { PlanHandoff, planReferenceErrors, type DiagnosisT, type EvidenceT, type ProposedPlanT } from "@explainwhy/contracts";
 import { apiError } from "@/lib/api";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";

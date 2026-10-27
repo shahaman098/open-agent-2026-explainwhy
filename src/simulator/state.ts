@@ -1,4 +1,4 @@
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 import type { ScenarioNameT, ScenarioParams } from "@/simulator/scenarios";
 import type { RngState } from "@/simulator/rng";
 import type { SimulationConfig } from "@/simulator/config";

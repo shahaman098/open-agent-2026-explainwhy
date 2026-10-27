@@ -1,4 +1,4 @@
-import { type DiagnosisT, type EvidenceT } from "@normal/contracts";
+import { type DiagnosisT, type EvidenceT } from "@explainwhy/contracts";
 import { InvestigationReport, type ExternalSourceT, type ReportT, type StateT } from "./schemas";
 import { deterministicImpact } from "./validation";
 

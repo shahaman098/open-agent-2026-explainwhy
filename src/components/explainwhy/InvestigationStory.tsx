@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
-import type { ActionExecutionT, ActionProposalT, PlanApprovalT, ProposedPlanT } from "@normal/contracts";
+import type { ActionExecutionT, ActionProposalT, PlanApprovalT, ProposedPlanT } from "@explainwhy/contracts";
 import type { ExternalSourceT, ReportT, StateT } from "@/intelligence/investigator/schemas";
 import type { PlanningView, StrategyT } from "@/planner/schemas";
 import type { BusinessOutcomeAssessmentT } from "@/outcomes/schema";

@@ -4,7 +4,7 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
 test.beforeEach(async()=>{await promisify(execFile)(process.execPath,['--conditions=react-server','--import','tsx','tests/e2e/seed.mts','--outcomes'],{timeout:90000});});
-test.use({extraHTTPHeaders:process.env.E2E_DEMO_KEY?{'x-normal-demo-key':process.env.E2E_DEMO_KEY}:{}});
+test.use({extraHTTPHeaders:process.env.E2E_DEMO_KEY?{'x-explainwhy-demo-key':process.env.E2E_DEMO_KEY}:{}});
 const advertising=JSON.parse(readFileSync('docs/stage7-runs/acceptance.json','utf8'));
 const shipping=JSON.parse(readFileSync('docs/stage7-runs/shipping-fixture.json','utf8'));
 const controlled=JSON.parse(readFileSync('docs/stage8-runs/controlled-observation.json','utf8'));

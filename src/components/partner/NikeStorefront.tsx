@@ -1,6 +1,6 @@
 "use client";
 
-import { useRun } from "@/components/normal/run-context";
+import { useRun } from "@/components/explainwhy/run-context";
 import type { StoreCatalogue, StoreOrder } from "@/components/store/types";
 import {
 Check,
@@ -238,7 +238,7 @@ function NikeStoreContent() {
 
   return (
     <div className="partner-store min-h-screen bg-white text-[#111111] font-sans antialiased flex flex-col selection:bg-[#111111] selection:text-white">
-      <div className="bg-black text-white px-12 py-2 text-xs flex justify-between"><a href={withRun('/dashboard')}>← Normal overview</a><span>Unaffiliated Nike simulation · {runId}</span><a href={withRun('/dashboard/approvals')}>Approvals</a></div>
+      <div className="bg-black text-white px-12 py-2 text-xs flex justify-between"><a href={withRun('/dashboard')}>← ExplainWhy overview</a><span>Unaffiliated Nike simulation · {runId}</span><a href={withRun('/dashboard/approvals')}>Approvals</a></div>
       {orderMessage&&<div role="status" className="bg-emerald-50 p-4 text-emerald-800">{orderMessage}</div>}
       {error&&<div role="alert" className="bg-red-50 p-4 text-red-800">{error}</div>}
       {orders.length>0&&<section data-testid="your-orders" aria-label="Your simulated orders" className="border-b border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><h2 className="font-semibold">Your simulated orders</h2><p>No payment was taken. These receipts are saved in the selected simulation.</p>{orders.map(order=><div key={order.orderId} data-testid="order-confirmation" className="mt-2"><strong>{order.orderId}</strong><span> · {order.lines.map(line=>`${line.quantity}× ${line.name}`).join(', ')} · £{(order.netRevenueMinor/100).toFixed(2)}</span></div>)}</section>}

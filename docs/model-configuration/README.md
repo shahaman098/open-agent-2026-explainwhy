@@ -1,6 +1,6 @@
 # Gemini 4 Argon configuration
 
-Normal is configured to use **Gemini 4 Argon (`gemini-4-argon`) through Mubit** for investigation, source support, diagnosis, solution planning and optional grounded research. The server defaults, local environment and `.env.example` agree. The application footer reads the same server-owned model settings; README and current documentation use the same name.
+ExplainWhy is configured to use **Gemini 4 Argon (`gemini-4-argon`) through Mubit** for investigation, source support, diagnosis, solution planning and optional grounded research. The server defaults, local environment and `.env.example` agree. The application footer reads the same server-owned model settings; README and current documentation use the same name.
 
 Gemini calls use Mubit's native `generateContent` route (`MUBIT_GEMINI_TRANSPORT=native`), whose training task is now verified in the console. The optional `openai` setting calls Gemini's own `/gemini/v1beta/openai/chat/completions` route. It displays complete input/output and tokens in the console. Both routes now have distinct, verified Gemini source-support tasks; their adapters are awaiting hosted review. The native request view displayed blank content, yet native calls were subsequently grouped into a task and entered review; the blank view alone does not prove raw capture was lost. No historical request or evaluation was relabelled as Gemini output.
 

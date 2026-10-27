@@ -1,5 +1,5 @@
 {
-  "detectorVersion": "normal-detector-1.1.0",
+  "detectorVersion": "explainwhy-detector-1.1.0",
   "generatedBy": "tests/intelligence/evaluation.test.ts",
   "seeds": {
     "dev": [

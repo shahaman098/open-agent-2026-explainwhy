@@ -57,4 +57,4 @@ async function main() {
   writeFileSync(`${dir}/preservation-after.json`, JSON.stringify({ passed: true, demoPreserved: true, businessStateUnchanged: true, stage5RecordsUnchanged: true, active: after.active, checkedAt: new Date().toISOString() }, null, 2));
   console.log(JSON.stringify({ status: result.job?.status, planId: result.plan?.planId, version: result.plan?.planVersion, requests: result.calls.map((call) => call.metadata?.requestId), handoffValid: Boolean(handoff), demoPreserved: true }));
 }
-main().catch((e) => { console.error(e instanceof Error ? e.message : e); process.exitCode = 1; }).finally(async () => { if (globalThis._normalMongoClientPromise) await (await getMongoClient()).close(); });
+main().catch((e) => { console.error(e instanceof Error ? e.message : e); process.exitCode = 1; }).finally(async () => { if (globalThis._explainwhyMongoClientPromise) await (await getMongoClient()).close(); });

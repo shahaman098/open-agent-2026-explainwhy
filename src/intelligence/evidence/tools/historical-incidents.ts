@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { AnomalyT, InvestigationT } from "@normal/contracts";
+import type { AnomalyT, InvestigationT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import type { IncidentDoc } from "@/intelligence/detection/persistence";
 import { ToolInputBase, type EvidenceCategory, type EvidenceDraft, type EvidenceTool } from "../types";
@@ -17,7 +17,7 @@ const jaccard = (a: Set<string>, b: Set<string>) => { const inter = [...a].filte
 export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
   name: "historical_incidents",
   title: "Historical incident retrieval",
-  description: "Earlier Normal investigations and incidents for this business with similar observed metrics and themes, plus any recorded diagnoses or plans. Returns an explicit empty result when none exist; never invents past incidents.",
+  description: "Earlier ExplainWhy Agent investigations and incidents for this business with similar observed metrics and themes, plus any recorded diagnoses or plans. Returns an explicit empty result when none exist; never invents past incidents.",
   category: "technical",
   dataSources: [
     { collection: COLLECTIONS.investigations, description: "canonical investigations", origin: "normal_internal" },

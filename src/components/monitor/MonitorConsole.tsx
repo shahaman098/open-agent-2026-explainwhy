@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { virtualDate } from "@/lib/format";
-import { NormalLogo } from "@/components/normal/NormalLogo";
-import { PageSkeleton } from "@/components/normal/PageSkeleton";
+import { ExplainWhyLogo } from "@/components/explainwhy/ExplainWhyLogo";
+import { PageSkeleton } from "@/components/explainwhy/PageSkeleton";
 
 type Severity = "low" | "medium" | "high" | "critical";
 interface RunsResponse { activeSimulationRunId: string | null; runs: Array<{ simulationRunId: string; virtualTime: string }> }
@@ -127,7 +127,7 @@ export function MonitorConsole() {
   return (
     <>
       <header className="topbar"><div className="shell topbar-inner">
-        <Link href="/" className="brand normal-legacy-brand"><NormalLogo /><small>· Anomaly monitor</small></Link>
+        <Link href="/" className="brand explainwhy-legacy-brand"><ExplainWhyLogo /><small>· Anomaly monitor</small></Link>
         <div className="row"><Link href="/dev/simulator" className="btn sm">Control room</Link><Link href="/demo-store" className="btn sm">Demo store</Link></div>
       </div></header>
       <main className="shell cr">

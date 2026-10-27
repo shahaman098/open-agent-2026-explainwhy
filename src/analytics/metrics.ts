@@ -2,7 +2,7 @@ import "server-only";
 
 import type { Db, Document } from "mongodb";
 import { z } from "zod";
-import { MetricSnapshot, type MetricSnapshotT } from "@normal/contracts";
+import { MetricSnapshot, type MetricSnapshotT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 import type { SimulatedOrder, SimulatedProduct } from "@/types/domain";

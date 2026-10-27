@@ -1,5 +1,5 @@
 import type { Filter } from "mongodb";
-import { BusinessEvent, type BusinessEventT } from "@normal/contracts";
+import { BusinessEvent, type BusinessEventT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 import { businessIdFrom, guardDevRoute, handleRouteError } from "@/lib/route-helpers";

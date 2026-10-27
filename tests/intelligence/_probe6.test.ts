@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { it } from "vitest";
 import { writeFileSync, appendFileSync } from "node:fs";
 import { DEV_SEEDS, EXPECTED_THEMES, scoreHealthy, scoreScenario } from "@/intelligence/evaluation/evaluate";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe6.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe6.txt");
 const log = (s: string) => appendFileSync(OUT, s + "\n");
 it("dev evaluation", () => {
   writeFileSync(OUT, "");

@@ -62,7 +62,7 @@ export function ActivityConsole() {
   if (!runId) return <div className="activity-empty">Select a run to view its activity.</div>;
   return <section className="card activity-console" data-testid="activity-page" aria-label="Activity stream">
     <div className="activity-console-head">
-      <div className="activity-console-title"><div><h2>Activity stream</h2><p>What Normal observed and did in this run.</p></div></div>
+      <div className="activity-console-title"><div><h2>Activity stream</h2><p>What ExplainWhy Agent observed and did in this run.</p></div></div>
       <span className="activity-live"><i aria-hidden="true" /> Updates every 15s</span>
     </div>
     <div className="activity-run-strip"><span className="activity-prompt">normal<span className="activity-prompt-slash">/</span>activity</span><span className="activity-run-value">{runId}</span><span className="activity-strip-count">{data ? `${data.items.length} entries` : "Loading"}</span></div>

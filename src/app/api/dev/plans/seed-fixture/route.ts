@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { PlanHandoff } from "@normal/contracts";
+import { PlanHandoff } from "@explainwhy/contracts";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 import { guardDevRoute, handleRouteError } from "@/lib/route-helpers";

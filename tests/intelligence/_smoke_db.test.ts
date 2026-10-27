@@ -9,7 +9,7 @@ import { runMonitor } from "@/intelligence/monitor";
 import { loadGroupedRows, loadHorizon } from "@/intelligence/signals/load";
 import { groupEvents } from "@/intelligence/signals/rows";
 import { TEST_BUSINESS, eventsForRun, resetTestRun } from "../helpers";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "smoke.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "smoke.txt");
 const RUN = "t_det_smoke";
 it("smoke", async () => {
   writeFileSync(OUT, "");

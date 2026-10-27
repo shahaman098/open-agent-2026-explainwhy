@@ -6,7 +6,7 @@ import { writeFileSync, appendFileSync } from "node:fs";
 import { detectTimeline, harnessCatalogue, simulate } from "@/intelligence/evaluation/harness";
 import { groupEvents } from "@/intelligence/signals/rows";
 import { SignalSeries } from "@/intelligence/signals/series";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe13.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe13.txt");
 it("r1 fps", () => {
   writeFileSync(OUT, "");
   for (const seed of [2024, 31337]) {

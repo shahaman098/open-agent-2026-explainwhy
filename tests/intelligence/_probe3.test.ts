@@ -6,7 +6,7 @@ import { writeFileSync, appendFileSync } from "node:fs";
 import { harnessCatalogue, simulate } from "@/intelligence/evaluation/harness";
 import { groupEvents } from "@/intelligence/signals/rows";
 import { SignalSeries, FIELDS } from "@/intelligence/signals/series";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe3.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe3.txt");
 it("volumes", () => {
   writeFileSync(OUT, "");
   const t = simulate({ seed: 42, healthyHours: 24 * 7 });

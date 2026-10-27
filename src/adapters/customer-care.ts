@@ -1,7 +1,7 @@
 import "server-only";
 
 import { z } from "zod";
-import { ActionProposal, type BusinessEventT } from "@normal/contracts";
+import { ActionProposal, type BusinessEventT } from "@explainwhy/contracts";
 import { ingestEvents } from "@/ingestion/service";
 import { buildSimulatorEvent } from "@/simulator/events";
 import type { SimulatedMessage, SimulatedOrder, SimulatedShipment } from "@/types/domain";
@@ -10,7 +10,7 @@ import { ADAPTER_LIMITS, AdapterError, type ActionContext, type AdapterResult } 
 
 const SendDelayNoticeParams = ActionProposal.options[1].shape.params;
 if (ActionProposal.options[1].shape.actionType.value !== "customer.send_delay_notice") {
-  throw new Error("@normal/contracts ActionProposal option order changed; update adapter param selection");
+  throw new Error("@explainwhy/contracts ActionProposal option order changed; update adapter param selection");
 }
 export type SendDelayNoticeParamsT = z.infer<typeof SendDelayNoticeParams>;
 

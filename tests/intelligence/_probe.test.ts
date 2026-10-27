@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { it } from "vitest";
 import { appendFileSync, writeFileSync } from "node:fs";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe.txt");
 const log = (s: string) => appendFileSync(OUT, s + "\n");
 import { detectTimeline, simulate } from "@/intelligence/evaluation/harness";
 

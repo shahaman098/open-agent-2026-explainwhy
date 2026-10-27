@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import type { ScenarioName } from "@normal/contracts";
+import type { ScenarioName } from "@explainwhy/contracts";
 
 export type ScenarioNameT = z.infer<typeof ScenarioName>;
 

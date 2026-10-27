@@ -2,7 +2,7 @@ import "server-only";
 
 import { createHash } from "node:crypto";
 import type { Db, Document, AnyBulkWriteOperation } from "mongodb";
-import { Anomaly, Investigation, type AnomalyT, type InvestigationT, type MetricSnapshotT } from "@normal/contracts";
+import { Anomaly, Investigation, type AnomalyT, type InvestigationT, type MetricSnapshotT } from "@explainwhy/contracts";
 import { computeSnapshots, snapshotId } from "@/analytics/metrics";
 import { COLLECTIONS } from "@/lib/collections";
 import { DETECTOR_VERSION, severityRank, type DetectionConfig } from "@/intelligence/config";

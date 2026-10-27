@@ -24,7 +24,7 @@ const advertising = read('docs/stage7-runs/acceptance.json');
 const controlled = read('docs/stage8-runs/controlled-preparation.json');
 const shipping = read('docs/stage7-runs/shipping-fixture.json');
 const db = await getDb();
-if (!db.databaseName.startsWith('normal_e2e') && !db.databaseName.startsWith('normal_browser_e2e')) throw new Error('Browser fixtures require an isolated normal_e2e database.');
+if (!db.databaseName.startsWith('explainwhy_e2e') && !db.databaseName.startsWith('normal_browser_e2e')) throw new Error('Browser fixtures require an isolated explainwhy_e2e database.');
 const move = <T,>(value:T,from:string,to:string):T => JSON.parse(JSON.stringify(value),(_key,v)=>{
  if(typeof v!=='string')return v;
  const moved=v.replaceAll(from,to);

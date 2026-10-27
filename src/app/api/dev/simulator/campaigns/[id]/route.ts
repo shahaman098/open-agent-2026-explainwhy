@@ -1,5 +1,5 @@
 import { canonicalPlan } from "@/planner/service";
-import { type ProposedPlanT } from "@normal/contracts";
+import { type ProposedPlanT } from "@explainwhy/contracts";
 import type { ActionReceipt } from "@/adapters/_shared";
 import { readCampaign, readCampaigns } from "@/adapters/campaigns";
 import { campaignBreakdown, computeSnapshots } from "@/analytics/metrics";
@@ -8,7 +8,7 @@ import { getDb } from "@/lib/mongodb";
 import { apiError } from "@/lib/api";
 import { businessIdFrom, guardDevRoute, handleRouteError } from "@/lib/route-helpers";
 import { getRunSummary } from "@/simulator/runtime";
-import type { BusinessEventT } from "@normal/contracts";
+import type { BusinessEventT } from "@explainwhy/contracts";
 
 type BudgetUpdateEvent = Extract<BusinessEventT, { type: "campaign.budget_updated" }>;
 

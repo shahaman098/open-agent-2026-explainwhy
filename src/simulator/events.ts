@@ -1,4 +1,4 @@
-import { BusinessEvent, eventBusinessRules, type BusinessEventT } from "@normal/contracts";
+import { BusinessEvent, eventBusinessRules, type BusinessEventT } from "@explainwhy/contracts";
 import { CONNECTOR_ID } from "@/simulator/config";
 
 export type EventPayloadFor<T extends BusinessEventT["type"]> = Extract<BusinessEventT, { type: T }>["payload"];

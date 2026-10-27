@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type { ZodError } from "zod";
 
-/** Builds the canonical `ApiError` envelope from @normal/contracts. */
+/** Builds the canonical `ApiError` envelope from @explainwhy/contracts. */
 export function apiError(code: string, message: string, status: number): Response {
   return Response.json({ error: { code, message, requestId: randomUUID() } }, { status });
 }

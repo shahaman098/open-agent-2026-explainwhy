@@ -17,7 +17,7 @@ export async function POST(request: Request): Promise<Response> {
     });
     // Monitoring runs after the response is sent, on already-persisted data, so ticks are never blocked by detection.
     const scheduled = scheduleAutoMonitor(businessId, response.simulationRunId);
-    return Response.json(response, { headers: { "x-normal-auto-monitor": scheduled ? "scheduled" : "disabled" } });
+    return Response.json(response, { headers: { "x-explainwhy-auto-monitor": scheduled ? "scheduled" : "disabled" } });
   } catch (error) {
     return handleRouteError(error, "simulator/tick");
   }

@@ -15,7 +15,7 @@ export const REFERENCE_FINANCIALS = "reference_financials";
 export const publicReferenceContext: EvidenceTool<PublicContextInputT> = {
   name: "public_reference_context",
   title: "Public Nike reference context",
-  description: "Verified public Nike records already stored by Normal: product names and list prices observed on nike.com/gb and published NIKE, Inc. quarterly figures, each with source URL and observation date. Context only; never an explanation of a simulated hourly anomaly.",
+  description: "Verified public Nike records already stored by ExplainWhy Agent: product names and list prices observed on nike.com/gb and published NIKE, Inc. quarterly figures, each with source URL and observation date. Context only; never an explanation of a simulated hourly anomaly.",
   category: "sales",
   dataSources: [
     { collection: REFERENCE_PRODUCTS, externalSource: "nike.com/gb (retrieved once, dated)", description: "verified public product references", origin: "public_reference" },

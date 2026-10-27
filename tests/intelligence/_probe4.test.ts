@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { it } from "vitest";
 import { writeFileSync, appendFileSync } from "node:fs";
 import { detectTimeline, simulate } from "@/intelligence/evaluation/harness";
-const OUT = join(mkdtempSync(join(tmpdir(), "normal-diagnostic-")), "probe4.txt");
+const OUT = join(mkdtempSync(join(tmpdir(), "explainwhy-diagnostic-")), "probe4.txt");
 const log = (s: string) => appendFileSync(OUT, s + "\n");
 it("long", () => {
   writeFileSync(OUT, "");

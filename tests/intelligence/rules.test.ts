@@ -191,7 +191,7 @@ describe("whole rule set", () => {
   });
 
   it("every canonical mapping uses a value from the contract's MetricName enum", async () => {
-    const { MetricName } = await import("@normal/contracts");
+    const { MetricName } = await import("@explainwhy/contracts");
     for (const s of ALL_SIGNALS) if (s.canonicalMetric) expect(MetricName.options).toContain(s.canonicalMetric);
   });
 });

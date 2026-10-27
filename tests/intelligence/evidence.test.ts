@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import type { Db } from "mongodb";
-import { Evidence, Investigation } from "@normal/contracts";
+import { Evidence, Investigation } from "@explainwhy/contracts";
 import { GET as evidenceRoute } from "@/app/api/investigations/[id]/evidence/route";
 import { GET as traceRoute } from "@/app/api/investigations/[id]/evidence-trace/route";
 import { POST as collectRoute } from "@/app/api/dev/investigations/[id]/collect-evidence/route";
@@ -33,7 +33,7 @@ const DEMO_KEY = "evidence-demo-key";
 const req = (path: string, init: RequestInit & { json?: unknown; demo?: boolean } = {}) => {
   const headers = new Headers(init.headers);
   if (init.json !== undefined) headers.set("content-type", "application/json");
-  if (init.demo !== false) headers.set("x-normal-demo-key", DEMO_KEY);
+  if (init.demo !== false) headers.set("x-explainwhy-demo-key", DEMO_KEY);
   return new Request(`http://localhost/api${path}`, { ...init, headers, body: init.json !== undefined ? JSON.stringify(init.json) : undefined });
 };
 const params = (id: string) => ({ params: Promise.resolve({ id }) });
@@ -44,7 +44,7 @@ let investigationId: string;
 describe("autonomous evidence retrieval (Stage 4)", () => {
   beforeAll(async () => {
     db = await getDb(); await ensureIndexes(db);
-    process.env.NORMAL_DEMO_MODE = "true"; process.env.NORMAL_DEMO_KEY = DEMO_KEY;
+    process.env.EXPLAINWHY_DEMO_MODE = "true"; process.env.EXPLAINWHY_DEMO_KEY = DEMO_KEY;
     // Real deterministic simulator events; only this harness sees the injection. The detector then opens the investigation itself.
     const timeline = simulate({ seed: 808, simulationRunId: RUN, healthyHours: 72, scenario: "ad_fatigue", severity: 0.8, scenarioHours: 24 });
     expect((await ingestEvents(timeline.events, { businessId: BUSINESS, db })).result.rejected).toBe(0);
@@ -69,7 +69,7 @@ describe("autonomous evidence retrieval (Stage 4)", () => {
     await publishWindow(db, { businessId: BUSINESS, simulationRunId: OTHER_RUN, windowStart: t(0), windowEnd: t(48), snapshotIds: otherIds });
   }, 240_000);
   afterAll(async () => {
-    delete process.env.NORMAL_DEMO_MODE; delete process.env.NORMAL_DEMO_KEY;
+    delete process.env.EXPLAINWHY_DEMO_MODE; delete process.env.EXPLAINWHY_DEMO_KEY;
     if (!db) return;
     for (const run of [RUN, OTHER_RUN]) {
       await deleteRun(db, BUSINESS, run);
@@ -275,10 +275,10 @@ describe("autonomous evidence retrieval (Stage 4)", () => {
     const trace = (await getEvidenceTrace(investigationId, { businessId: BUSINESS }, db))!;
     expect(trace.collections).toHaveLength(1); expect(trace.toolRuns.length).toBe(trace.collections[0]!.selectedTools.length);
 
-    process.env.NORMAL_DEMO_MODE = "false";
+    process.env.EXPLAINWHY_DEMO_MODE = "false";
     expect((await collectRoute(req(`/dev/investigations/${investigationId}/collect-evidence`, { method: "POST", json: {}, demo: false }), params(investigationId))).status).toBe(404);
     expect((await evidenceRoute(req(`/investigations/${investigationId}/evidence?businessId=${BUSINESS}`, { demo: false }), params(investigationId))).status).toBe(404);
-    process.env.NORMAL_DEMO_MODE = "true";
+    process.env.EXPLAINWHY_DEMO_MODE = "true";
     const res = await evidenceRoute(req(`/investigations/${investigationId}/evidence?businessId=${BUSINESS}&category=sales`), params(investigationId));
     expect(res.status).toBe(200);
     const body = await res.json();

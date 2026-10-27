@@ -1,6 +1,6 @@
 import "server-only";
 import type { Db } from "mongodb";
-import { Evidence, type EvidenceT } from "@normal/contracts";
+import { Evidence, type EvidenceT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { getReferenceCatalogue, getReferenceFinancials } from "@/reference/service";
 import { REFERENCE_FINANCIALS, REFERENCE_PRODUCTS } from "./tools/public-context";
@@ -39,7 +39,7 @@ export async function resolveSources(db: Db, scope: { businessId: string; simula
 export async function verifyEvidence(db: Db, scope: { businessId: string; simulationRunId: string; cutoff: string }, draft: EvidenceDraft, evidence: EvidenceT): Promise<Verification> {
   const checks: VerificationCheck[] = [];
   const parsed = Evidence.safeParse(evidence);
-  checks.push({ name: "canonical_schema", passed: parsed.success, note: parsed.success ? "Evidence validates against @normal/contracts" : parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).slice(0, 3).join("; ") });
+  checks.push({ name: "canonical_schema", passed: parsed.success, note: parsed.success ? "Evidence validates against @explainwhy/contracts" : parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).slice(0, 3).join("; ") });
   const sources = await resolveSources(db, scope, draft.sourceRecords);
   checks.push({ name: "source_records_resolve", passed: sources.unresolved.length === 0 && draft.sourceRecords.length > 0, note: `${sources.resolved}/${draft.sourceRecords.length} references found${sources.unresolved.length ? `; missing ${sources.unresolved.slice(0, 3).join(", ")}` : ""}` });
   const finite = draft.measurements.every((m) => Number.isFinite(m.value) && (m.baseline === undefined || Number.isFinite(m.baseline)));

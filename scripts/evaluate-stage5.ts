@@ -69,4 +69,4 @@ async function main() {
     writeFileSync(`docs/stage5-runs/evaluation_${stamp}.json`, JSON.stringify({ caseCount: results.length, results, calibration: "Qualitative support only; no calibrated probabilities", costs: "Unknown unless configured provider rates are supplied", hiddenScenarioBoundary: "Setup and post-inference scoring only" }, null, 2));
   }
 }
-main().catch((e) => { console.error(e instanceof Error ? e.message : "Evaluation failed"); process.exitCode = 1; }).finally(async () => { if (globalThis._normalMongoClientPromise) await (await getMongoClient()).close(); });
+main().catch((e) => { console.error(e instanceof Error ? e.message : "Evaluation failed"); process.exitCode = 1; }).finally(async () => { if (globalThis._explainwhyMongoClientPromise) await (await getMongoClient()).close(); });

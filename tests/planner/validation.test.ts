@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PlanHandoff, planReferenceErrors } from "@normal/contracts";
+import { PlanHandoff, planReferenceErrors } from "@explainwhy/contracts";
 import { validateStrategy } from "@/planner/validation";
 import { PlanningOutput } from "@/planner/schemas";
 import { contextHash } from "@/planner/context";

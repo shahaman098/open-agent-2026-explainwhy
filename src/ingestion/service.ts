@@ -2,7 +2,7 @@ import "server-only";
 
 import type { Db, MongoBulkWriteError } from "mongodb";
 import { z } from "zod";
-import { BusinessEvent, IngestResult, eventBusinessRules, type BusinessEventT } from "@normal/contracts";
+import { BusinessEvent, IngestResult, eventBusinessRules, type BusinessEventT } from "@explainwhy/contracts";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { getDb } from "@/lib/mongodb";
 

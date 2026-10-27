@@ -170,11 +170,11 @@ export async function monitorStatus(businessId: string, simulationRunId: string,
       { $match: { businessId, simulationRunId, detectorVersion: DETECTOR_VERSION } }, { $group: { _id: "$status", count: { $sum: 1 } } },
     ]).toArray(),
     d.collection(COLLECTIONS.monitoringJobs).find({ businessId, simulationRunId, status: "failed" }, { projection: { _id: 0, jobKey: 1, lastError: 1, attempts: 1, windowEnd: 1 } }).sort({ windowEnd: -1 }).limit(10).toArray(),
-    d.collection(COLLECTIONS.monitoringWorkers).findOne({ workerId: "normal-monitor-watch" }),
+    d.collection(COLLECTIONS.monitoringWorkers).findOne({ workerId: "explainwhy-monitor-watch" }),
   ]);
   const horizon = await loadHorizon(d, businessId, simulationRunId);
   const fresh = worker?.lastHeartbeatAt instanceof Date && Date.now() - worker.lastHeartbeatAt.getTime() < 45_000;
-  const flag = process.env.NORMAL_AUTO_MONITOR;
+  const flag = process.env.EXPLAINWHY_AUTO_MONITOR;
   return { businessId, simulationRunId, lastAsOf: state?.lastAsOf ?? null, lastScanAt: state?.lastScanAt ?? null, watermark: horizon?.watermark ?? null, recentScans: recent,
     jobs: Object.fromEntries(jobs.map((j) => [j._id, j.count])), failedJobs,
     methodA: { enabled: flag === "true" || (flag !== "false" && process.env.NODE_ENV === "development") },

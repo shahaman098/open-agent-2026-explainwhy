@@ -4,7 +4,7 @@ Run `npm run test:e2e` from the application directory. The suite starts Next.js 
 port 3101 with a separate `.next/e2e` cache, and exercises desktop Chromium and a
 Pixel 7 viewport. The usual development server can remain running.
 
-The default database is `normal_e2e`; use `E2E_MONGODB_DB=normal_e2e_my_run` to
+The default database is `explainwhy_e2e`; use `E2E_MONGODB_DB=explainwhy_e2e_my_run` to
 choose another isolated database. Fixture setup refuses other database names. A
 working `MONGODB_URI` is required. An explicit `E2E_BASE_URL` must point to a server
 using the same isolated database.
@@ -23,6 +23,6 @@ dry-run and committed-state reports to pass. The default script is
 `REACT_FORM_FILL_SCRIPT` to use another installation of the same script.
 
 Screenshots, traces and refreshed acceptance evidence go to the temporary
-`normal-e2e-artifacts` directory, or `E2E_ARTIFACT_DIR` when set. They do not replace
+`explainwhy-e2e-artifacts` directory, or `E2E_ARTIFACT_DIR` when set. They do not replace
 the committed demonstration records. The source-card test also verifies the
 original source rows and the selected demo run remain unchanged.
