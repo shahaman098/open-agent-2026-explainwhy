@@ -27,4 +27,4 @@ async function main() {
   await writeFile(resolve(destination, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
   console.log(JSON.stringify({ ...manifest, destination }));
 }
-main().catch((error: unknown) => { console.error(error instanceof Error ? error.message : "Export failed"); process.exitCode = 1; }).finally(async () => { if (process.env.MONGODB_URI) await getMongoClient().then((client) => client.close()).catch(() => {}); });
+main().catch((error: unknown) => { console.error(error instanceof Error ? error.message : "Export failed"); process.exitCode = 1; }).finally(async () => { if (globalThis._explainwhyMongoClientPromise) await getMongoClient().then((client) => client.close()).catch(() => {}); });

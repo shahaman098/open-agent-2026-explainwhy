@@ -242,7 +242,7 @@ function NikeStoreContent() {
       {orderMessage&&<div role="status" className="bg-emerald-50 p-4 text-emerald-800">{orderMessage}</div>}
       {error&&<div role="alert" className="bg-red-50 p-4 text-red-800">{error}</div>}
       {orders.length>0&&<section data-testid="your-orders" aria-label="Your simulated orders" className="border-b border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900"><h2 className="font-semibold">Your simulated orders</h2><p>No payment was taken. These receipts are saved in the selected simulation.</p>{orders.map(order=><div key={order.orderId} data-testid="order-confirmation" className="mt-2"><strong>{order.orderId}</strong><span> · {order.lines.map(line=>`${line.quantity}× ${line.name}`).join(', ')} · £{(order.netRevenueMinor/100).toFixed(2)}</span></div>)}</section>}
-      {!catalogue&&!error&&<p className="p-6">Loading MongoDB catalogue…</p>}
+      {!catalogue&&!error&&<p className="p-6">Loading catalogue…</p>}
       {/* 1. Global Utility Sub-Brand Bar */}
       <div className="bg-[#f5f5f5] px-12 h-9 hidden md:flex justify-between items-center text-[12px] text-[#111111] font-medium border-b border-[#e5e5e5]">
         <div className="flex items-center gap-7">

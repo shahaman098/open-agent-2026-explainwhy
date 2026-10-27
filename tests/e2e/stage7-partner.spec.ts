@@ -32,7 +32,7 @@ test('Stage 7 partner interfaces execute exact approved versions against isolate
  await page.goto(`/ads?run=${simulationRunId}`);await expect(page.getByTestId('campaign-cmp_basketball_search')).toContainText('£67.50 / day');await page.reload();await expect(page.getByTestId('campaign-cmp_basketball_search')).toContainText('£67.50 / day');
  const after=await (await request.get(campaignUrl)).json();expect(after.campaign.dailyBudgetMinor).toBe(6750);expect(after.actions).toHaveLength(1);await page.screenshot({path:artifactPath('docs/stage7-runs/meta-after.png'),fullPage:true});
  await page.goto(`/demo-store?run=${simulationRunId}`);await expect(page.locator('article[data-testid^="product-"]')).toHaveCount(17);
- const products=await (await request.get(`/api/demo-store/products?simulationRunId=${simulationRunId}`)).json();expect(products.servedFrom).toBe('mongodb');expect(products.products).toHaveLength(17);
+ const products=await (await request.get(`/api/demo-store/products?simulationRunId=${simulationRunId}`)).json();expect(products.servedFrom).toBe('supabase');expect(products.products).toHaveLength(17);
 
  // Force lazy catalogue images into view and verify genuine decoded local assets.
  for(const card of await page.locator('article[data-testid^="product-"]').all()){await card.scrollIntoViewIfNeeded();await expect.poll(()=>card.locator('img').first().evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>100&&!img.currentSrc.includes('unavailable'))).toBe(true)}

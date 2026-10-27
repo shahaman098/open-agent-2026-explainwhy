@@ -1,4 +1,11 @@
-# MongoDB collection map and indexes
+# Collection map and indexes (Supabase Postgres)
+
+The database is Supabase Postgres. Services keep a MongoDB-style collection API
+(`src/lib/docstore`): each collection below is a table `(seq, id, doc jsonb)` in
+the schema named by `DATABASE_SCHEMA`, created on first use. Unique indexes are
+Postgres unique expression indexes; transactions are Postgres transactions.
+Queries pre-filter in Postgres on top-level equality fields and then apply exact
+query/aggregation semantics in memory with [mingo](https://github.com/kofrasa/mingo).
 
 ## Collections
 

@@ -21,6 +21,9 @@ const eslintConfig = defineConfig([
     // Vendored Python Animation Studio; its browser UI is tested by its own suite.
     "apps/animation-studio/**",
     ".local/**",
+    "**/*.tmp.ts",
+    "**/*.tmp.mts",
+    "**/*.tmp.config.mts",
     "playwright-report/**",
     "test-results/**",
   ]),

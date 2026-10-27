@@ -16,7 +16,7 @@ export interface StoreBanner { bannerId: string; message: string; startsAt: stri
 export interface StoreCatalogue {
   simulationRunId: string | null;
   virtualTime: string | null;
-  servedFrom: "mongodb" | "cache";
+  servedFrom: "supabase" | "cache";
   banners: StoreBanner[];
   promotions: Array<{ promoCode: string; percentOff: number; productIds: string[]; expiresAt: string }>;
   products: StoreProduct[];

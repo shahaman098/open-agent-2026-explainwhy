@@ -213,7 +213,8 @@ export class DocDb {
         const res = await this.client.pool.query(
           "select table_name from information_schema.tables where table_schema = $1 order by table_name", [this.databaseName]);
         const test = matcher(filter);
-        return res.rows.map((r: { table_name: string }) => ({ name: r.table_name, type: "collection" })).filter(test);
+        return res.rows.filter((r: { table_name: string }) => !r.table_name.startsWith("_docstore"))
+          .map((r: { table_name: string }) => ({ name: r.table_name, type: "collection" })).filter(test);
       },
     };
   }
@@ -654,6 +655,29 @@ export class DocCollection {
   watch(pipeline: Doc[] = [], options: Doc = {}): DocChangeStream {
     return new DocChangeStream(this, pipeline, options);
   }
+
+  get changesTable(): string {
+    return `${qi(this.db.databaseName)}.${qi(CHANGES_TABLE)}`;
+  }
+
+  /** Inserts into watched collections are appended to a per-schema log, so replays survive later deletes (like an oplog). */
+  ensureChangeLog(): Promise<void> {
+    const key = `${this.db.databaseName}\u0000${this.collectionName}\u0000changes`;
+    const ddl = this.db.client.ddl;
+    let p = ddl.get(key);
+    if (!p) {
+      const schema = qi(this.db.databaseName), fn = `${schema}.${qi("_docstore_log_insert")}`;
+      p = this.ready().then(() => this.db.client.runDdl(this.db.databaseName, [
+        `create table if not exists ${this.changesTable} (seq bigserial primary key, coll text not null, doc jsonb not null, at timestamptz not null default now())`,
+        `create index if not exists ${qi(`${CHANGES_TABLE}__coll_seq`)} on ${this.changesTable} (coll, seq)`,
+        `create or replace function ${fn}() returns trigger language plpgsql as $$ begin insert into ${this.changesTable} (coll, doc) values (TG_TABLE_NAME, new.doc); return new; end $$`,
+        `create or replace trigger ${qi(`${this.collectionName.slice(0, 40)}__log_insert`)} after insert on ${this.table} for each row execute function ${fn}()`,
+        `delete from ${this.changesTable} where at < now() - interval '7 days'`,
+      ])).catch((error: unknown) => { ddl.delete(key); throw error; });
+      ddl.set(key, p);
+    }
+    return p;
+  }
 }
 
 function partialSql(filter: Doc | undefined, path: (f: string) => string): string {
@@ -671,8 +695,9 @@ function partialSql(filter: Doc | undefined, path: (f: string) => string): strin
 }
 
 const TOKEN_PREFIX = "pg:";
+const CHANGES_TABLE = "_docstore_changes";
 
-/** Insert-only change stream that polls the collection's insertion sequence. */
+/** Insert-only change stream that polls the schema's insert log. */
 export class DocChangeStream {
   private lastSeq: number | null = null;
   private buffer: Doc[] = [];
@@ -695,13 +720,14 @@ export class DocChangeStream {
   }
 
   private async poll(): Promise<void> {
-    await this.coll.ready();
+    await this.coll.ensureChangeLog();
     const pool = this.coll.db.client.pool;
+    const name = this.coll.collectionName;
     if (this.lastSeq === null) {
-      this.lastSeq = Number((await pool.query(`select coalesce(max(seq), 0) as n from ${this.coll.table}`)).rows[0].n);
+      this.lastSeq = Number((await pool.query(`select coalesce(max(seq), 0) as n from ${this.coll.changesTable}`)).rows[0].n);
       return;
     }
-    const rows = (await pool.query(`select seq, doc from ${this.coll.table} where seq > $1 order by seq limit 100`, [this.lastSeq])).rows as Row[];
+    const rows = (await pool.query(`select seq, doc from ${this.coll.changesTable} where coll = $1 and seq > $2 order by seq limit 100`, [name, this.lastSeq])).rows as Row[];
     const events = rows.map((r) => ({
       _id: { _data: `${TOKEN_PREFIX}${r.seq}` }, operationType: "insert", fullDocument: r.doc, documentKey: { _id: r.doc._id },
       ns: { db: this.coll.db.databaseName, coll: this.coll.collectionName }, wallTime: new Date(),

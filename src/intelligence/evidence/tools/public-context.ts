@@ -33,7 +33,7 @@ export const publicReferenceContext: EvidenceTool<PublicContextInputT> = {
     const found = matched.filter((m) => m.ref !== null);
     const missing = matched.filter((m) => m.ref === null).map((m) => m.productId);
     if (missing.length) warnings.push(`No verified public reference for ${missing.length} product(s): ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
-    if (catalogue.servedFrom === "cache") warnings.push("Reference catalogue served from the bundled verified cache, not MongoDB");
+    if (catalogue.servedFrom === "cache") warnings.push("Reference catalogue served from the bundled verified cache, not the database");
     const evidence: EvidenceDraft[] = [];
     if (found.length) {
       evidence.push({

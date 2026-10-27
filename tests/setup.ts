@@ -23,3 +23,12 @@ function loadDotEnvLocal(): void {
 }
 
 loadDotEnvLocal();
+
+// Fixture-driven suites validate provider configuration before invoking injected
+// models. Keep them independent of the developer's local/hosted inference setup
+// and never give a test the developer's real NVIDIA credential. Provider-boundary
+// tests explicitly unset/replace these values to exercise each supported mode.
+process.env.NVIDIA_API_KEY = "test-fixture-no-provider-requests";
+process.env.NVIDIA_INFERENCE_MODE = "cloud";
+process.env.NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1";
+for (const stage of ["INVESTIGATOR", "DIAGNOSIS", "PLANNER"]) delete process.env[`NEMOTRON_${stage}_MODEL`];

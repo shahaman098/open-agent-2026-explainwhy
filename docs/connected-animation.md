@@ -5,12 +5,15 @@ comparison of a verified measurement and its baseline. Both apps run on the same
 Mac. The current animation is a deterministic five-second chart, not a model-created
 financial forecast or a general-purpose animated story.
 
+For a fresh installation, follow the complete [Mac handoff runbook](friend-mac-runbook.md),
+including Postgres setup, source registration and the live acceptance checklist.
+
 | Integration | Role | Runtime |
 | --- | --- | --- |
 | NVIDIA Nemotron | Investigation, diagnosis, planning and optional source assessment | Local Ollama/LM Studio endpoint, or NVIDIA's hosted API |
 | Bright Data | One bounded public-topic SERP query per research delegation | Bright Data cloud API, called from the Mac |
 | Zetaris | Read-only join of registered advertising observations and campaign catalogue | Local authorized Zetaris installation or configured HTTPS instance |
-| Meterless H-MEM | Recall prior published investigation reports with provenance | Vendored reference engine in ExplainWhy; durable snapshots in MongoDB |
+| Meterless H-MEM | Recall prior published investigation reports with provenance | Vendored reference engine in ExplainWhy; durable snapshots in Supabase Postgres |
 | Animation Studio | Validates scene data, renders Blender frames and encodes MP4 | Local Python/Blender/FFmpeg service |
 
 No credentials or business records go into the animation prompt. The bridge uses
@@ -41,7 +44,7 @@ described in the Studio README (or set `ORBIT_BLENDER`, `ORBIT_FFMPEG`,
 ## Configure ExplainWhy
 
 Merge these values into `.env.local`; keep the existing database and authentication
-settings. MongoDB must support transactions; see `docs/mongodb.md`. Do not copy
+settings. `DATABASE_URL` must point at local Postgres or Supabase Postgres; see `docs/mongodb.md`. Do not copy
 placeholder Supabase credentials into a working configuration.
 
 ```dotenv
@@ -145,7 +148,7 @@ playback and the editable Blender download appear in the report.
   has no invented bar. Synthetic observations remain labelled synthetic.
 - The chart records an observed comparison. Bar growth is presentation and is
   explicitly not a measured time series or causal financial-loss estimate.
-- Render submissions have a MongoDB ledger keyed by the evidence packet. Concurrent
+- Render submissions have a database ledger keyed by the evidence packet. Concurrent
   clicks reuse one submission. Definite pre-submit failures can be retried; an
   uncertain POST outcome is never submitted automatically again. Check Studio
   manually if it was accepted but no response reached ExplainWhy.

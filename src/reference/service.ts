@@ -1,5 +1,6 @@
 import "server-only";
 
+// The Postgres document store preserves the MongoDB collection interface.
 import type { Db } from "mongodb";
 import { COLLECTIONS, ensureIndexes } from "@/lib/collections";
 import { describeDbError, getDb } from "@/lib/mongodb";
@@ -9,11 +10,11 @@ import { ReferenceFinancials, ReferenceProduct, type ReferenceFinancialsT, type 
 
 export interface ReferenceCatalogueResult {
   products: ReferenceProductT[];
-  /** "mongodb" when read from the persisted collection, "cache" when the bundled fallback was used. */
-  servedFrom: "mongodb" | "cache";
+  /** "supabase" when read from the persisted collection, "cache" when the bundled fallback was used. */
+  servedFrom: "supabase" | "cache";
 }
 
-/** Upserts the cached public catalogue and financials into MongoDB. Idempotent. */
+/** Upserts the cached public catalogue and financials into the database. Idempotent. */
 export async function seedReferenceData(dbOverride?: Db): Promise<{ products: number; financials: number }> {
   const db = dbOverride ?? (await getDb());
   await ensureIndexes(db);
@@ -33,7 +34,7 @@ export async function seedReferenceData(dbOverride?: Db): Promise<{ products: nu
 }
 
 /**
- * Returns the public reference catalogue. Prefers MongoDB; falls back to the
+ * Returns the public reference catalogue. Prefers the database; falls back to the
  * bundled verified cache when the database is empty or unreachable so the
  * simulator can always run.
  */
@@ -42,19 +43,19 @@ export async function getReferenceCatalogue(dbOverride?: Db): Promise<ReferenceC
     const db = dbOverride ?? (await getDb());
     const docs = await db.collection(COLLECTIONS.referenceProducts).find({}, { projection: { _id: 0 } }).toArray();
     const parsed = docs.map((d) => ReferenceProduct.safeParse(d)).filter((r) => r.success).map((r) => r.data);
-    if (parsed.length > 0) return { products: parsed, servedFrom: "mongodb" };
+    if (parsed.length > 0) return { products: parsed, servedFrom: "supabase" };
   } catch (error) {
     console.warn("[reference] falling back to cached catalogue:", describeDbError(error));
   }
   return { products: [...NIKE_REFERENCE_CATALOGUE], servedFrom: "cache" };
 }
 
-export async function getReferenceFinancials(dbOverride?: Db): Promise<{ records: ReferenceFinancialsT[]; servedFrom: "mongodb" | "cache" }> {
+export async function getReferenceFinancials(dbOverride?: Db): Promise<{ records: ReferenceFinancialsT[]; servedFrom: "supabase" | "cache" }> {
   try {
     const db = dbOverride ?? (await getDb());
     const docs = await db.collection(COLLECTIONS.referenceFinancials).find({}, { projection: { _id: 0 } }).toArray();
     const parsed = docs.map((d) => ReferenceFinancials.safeParse(d)).filter((r) => r.success).map((r) => r.data);
-    if (parsed.length > 0) return { records: parsed, servedFrom: "mongodb" };
+    if (parsed.length > 0) return { records: parsed, servedFrom: "supabase" };
   } catch (error) {
     console.warn("[reference] falling back to cached financials:", describeDbError(error));
   }

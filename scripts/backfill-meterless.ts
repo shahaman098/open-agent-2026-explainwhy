@@ -22,4 +22,4 @@ async function main() {
   }
   console.log(JSON.stringify({ ...scope, completedReportsCaptured: captured, modelRequestsMade: 0, note: "Original report availability and virtual cutoff retained. Per-report writes are idempotent." }));
 }
-main().catch(() => { console.error("Memory backfill failed; check database configuration and saved report schemas"); process.exitCode = 1; }).finally(async () => { if (process.env.MONGODB_URI) await getMongoClient().then((client) => client.close()).catch(() => {}); });
+main().catch(() => { console.error("Memory backfill failed; check database configuration and saved report schemas"); process.exitCode = 1; }).finally(async () => { if (globalThis._explainwhyMongoClientPromise) await getMongoClient().then((client) => client.close()).catch(() => {}); });

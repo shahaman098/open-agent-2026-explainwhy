@@ -18,7 +18,7 @@ const blockedDetail: Record<string, string> = {
   brightdata: "Enable external research, select brightdata, and set BRIGHTDATA_API_KEY plus a valid BRIGHTDATA_SERP_ZONE. A live failure may indicate credentials, zone, quota or connectivity.",
   zetaris: "Enable Zetaris and configure its running endpoint, token, numeric organisation ID and both registered relation names. Local images require authorized access.",
   animation_studio: "Enable the animation bridge, start Studio on the same Mac, and check its loopback endpoint plus Blender/FFmpeg installation.",
-  mongodb: "Configure a reachable MongoDB transaction-capable deployment and its database name.",
+  supabase_postgres: "Set DATABASE_URL to a reachable Postgres database and DATABASE_SCHEMA to the test schema. The application must be allowed to create its tables and indexes.",
 };
 async function check(name: string, action: () => Promise<Check>) {
   try { checks[name] = await action(); }

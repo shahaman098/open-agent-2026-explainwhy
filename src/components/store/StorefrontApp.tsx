@@ -161,7 +161,7 @@ export function StorefrontApp() {
 
         {orders.length > 0 ? (
           <section className="card" style={{ marginBottom: 48 }} data-testid="your-orders">
-            <div className="card-head"><h3>Your simulated orders</h3><span>Persisted in MongoDB · refresh keeps them</span></div>
+            <div className="card-head"><h3>Your simulated orders</h3><span>Persisted in Supabase · refresh keeps them</span></div>
             <div className="card-body orders">
               {orders.map((o) => (
                 <div key={o.orderId} className="order">

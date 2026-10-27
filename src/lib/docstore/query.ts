@@ -98,8 +98,9 @@ export function upsertSeed(filter: Doc | undefined): Doc {
     }
   };
   walk(filter);
-  const doc: Doc = {};
-  if (Object.keys(sets).length) applyModifier(doc, { $set: sets }, undefined, undefined, { cloneMode: "none" });
+  const { _id, ...rest } = sets;
+  const doc: Doc = _id === undefined ? {} : { _id };
+  if (Object.keys(rest).length) applyModifier(doc, { $set: rest }, undefined, undefined, { cloneMode: "none" });
   return doc;
 }
 
@@ -114,6 +115,13 @@ export function applyUpdate(doc: Doc, update: Doc | Doc[], opts: { filter?: Doc;
     modifier[op] = value;
   }
   if (opts.isInsert && isPlainObject(update.$setOnInsert)) modifier.$set = { ...(modifier.$set ?? {}), ...update.$setOnInsert };
+  // mingo rejects any `_id` in $set; MongoDB allows it on insert or when the value is unchanged.
+  if (isPlainObject(modifier.$set) && "_id" in modifier.$set) {
+    const { _id, ...rest } = modifier.$set;
+    if (opts.isInsert || doc._id === undefined) doc._id = _id;
+    else if (encodeDoc(_id) !== encodeDoc(doc._id)) throw new Error("Performing an update on the path '_id' would modify the immutable field '_id'");
+    if (Object.keys(rest).length) modifier.$set = rest; else delete modifier.$set;
+  }
   if (!Object.keys(modifier).length) return doc;
   const positional = Object.values(modifier).some((v) => isPlainObject(v) && Object.keys(v).some((p) => /\.\$(\.|$)/.test(p)));
   applyModifier(doc, modifier, opts.arrayFilters, positional && !opts.isInsert ? opts.filter : undefined, { cloneMode: "none" });
@@ -171,7 +179,8 @@ export function planLookups(pipeline: Doc[], pinned: Map<string, Primitive>): { 
         const spec = stage.$lookup as Doc;
         const filter: Doc = {};
         if (Array.isArray(spec.pipeline)) {
-          const { $expr: _expr, ...plain } = (spec.pipeline[0]?.$match ?? {}) as Doc;
+          const plain = { ...((spec.pipeline[0]?.$match ?? {}) as Doc) };
+          delete plain.$expr;
           for (const c of pushdownConstraints(plain)) if (c.values.length === 1) filter[c.field] = c.values[0];
           for (const p of joinPairs(spec.pipeline, spec.let)) {
             if (!p.foreignPath.includes(".") && current.has(p.localPath)) filter[p.foreignPath] = current.get(p.localPath);

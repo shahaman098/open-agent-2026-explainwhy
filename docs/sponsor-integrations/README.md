@@ -8,7 +8,7 @@ This checkout connects sponsor capabilities to the investigation workflow. **A c
 
 The actual [Meterless H-MEM reference engine](https://github.com/Meterless/Meterless/tree/1742dec56a66e58eef9dda2d2b865823758ca8cd/engines/hmem/reference) is vendored under `src/vendor/meterless-hmem`. The Apache 2.0 license and per-file upstream hashes are included. Only `.ts` import suffixes were removed to match the host TypeScript configuration; engine behavior is unchanged.
 
-When a validated investigation report is published successfully, the same MongoDB transaction saves an immutable per-report memory snapshot in `meterless_memories`. It carries the business, run, investigation, source report, virtual observation cutoff and original report availability time. Model-provider failure reports are not captured. Existing successful reports can be backfilled without a new model request:
+When a validated investigation report is published successfully, the same Postgres transaction saves an immutable per-report memory snapshot in `meterless_memories`. It carries the business, run, investigation, source report, virtual observation cutoff and original report availability time. Model-provider failure reports are not captured. Existing successful reports can be backfilled without a new model request:
 
 ```sh
 npm run meterless:backfill -- --business nike_demo --run YOUR_RUN
@@ -18,7 +18,7 @@ The existing `historical_incidents` tool loads eligible snapshots and calls H-ME
 
 H-MEM recall, source lineage, ranking scores and create/read ledger entries are persisted in the evidence detail. Expand a historical evidence item to inspect `hmem`. The investigator receives this in a separate `historicalMemory` context field. Prior reports are excluded from the current causal evidence ID set, so they can suggest checks but cannot independently justify the current diagnosis.
 
-The reference engine uses deterministic hash embeddings. Confidence is an explicit capture default, not a measured probability. MongoDB stores the durable source snapshots; the reference engine is rehydrated per bounded retrieval. There is no shared in-memory tenant cache or concurrent JSON-file store. This integration does not claim Nightshift inference, learned embeddings, production-grade semantic retrieval, automatic memory promotion or model improvement.
+The reference engine uses deterministic hash embeddings. Confidence is an explicit capture default, not a measured probability. Postgres stores the durable source snapshots; the reference engine is rehydrated per bounded retrieval. There is no shared in-memory tenant cache or concurrent JSON-file store. This integration does not claim Nightshift inference, learned embeddings, production-grade semantic retrieval, automatic memory promotion or model improvement.
 
 ### Zetaris
 
@@ -26,7 +26,7 @@ The new `zetaris_campaign_analysis` tool issues a server-built, read-only SQL jo
 
 All scopes, window boundaries, identifiers and relation names are validated. The model cannot submit SQL or choose a database endpoint. The client uses the documented SQL start/page/close endpoints, Bearer authentication, organization and request headers, a shared deadline and streaming response limits. Every accepted observation must match its immutable canonical event. Missing, duplicate, changed, cross-scope or stale rows fail the tool. A partial export cannot silently masquerade as an observed sales decline.
 
-Successful evidence includes the query text, relation names, request ID, pagination count, cursor-close result, canonical event references and verified metrics. No credential or cursor token enters the evidence record. Equivalent MongoDB and Zetaris observations refer to the same events and must not be counted as independent corroboration. The data remains explicitly synthetic.
+Successful evidence includes the query text, relation names, request ID, pagination count, cursor-close result, canonical event references and verified metrics. No credential or cursor token enters the evidence record. Equivalent canonical-store and Zetaris observations refer to the same events and must not be counted as independent corroboration. The data remains explicitly synthetic.
 
 ## Chosen setup: local Docker
 
@@ -47,7 +47,7 @@ After startup, follow the pinned Freemium README's development-user creation pro
 
 ## Register the demonstration's two data sources
 
-The application still requires the existing `MONGODB_URI`, `MONGODB_DB` and `MUBIT_API_KEY` settings. This checkout currently has no `.env.local`. Configure those server-side values to run a fresh investigation or export existing data. The offline engine checks need none of them.
+The application requires `DATABASE_URL` and `DATABASE_SCHEMA` for Postgres, plus local or hosted NVIDIA settings for a fresh investigation. Follow the [Mac runbook](../friend-mac-runbook.md) for the complete setup and a populated synthetic run. The offline engine check needs no database or model key.
 
 1. Choose a populated synthetic run and a bounded advertising window. Export it from the canonical store:
 
@@ -86,7 +86,7 @@ npm test -- tests/integrations tests/investigator/provider.test.ts tests/investi
 
 `docs/sponsor-integrations/latest-check.json` distinguishes a fixture engine result, actual query connectivity, and canonical evidence verification. A nonempty live schema check still does not prove that each metric matches its canonical event; that verification happens in the investigation evidence tool.
 
-Restart the app and workers after configuration changes. Open a fresh advertising investigation, collect or refresh evidence, and expand `zetaris_campaign_analysis` in the tool trace. Then run a later same-run investigation and inspect `historical_incidents` for recalled memory and its source report. Keep the Zetaris request receipt, H-MEM trace and source records in the updated demo and deck. Failures remain visible; there is no fallback that labels a MongoDB-only result as Zetaris.
+Restart the app and workers after configuration changes. Open a fresh advertising investigation, collect or refresh evidence, and expand `zetaris_campaign_analysis` in the tool trace. Then run a later same-run investigation and inspect `historical_incidents` for recalled memory and its source report. Keep the Zetaris request receipt, H-MEM trace and source records in the updated demo and deck. Failures remain visible; there is no fallback that labels a canonical-store-only result as Zetaris.
 
 `GET /api/integrations/status` exposes guarded configuration/capability status only. It does not claim service health or live acceptance.
 

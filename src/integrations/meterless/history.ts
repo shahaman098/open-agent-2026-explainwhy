@@ -29,7 +29,7 @@ export function recallHistoricalMemories(scope: { businessId: string; simulation
   clock = Date.parse(scope.availableBefore);
   const result = engine.query(query.slice(0, 2000), { chatId, topN: 5 });
   return {
-    engine: "Meterless H-MEM reference", upstreamCommit: HMEM_UPSTREAM, implementation: "deterministic hash embeddings; canonical MongoDB history rehydrated per query",
+    engine: "Meterless H-MEM reference", upstreamCommit: HMEM_UPSTREAM, implementation: "deterministic hash embeddings; canonical Supabase history rehydrated per query",
     scope: { businessId: scope.businessId, simulationRunId: scope.simulationRunId, cutoff: scope.cutoff, availableBefore: scope.availableBefore },
     contextOnly: true as const, context: result.context, trace: result.trace,
     memories: result.memories.map(({ memory, relevance }) => ({ id: memory.id, source: memory.source, content: memory.content, confidence: memory.confidence, layer: memory.layer, relevance, provenance: memory.provenance })),

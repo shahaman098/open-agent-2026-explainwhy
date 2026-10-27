@@ -8,12 +8,25 @@ Terminal tab.
 Follow this guide's database/model settings when older project documents mention
 MongoDB or Mubit: those sections describe an earlier setup.
 
+The [handoff verification record](handoff-verification.md) distinguishes checks
+performed before publication from the live checks you still need to run below.
+
 ## 1. Get the updated project
 
-Ask Aman for the updated **ExplainWhy project**, including its integration changes.
-The standalone `gtrg55/animation_studio` repository is not enough. At the time this
-guide was written, the latest integration changes were still uncommitted locally;
-cloning the existing remote alone would not include those files.
+Clone the **ExplainWhy integration branch**. It includes Animation Studio under
+`apps/animation-studio`; the standalone `gtrg55/animation_studio` repository is not
+enough. The default `main` branch does not contain this handoff.
+
+```sh
+git clone --branch codex/sponsor-integrations --single-branch \
+  https://github.com/shahaman098/open-agent-2026-explainwhy.git
+cd open-agent-2026-explainwhy
+```
+
+If you already have that branch checked out and no local edits, update it with
+`git pull --ff-only`. Keep your own environment file. This guide is for local
+setup and acceptance testing; the full live checklist still requires your
+credentials, Zetaris entitlement and enough Mac memory.
 
 Check your copy before continuing:
 

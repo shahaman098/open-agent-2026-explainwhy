@@ -4,6 +4,14 @@
 
 **Open Agent Hackathon 2026** — Track 02 (*The Agent That Can Explain Why*) · evidence-backed investigation across fragmented business data.
 
+**Current Mac handoff:** use branch `codex/sponsor-integrations` and the
+[step-by-step Mac runbook](docs/friend-mac-runbook.md). The current runtime uses
+Postgres, NVIDIA Nemotron (local or hosted), optional Bright Data research, Zetaris
+and Meterless H-MEM, with the bundled Animation Studio renderer. Older Mubit demo
+recordings and model receipts below are historical evidence, not current setup
+requirements. Live four-sponsor acceptance must be completed with the operator's
+credentials and Mac runtime.
+
 **Sponsor integration status:** Meterless H-MEM now provides sourced historical recall and separate prompt context. A scoped Zetaris SQL evidence connector and local Docker setup are implemented; a live Zetaris query is still blocked on image entitlement and instance configuration. The existing video predates these changes. [Setup, verification and demo steps](docs/sponsor-integrations/README.md).
 
 **Connected financial animation:** ExplainWhy can send verified baseline/current measurements to the bundled Animation Studio and display the resulting MP4 and editable Blender project. Local Nemotron and Bright Data research are configurable alongside the existing Zetaris/H-MEM integrations. [Mac setup, failure handling and verification limits](docs/connected-animation.md). A synthetic chart was rendered and the browser flow verified here; a complete live sponsor run on the host Mac remains to be recorded.
@@ -12,7 +20,7 @@
 
 A small ecommerce business can see that sales have fallen. Finding the reason usually means moving between advertising reports, orders, delivery updates and customer feedback, then deciding what to do with incomplete information.
 
-We built ExplainWhy Agent to bring that work into one place. It watches business activity, groups unusual changes into an investigation, uses Mubit to compare possible explanations, and proposes a response that a person can review. Approved actions run through restricted tools. ExplainWhy saves the changes and assesses later observations against the plan's success criteria.
+We built ExplainWhy Agent to bring that work into one place. It watches business activity, groups unusual changes into an investigation, uses NVIDIA Nemotron to compare possible explanations, and proposes a response that a person can review. Approved actions run through restricted tools. ExplainWhy saves the changes and assesses later observations against the plan's success criteria.
 
 Our hackathon demonstration uses an **Nike shop simulation**. The orders, customers, advertising activity and deliveries are synthetic. The model requests, database records, validation checks and recorded changes described below are genuine development/demo results. Nothing here changes a real advertising account, sends a real customer email or takes a real payment.
 
@@ -26,7 +34,7 @@ If you have two minutes, follow this evidence trail:
 
 1. **The investigation:** [saved Mubit report](docs/stage5-runs/stage5_1792885194280.json) — five model calls, six verified internal evidence records and no unresolved citations.
 2. **The proposed response:** [saved planner output and handoff](docs/stage6-runs/advertising-plan.json) — compare alternatives and inspect the exact campaign, amount, evidence and approval requirement.
-3. **The result after approval:** [execution audit](docs/stage7-runs/audit.json) — the budget is read back from MongoDB at 6750 GBP minor units, with an action receipt and callback event.
+3. **The result after approval:** [execution audit](docs/stage7-runs/audit.json) — the budget is read back from the database at 6750 GBP minor units, with an action receipt and callback event.
 4. **The browser proof:** [recorded browser results](docs/stage7-runs/browser.json) and [budget-after screenshot](docs/stage7-runs/meta-after.png) — the refreshed campaign table shows £67.50/day.
 5. **The later outcome:** [saved assessment](docs/stage8-runs/controlled-observation.json) and [Outcomes screenshot](docs/stage8-runs/outcomes-controlled.png) — a separate isolated simulator run has complete before/after windows, but no observed return improvement and one unmet criterion.
 
@@ -161,9 +169,9 @@ flowchart LR
     A[Business activity] --> B[Validated event ledger]
     B --> C[Metrics and detection]
     C --> D[Investigation and read-only evidence]
-    D --> E[Mubit investigator]
+    D --> E[Nemotron investigator]
     E --> F[Validated diagnosis with citations]
-    F --> G[Mubit solution planner]
+    F --> G[Nemotron solution planner]
     G --> H[Validated proposed plan]
     H --> I[Human approval of exact version]
     I --> J[Restricted execution agents]
@@ -181,9 +189,9 @@ flowchart LR
 | --- | --- |
 | **Next.js 16, React 19 and TypeScript** | The [App Router](src/app/) provides the dashboards, simulated storefronts and HTTP API routes. React renders the operator and partner views; TypeScript is used across the app, workers and shared contracts. Versions and scripts are in [package.json](package.json). |
 | **Node.js and npm** | Run the web app, the independent monitoring/investigation/planning workers and the repeatable demo scripts. `tsx` runs the TypeScript worker and audit entry points. |
-| **MongoDB** | The [MongoDB driver](src/lib/mongodb.ts) connects to Atlas or another replica set. Scoped collections persist the immutable business-event ledger, metric snapshots, monitoring jobs, evidence, Mubit call records, diagnoses, plan versions, approvals, adapter receipts, execution history and outcome assessments. [Unique indexes](src/lib/collections.ts) support idempotency; [transactions](src/intelligence/detection/persistence.ts) commit linked records; [Change Streams](src/intelligence/monitoring/watcher.ts) wake the monitoring worker. See the [collection guide](docs/mongodb.md). |
-| **Gemini 4 Argon (`gemini-4-argon`) through Mubit** | The [Mubit gateway](src/intelligence/investigator/provider.ts) routes investigation, source-support checks, structured diagnosis and solution planning to Gemini 4 Argon through the native Gemini API by default, with an explicit Gemini OpenAI-compatible transport available for training capture. ExplainWhy records request IDs, actual model IDs, usage and validation results. |
-| **Gemini 4 Argon grounded research** | Optional [public-source research](src/intelligence/investigator/research.ts) uses the same Gemini model through Mubit with Google Search grounding. The [saved research request](docs/stage5-runs/research_1792885024061.json) records the actual model and route, including when grounding was unavailable. ExplainWhy independently checks retrieved sources before using them as context. Direct Google fallback is disabled in the documented Mubit-only setup. |
+| **Supabase** | [Supabase Postgres](src/lib/mongodb.ts) is the system of record, reached through a [document store](src/lib/docstore/client.ts): one jsonb table per collection in a per-environment schema. Scoped collections persist the immutable business-event ledger, metric snapshots, monitoring jobs, evidence, model call records, diagnoses, plan versions, approvals, adapter receipts, execution history and outcome assessments. [Unique indexes](src/lib/collections.ts) become Postgres unique indexes for idempotency; [transactions](src/intelligence/detection/persistence.ts) are Postgres transactions; an insert log replaces Change Streams to wake the [monitoring worker](src/intelligence/monitoring/watcher.ts). See the [collection guide](docs/mongodb.md). |
+| **NVIDIA Nemotron** | The [provider](src/intelligence/investigator/provider.ts) runs investigation, structured diagnosis, source-support assessment and planning through local Ollama/LM Studio or the hosted NVIDIA API. Call records include the actual model, route, request ID and validation status. |
+| **Bright Data / optional Gemini research** | [Public-source research](src/intelligence/investigator/research.ts) uses Bright Data SERP discovery or direct Gemini grounded search. The four-sponsor Mac setup selects Bright Data. Candidates undergo independent retrieval, timing and claim-support checks. Older Mubit research receipts are archives. |
 | **NVIDIA Nemotron (API catalog)** | The optional [independent verifier](src/integrations/nemotron/verifier.ts) runs after deterministic validation. `nvidia/llama-3.1-nemotron-70b-instruct` judges each competing cause against the verified evidence, and `nvidia/nemotron-4-340b-reward` scores each explanation. Results and per-call receipts are stored in the report; the verifier cannot edit the diagnosis. Enable it with `EXPLAINWHY_NEMOTRON_VERIFIER=true` and `NVIDIA_API_KEY`. See [proof moments](docs/proof-moments/README.md). |
 | **Zod and `@explainwhy/contracts`** | [Shared schemas](packages/contracts/README.md) validate events, evidence, diagnoses, plans and execution records at API, model-output and persistence boundaries. |
 | **TypeScript simulator and restricted adapters** | The [seeded digital twin](src/simulator/) generates synthetic shop, advertising, shipping and customer events. [Adapters](src/adapters/) apply only approved budget, delay-notice and banner actions to that twin; the Meta-style account, Nike-style shop and Shopify introduction are demo interfaces rather than live external accounts. |
@@ -203,14 +211,14 @@ This illustration describes the broader product direction. The implemented flow 
 
 ## Run ExplainWhy Agent locally
 
-You need Node.js 22 or newer, npm, MongoDB Atlas or another MongoDB replica set, and a Mubit key with access to the configured models. Transactions and Change Streams need a replica set. The saved JSON reports can be reviewed without a database or provider account.
+Use Node.js 24, npm, local Postgres or Supabase Postgres, and either local Nemotron or a hosted NVIDIA API key. For all four sponsors and animation, follow the [Mac runbook](docs/friend-mac-runbook.md). The app creates its schema, tables and indexes on first use. The saved JSON reports can be reviewed without a database or provider account.
 
 ```sh
 npm ci
 cp .env.example .env.local
 ```
 
-Set `MONGODB_URI`, `MONGODB_DB` and `MUBIT_API_KEY` in `.env.local`. Keep credentials out of Git. Start the app:
+Set `DATABASE_URL`, `DATABASE_SCHEMA` and the local or hosted NVIDIA settings in `.env.local`. Configure only real Supabase Auth credentials if using Auth; otherwise leave its optional settings unset. To bring over data from an older MongoDB install, run `MONGODB_URI=… npm run db:migrate-mongo`. Keep credentials out of Git. Start the app:
 
 ```sh
 npm run dev -- --port 3000
@@ -230,7 +238,7 @@ The main routes are `/dashboard`, `/dashboard/signals`, `/dashboard/investigatio
 
 ### Reproduce or inspect the evidence
 
-For a fresh isolated advertising investigation, the existing script creates a new run without changing active selection, requests Mubit output and writes a report:
+For a fresh isolated advertising investigation, the existing script creates a new run without changing active selection, requests Nemotron output and writes a report:
 
 ```sh
 npm run demo:stage5

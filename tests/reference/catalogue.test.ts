@@ -84,10 +84,10 @@ describe("reference persistence and fallback", () => {
     const db = await getDb();
     expect(await db.collection(COLLECTIONS.referenceProducts).countDocuments()).toBe(NIKE_REFERENCE_CATALOGUE.length);
     const result = await getReferenceCatalogue();
-    expect(result.servedFrom).toBe("mongodb");
+    expect(result.servedFrom).toBe("supabase");
     expect(result.products.map((p) => p.referenceProductId).sort()).toEqual(NIKE_REFERENCE_CATALOGUE.map((p) => p.referenceProductId).sort());
     const fin = await getReferenceFinancials();
-    expect(fin.servedFrom).toBe("mongodb");
+    expect(fin.servedFrom).toBe("supabase");
     expect(fin.records[0]?.referenceId).toBe(NIKE_Q1_FY27_RESULTS.referenceId);
   });
 

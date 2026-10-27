@@ -41,10 +41,15 @@
     ".next/e2e/types/**/*.ts",
     ".next/e2e/dev/types/**/*.ts",
     ".next/sendoff-build/types/**/*.ts",
-    ".next/sendoff-build/dev/types/**/*.ts"
+    ".next/sendoff-build/dev/types/**/*.ts",
+    ".next/pgsmoke/types/**/*.ts",
+    ".next/pgsmoke/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
+    "**/*.tmp.ts",
+    "**/*.tmp.mts",
+    "**/*.tmp.config.mts",
     "packages/contracts/scripts",
     "playwright-report",
     "test-results"
