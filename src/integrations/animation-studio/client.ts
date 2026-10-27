@@ -8,7 +8,9 @@ export class AnimationError extends Error {
 }
 export function studioBase() {
   if (process.env.EXPLAINWHY_ANIMATION_ENABLED !== "true") throw new AnimationError("animation_disabled");
-  const url = new URL(process.env.ANIMATION_STUDIO_BASE_URL || "http://127.0.0.1:8765");
+  let url: URL;
+  // A malformed value must surface as a handled endpoint error, not a TypeError that becomes a 500.
+  try { url = new URL(process.env.ANIMATION_STUDIO_BASE_URL || "http://127.0.0.1:8765"); } catch { throw new AnimationError("invalid_animation_endpoint"); }
   // The Studio itself is loopback-only. Both apps run on the friend's Mac.
   if (url.protocol !== "http:" || !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname) || url.username || url.password || url.search || url.hash || url.pathname !== "/") throw new AnimationError("invalid_animation_endpoint");
   return url.origin;

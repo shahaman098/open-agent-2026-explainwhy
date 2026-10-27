@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { recallHistoricalMemories, type HistoricalMemory } from "@/integrations/meterless/history";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { recallHistoricalMemories, safeRecallHistoricalMemories, type HistoricalMemory } from "@/integrations/meterless/history";
 import { HMEM } from "@/vendor/meterless-hmem";
 
 const scope = { businessId: "nike_demo", simulationRunId: "run_one", investigationId: "current", cutoff: "2026-10-24T12:00:00.000Z", availableBefore: "2026-10-27T12:00:00.000Z" };
@@ -39,5 +39,18 @@ describe("Meterless H-MEM application adapter", () => {
     engine.feedback(memory.id, "wrong");
     expect(engine.store.get(memory.id)?.confidence).toBeCloseTo(0.5);
     expect(engine.store.get(memory.id)?.tags).toContain("review");
+  });
+});
+
+describe("H-MEM degradation", () => {
+  afterEach(() => { vi.restoreAllMocks(); });
+  it("skips malformed stored memories instead of throwing", () => {
+    const { recall, warning } = safeRecallHistoricalMemories(scope, query, [prior, { ...prior, themes: null }, { ...prior, summaries: [1] }, null, "junk"]);
+    expect(recall?.memories).toHaveLength(1);
+    expect(warning).toBe("4 malformed H-MEM record(s) were skipped");
+  });
+  it("returns no recall and a warning when the engine itself fails", () => {
+    vi.spyOn(HMEM.prototype, "query").mockImplementation(() => { throw new Error("engine failure"); });
+    expect(safeRecallHistoricalMemories(scope, query, [prior])).toEqual({ recall: null, warning: expect.stringContaining("recall failed") });
   });
 });

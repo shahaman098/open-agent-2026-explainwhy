@@ -13,12 +13,12 @@ performed before publication from the live checks you still need to run below.
 
 ## 1. Get the updated project
 
-Clone the **ExplainWhy integration branch**. It includes Animation Studio under
+Clone the **ExplainWhy main branch**. It includes Animation Studio under
 `apps/animation-studio`; the standalone `gtrg55/animation_studio` repository is not
-enough. The default `main` branch does not contain this handoff.
+enough.
 
 ```sh
-git clone --branch codex/sponsor-integrations --single-branch \
+git clone --branch main --single-branch \
   https://github.com/shahaman098/open-agent-2026-explainwhy.git
 cd open-agent-2026-explainwhy
 ```

@@ -85,6 +85,25 @@ describe("Nemotron independent verification", () => {
     expect(v.receipts[0]).toMatchObject({ task: "judge", status: "failed", error: "nvidia_http_503", requestId: "req_down" });
   });
 
+  it("skips reward scoring when the endpoint does not answer the judge", async () => {
+    const transport = vi.fn<typeof fetch>().mockRejectedValue(new TypeError("fetch failed"));
+    const v = await verifyDiagnosis(diagnosis, evidence, transport);
+    expect(transport).toHaveBeenCalledTimes(1);
+    expect(v.status).toBe("failed");
+    expect(v.limitations).toContain("Reward scoring was skipped because the NVIDIA endpoint did not answer the judge request.");
+  });
+
+  it("stops making calls once the overall time budget is spent", async () => {
+    vi.stubEnv("NEMOTRON_VERIFIER_BUDGET_MS", "50");
+    const slow = () => new Promise<Response>((resolve) => setTimeout(() => resolve(judge("not json")), 80));
+    const transport = vi.fn<typeof fetch>().mockImplementation(slow);
+    const started = Date.now();
+    const v = await verifyDiagnosis(diagnosis, evidence, transport);
+    expect(Date.now() - started).toBeLessThan(1000);
+    expect(transport).toHaveBeenCalledTimes(1);
+    expect(v.limitations).toContain("Verification stopped at its time budget; remaining checks were not run.");
+  });
+
   it("parses reward attributes from text or logprob tokens", () => {
     expect(parseRewardScores("helpfulness:2.5,correctness:-0.75,coherence:3", [])).toEqual({ correctness: -0.75, helpfulness: 2.5 });
     expect(parseRewardScores("", [{ token: "helpfulness", logprob: 1.5 }, { token: "correctness", logprob: 2.25 }])).toEqual({ correctness: 2.25, helpfulness: 1.5 });

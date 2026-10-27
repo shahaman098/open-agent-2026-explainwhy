@@ -4,7 +4,11 @@
 
 **Open Agent Hackathon 2026** — Track 02 (*The Agent That Can Explain Why*) · evidence-backed investigation across fragmented business data.
 
-**Current Mac handoff:** use branch `codex/sponsor-integrations` and the
+**Run it locally in two commands:** [Quick start](docs/QUICKSTART.md):
+`./scripts/local/setup.sh` once, then `./scripts/local/start.sh`. It uses a local
+Nemotron model through Ollama and needs no cloud keys.
+
+**Full sponsor setup:** use branch `main` and the
 [step-by-step Mac runbook](docs/friend-mac-runbook.md). The current runtime uses
 Postgres, NVIDIA Nemotron (local or hosted), optional Bright Data research, Zetaris
 and Meterless H-MEM, with the bundled Animation Studio renderer. Older Mubit demo
@@ -12,7 +16,7 @@ recordings and model receipts below are historical evidence, not current setup
 requirements. Live four-sponsor acceptance must be completed with the operator's
 credentials and Mac runtime.
 
-**Sponsor integration status:** Meterless H-MEM now provides sourced historical recall and separate prompt context. A scoped Zetaris SQL evidence connector and local Docker setup are implemented; a live Zetaris query is still blocked on image entitlement and instance configuration. The existing video predates these changes. [Setup, verification and demo steps](docs/sponsor-integrations/README.md).
+**Current NVIDIA demo:** [workspace and data](docs/nvidia-demo.md), [automatic local Nemotron analysis](docs/automatic-local-analysis.md), [validated diagnosis and planning](docs/nvidia-planning.md), and [dashboard chart exports](docs/dashboard-presentations.md). The Integrations page shows scoped Zetaris evidence, Meterless H-MEM recall status and verification receipts. Public NVIDIA financial references are separate from synthetic operational data. [Sponsor setup and verification](docs/sponsor-integrations/README.md).
 
 **Connected financial animation:** ExplainWhy can send verified baseline/current measurements to the bundled Animation Studio and display the resulting MP4 and editable Blender project. Local Nemotron and Bright Data research are configurable alongside the existing Zetaris/H-MEM integrations. [Mac setup, failure handling and verification limits](docs/connected-animation.md). A synthetic chart was rendered and the browser flow verified here; a complete live sponsor run on the host Mac remains to be recorded.
 

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { AnomalyT, InvestigationT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
-import { recallHistoricalMemories, type HistoricalMemory } from "@/integrations/meterless/history";
+import { safeRecallHistoricalMemories, type HistoricalMemory } from "@/integrations/meterless/history";
 import type { IncidentDoc } from "@/intelligence/detection/persistence";
 import { ToolInputBase, type EvidenceCategory, type EvidenceDraft, type EvidenceTool } from "../types";
 import { cap } from "./_shared";
@@ -67,13 +67,15 @@ export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
     // Generic executive summaries omit the incident's searchable subject. Rehydrate that metadata
     // from the same scoped canonical records without mutating the immutable report snapshot.
     const indexedMemories = memories.map((memory) => {
+      if (!memory || !Array.isArray(memory.metrics) || !Array.isArray(memory.themes)) return memory;
       const source = rows.find((row) => row.investigationId === memory.investigationId);
       return source ? { ...memory, title: source.title,
         metrics: [...new Set([...source.metrics, ...memory.metrics])],
         themes: [...new Set([...source.themes, ...memory.themes])] } : memory;
     });
-    const hmem = input.includeOtherRuns ? null : recallHistoricalMemories({ ...ctx, availableBefore },
+    const recalled = input.includeOtherRuns ? null : safeRecallHistoricalMemories({ ...ctx, availableBefore },
       `${current?.title ?? ""} ${[...currentThemes].join(" ")} ${[...currentMetrics].join(" ")}`, indexedMemories);
+    const hmem = recalled?.recall ?? null;
     const recalledSource = hmem?.memories[0]?.source;
     const top = rows.find((row) => `investigations:${row.investigationId}` === recalledSource) ?? rows[0]!;
     const category = THEME_CATEGORY[incidentBy.get(top.investigationId)?.primaryTheme ?? ""] ?? "technical";
@@ -84,7 +86,7 @@ export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
         { metric: "prior_diagnoses", value: diagnoses.length, unit: "count" }, { metric: "prior_plans", value: plans.length, unit: "count" }],
       sourceRecords: [...rows.map((r) => ({ collection: COLLECTIONS.investigations, recordId: r.investigationId })), ...rows.filter((r) => r.incidentId).map((r) => ({ collection: COLLECTIONS.incidents, recordId: r.incidentId! }))],
       detail: { currentMetrics: [...currentMetrics], currentThemes: [...currentThemes], investigations: cap(rows, input.limit), scope: input.includeOtherRuns ? "business" : "run", hmem },
-      warnings: input.includeOtherRuns ? ["Results include other simulation runs of the same business; those runs may have different seeds and timelines"] : [],
+      warnings: input.includeOtherRuns ? ["Results include other simulation runs of the same business; those runs may have different seeds and timelines"] : recalled?.warning ? [recalled.warning] : [],
       dataOrigin: "normal_internal",
     };
     return { evidence: [evidence], resultCount: rows.length, warnings: evidence.warnings };
