@@ -36,6 +36,10 @@ export interface ScenarioParams {
   couponUsageRate: number;
   couponFailureRate: number;
   couponCode: string;
+  /** One campaign with its own audience shrink and CTR fatigue (a visible co-occurring decoy), if any. */
+  decoyCampaignId?: string | null;
+  decoyAudienceShrink?: number;
+  decoyCtrFatigueStrength?: number;
 }
 
 export const HEALTHY_PARAMS: ScenarioParams = {
@@ -49,7 +53,11 @@ export const HEALTHY_PARAMS: ScenarioParams = {
 export interface ScenarioTargets {
   viralProductId: string;
   qualityIssueProductId: string;
+  /** Campaign whose ads fatigue as a decoy alongside the promo failure. Smallest budget, so its traffic share is small. */
+  decoyCampaignId?: string;
 }
+
+export const DEFAULT_DECOY_CAMPAIGN_ID = "cmp_football_mercurial";
 
 export function deriveScenarioParams(scenario: ScenarioNameT, severity: number, targets: ScenarioTargets): ScenarioParams {
   const s = Math.min(1, Math.max(0, severity));
@@ -81,6 +89,15 @@ export function deriveScenarioParams(scenario: ScenarioNameT, severity: number, 
       p.couponUsageRate = 0.12 + 0.3 * s;
       p.couponFailureRate = 0.02 + 0.9 * s;
       break;
+    case "promo_checkout_failure_ad_decoy":
+      // Same promo fault, plus a misleading lead: one small campaign fatigues sharply at the same moment.
+      // Its paid conversion is untouched, so it only removes that campaign's clicks.
+      p.couponUsageRate = 0.12 + 0.3 * s;
+      p.couponFailureRate = 0.02 + 0.9 * s;
+      p.decoyCampaignId = targets.decoyCampaignId ?? DEFAULT_DECOY_CAMPAIGN_ID;
+      p.decoyAudienceShrink = 0.9 * s;
+      p.decoyCtrFatigueStrength = 0.35 + 1.6 * s;
+      break;
   }
   return p;
 }
@@ -95,4 +112,11 @@ export const SCENARIO_ROOT_CAUSES: Record<ScenarioNameT, Array<
   viral_demand: ["viral_demand", "stockout"],
   negative_reviews: ["product_quality", "negative_sentiment"],
   promo_checkout_failure: ["discount_failure", "checkout_failure"],
+  // The fatigued campaign is a real but minor co-occurring change, deliberately not a root cause.
+  promo_checkout_failure_ad_decoy: ["discount_failure", "checkout_failure"],
+};
+
+/** Misleading co-occurring causes per scenario, recorded only in private ground truth for evaluation. */
+export const SCENARIO_DECOYS: Partial<Record<ScenarioNameT, Array<"ad_fatigue">>> = {
+  promo_checkout_failure_ad_decoy: ["ad_fatigue"],
 };

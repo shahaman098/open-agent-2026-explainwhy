@@ -25,6 +25,7 @@ export interface InvestigationContext {
   polarity: "negative" | "positive" | "mixed";
   /** Latest fully observed hour; the data cutoff of a collection. */
   cutoff: string;
+  availableBefore?: string;
   historyStart: string;
   incidentWindow: WindowT;
   baselineWindow: WindowT | undefined;

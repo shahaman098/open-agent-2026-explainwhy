@@ -24,7 +24,7 @@ const FORBIDDEN_TOKENS = [
   "simulator_state", "simulator_ground_truth", "simulatorState", "simulatorGroundTruth", "ScenarioGroundTruth", "ScenarioName",
   "scenarioParams", "activeScenario", "scenarioSeverity", "hiddenFaultParameters", "deriveScenarioParams", "SCENARIO_TARGETS",
   "plannedOutcome", "qualityScore", "popularity", "satisfaction", "drivers", "getRunSummary", "loadState", "loadWorld",
-  "ad_fatigue", "delivery_delays", "viral_demand", "negative_reviews", "promo_checkout_failure",
+  "ad_fatigue", "delivery_delays", "viral_demand", "negative_reviews", "promo_checkout_failure", "decoyCampaignId", "SCENARIO_DECOYS",
 ];
 const ALLOWED_COLLECTION_KEYS = new Set([
   "businessEvents", "simulatedProducts", "metricSnapshots", "anomalies", "investigations", "detectionFindings",
@@ -32,6 +32,8 @@ const ALLOWED_COLLECTION_KEYS = new Set([
   // Evidence retrieval owns these; diagnoses/plans are read (never written) by historical-incident retrieval.
   "evidence", "evidenceCollections", "evidenceToolRuns", "evidenceDetails", "diagnoses", "plans",
   "investigationJobs", "investigationCalls", "investigationReports", "externalSources",
+  // Published-report memory snapshots recalled through H-MEM; context only, never simulator state.
+  "meterlessMemories",
 ]);
 
 describe("detector data boundary (code inspection)", () => {

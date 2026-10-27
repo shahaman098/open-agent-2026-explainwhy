@@ -58,7 +58,7 @@ export async function GET(request: Request): Promise<Response> {
     for (const row of jobs) add(`job:${row.jobId}`, row.updatedAt ?? row.createdAt, "recorded", "agent", "Investigator", "Investigator status", `${label(row.stage || row.status)} · ${number(row.callCount)} model calls`, text(row.status), investigationLink(row.investigationId));
     for (const row of calls) {
       if (row.task === "system.insufficient_evidence") continue;
-      const provider = row.metadata?.provider === "mubit" ? "Mubit" : row.metadata?.provider === "google_direct" ? "Google" : "Model";
+      const provider = row.metadata?.provider === "mubit" ? "Mubit" : row.metadata?.provider === "nvidia" ? "NVIDIA" : row.metadata?.provider === "google_direct" ? "Google" : "Model";
       const task = text(row.task).includes("solution_planning") ? "Solution planning" : text(row.task).includes("diagnosis") ? "Root cause diagnosis" : text(row.task).includes("source_support") ? "Source review" : text(row.task) === "external_research" ? "External research" : "Investigation reasoning";
       const duration = number(row.metadata?.latencyMs);
       add(`call:${row.callId}`, row.startedAt, "recorded", "agent", provider, `${provider} agent call · ${task}`, `${label(row.status)}${duration ? ` · ${(duration / 1000).toFixed(1)}s` : ""}`, text(row.status), investigationLink(row.investigationId));

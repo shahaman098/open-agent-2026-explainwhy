@@ -3,12 +3,14 @@ import type { Db } from "mongodb";
 import { DiagnosisModelOutput, Evidence, type DiagnosisModelOutputT, type EvidenceT, type MetricSnapshotT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
 import { resolveSources } from "../evidence/verification";
+import type { EvidenceDetailDoc } from "../evidence/persistence";
+import type { MemoryRecall } from "@/integrations/meterless/history";
 import { type HypothesisSetT, type ImpactT, type ScopeT, BusinessImpactAssessment } from "./schemas";
 
-export interface EvidencePacket { evidence: EvidenceT[]; limitations: string[] }
-export async function loadVerifiedEvidence(db: Db, scope: ScopeT, ids: string[], cutoff: string): Promise<EvidencePacket> {
+export interface EvidencePacket { evidence: EvidenceT[]; limitations: string[]; historicalMemory?: MemoryRecall[] }
+export async function loadVerifiedEvidence(db: Db, scope: ScopeT, ids: string[], cutoff: string, availableBefore = new Date().toISOString()): Promise<EvidencePacket> {
   const docs = await db.collection(COLLECTIONS.evidence).find({ ...scope, evidenceId: { $in: [...new Set(ids)] } }, { projection: { _id: 0 } }).toArray();
-  const evidence: EvidenceT[] = [], limitations: string[] = [];
+  const evidence: EvidenceT[] = [], limitations: string[] = [], historicalMemory: MemoryRecall[] = [];
   for (const doc of docs) {
     const { simulationRunId: _run, ...raw } = doc; void _run;
     const e = Evidence.parse(raw);
@@ -25,6 +27,14 @@ export async function loadVerifiedEvidence(db: Db, scope: ScopeT, ids: string[],
     if (!boundaryValid) { limitations.push(`${e.evidenceId}: referenced document outside run`); continue; }
     const resolved = await resolveSources(db, scope, e.sourceRecords);
     if (resolved.unresolved.length || !resolved.resolved) { limitations.push(`${e.evidenceId}: source resolution failed`); continue; }
+    if (e.sourceRecords.some((r) => r.collection === COLLECTIONS.investigations)) {
+      const detail = await db.collection<EvidenceDetailDoc>(COLLECTIONS.evidenceDetails).findOne({ ...scope, evidenceId: e.evidenceId, tool: "historical_incidents" }, { projection: { _id: 0, detail: 1 } });
+      const memory = detail?.detail.hmem as MemoryRecall | undefined;
+      if (memory?.contextOnly === true && memory.scope?.businessId === scope.businessId && memory.scope.simulationRunId === scope.simulationRunId && memory.scope.cutoff === cutoff &&
+        Number.isFinite(Date.parse(memory.scope.availableBefore)) && Date.parse(memory.scope.availableBefore) <= Date.parse(availableBefore)) historicalMemory.push(memory);
+      limitations.push(`${e.evidenceId}: prior investigation is context only and excluded from current causal evidence`);
+      continue;
+    }
     // Published references are dated independently of simulation time and remain context-only.
     if (e.sourceRecords.some((r) => r.collection.startsWith("reference_"))) { limitations.push(`${e.evidenceId}: public reference excluded from causal evidence`); continue; }
     const revenue = e.measurements.find((m) => m.metric === "net_revenue_minor_per_hour");
@@ -38,7 +48,7 @@ export async function loadVerifiedEvidence(db: Db, scope: ScopeT, ids: string[],
     evidence.push(e);
   }
   for (const id of ids) if (!docs.some((d) => d.evidenceId === id)) limitations.push(`${id}: missing or outside investigation scope`);
-  return { evidence, limitations };
+  return { evidence, limitations, historicalMemory };
 }
 
 export function validateReferences(refs: string[], evidence: EvidenceT[]): void {

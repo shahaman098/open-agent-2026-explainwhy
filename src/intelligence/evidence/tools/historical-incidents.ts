@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { AnomalyT, InvestigationT } from "@explainwhy/contracts";
 import { COLLECTIONS } from "@/lib/collections";
+import { recallHistoricalMemories, type HistoricalMemory } from "@/integrations/meterless/history";
 import type { IncidentDoc } from "@/intelligence/detection/persistence";
 import { ToolInputBase, type EvidenceCategory, type EvidenceDraft, type EvidenceTool } from "../types";
 import { cap } from "./_shared";
@@ -16,8 +17,8 @@ const jaccard = (a: Set<string>, b: Set<string>) => { const inter = [...a].filte
 
 export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
   name: "historical_incidents",
-  title: "Historical incident retrieval",
-  description: "Earlier ExplainWhy Agent investigations and incidents for this business with similar observed metrics and themes, plus any recorded diagnoses or plans. Returns an explicit empty result when none exist; never invents past incidents.",
+  title: "Meterless H-MEM historical recall",
+  description: "Meterless H-MEM hybrid recall over earlier sourced investigations in this simulation run. Returns a provenance and trust-ledger trace. Prior findings are context only, not evidence of the current cause. Other-run comparisons use the separate pattern-overlap path.",
   category: "technical",
   dataSources: [
     { collection: COLLECTIONS.investigations, description: "canonical investigations", origin: "normal_internal" },
@@ -44,8 +45,8 @@ export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
     const [incidents, anomalies, diagnoses, plans] = await Promise.all([
       db.collection<IncidentDoc>(COLLECTIONS.incidents).find({ businessId: ctx.businessId, investigationId: { $in: prior.map((p) => p.investigationId) } }, { projection: { _id: 0, history: 0, links: 0 } }).toArray(),
       db.collection<AnomalyT>(COLLECTIONS.anomalies).find({ businessId: ctx.businessId, anomalyId: { $in: prior.flatMap((p) => p.anomalyIds) } }, { projection: { _id: 0, anomalyId: 1, metric: 1, direction: 1, severity: 1 } }).toArray(),
-      db.collection(COLLECTIONS.diagnoses).find({ businessId: ctx.businessId, investigationId: { $in: prior.map((p) => p.investigationId) } }, { projection: { _id: 0, diagnosisId: 1, investigationId: 1, primaryCause: 1, summary: 1, createdAt: 1 } }).limit(50).toArray(),
-      db.collection(COLLECTIONS.plans).find({ businessId: ctx.businessId, investigationId: { $in: prior.map((p) => p.investigationId) } }, { projection: { _id: 0, planId: 1, investigationId: 1, status: 1, objective: 1, createdAt: 1 } }).limit(50).toArray(),
+      db.collection(COLLECTIONS.diagnoses).find({ ...scope, investigationId: { $in: prior.map((p) => p.investigationId) }, createdAt: { $lte: ctx.availableBefore ?? new Date().toISOString() } }, { projection: { _id: 0, diagnosisId: 1, investigationId: 1, primaryCause: 1, summary: 1, createdAt: 1 } }).limit(50).toArray(),
+      db.collection(COLLECTIONS.plans).find({ ...scope, investigationId: { $in: prior.map((p) => p.investigationId) }, createdAt: { $lte: ctx.availableBefore ?? new Date().toISOString() } }, { projection: { _id: 0, planId: 1, investigationId: 1, status: 1, objective: 1, createdAt: 1 } }).limit(50).toArray(),
     ]);
     const anomalyBy = new Map(anomalies.map((a) => [a.anomalyId, a]));
     const incidentBy = new Map(incidents.map((i) => [i.investigationId as string, i]));
@@ -58,7 +59,15 @@ export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
         metricSimilarity: Math.round(jaccard(currentMetrics, metrics) * 100) / 100, themeSimilarity: Math.round(jaccard(currentThemes, themes) * 100) / 100,
         diagnoses: diagnoses.filter((d) => d.investigationId === p.investigationId), plans: plans.filter((pl) => pl.investigationId === p.investigationId) };
     }).sort((a, b) => b.metricSimilarity + b.themeSimilarity - (a.metricSimilarity + a.themeSimilarity));
-    const top = rows[0]!;
+    const availableBefore = ctx.availableBefore ?? new Date().toISOString();
+    const memories = input.includeOtherRuns ? [] : await db.collection<HistoricalMemory>(COLLECTIONS.meterlessMemories).find({
+      businessId: ctx.businessId, simulationRunId: ctx.simulationRunId, investigationId: { $in: prior.map((item) => item.investigationId) },
+      observedThrough: { $lte: ctx.cutoff }, availableAt: { $lte: availableBefore },
+    }, { projection: { _id: 0 } }).sort({ availableAt: -1 }).limit(50).toArray();
+    const hmem = input.includeOtherRuns ? null : recallHistoricalMemories({ ...ctx, availableBefore },
+      `${current?.title ?? ""} ${[...currentThemes].join(" ")} ${[...currentMetrics].join(" ")}`, memories);
+    const recalledSource = hmem?.memories[0]?.source;
+    const top = rows.find((row) => `investigations:${row.investigationId}` === recalledSource) ?? rows[0]!;
     const category = THEME_CATEGORY[incidentBy.get(top.investigationId)?.primaryTheme ?? ""] ?? "technical";
     const evidence: EvidenceDraft = {
       key: "historical:investigations", category, title: `${rows.length} earlier investigation(s) for comparison`,
@@ -66,7 +75,7 @@ export const historicalIncidents: EvidenceTool<HistoricalInputT> = {
       measurements: [{ metric: "prior_investigations", value: rows.length, unit: "count" }, { metric: "closest_metric_similarity", value: top.metricSimilarity, unit: "jaccard" }, { metric: "closest_theme_similarity", value: top.themeSimilarity, unit: "jaccard" },
         { metric: "prior_diagnoses", value: diagnoses.length, unit: "count" }, { metric: "prior_plans", value: plans.length, unit: "count" }],
       sourceRecords: [...rows.map((r) => ({ collection: COLLECTIONS.investigations, recordId: r.investigationId })), ...rows.filter((r) => r.incidentId).map((r) => ({ collection: COLLECTIONS.incidents, recordId: r.incidentId! }))],
-      detail: { currentMetrics: [...currentMetrics], currentThemes: [...currentThemes], investigations: cap(rows, input.limit), scope: input.includeOtherRuns ? "business" : "run" },
+      detail: { currentMetrics: [...currentMetrics], currentThemes: [...currentThemes], investigations: cap(rows, input.limit), scope: input.includeOtherRuns ? "business" : "run", hmem },
       warnings: input.includeOtherRuns ? ["Results include other simulation runs of the same business; those runs may have different seeds and timelines"] : [],
       dataOrigin: "normal_internal",
     };

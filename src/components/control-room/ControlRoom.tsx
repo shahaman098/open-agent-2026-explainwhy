@@ -8,10 +8,11 @@ import { ExplainWhyLogo } from "@/components/explainwhy/ExplainWhyLogo";
 import { PageSkeleton } from "@/components/explainwhy/PageSkeleton";
 import type { Breakdown, LedgerEvent, RunsResponse, StateResponse } from "@/components/control-room/types";
 
-const SCENARIOS = ["healthy", "ad_fatigue", "delivery_delays", "viral_demand", "negative_reviews", "promo_checkout_failure"] as const;
+const SCENARIOS = ["healthy", "ad_fatigue", "delivery_delays", "viral_demand", "negative_reviews", "promo_checkout_failure", "promo_checkout_failure_ad_decoy"] as const;
 const SCENARIO_LABEL: Record<string, string> = {
   healthy: "Healthy baseline", ad_fatigue: "Ad fatigue", delivery_delays: "Delivery delays", viral_demand: "Viral demand",
   negative_reviews: "Negative reviews", promo_checkout_failure: "Promo checkout failure",
+  promo_checkout_failure_ad_decoy: "Promo failure + ad decoy",
 };
 const EVENT_TYPES = ["", "order.completed", "web.session_started", "ad.metrics_observed", "delivery.status_changed", "review.created", "checkout.failed", "inventory.level_changed", "social.mention_observed", "order.refunded", "campaign.budget_updated", "customer.message_sent", "storefront.banner_published"];
 

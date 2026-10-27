@@ -6,7 +6,7 @@ import type { CatalogueLabel } from "@/intelligence/types";
 /** Stable tool names; the future Mubit investigator selects from exactly this set. */
 export const TOOL_NAMES = [
   "revenue_analysis", "advertising_analysis", "checkout_analysis", "inventory_analysis",
-  "shipping_analysis", "customer_feedback_analysis", "public_reference_context", "historical_incidents",
+  "shipping_analysis", "customer_feedback_analysis", "public_reference_context", "historical_incidents", "zetaris_campaign_analysis",
 ] as const;
 export type ToolName = (typeof TOOL_NAMES)[number];
 
@@ -49,6 +49,8 @@ export interface ToolContext {
   investigationId: string;
   /** Latest fully observed hour for the run; no query may read beyond it. */
   cutoff: string;
+  /** Wall-clock knowledge boundary, separate from simulated event time. */
+  availableBefore?: string;
   catalogue: Map<string, CatalogueLabel>;
   signal?: AbortSignal;
 }

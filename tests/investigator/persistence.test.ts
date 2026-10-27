@@ -9,6 +9,8 @@ import { processInvestigation } from "@/intelligence/investigator/controller";
 import { loadVerifiedEvidence } from "@/intelligence/investigator/validation";
 import { ProviderError, type ModelResponse } from "@/intelligence/investigator/provider";
 import { verifyExternalSource } from "@/intelligence/investigator/research";
+import { captureReportMemory } from "@/integrations/meterless/persistence";
+import { recallHistoricalMemories, type HistoricalMemory } from "@/integrations/meterless/history";
 const scope = { businessId: "nike_test", simulationRunId: `t_stage5_${Date.now()}` };
 const window = { startAt: "2026-10-02T00:00:00.000Z", endAt: "2026-10-03T00:00:00.000Z" };
 const metadata: ModelResponse["metadata"] = { provider: "mubit", model: "test_fixture", requestId: "test_mock_request", providerRequestId: null, route: "test_mock", latencyMs: 1, inputTokens: 10, outputTokens: 10, totalTokens: 20, estimatedCostUsd: null };
@@ -32,7 +34,7 @@ beforeAll(async () => {
 });
 afterAll(async () => {
   vi.unstubAllEnvs();
-  for (const name of [COLLECTIONS.businessEvents, COLLECTIONS.monitoringWindows, COLLECTIONS.anomalies, COLLECTIONS.investigations, COLLECTIONS.investigationJobs, COLLECTIONS.investigationCalls, COLLECTIONS.investigationReports, COLLECTIONS.externalSources, COLLECTIONS.evidence, COLLECTIONS.evidenceDetails, COLLECTIONS.evidenceToolRuns, COLLECTIONS.diagnoses]) await db?.collection(name).deleteMany(scope);
+  for (const name of [COLLECTIONS.businessEvents, COLLECTIONS.monitoringWindows, COLLECTIONS.anomalies, COLLECTIONS.investigations, COLLECTIONS.investigationJobs, COLLECTIONS.investigationCalls, COLLECTIONS.investigationReports, COLLECTIONS.externalSources, COLLECTIONS.evidence, COLLECTIONS.evidenceDetails, COLLECTIONS.evidenceToolRuns, COLLECTIONS.diagnoses, COLLECTIONS.meterlessMemories]) await db?.collection(name).deleteMany(scope);
 });
 describe("durable investigation persistence (MongoDB; model responses are fixtures)", () => {
   it("repairs invalid structured decisions once, preserving task fingerprints and rejection lineage", async () => {
@@ -49,6 +51,12 @@ describe("durable investigation persistence (MongoDB; model responses are fixtur
     expect(rejected.promptFingerprint).toHaveLength(64); expect(rejected.promptFingerprint).toBe(repaired.promptFingerprint);
     expect(rejected.checksum).not.toBe(repaired.checksum);
     expect(model).toHaveBeenCalledTimes(3); expect(result.state?.status).toBe("insufficient_evidence");
+    const memory = await db.collection<HistoricalMemory>(COLLECTIONS.meterlessMemories).findOne(target);
+    expect(memory).toMatchObject({ observedThrough: job.cutoff, availableAt: result.report!.createdAt, reportId: result.report!.reportId });
+    await captureReportMemory(db, { ...target, cutoff: job.cutoff }, result.report!);
+    expect(await db.collection(COLLECTIONS.meterlessMemories).countDocuments(target)).toBe(1);
+    const recalled = recallHistoricalMemories({ ...target, investigationId: "later_investigation", cutoff: job.cutoff, availableBefore: new Date().toISOString() }, memory!.title, [memory!]);
+    expect(recalled.memories[0]?.source).toBe(`investigations:${target.investigationId}`);
   });
   it("fences publication when cancelled while a provider response is in flight", async () => {
     const target = await seed("active_cancel"); await startInvestigation(db, target);
@@ -62,6 +70,7 @@ describe("durable investigation persistence (MongoDB; model responses are fixtur
     expect(result.state?.status).toBe("cancelled"); expect(result.report).toBeNull();
     expect(model).toHaveBeenCalledTimes(1); expect(result.calls[0].metadata?.requestId).toBe(metadata.requestId);
     expect(await db.collection(COLLECTIONS.diagnoses).countDocuments(target)).toBe(0);
+    expect(await db.collection(COLLECTIONS.meterlessMemories).countDocuments(target)).toBe(0);
   });
   it("persists research provenance and contradictory claim status without treating grounding as verification", async () => {
     const target = await seed("research"); await startInvestigation(db, target);
@@ -129,6 +138,7 @@ describe("durable investigation persistence (MongoDB; model responses are fixtur
     await processInvestigation(db, job, { model, research: vi.fn(), verifySource: vi.fn() });
     const result = await readInvestigation(db, target);
     expect(result.state?.status).toBe("failed"); expect(result.state?.error).toContain("transport_or_timeout");
+    expect(await db.collection(COLLECTIONS.meterlessMemories).countDocuments(target)).toBe(0);
     expect(result.report?.diagnosis.primaryCause).toBe("unknown"); expect(result.report?.handoff.ready).toBe(false); expect(model).toHaveBeenCalledTimes(2);
     expect(result.report?.timeline.find((s) => s.type === "diagnosis")?.error).toContain("deterministic");
     expect(result.calls.find((c) => c.task === "normal.root_cause_diagnosis.v1")?.validationStatus).toBe("provider_failed");

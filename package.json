@@ -20,6 +20,11 @@
     "investigator:work": "node --conditions=react-server --import tsx scripts/investigator-worker.ts",
     "planner:work": "node --conditions=react-server --import tsx scripts/planner-worker.ts",
     "investigator:check": "node --conditions=react-server --import tsx scripts/check-mubit.ts",
+    "sponsors:check": "node --conditions=react-server --import tsx scripts/check-sponsor-integrations.ts",
+    "meterless:backfill": "node --conditions=react-server --import tsx scripts/backfill-meterless.ts",
+    "zetaris:prepare": "python3 scripts/setup-zetaris.py",
+    "zetaris:start": "python3 scripts/setup-zetaris.py --start",
+    "zetaris:export": "node --conditions=react-server --import tsx scripts/export-zetaris.ts",
     "research:check": "node --conditions=react-server --import tsx scripts/check-research.ts",
     "training:source": "node --conditions=react-server --import tsx scripts/train-source-support.ts",
     "demo:stage5": "node --conditions=react-server --import tsx scripts/demo-stage5.ts"

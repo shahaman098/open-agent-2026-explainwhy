@@ -51,11 +51,19 @@ export type ImpactT = z.infer<typeof BusinessImpactAssessment>;
 export const EvidenceLedger = z.array(z.object({ evidenceId: Id, origin: z.enum(["internal", "external"]), verification: Text, claimIds: Refs, role: z.enum(["support", "contradiction", "mixed", "context"]), sourceLinks: z.array(z.string()), limitations: z.array(z.string()) }).strict());
 export const ExecutiveBrief = z.object({ whatChanged: Text, explanation: Text, certainty: Text, impact: Text, review: z.array(Text) }).strict();
 export const PlannerReadinessHandoff = z.object({ schemaVersion: z.literal(1), investigationId: Id, diagnosisId: Id, ready: z.boolean(), supportedFindings: z.array(Text), affectedEntities: z.array(Id), evidenceIds: Refs, impactReference: Id, uncertainty: z.array(Text), constraints: z.array(Text), advisoryCandidates: z.array(Text), executable: z.literal(false) }).strict();
+const NvidiaReceipt = z.object({ task: z.enum(["judge", "reward"]), model: z.string(), cause: RootCause.nullable(), status: z.enum(["completed", "failed", "rejected"]), requestId: z.string().nullable(), latencyMs: z.number().int().nonnegative(), inputTokens: z.number().nullable(), outputTokens: z.number().nullable(), error: z.string().nullable() }).strict();
+/** Independent second opinion from NVIDIA Nemotron. It never edits the diagnosis; disagreement is surfaced for review. */
+export const NemotronVerification = z.object({ schemaVersion: z.literal(1), status: z.enum(["completed", "partial", "failed"]), judgeModel: z.string(), rewardModel: z.string().nullable(), verifiedAt: z.string().datetime(),
+  assessments: z.array(z.object({ cause: RootCause, verdict: z.enum(["consistent", "contradicted", "insufficient"]), supportingEvidenceIds: Refs, contradictingEvidenceIds: Refs, rationale: Text }).strict()).max(8),
+  bestSupportedCause: RootCause.nullable(), agreement: z.enum(["agrees", "disagrees", "not_assessed"]), challengedCauses: z.array(RootCause).max(8),
+  rewardScores: z.array(z.object({ cause: RootCause, correctness: z.number(), helpfulness: z.number().nullable() }).strict()).max(8), rewardTopCause: RootCause.nullable(),
+  receipts: z.array(NvidiaReceipt).max(16), limitations: z.array(Text) }).strict();
+export type NemotronVerificationT = z.infer<typeof NemotronVerification>;
 export const InsufficientEvidenceReport = z.object({ known: z.array(Text), unknown: z.array(Text), plausibleExplanations: z.array(Text), reason: Text, usefulNextEvidence: z.array(Text), externalResearchUnavailable: z.boolean(), conclusionsNotJustified: z.array(Text) }).strict();
 export const InvestigationReport = z.object({ schemaVersion: z.literal(1), reportId: Id, version: z.literal(1), investigationId: Id, diagnosisId: Id, createdAt: z.string().datetime(),
   diagnosis: Diagnosis, executiveBrief: ExecutiveBrief, impact: BusinessImpactAssessment, claims: ClaimEvidenceMatrix, ledger: EvidenceLedger,
   hypotheses: z.array(HypothesisSet), timeline: z.array(InvestigationStep), sections: z.array(z.object({ title: Text, text: z.string().max(12000), evidenceIds: Refs }).strict()),
-  handoff: PlannerReadinessHandoff, insufficientEvidence: InsufficientEvidenceReport.nullable(), validation: z.object({ passed: z.literal(true), checks: z.array(Text), semanticSupport: z.literal("model_assessed_not_deterministic_proof") }).strict(),
+  handoff: PlannerReadinessHandoff, insufficientEvidence: InsufficientEvidenceReport.nullable(), independentVerification: NemotronVerification.nullable().optional(), validation: z.object({ passed: z.literal(true), checks: z.array(Text), semanticSupport: z.literal("model_assessed_not_deterministic_proof") }).strict(),
 }).strict();
 export type ReportT = z.infer<typeof InvestigationReport>;
 export const Budget = z.object({ maxRounds: z.number().int().min(1).max(5), maxTools: z.number().int().min(1).max(12), maxResearchRounds: z.number().int().min(0).max(2), maxSources: z.number().int().min(0).max(8), maxCalls: z.number().int().min(2).max(12), maxTokens: z.number().int().min(5000).max(500000), maxWallMs: z.number().int().min(60000).max(1800000), maxCostUsd: z.number().positive().nullable() }).strict();

@@ -8,6 +8,8 @@ import { shippingAnalysis } from "./tools/shipping";
 import { customerFeedbackAnalysis } from "./tools/reviews";
 import { publicReferenceContext } from "./tools/public-context";
 import { historicalIncidents } from "./tools/historical-incidents";
+import { zetarisCampaignAnalysis } from "./tools/zetaris-campaigns";
+import { zetarisStatus } from "@/integrations/zetaris/config";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type AnyTool = EvidenceTool<any>;
@@ -18,7 +20,7 @@ type AnyTool = EvidenceTool<any>;
  * operators or code from a caller. The future Mubit investigator chooses from this registry by name only.
  */
 const TOOLS: ReadonlyArray<AnyTool> = [
-  revenueAnalysis, advertisingAnalysis, checkoutAnalysis, inventoryAnalysis, shippingAnalysis, customerFeedbackAnalysis, publicReferenceContext, historicalIncidents,
+  revenueAnalysis, advertisingAnalysis, checkoutAnalysis, inventoryAnalysis, shippingAnalysis, customerFeedbackAnalysis, publicReferenceContext, historicalIncidents, zetarisCampaignAnalysis,
 ];
 const BY_NAME = new Map<ToolName, AnyTool>(TOOLS.map((t) => [t.name, t]));
 
@@ -27,5 +29,5 @@ export function getTool(name: ToolName): EvidenceTool<ToolInputBaseT> {
   if (!tool) throw new Error(`Unknown evidence tool ${name}`);
   return tool as EvidenceTool<ToolInputBaseT>;
 }
-export const listTools = () => TOOLS.map((t) => ({ name: t.name, title: t.title, description: t.description, category: t.category, dataSources: t.dataSources }));
+export const listTools = (includeDisabled = false) => TOOLS.filter((t) => includeDisabled || t.name !== "zetaris_campaign_analysis" || zetarisStatus().enabled).map((t) => ({ name: t.name, title: t.title, description: t.description, category: t.category, dataSources: t.dataSources }));
 export const isToolName = (name: string): name is ToolName => BY_NAME.has(name as ToolName);

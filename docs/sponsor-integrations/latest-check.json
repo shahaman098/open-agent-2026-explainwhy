@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-10-27T12:21:00.593Z",
+  "meterless": {
+    "passed": true,
+    "fixture": true,
+    "recall": {
+      "engine": "Meterless H-MEM reference",
+      "upstreamCommit": "1742dec56a66e58eef9dda2d2b865823758ca8cd",
+      "implementation": "deterministic hash embeddings; canonical MongoDB history rehydrated per query",
+      "scope": {
+        "businessId": "sponsor_fixture",
+        "simulationRunId": "fixture_run",
+        "cutoff": "2026-10-24T12:00:00.000Z",
+        "availableBefore": "2026-10-27T12:00:00.000Z"
+      },
+      "contextOnly": true,
+      "context": "[MEMORY CONTEXT]\n## general\n- [WK] Advertising campaign clicks spend investigation. Themes: advertising. Metrics: clicks, spend. Check tracking and campaign delivery before making changes. (entities: advertising, themes, metrics, check) <mem-1>\n[/MEMORY CONTEXT]",
+      "trace": {
+        "retrievalReason": "hybrid ranking for \"Advertising campaign clicks spend investigation\" (domain: general)",
+        "strategy": "minimal",
+        "scores": {
+          "mem-1": 0.4497
+        }
+      },
+      "memories": [
+        {
+          "id": "mem-1",
+          "source": "investigations:prior",
+          "content": "Advertising campaign clicks spend investigation. Themes: advertising. Metrics: clicks, spend. Check tracking and campaign delivery before making changes.",
+          "confidence": 0.7,
+          "layer": "working",
+          "relevance": 0.4497489602719421,
+          "provenance": {
+            "origin": "document",
+            "learnedAt": 1793016000000,
+            "label": "Prior investigation report, context only",
+            "refs": [
+              "prior",
+              "fixture_report"
+            ]
+          }
+        }
+      ],
+      "ledger": [
+        {
+          "memoryId": "mem-1",
+          "action": "create",
+          "actor": "explainwhy_investigator",
+          "timestamp": 1793016000000
+        },
+        {
+          "memoryId": "mem-1",
+          "action": "read",
+          "actor": "explainwhy_investigator",
+          "timestamp": 1793102400000
+        }
+      ]
+    }
+  },
+  "zetaris": {
+    "enabled": false,
+    "configured": false,
+    "missing": [
+      "ZETARIS_BASE_URL",
+      "ZETARIS_API_KEY",
+      "ZETARIS_ORG_ID",
+      "ZETARIS_ADS_RELATION",
+      "ZETARIS_CAMPAIGNS_RELATION"
+    ],
+    "liveQueryVerified": false,
+    "status": "not_checked"
+  },
+  "submissionComplianceVerified": false
+}

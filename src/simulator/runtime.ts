@@ -17,7 +17,7 @@ import {
   StockConflictError, deleteRun, loadState, loadWorld, persistInitialWorld, persistTickOutputs,
 } from "@/simulator/persistence";
 import { Rng } from "@/simulator/rng";
-import { SCENARIO_ROOT_CAUSES, deriveScenarioParams } from "@/simulator/scenarios";
+import { SCENARIO_DECOYS, SCENARIO_ROOT_CAUSES, deriveScenarioParams } from "@/simulator/scenarios";
 import type { SimulatorStateDoc, TickOutput, TickReceipt } from "@/simulator/state";
 
 export type SimulatorRunT = z.infer<typeof SimulatorRun>;
@@ -257,7 +257,7 @@ export async function injectScenario(input: unknown, businessId: string, db?: Db
       { simulationRunId: req.simulationRunId },
       ScenarioGroundTruth.parse({
         simulationRunId: req.simulationRunId, scenario: req.scenario, actualCauses: SCENARIO_ROOT_CAUSES[req.scenario],
-        hiddenFaultParameters: { ...params, severity: req.severity, injectedAtVirtualTime: state.virtualTime, targets: SCENARIO_TARGETS },
+        hiddenFaultParameters: { ...params, severity: req.severity, injectedAtVirtualTime: state.virtualTime, targets: SCENARIO_TARGETS, decoyCauses: SCENARIO_DECOYS[req.scenario] ?? [] },
       }),
       { upsert: true },
     );

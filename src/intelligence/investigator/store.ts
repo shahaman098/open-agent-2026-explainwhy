@@ -26,7 +26,7 @@ export async function ensureInvestigatorIndexes(db: Db) {
   ]);
 }
 export function defaultBudget() {
-  return Budget.parse({ maxRounds: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_ROUNDS || 5), maxTools: 12, maxResearchRounds: process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED === "true" ? 2 : 0, maxSources: 8, maxCalls: 10,
+  return Budget.parse({ maxRounds: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_ROUNDS || 5), maxTools: 12, maxResearchRounds: process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED === "true" && process.env.EXPLAINWHY_MODEL_PROVIDER !== "nvidia" ? 2 : 0, maxSources: 8, maxCalls: 10,
     maxTokens: Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_TOKENS || 180000), maxWallMs: Number(process.env.EXPLAINWHY_INVESTIGATION_TIMEOUT_MS || 600000), maxCostUsd: process.env.EXPLAINWHY_INVESTIGATION_MAX_COST_USD ? Number(process.env.EXPLAINWHY_INVESTIGATION_MAX_COST_USD) : null });
 }
 export async function startInvestigation(db: Db, input: unknown): Promise<JobDoc> {

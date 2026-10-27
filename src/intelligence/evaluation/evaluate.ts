@@ -14,11 +14,12 @@ export const EXPECTED_THEMES: Record<Exclude<ScenarioNameT, "healthy">, Theme[]>
   viral_demand: ["demand", "traffic"],
   promo_checkout_failure: ["conversion"],
   negative_reviews: ["reputation"],
+  promo_checkout_failure_ad_decoy: ["conversion"],
 };
 
 /** Hours of post-injection simulation per scenario (reviews and deliveries lag by days). */
 export const SCENARIO_HOURS: Record<Exclude<ScenarioNameT, "healthy">, number> = {
-  ad_fatigue: 96, delivery_delays: 168, viral_demand: 168, promo_checkout_failure: 96, negative_reviews: 336,
+  ad_fatigue: 96, delivery_delays: 168, viral_demand: 168, promo_checkout_failure: 96, negative_reviews: 336, promo_checkout_failure_ad_decoy: 96,
 };
 
 export interface ScenarioScore {
@@ -70,7 +71,7 @@ export function scoreScenario(scenario: Exclude<ScenarioNameT, "healthy">, seed:
   const allowedCompanions = new Set<Theme>(["sales", "traffic", ...expected]);
   if (scenario === "viral_demand") { allowedCompanions.add("inventory"); allowedCompanions.add("conversion"); }
   if (scenario === "delivery_delays") allowedCompanions.add("reputation");
-  if (scenario === "ad_fatigue" || scenario === "promo_checkout_failure") { allowedCompanions.add("conversion"); allowedCompanions.add("advertising"); }
+  if (scenario === "ad_fatigue" || scenario === "promo_checkout_failure" || scenario === "promo_checkout_failure_ad_decoy") { allowedCompanions.add("conversion"); allowedCompanions.add("advertising"); }
   return {
     scenario, seed, detected: Boolean(first),
     detectionDelayHours: first ? (Date.parse(first.confirmedAt) - injected) / 3_600_000 : null,

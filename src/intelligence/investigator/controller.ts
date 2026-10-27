@@ -7,13 +7,15 @@ import { executeTool } from "../evidence/orchestrator";
 import { linkEvidenceToInvestigation } from "../evidence/persistence";
 import { getTool, listTools } from "../evidence/registry";
 import { callModel, providerConfig, ProviderError, promptFingerprint, type ModelRequest, type ModelResponse } from "./provider";
-import { DIAGNOSIS_SYSTEM, DIAGNOSIS_TASK, INVESTIGATOR_SYSTEM, PROMPT_VERSION } from "./prompts";
-import { HypothesisSet, ReasoningOutput, SourceAssessments, type ExternalSourceT, type ScopeT, type StepT } from "./schemas";
+import { DIAGNOSIS_SYSTEM, DIAGNOSIS_TASK, INVESTIGATOR_SYSTEM, MEMORY_CONTEXT_POLICY, PROMPT_VERSION } from "./prompts";
+import { HypothesisSet, ReasoningOutput, SourceAssessments, type ExternalSourceT, type NemotronVerificationT, type ScopeT, type StepT } from "./schemas";
 import { claimInvestigation, digest, jobScope, renewLease, saveJob, stateView, type CallDoc, type JobDoc } from "./store";
 import { fallbackHypotheses, loadVerifiedEvidence, rejectNumericalProse, validateDiagnosis, validateReferences, type EvidencePacket } from "./validation";
 import { composeReport } from "./reports";
 import { deduplicateSources, research, verifyExternalSource, type ResearchResult } from "./research";
 import { SOURCE_TASK, sourceTaskRequest } from "./source-task";
+import { captureReportMemory } from "@/integrations/meterless/persistence";
+import { DEFAULT_JUDGE_MODEL, nemotronStatus, verifyDiagnosis } from "@/integrations/nemotron/verifier";
 
 export interface Services { model: (request: ModelRequest) => Promise<ModelResponse>; research: typeof research; verifySource: typeof verifyExternalSource }
 const defaults: Services = { model: callModel, research, verifySource: verifyExternalSource };
@@ -73,7 +75,7 @@ export function toolSelection(ctx: InvestigationContext, choice: ReasoningOutput
   for (const id of choice.campaignIds) if (!ctx.affected.campaigns.includes(id)) throw new Error("campaign_outside_incident");
   for (const id of choice.productIds) if (!ctx.affected.products.includes(id)) throw new Error("product_outside_incident");
   const input: Record<string, unknown> = { businessId: ctx.businessId, simulationRunId: ctx.simulationRunId, window: ctx.incidentWindow, ...(ctx.baselineWindow ? { baselineWindow: ctx.baselineWindow } : {}), limit: 50 };
-  if (choice.tool === "advertising_analysis") input.campaignIds = choice.campaignIds;
+  if (["advertising_analysis", "zetaris_campaign_analysis"].includes(choice.tool)) input.campaignIds = choice.campaignIds;
   if (["inventory_analysis", "customer_feedback_analysis", "public_reference_context"].includes(choice.tool)) input.productIds = choice.productIds;
   if (choice.tool === "historical_incidents") input.includeOtherRuns = false;
   // Scope, dates, limits, collection names and filters are server-owned; the model chooses only bounded selectors.
@@ -83,7 +85,7 @@ type ReasoningOutputTChoice = ReturnType<typeof ReasoningOutput.parse>["nextTool
 function contextPacket(ctx: InvestigationContext, packet: EvidencePacket, job: JobDoc, sources: ExternalSourceT[]) {
   return { incident: { title: ctx.investigation.title, anomalies: ctx.anomalies.map((a) => ({ metric: a.metric, direction: a.direction, actual: a.actualValue, baseline: a.baselineValue, window: a.currentWindow })), affected: ctx.affected, window: job.incidentWindow, cutoff: job.cutoff },
     evidence: packet.evidence.map((e) => ({ evidenceId: e.evidenceId, title: e.title, observation: e.observation, window: e.window, measurements: e.measurements })),
-    evidenceLimitations: packet.limitations, hypotheses: job.hypotheses.at(-1) || null,
+    evidenceLimitations: packet.limitations, historicalMemory: packet.historicalMemory ?? [], hypotheses: job.hypotheses.at(-1) || null,
     tools: listTools(), exhaustedChoices: job.executedChoices, toolOutcomes: job.steps.filter((s) => s.type === "tool").map((s) => ({ tool: s.identifier, summary: s.resultSummary, evidenceIds: s.evidenceIds, status: s.status })),
     externalContext: sources.filter((s) => s.temporalValidity === "within_cutoff" && s.excerptMatched && !s.duplicateOf && s.status === "contextual" && ["supported", "context_only"].includes(s.claimSupport || "not_assessed"))
       .map((s) => ({ sourceId: s.sourceId, proposedClaim: s.proposedClaim, excerpt: s.excerpt, status: s.status, claimSupport: s.claimSupport, contextRelevance: s.contextRelevance || "not_assessed", limitations: s.limitations })),
@@ -152,6 +154,7 @@ async function publish(db: Db, job: JobDoc, diagnosis: ReturnType<typeof Diagnos
       if (res.matchedCount !== 1) throw new Error("lease_lost_or_cancelled");
       await db.collection(COLLECTIONS.diagnoses).replaceOne({ businessId: job.businessId, diagnosisId: diagnosis.diagnosisId }, { ...diagnosis, simulationRunId: job.simulationRunId }, { upsert: true, session });
       await db.collection(COLLECTIONS.investigationReports).replaceOne({ reportId: report.reportId }, { ...jobScope(job), reportId: report.reportId, report }, { upsert: true, session });
+      if (!providerFailure) await captureReportMemory(db, { ...jobScope(job), cutoff: job.cutoff }, report, session);
       await db.collection(COLLECTIONS.investigations).updateOne({ ...jobScope(job), status: { $nin: ["closed", "planned"] } }, { $set: { status: "awaiting_review", diagnosisId: diagnosis.diagnosisId, updatedAt: completeAt }, $addToSet: { evidenceIds: { $each: job.evidenceIds } } }, { session });
       await db.collection<CallDoc>(COLLECTIONS.investigationCalls).updateOne({ callId: diagnosis.modelCallId }, { $set: { outputDiagnosisId: diagnosis.diagnosisId, validationStatus: "validated" } }, { session });
     });
@@ -165,12 +168,13 @@ export async function processInvestigation(db: Db, job: JobDoc, services: Servic
     if (!ctx) throw new Error("investigation_not_found");
     // A queued investigation's data cutoff and windows cannot drift as the simulation advances.
     ctx.cutoff = job.cutoff; ctx.incidentWindow = job.incidentWindow; ctx.baselineWindow = job.baselineWindow || undefined;
+    ctx.availableBefore = job.createdAt;
     ctx.anomalies = ctx.anomalies.filter((a) => a.currentWindow.endAt <= job.cutoff);
     const accountedCalls = await db.collection<CallDoc>(COLLECTIONS.investigationCalls).find({ jobId: job.jobId }).toArray();
     job.actualTokens = accountedCalls.reduce((n, c) => n + (c.metadata?.totalTokens || 0), 0);
     job.estimatedCostUsd = accountedCalls.reduce((n, c) => n + (c.metadata?.estimatedCostUsd || 0), 0);
     if (!job.startedAt) { job.startedAt = now(); job.deadline = Date.now() + job.budget.maxWallMs; finish(step(job, "context", "canonical_context", "Load scoped incident observations"), "Context loaded from canonical observations; hidden simulation controls excluded."); await saveJob(db, job); }
-    let packet = await loadVerifiedEvidence(db, jobScope(job), job.evidenceIds, job.cutoff);
+    let packet = await loadVerifiedEvidence(db, jobScope(job), job.evidenceIds, job.cutoff, job.createdAt);
     let sources = await db.collection<ExternalSourceT>(COLLECTIONS.externalSources).find(jobScope(job), { projection: { _id: 0 } }).toArray();
     const config = providerConfig();
     let reasoningProviderFailure: string | null = null;
@@ -185,7 +189,7 @@ export async function processInvestigation(db: Db, job: JobDoc, services: Servic
             const key = `reasoning_${job.round}${repairAttempt ? "_repair" : ""}`;
             const requestInput = { ...input, validationRepair: validationError };
             try {
-              const result = await durableModelCall(db, job, key, "normal.investigation.v1", { model: config.investigatorModel, system: INVESTIGATOR_SYSTEM, input: requestInput, schema: ReasoningOutput, schemaName: "investigation_decision", sessionId: job.jobId }, services);
+              const result = await durableModelCall(db, job, key, "normal.investigation.v1", { model: config.investigatorModel, system: `${INVESTIGATOR_SYSTEM}\n${MEMORY_CONTEXT_POLICY}`, input: requestInput, schema: ReasoningOutput, schemaName: "investigation_decision", sessionId: job.jobId }, services);
               const candidate = ReasoningOutput.parse(result.value);
               if (new Set(candidate.hypotheses.map((h) => h.cause)).size !== candidate.hypotheses.length) throw new Error("Hypotheses must have distinct cause codes and mechanisms");
               for (const h of candidate.hypotheses) {
@@ -217,7 +221,7 @@ export async function processInvestigation(db: Db, job: JobDoc, services: Servic
         if (job.plan.stop && job.round > 0) { job.stopReason = job.plan.stopReason; break; }
         const before = job.toolCount;
         await executePlan(db, job, ctx, services);
-        packet = await loadVerifiedEvidence(db, jobScope(job), job.evidenceIds, job.cutoff);
+        packet = await loadVerifiedEvidence(db, jobScope(job), job.evidenceIds, job.cutoff, job.createdAt);
         sources = await db.collection<ExternalSourceT>(COLLECTIONS.externalSources).find(jobScope(job), { projection: { _id: 0 } }).toArray();
         job.round++; job.plan = null; await saveJob(db, job);
         if (before === job.toolCount && !job.researchDone) { job.stopReason = "Relevant selected tools exhausted"; break; }
@@ -231,14 +235,14 @@ export async function processInvestigation(db: Db, job: JobDoc, services: Servic
     const limited = /budget|Provider unavailable|failed validation/i.test(job.stopReason || "") || (job.round >= job.budget.maxRounds && !job.stopReason);
     if (!job.stopReason && job.round >= job.budget.maxRounds) job.stopReason = "Reasoning round budget reached";
     await saveJob(db, job);
-    packet = await loadVerifiedEvidence(db, jobScope(job), job.evidenceIds, job.cutoff);
+    packet = await loadVerifiedEvidence(db, jobScope(job), job.evidenceIds, job.cutoff, job.createdAt);
     let output: DiagnosisModelOutputT | null = null, finalCallId = `${job.jobId}_system_insufficient`;
     let repair: string | null = null, diagnosisProviderFailure: string | null = null;
     const entry = step(job, "diagnosis", config.diagnosisModel, "Synthesize qualified diagnosis against verified evidence"); await saveJob(db, job);
     for (let attempt = 0; attempt < 2 && !output; attempt++) {
       const input = { ...contextPacket(ctx, packet, job, sources), limited, stopReason: job.stopReason, validationRepair: repair };
       try {
-        const result = await durableModelCall(db, job, `diagnosis_${attempt}`, DIAGNOSIS_TASK, { model: config.diagnosisModel, system: DIAGNOSIS_SYSTEM, input, schema: DiagnosisModelOutput, schemaName: "root_cause_diagnosis", sessionId: job.jobId }, services);
+        const result = await durableModelCall(db, job, `diagnosis_${attempt}`, DIAGNOSIS_TASK, { model: config.diagnosisModel, system: `${DIAGNOSIS_SYSTEM}\n${MEMORY_CONTEXT_POLICY}`, input, schema: DiagnosisModelOutput, schemaName: "root_cause_diagnosis", sessionId: job.jobId }, services);
         const candidate = validateDiagnosis(result.value, packet.evidence, job.hypotheses, limited);
         output = candidate; finalCallId = `${job.jobId}_diagnosis_${attempt}`;
       } catch (e) {
@@ -261,8 +265,19 @@ export async function processInvestigation(db: Db, job: JobDoc, services: Servic
     finish(entry, output.summary);
     const diagnosis = Diagnosis.parse({ ...output, schemaVersion: 1, ...{ businessId: job.businessId, investigationId: job.investigationId }, diagnosisId: `diag_${job.jobId}`, modelCallId: finalCallId, taskKey: "revenue_diagnosis_v1", createdAt: now() });
     finish(step(job, "validation", "deterministic_validator", "Validate references, scope, calculations and contradictions"), "Validation passed; semantic support remains a model assessment.");
+    let verification: NemotronVerificationT | null = null;
+    if (nemotronStatus().configured && !diagnosisProviderFailure && packet.evidence.length && output.hypotheses.some((h) => h.cause !== "unknown")) {
+      // A second, independent model family audits the diagnosis; it informs review and never edits the diagnosis.
+      const verify = step(job, "validation", process.env.NEMOTRON_JUDGE_MODEL || DEFAULT_JUDGE_MODEL, "Independently challenge each explanation against the same verified evidence"); await saveJob(db, job);
+      try {
+        verification = await verifyDiagnosis(output, packet.evidence);
+        finish(verify, verification.agreement === "agrees" ? "Nemotron agrees with the primary explanation." : verification.agreement === "disagrees" ? "Nemotron disagrees with the primary explanation; flagged for review." : "Nemotron assessment unavailable; see receipts.", packet.evidence.map((e) => e.evidenceId));
+        if (verification.status === "failed") Object.assign(verify, { status: "failed", error: "Nemotron verification unavailable" });
+      } catch (e) { Object.assign(verify, { status: "failed", completedAt: now(), error: e instanceof Error ? e.message.slice(0, 200) : "nemotron_verification_failed" }); }
+      await saveJob(db, job);
+    }
     finish(step(job, "report", "report_composer_v1", "Create consistent report, brief and read-only handoff"), "Report composed from the single validated diagnosis.");
-    const report = composeReport(stateView(job), diagnosis, packet.evidence, sources, job.affected);
+    const report = composeReport(stateView(job), diagnosis, packet.evidence, sources, job.affected, verification);
     const providerFailure = diagnosisProviderFailure ? `Provider unavailable during diagnosis: ${diagnosisProviderFailure}; no accepted model diagnosis`
       : output.primaryCause === "unknown" && reasoningProviderFailure ? `Provider unavailable during reasoning: ${reasoningProviderFailure}; final diagnosis remained unknown` : null;
     await saveJob(db, job); await publish(db, job, diagnosis, report, providerFailure);

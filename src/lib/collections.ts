@@ -50,6 +50,7 @@ export const COLLECTIONS = {
   actionOutcomes: "action_outcomes",
   businessOutcomeAssessments: "business_outcome_assessments",
   outcomeFeedback: "outcome_feedback",
+  meterlessMemories: "meterless_memories",
 } as const;
 
 let indexesReady: Promise<void> | undefined;
@@ -64,6 +65,7 @@ export function ensureIndexes(db?: Db): Promise<void> {
     indexesReady = (async () => {
       const d = db ?? (await getDb());
       await Promise.all([
+        d.collection(COLLECTIONS.meterlessMemories).createIndex({ businessId: 1, simulationRunId: 1, availableAt: -1, observedThrough: 1 }),
         d.collection(COLLECTIONS.businesses).createIndex({ businessId: 1 }, { unique: true }),
         d.collection(COLLECTIONS.referenceProducts).createIndex({ referenceProductId: 1 }, { unique: true }),
         d.collection(COLLECTIONS.referenceFinancials).createIndex({ referenceId: 1 }, { unique: true }),

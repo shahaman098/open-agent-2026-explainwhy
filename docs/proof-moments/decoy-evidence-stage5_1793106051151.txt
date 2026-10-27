@@ -1,0 +1,56 @@
+{
+ "incident": {
+  "title": "Advertising performance deterioration",
+  "primaryTheme": "advertising",
+  "themes": [
+   "advertising",
+   "conversion"
+  ],
+  "severity": {
+   "score": 100,
+   "level": "critical",
+   "baseScore": 88.2,
+   "breadthBonus": 15,
+   "distinctSignals": 6,
+   "cap": null
+  },
+  "onsetAt": "2026-10-04T06:00:00.000Z"
+ }
+}
+[{"tool":"revenue_analysis","status":"completed","evidence":1},{"tool":"advertising_analysis","status":"completed","evidence":2},{"tool":"checkout_analysis","status":"completed","evidence":1},{"tool":"inventory_analysis","status":"completed","evidence":1},{"tool":"shipping_analysis","status":"completed","evidence":1},{"tool":"customer_feedback_analysis","status":"completed","evidence":1},{"tool":"historical_incidents","status":"empty","evidence":0},{"tool":"public_reference_context","status":"completed","evidence":2}]
+
+## Verified public product references
+17 simulated product(s) map to verified nike.com/gb references with public list prices (observed 2026-10-24). Simulated selling prices copy the public list price only where the reference is verified; stock, sales and reviews are synthetic.
+public_list_price_minor:nk_air_force_1_07=10999; public_list_price_minor:nk_air_max_90=14499; public_list_price_minor:nk_dunk_low_retro=10999; public_list_price_minor:nk_giannis_freak_8=11499; public_list_price_minor:nk_hyverse_top=3799; public_list_price_minor:nk_ja_4_nightmare=11999; public_list_price_minor:nk_kobe_ad_protro=13499; public_list_price_minor:nk_mercurial_superfly_11_academy=8499; public_list_price_minor:nk_mercurial_vapor_17_elite=24499; public_list_price_minor:nk_p_6000=10999; public_list_price_minor:nk_pegasus_42=12999; public_list_price_minor:nk_pegasus_plus_2=15499; public_list_price_minor:nk_phantom_6_low_elite=24499; public_list_price_minor:nk_quest_7=7499; public_list_price_minor:nk_sportswear_tshirt=4499; public_list_price_minor:nk_tech_essentials_hoodie=7999; public_list_price_minor:nk_vomero_18=14499
+
+## Published NIKE, Inc. results — Q1 FY2027
+NIKE, Inc. Q1 FY2027 (period ended 2026-08-31, released 2026-10-01): Total NIKE, Inc. revenues US$11213m (-4%); Total NIKE Brand revenues US$10952m (-4%); NIKE Brand sales to wholesale customers US$6804m (-1%). Relationship to the simulator: context_only_not_simulated_revenue. This is macro context about the real company and does not explain simulated hourly metrics.
+public_total_nike_inc_revenues_usd_millions=11213 (base 11720); public_total_nike_brand_revenues_usd_millions=10952 (base 11362); public_nike_brand_sales_to_wholesale_customers_usd_millions=6804 (base 6839); public_nike_brand_sales_through_nike_direct_usd_millions=4142 (base 4514); public_converse_revenues_usd_millions=263 (base 366); public_north_america_revenues_usd_millions=5127 (base 5020); public_europe_middle_east_africa_revenues_usd_millions=3176 (base 3331); public_greater_china_revenues_usd_millions=1180 (base 1512); public_asia_pacific_latin_america_revenues_usd_millions=1463 (base 1490); public_net_income_usd_millions=712 (base 727)
+
+## Sessions, conversion and checkout failures
+4957 sessions and 76 orders over 90 h ending 2026-10-08T00:00:00.000Z (conversion 1.53%); 44 checkout failures (0.89% of sessions). Baseline: conversion 2.21% (-30.6% change), failures per hour +1806.7% change, sessions per hour 0% change. Failure codes: coupon_rejected ×44. Paid-channel conversion 1.46% (-37.1% change); non-paid conversion 1.65% (-16.9% change). Simulated storefront records; device and channel slices join orders to their canonical session.
+sessions_per_hour=55.0778 (base 55.1026); orders_per_hour=0.8444 (base 1.2179); conversion_rate=0.0153 (base 0.0221); checkout_failures=44 (base 2); checkout_failures_per_hour=0.4889 (base 0.0256); checkout_failure_rate=0.0089 (base 0.0005); paid_conversion_rate=0.0146 (base 0.0233); non_paid_conversion_rate=0.0165 (base 0.0198)
+
+## Review volume, low ratings and delivery complaints
+15 reviews over 90 h ending 2026-10-08T00:00:00.000Z: 0 rated ≤2 (0.0%), average rating 4.13, 7 mention delivery terms. Most low-rated products: Nike Phantom 6 Low Elite (0/3), Nike Mercurial Superfly 11 Academy (0/2), Nike Dunk Low Retro (0/2). Simulated review records; delivery mentions are a keyword heuristic.
+reviews=15; reviews_per_hour=0.1667; low_rating_reviews=0; low_rating_rate=0; average_rating=4.1333; delivery_mention_reviews=7
+
+## Campaign comparison and daily chronology: cmp_football_mercurial
+Simulated campaign cmp_football_mercurial: CTR 0.0008 versus 0.0107 baseline; average frequency 10.12 versus 2.85; ROAS 0 versus 4.3; CPA in GBP minor units unavailable versus 3510; attributed sessions/hour 0.311 versus 3.744. Observed daily sequence (UTC; boundary days may mix baseline and incident hours): 2026-10-01: 24 observed hours, CTR 0.0105, frequency 2.25, spend GBP minor 7999, attributed orders 3; 2026-10-02: 24 observed hours, CTR 0.0113, frequency 2.28, spend GBP minor 7999, attributed orders 2; 2026-10-03: 24 observed hours, CTR 0.0111, frequency 2.3, spend GBP minor 7999, attributed orders 2; 2026-10-04: 24 observed hours, CTR 0.0008, frequency 9.92, spend GBP minor 7999, attributed orders 0; 2026-10-05: 24 observed hours, CTR 0.0007, frequency 10.04, spend GBP minor 8000, attributed orders 0; 2026-10-06: 24 observed hours, CTR 0.0004, frequency 10.15, spend GBP minor 7999, attributed orders 0; 2026-10-07: 24 observed hours, CTR 0.0013, frequency 10.26, spend GBP minor 7999, attributed orders 0. Contemporaneous campaign comparisons: cmp_apparel_search: CTR 0.0263 vs 0.0293, frequency 1.77 vs 1.7, ROAS 2.19 vs 1.65; cmp_basketball_search: CTR 0.0352 vs 0.0368, frequency 2.48 vs 2.38, ROAS 3.8 vs 8.75; cmp_lifestyle_af1: CTR 0.0184 vs 0.0183, frequency 1.95 vs 1.86, ROAS 3.71 vs 5.76; cmp_running_pegasus: CTR 0.0146 vs 0.0158, frequency 2.76 vs 2.65, ROAS 2.69 vs 6.67. These peers are not assumed unaffected controls. Ratios and trends are computed from canonical campaign/hour observations; no creative-level or audience-level attribution is available, and chronology alone does not establish causation.
+ctr=0.0008 (base 0.0107); average_frequency=10.12 (base 2.85); roas=0 (base 4.3); attributed_sessions_per_hour=0.311 (base 3.744)
+
+## Delivery promise cohort and delayed orders
+Cohort of 109 promises due in the 90 h ending 2026-10-08T00:00:00.000Z: 9 not delivered by promise (late rate 8.3%). Baseline late rate 0.0% on 13 promises (n/a change). 9 order(s) received a delayed status (average recorded delay 2235 min), 0 lost; 2 shipped order(s) are past promise with no delivered or lost event at the cutoff. Simulated fulfilment records; cohort membership is by promise due date, so immature promises never read as healthy.
+promises_due=109 (base 13); late_deliveries=9 (base 0); late_delivery_rate=0.0826 (base 0); orders_marked_delayed=9 (base 0); orders_lost=0 (base 0); average_recorded_delay_minutes=2235; open_backlog_past_promise=2
+
+## Campaign performance versus baseline and peers
+1 campaign(s) analysed over 90 h ending 2026-10-08T00:00:00.000Z: CTR 1.68%, spend £1807.00, 45 attributed orders, CPA £40.16, ROAS 2.59. Versus baseline: CTR -14%, hourly spend +10.9%, hourly attributed orders -40.9%. Affected campaigns CTR 0.08% versus other campaigns 2.05%. Observations are simulated ad-platform records; frequency and CTR describe exposure and response, not intent.
+ctr=0.0168 (base 0.0196); affected_ctr=0.0008 (base 0.0107); other_campaigns_ctr=0.0205; impressions=216253 (base 169018); clicks=3642 (base 3308); ad_spend_minor_per_hour=2007.7778 (base 1811.0641); attributed_orders_per_hour=0.5 (base 0.8462); cost_per_acquisition_minor=4015.5556 (base 2140.3485); roas=2.5854 (base 5.7018); average_frequency=3.816 (base 2.288); attributed_sessions_per_hour=34.1556 (base 36.3333)
+
+## Inventory levels, depletion and demand velocity
+17 product(s) observed to 2026-10-08T00:00:00.000Z: 0 at zero available units, 0 projected to run out within 72 h at current velocity, 61 units depleted in the 90 h window, 0 out-of-stock checkout failures. No product is currently out of stock. Simulated inventory records derived from canonical inventory.level_changed events.
+products_observed=17; products_out_of_stock=0; products_at_risk_72h=0; units_depleted_in_window=61; out_of_stock_checkout_failures=0; inventory_level_events_in_window=72
+
+## Revenue, orders and conversion versus baseline
+Over 90 h ending 2026-10-08T00:00:00.000Z: 76 orders, net revenue £7927.98, 4957 sessions, conversion 1.53%. Baseline (78 h): hourly revenue -38% change, hourly orders -30.7%, hourly sessions 0%. Decomposition: sessions share 0.001, conversion share 0.764, AOV share 0.235 of the revenue change. Values are simulated business records; this describes what changed, not why.
+net_revenue_minor=792798 (base 1108881); net_revenue_minor_per_hour=8808.8667 (base 14216.4231); orders=76 (base 95); orders_per_hour=0.8444 (base 1.2179); sessions=4957 (base 4298); sessions_per_hour=55.0778 (base 55.1026); conversion_rate=0.0153 (base 0.0221); average_order_value_minor=10431.5526 (base 11672.4316); refund_minor=0 (base 0)

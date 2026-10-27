@@ -15,7 +15,7 @@ import { runNextInvestigation } from "../src/intelligence/investigator/controlle
 import { loadVerifiedEvidence } from "../src/intelligence/investigator/validation";
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 const all: ScenarioNameT[] = ["healthy", "ad_fatigue", "delivery_delays", "viral_demand", "negative_reviews", "promo_checkout_failure"];
-const expected: Record<ScenarioNameT, string[]> = { healthy: ["unknown"], ad_fatigue: ["ad_fatigue", "ad_inefficiency"], delivery_delays: ["delivery_delays"], viral_demand: ["viral_demand"], negative_reviews: ["negative_sentiment", "product_quality"], promo_checkout_failure: ["checkout_failure", "discount_failure"] };
+const expected: Record<ScenarioNameT, string[]> = { healthy: ["unknown"], ad_fatigue: ["ad_fatigue", "ad_inefficiency"], delivery_delays: ["delivery_delays"], viral_demand: ["viral_demand"], negative_reviews: ["negative_sentiment", "product_quality"], promo_checkout_failure: ["checkout_failure", "discount_failure"], promo_checkout_failure_ad_decoy: ["checkout_failure", "discount_failure"] };
 const hours: Record<ScenarioNameT, number> = { healthy: 24, ...SCENARIO_HOURS };
 const selected = process.argv.find((a) => a.startsWith("--scenario="))?.slice(11) as ScenarioNameT | undefined;
 if (selected && !all.includes(selected)) throw new Error("Unknown scenario");

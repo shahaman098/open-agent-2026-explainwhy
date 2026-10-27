@@ -1,9 +1,10 @@
 import { type DiagnosisT, type EvidenceT } from "@explainwhy/contracts";
-import { InvestigationReport, type ExternalSourceT, type ReportT, type StateT } from "./schemas";
+import { InvestigationReport, type ExternalSourceT, type NemotronVerificationT, type ReportT, type StateT } from "./schemas";
+import { verificationSection } from "@/integrations/nemotron/verifier";
 import { deterministicImpact } from "./validation";
 
 /** All prose is derived from the validated diagnosis/history; there is no second competing narrative model. */
-export function composeReport(state: StateT, diagnosis: DiagnosisT, evidence: EvidenceT[], sources: ExternalSourceT[], affected: string[]): ReportT {
+export function composeReport(state: StateT, diagnosis: DiagnosisT, evidence: EvidenceT[], sources: ExternalSourceT[], affected: string[], verification: NemotronVerificationT | null = null): ReportT {
   const uncertain = diagnosis.primaryCause === "unknown";
   const impact = deterministicImpact(evidence);
   const acceptedPublic = sources.filter((source) => source.status === "contextual" && source.claimSupport === "supported" && source.temporalValidity === "within_cutoff" && source.excerptMatched && !source.duplicateOf);
@@ -15,7 +16,7 @@ export function composeReport(state: StateT, diagnosis: DiagnosisT, evidence: Ev
   const limitations = [...diagnosis.missingEvidence, ...(state.stopReason ? [state.stopReason] : [])];
   const brief = { whatChanged: "The detector observed changes in the incident metrics shown above.", explanation: diagnosis.summary,
     certainty: uncertain ? "Insufficient evidence to select a reliable primary explanation." : "Qualified model assessment requiring operator review; not a calibrated probability.",
-    impact: impact.interpretation, review: diagnosis.missingEvidence.slice(0, 3) };
+    impact: impact.interpretation, review: [...(verification?.agreement === "disagrees" ? ["Independent Nemotron verification disagrees with the primary explanation; compare both before acting."] : []), ...diagnosis.missingEvidence].slice(0, 3) };
   const ledger: ReportT["ledger"] = evidence.map((e) => {
     const supports = claims.filter((c) => c.evidenceIds.includes(e.evidenceId)), counters = claims.filter((c) => c.counterEvidenceIds.includes(e.evidenceId));
     return { evidenceId: e.evidenceId, origin: "internal", verification: "Canonical schema and scoped source references verified", claimIds: [...new Set([...supports, ...counters].map((c) => c.claimId))],
@@ -33,12 +34,14 @@ export function composeReport(state: StateT, diagnosis: DiagnosisT, evidence: Ev
       { title: "External research", text: acceptedPublic.length
         ? `${acceptedPublic.map((source) => `${source.proposedClaim} [${source.sourceId}]`).join("\n\n")}\n\nThese are model-assessed public facts from independently retrieved pages. They do not establish a cause of this unaffiliated simulation. Other candidates remain in Research Activity with their rejection or uncertainty status.`.slice(0, 12000)
         : sources.length ? "Public source candidates were checked, but none established a time-eligible supported claim for this report. Inspect their recorded verification status. No public source was used as causal evidence." : "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.", evidenceIds: acceptedPublic.map((source) => source.sourceId) },
+      ...(verification ? [verificationSection(verification)] : []),
       { title: "Business impact", text: impact.interpretation, evidenceIds: impact.evidenceId ? [impact.evidenceId] : [] },
       { title: "Advisory next steps", text: diagnosis.missingEvidence.map((m) => `Review: ${m}`).join("\n") || "Review the qualified diagnosis and supporting evidence before considering an intervention.", evidenceIds: [] },
     ],
     handoff: { schemaVersion: 1, investigationId: state.investigationId, diagnosisId: diagnosis.diagnosisId, ready: !uncertain && diagnosis.hypotheses.some((h) => h.strength !== "weak" && h.evidenceIds.length > 0), supportedFindings: diagnosis.hypotheses.filter((h) => h.strength !== "weak").map((h) => h.explanation), affectedEntities: affected, evidenceIds: evidence.map((e) => e.evidenceId), impactReference: `report_${state.jobId}`, uncertainty: limitations,
       constraints: ["Human review required", "Stage five is read-only; no executable plan or business mutation", "Synthetic data; external events cannot establish simulated causation"], advisoryCandidates: diagnosis.missingEvidence.map((m) => `Investigate: ${m}`), executable: false },
     insufficientEvidence: uncertain ? { known: evidence.map((e) => e.title), unknown: diagnosis.missingEvidence, plausibleExplanations: diagnosis.hypotheses.map((h) => h.explanation), reason: diagnosis.summary, usefulNextEvidence: diagnosis.missingEvidence, externalResearchUnavailable: state.researchCount === 0 || acceptedPublic.length === 0, conclusionsNotJustified: ["A definitive single root cause", "A causal financial loss estimate", "A verified real-world cause of this synthetic incident"] } : null,
+    ...(verification ? { independentVerification: verification } : {}),
     validation: { passed: true, checks: ["Canonical diagnosis schema", "Business/run/investigation ownership", "Evidence references exist and resolve", "Timestamp cutoff", "Duplicate references rejected", "Numerical prose rejected; impact computed deterministically", "Known contradiction disclosure", "Single diagnosis shared by brief, report and handoff"], semanticSupport: "model_assessed_not_deterministic_proof" },
   });
 }

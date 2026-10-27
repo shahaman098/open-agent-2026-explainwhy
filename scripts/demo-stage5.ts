@@ -10,7 +10,9 @@ import { runNextInvestigation } from "../src/intelligence/investigator/controlle
 import { loadVerifiedEvidence } from "../src/intelligence/investigator/validation";
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 // EVALUATION HARNESS ONLY: scenario is used for injection and AFTER inference, never passed into the controller.
-const scenario = process.argv.includes("--checkout") ? "promo_checkout_failure" : "ad_fatigue";
+// --checkout-decoy: the same promo fault plus one small campaign whose ads fatigue at the same moment (the false lead).
+const scenario = process.argv.includes("--checkout-decoy") ? "promo_checkout_failure_ad_decoy" : process.argv.includes("--checkout") ? "promo_checkout_failure" : "ad_fatigue";
+const checkoutLike = scenario !== "ad_fatigue";
 const resume = process.argv.find((a) => a.startsWith("--run="))?.slice(6);
 const businessId = "nike_demo", simulationRunId = resume || `stage5_${Date.now()}`;
 const scope = { businessId, simulationRunId };
@@ -36,7 +38,7 @@ async function main() {
     for (const ticks of [36, 36]) { await tickRun({ simulationRunId, ticks }, { businessId }); console.log(`Advanced ${ticks} baseline hours`); }
     await runMonitor(scope);
     await injectScenario({ simulationRunId, scenario, severity: 0.85 }, businessId);
-    for (const ticks of (scenario === "promo_checkout_failure" ? [36, 36, 24] : [36])) await tickRun({ simulationRunId, ticks }, { businessId });
+    for (const ticks of (checkoutLike ? [36, 36, 24] : [36])) await tickRun({ simulationRunId, ticks }, { businessId });
     await runMonitor(scope);
   }
   const advance = Number(process.argv.find((a) => a.startsWith("--advance="))?.slice(10) || 0);

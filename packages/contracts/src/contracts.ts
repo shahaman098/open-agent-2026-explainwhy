@@ -323,7 +323,7 @@ export const EvaluationResult = z.object({
 // ---------- Simulator (PRIVATE ground truth never passed to LLM) ----------
 export const ScenarioName = z.enum([
   'healthy', 'ad_fatigue', 'delivery_delays', 'negative_reviews',
-  'promo_checkout_failure', 'viral_demand',
+  'promo_checkout_failure', 'viral_demand', 'promo_checkout_failure_ad_decoy',
 ]);
 export const SimulatorRun = z.object({
   ...SchemaMeta, simulationRunId: Id, seed: z.number().int(),

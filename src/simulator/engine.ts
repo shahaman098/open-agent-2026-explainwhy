@@ -145,7 +145,8 @@ export class TickEngine {
         spend = Math.ceil((impressions * campaign.cpmMinor) / 1000);
       }
       const frequency = this.currentFrequency(campaign, impressions);
-      const fatigue = 1 / (1 + this.params.ctrFatigueStrength * Math.max(0, frequency - FREQUENCY_COMFORT_THRESHOLD));
+      const fatigueStrength = this.isDecoy(campaign) ? this.params.decoyCtrFatigueStrength ?? this.params.ctrFatigueStrength : this.params.ctrFatigueStrength;
+      const fatigue = 1 / (1 + fatigueStrength * Math.max(0, frequency - FREQUENCY_COMFORT_THRESHOLD));
       const ctr = Math.min(0.5, campaign.baseCtr * campaign.creativeQuality * campaign.audienceRelevance * fatigue * this.rng.uniform(0.92, 1.08));
       const clicks = this.rng.binomial(impressions, ctr);
       const landed = this.rng.binomial(clicks, this.state.config.landingRate);
@@ -162,8 +163,13 @@ export class TickEngine {
   private currentFrequency(campaign: SimulatedCampaign, impressionsThisHour: number): number {
     const window = [...campaign.rollingImpressions.slice(-(FREQUENCY_WINDOW_HOURS - 1)), impressionsThisHour];
     const total = window.reduce((a, b) => a + b, 0);
-    const effectiveAudience = Math.max(1, campaign.audienceSize * (1 - this.params.adAudienceShrink));
+    const shrink = this.isDecoy(campaign) ? this.params.decoyAudienceShrink ?? this.params.adAudienceShrink : this.params.adAudienceShrink;
+    const effectiveAudience = Math.max(1, campaign.audienceSize * (1 - shrink));
     return Math.round((total / effectiveAudience) * 100) / 100;
+  }
+
+  private isDecoy(campaign: SimulatedCampaign): boolean {
+    return Boolean(this.params.decoyCampaignId) && this.params.decoyCampaignId === campaign.campaignId;
   }
 
   private recordAdHour(campaign: SimulatedCampaign, impressions: number, clicks: number, spend: number, frequency: number, orders: SimulatedOrder[]): void {

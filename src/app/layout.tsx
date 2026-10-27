@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { configuredModels, modelDisplayName } from "@/intelligence/model-settings";
+import { configuredModels, modelDisplayName, modelProvider } from "@/intelligence/model-settings";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         {children}
         <footer className="demo-disclaimer">
-          <div>Configured AI: {modelNames} through Mubit.</div>
+          <div>Configured AI: {modelNames} {modelProvider() === "nvidia" ? "via the NVIDIA API catalog" : "through Mubit"}.</div>
           Nike names and imagery are used in an unaffiliated synthetic simulation. Operational metrics come from the selected run. The Shopify intro uses separate synthetic presentation fixtures.
         </footer>
       </body>

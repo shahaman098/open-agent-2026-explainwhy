@@ -44,3 +44,6 @@ next-env.d.ts
 # test artefacts
 /test-results/
 /playwright-report/
+
+# Local sponsor software, exported synthetic data and container state
+/.local/

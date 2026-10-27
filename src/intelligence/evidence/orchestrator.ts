@@ -63,7 +63,7 @@ export async function executeTool(ctx: InvestigationContext, selection: ToolSele
   try {
     const input = tool.input.parse(selection.input);
     if (input.businessId !== ctx.businessId || input.simulationRunId !== ctx.simulationRunId) throw new EvidenceError("Tool input scope differs from the investigation scope", "scope_violation", 400);
-    const toolCtx: ToolContext = { db: ctx.db, businessId: ctx.businessId, simulationRunId: ctx.simulationRunId, investigationId: ctx.investigation.investigationId, cutoff: ctx.cutoff, catalogue: ctx.catalogue };
+    const toolCtx: ToolContext = { db: ctx.db, businessId: ctx.businessId, simulationRunId: ctx.simulationRunId, investigationId: ctx.investigation.investigationId, cutoff: ctx.cutoff, availableBefore: ctx.availableBefore ?? started.toISOString(), catalogue: ctx.catalogue };
     const result = await withTimeout(tool.run(toolCtx, input), LIMITS.toolTimeoutMs, selection.tool);
     const retrievedAt = new Date().toISOString();
     const ids: string[] = []; let sources = 0; const warnings = [...result.warnings];

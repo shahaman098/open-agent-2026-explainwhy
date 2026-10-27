@@ -1,6 +1,7 @@
 import "server-only";
 import type { InvestigationContext } from "./context";
 import { MAX_ENTITY_IDS, type ToolName } from "./types";
+import { zetarisStatus } from "@/integrations/zetaris/config";
 
 export interface ToolSelection {
   tool: ToolName;
@@ -33,6 +34,7 @@ export function selectTools(ctx: InvestigationContext): ToolSelection[] {
   add("revenue_analysis", "primary", `Quantify business impact of the observed signals (${observed}) against the pre-onset baseline`);
 
   if (has("advertising") || metric("ctr", "cac_minor", "ad_spend_minor") || signal(/ctr|frequency|cpa|roas|paid|spend/)) {
+    if (zetarisStatus().enabled) add("zetaris_campaign_analysis", "primary", "Query the registered advertising observations and campaign catalogue through Zetaris and verify each source event", { campaignIds: campaigns });
     add("advertising_analysis", "primary", `Advertising signals present (${[...ctx.signalIds].filter((s) => /ctr|frequency|cpa|roas|paid|spend/.test(s)).sort().slice(0, 5).join(", ") || "advertising theme"})${campaigns.length ? ` on campaigns ${campaigns.join(", ")}` : ""}`, { campaignIds: campaigns });
   }
   if (has("conversion", "traffic") || metric("conversion_rate") || signal(/conversion|checkout|coupon|session/)) {

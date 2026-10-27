@@ -77,8 +77,8 @@ describe("autonomous evidence retrieval (Stage 4)", () => {
     }
   }, 120_000);
 
-  it("registers eight read-only tools with strict inputs that reject widened scope, long windows and unknown keys", () => {
-    expect(listTools().map((x) => x.name).sort()).toEqual([...TOOL_NAMES].sort());
+  it("registers read-only tools with strict inputs that reject widened scope, long windows and unknown keys", () => {
+    expect(listTools(true).map((x) => x.name).sort()).toEqual([...TOOL_NAMES].sort());
     const base = { ...scope, window: { startAt: t(72), endAt: t(96) } };
     expect(RevenueInput.safeParse(base).success).toBe(true);
     expect(RevenueInput.safeParse({ ...base, window: { startAt: t(0), endAt: t(15 * 24) } }).success).toBe(false);

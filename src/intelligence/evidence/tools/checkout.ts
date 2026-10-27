@@ -29,6 +29,18 @@ async function slices(ctx: ToolContext, w: WindowT, field: "device" | "channel")
   return [...out.entries()].map(([key, v]) => ({ [field]: key, ...v, conversionRate: ratio(v.orders, v.sessions) })).sort((a, b) => b.sessions - a.sessions);
 }
 
+const PAID_CHANNELS = new Set(["paid_social", "paid_search"]);
+/** Paid versus non-paid conversion: a control comparison that separates a traffic-source problem from a site-wide one. */
+function channelGroups(rows: Array<Record<string, unknown> & Slice>) {
+  const g = { paid: { sessions: 0, orders: 0 }, nonPaid: { sessions: 0, orders: 0 } };
+  for (const r of rows) {
+    if (r.channel === "unlinked") continue;
+    const t = PAID_CHANNELS.has(String(r.channel)) ? g.paid : g.nonPaid;
+    t.sessions += r.sessions; t.orders += r.orders;
+  }
+  return { paid: ratio(g.paid.orders, g.paid.sessions), nonPaid: ratio(g.nonPaid.orders, g.nonPaid.sessions), counts: g };
+}
+
 export const checkoutAnalysis: EvidenceTool<CheckoutInputT> = {
   name: "checkout_analysis",
   title: "Checkout and conversion analysis",
@@ -45,9 +57,9 @@ export const checkoutAnalysis: EvidenceTool<CheckoutInputT> = {
     const warnings: string[] = [];
     const events = ctx.db.collection(COLLECTIONS.businessEvents);
     const codes = (w: WindowT) => events.aggregate<{ _id: string; n: number }>([{ $match: { ...scopeOf(ctx), type: "checkout.failed", ...occurredIn(w) } }, { $group: { _id: "$payload.failureCode", n: { $sum: 1 } } }, { $sort: { n: -1 } }, { $limit: 20 }]).toArray();
-    const [curSnaps, baseSnaps, curCodes, baseCodes, byDevice, byChannel, failureSample, sessionSample] = await Promise.all([
+    const [curSnaps, baseSnaps, curCodes, baseCodes, byDevice, byChannel, baseByChannel, failureSample, sessionSample] = await Promise.all([
       hourlySnapshots(ctx, window), baseline ? hourlySnapshots(ctx, baseline) : Promise.resolve([]), codes(window), baseline ? codes(baseline) : Promise.resolve([]),
-      slices(ctx, window, "device"), slices(ctx, window, "channel"),
+      slices(ctx, window, "device"), slices(ctx, window, "channel"), baseline ? slices(ctx, baseline, "channel") : Promise.resolve([]),
       countAndSample(ctx.db, { ...scopeOf(ctx), type: "checkout.failed", ...occurredIn(window) }, input.limit),
       countAndSample(ctx.db, { ...scopeOf(ctx), type: "web.session_started", ...occurredIn(window) }, Math.min(input.limit, 25)),
     ]);
@@ -60,11 +72,14 @@ export const checkoutAnalysis: EvidenceTool<CheckoutInputT> = {
     if (curFailures === 0) warnings.push("No checkout.failed events were recorded in the current window; a zero failure count is a genuine observation, not missing data, only if sessions were recorded");
     if (!baseline) warnings.push("No baseline window supplied; before-versus-after comparison not computed");
     const baseByCode = new Map(baseCodes.map((c) => [c._id, c.n]));
+    const groups = channelGroups(byChannel), baseGroups = baseline ? channelGroups(baseByChannel) : null;
+    const rate = (v: number | null) => (v === null ? "n/a" : (v * 100).toFixed(2) + "%");
 
     const observation = [
       `${cur.sessions ?? 0} sessions and ${cur.orders ?? 0} orders over ${hc} h ending ${window.endAt} (conversion ${curConv === null ? "n/a" : (curConv * 100).toFixed(2) + "%"}); ${curFailures} checkout failures (${curFailRate === null ? "n/a" : (curFailRate * 100).toFixed(2) + "% of sessions"}).`,
       baseline ? `Baseline: conversion ${baseConv === null ? "n/a" : (baseConv * 100).toFixed(2) + "%"} (${pc(curConv, baseConv)} change), failures per hour ${pc(curFailures / hc, baseFailures / hb)} change, sessions per hour ${pc((cur.sessions ?? 0) / hc, (base.sessions ?? 0) / hb)} change.` : "",
       curCodes.length ? `Failure codes: ${curCodes.map((c) => `${c._id} ×${c.n}`).join(", ")}.` : "",
+      `Paid-channel conversion ${rate(groups.paid)}${baseGroups ? ` (${pc(groups.paid, baseGroups.paid)} change)` : ""}; non-paid conversion ${rate(groups.nonPaid)}${baseGroups ? ` (${pc(groups.nonPaid, baseGroups.nonPaid)} change)` : ""}.`,
       "Simulated storefront records; device and channel slices join orders to their canonical session.",
     ].filter(Boolean).join(" ");
 
@@ -76,11 +91,12 @@ export const checkoutAnalysis: EvidenceTool<CheckoutInputT> = {
         measurement("conversion_rate", curConv, "ratio", baseConv), measurement("checkout_failures", curFailures, "count", baseline ? baseFailures : undefined),
         measurement("checkout_failures_per_hour", curFailures / hc, "count/hour", baseline ? baseFailures / hb : undefined),
         measurement("checkout_failure_rate", curFailRate, "ratio", baseFailRate),
+        measurement("paid_conversion_rate", groups.paid, "ratio", baseGroups?.paid), measurement("non_paid_conversion_rate", groups.nonPaid, "ratio", baseGroups?.nonPaid),
       ]),
       sourceRecords: [...snapshotRefs(curSnaps), ...snapshotRefs(baseSnaps), ...failureSample.sample, ...sessionSample.sample],
       detail: { hours: { current: hc, baseline: baseline ? hb : null },
         failureCodes: curCodes.map((c) => ({ code: c._id, count: c.n, baselineCount: baseline ? baseByCode.get(c._id) ?? 0 : null })),
-        byDevice: cap(byDevice, 20), byChannel: cap(byChannel, 20), failureEventsInWindow: failureSample.count, sessionEventsInWindow: sessionSample.count,
+        byDevice: cap(byDevice, 20), byChannel: cap(byChannel, 20), channelGroups: { current: groups.counts, baseline: baseGroups?.counts ?? null }, failureEventsInWindow: failureSample.count, sessionEventsInWindow: sessionSample.count,
         conversionRatePerHour: round(curConv ?? 0, 4) },
       warnings, dataOrigin: "simulated",
     };

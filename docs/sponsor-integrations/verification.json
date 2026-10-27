@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-27T12:29:25.239431+00:00",
+  "baseCommit": "21819929959fde6a1a861bdc8834526d39431e41",
+  "branch": "codex/sponsor-integrations",
+  "meterless": {
+    "upstreamCommit": "1742dec56a66e58eef9dda2d2b865823758ca8cd",
+    "referenceConformance": {
+      "passed": 13,
+      "failed": 0
+    },
+    "offlineRecallPassed": true,
+    "databasePublicationAndReplayTested": true,
+    "databaseModelResponses": "fixtures",
+    "nightshiftInferenceTested": false
+  },
+  "tests": {
+    "offlinePassed": 65,
+    "databaseBackedPassed": 24,
+    "totalPassed": 89,
+    "database": "isolated local MongoDB 8 single-node replica set",
+    "fullRegressionRun": false
+  },
+  "productionBuildPassed": true,
+  "typecheckPassed": true,
+  "lint": {
+    "errors": 0,
+    "preExistingWarnings": 14
+  },
+  "zetaris": {
+    "officialComposeValidates": true,
+    "localSourceCommit": "9dd4fe943afebca6b204b6ed5eccdca91b831e6c",
+    "imagePull": "denied / unauthorized",
+    "liveQueryVerified": false,
+    "canonicalEvidenceFromLiveQueryVerified": false,
+    "cloudDecision": "Hobby software is free; AWS compute charges apply. Local Docker selected per user preference."
+  },
+  "independentCodeReview": "no remaining blocking correctness issue",
+  "paidModelRequestsMade": 0,
+  "submissionComplianceVerified": false,
+  "remaining": [
+    "Obtain official Zetaris Docker image access",
+    "Start the authorized instance and obtain its organization ID/token",
+    "Configure existing MongoDB/Mubit credentials; no .env.local was present",
+    "Export/register the two data sources and verify a live scoped query",
+    "Record a fresh integrated investigation/demo and update the submission deck"
+  ]
+}

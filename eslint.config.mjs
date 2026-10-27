@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     // Vendored shared contracts package: type-checked and fixture-validated by its
     // own scripts (npm run contracts:typecheck / contracts:validate); not edited here.
     "packages/contracts/**",
+    "src/vendor/**",
+    ".local/**",
     "playwright-report/**",
     "test-results/**",
   ]),

@@ -140,6 +140,8 @@ export function textUrlCandidates(text: string): CandidateT[] {
 export async function research(delegation: z.infer<typeof ResearchDelegation>, window: WindowT, cutoff: string): Promise<ResearchResult> {
   if (process.env.EXPLAINWHY_EXTERNAL_RESEARCH_ENABLED !== "true") throw new ProviderError("research_disabled", false, false);
   const config = providerConfig();
+  // Grounded public research relies on Gemini's Google Search tool; the direct NVIDIA route has no equivalent.
+  if (config.provider === "nvidia") throw new ProviderError("research_unavailable_for_provider", false, false);
   const body = { contents: [{ role: "user", parts: [{ text: publicResearchPrompt(delegation, window, cutoff) }] }], tools: [{ google_search: {} }], generationConfig: { maxOutputTokens: 2000, thinkingConfig: { thinkingLevel: "low" } } };
   let response;
   try { response = await gatewayRequest(`${config.geminiBase}/v1beta/models/${encodeURIComponent(config.researchModel)}:generateContent`, body, "mubit", config.researchModel); }

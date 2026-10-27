@@ -1,0 +1,39 @@
+import "server-only";
+import { HMEM } from "@/vendor/meterless-hmem";
+
+export const HMEM_UPSTREAM = "1742dec56a66e58eef9dda2d2b865823758ca8cd";
+export interface HistoricalMemory {
+  businessId: string; simulationRunId: string; investigationId: string; title: string; observedThrough: string; availableAt: string; reportId: string;
+  metrics: string[]; themes: string[]; summaries: string[];
+}
+
+/** Rehydrate durable canonical history into the actual Meterless H-MEM reference engine.
+ * The evidence detail stores the resulting recall/ledger trace. No shared tenant cache or mutable JSON store.
+ */
+export function recallHistoricalMemories(scope: { businessId: string; simulationRunId: string; investigationId: string; cutoff: string; availableBefore: string }, query: string, candidates: HistoricalMemory[]) {
+  let clock = Date.parse(scope.availableBefore);
+  const engine = new HMEM({ clock: () => clock, actor: "explainwhy_investigator" });
+  const chatId = `${scope.businessId}/${scope.simulationRunId}`;
+  for (const prior of candidates.slice(0, 50)) {
+    if (prior.businessId !== scope.businessId || prior.simulationRunId !== scope.simulationRunId || prior.investigationId === scope.investigationId ||
+      !Number.isFinite(Date.parse(prior.availableAt)) || Date.parse(prior.availableAt) > Date.parse(scope.availableBefore) ||
+      !Number.isFinite(Date.parse(prior.observedThrough)) || Date.parse(prior.observedThrough) > Date.parse(scope.cutoff)) continue;
+    clock = Date.parse(prior.availableAt);
+    engine.add({
+      content: `${prior.title}. Themes: ${prior.themes.join(", ")}. Metrics: ${prior.metrics.join(", ")}. ${prior.summaries.join(" ")}`.slice(0, 2000),
+      type: "factual", layer: "working", confidence: 0.7, source: `investigations:${prior.investigationId}`,
+      provenance: { origin: "document", learnedAt: clock, label: "Prior investigation report, context only", refs: [prior.investigationId, prior.reportId] },
+      chatId, goalRunId: scope.simulationRunId, tags: [...prior.themes, ...prior.metrics].slice(0, 20),
+    });
+  }
+  clock = Date.parse(scope.availableBefore);
+  const result = engine.query(query.slice(0, 2000), { chatId, topN: 5 });
+  return {
+    engine: "Meterless H-MEM reference", upstreamCommit: HMEM_UPSTREAM, implementation: "deterministic hash embeddings; canonical MongoDB history rehydrated per query",
+    scope: { businessId: scope.businessId, simulationRunId: scope.simulationRunId, cutoff: scope.cutoff, availableBefore: scope.availableBefore },
+    contextOnly: true as const, context: result.context, trace: result.trace,
+    memories: result.memories.map(({ memory, relevance }) => ({ id: memory.id, source: memory.source, content: memory.content, confidence: memory.confidence, layer: memory.layer, relevance, provenance: memory.provenance })),
+    ledger: engine.ledger.all().map((entry) => ({ memoryId: entry.memoryId, action: entry.action, actor: entry.actor, timestamp: entry.timestamp })),
+  };
+}
+export type MemoryRecall = ReturnType<typeof recallHistoricalMemories>;

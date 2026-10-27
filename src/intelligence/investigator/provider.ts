@@ -2,10 +2,10 @@ import "server-only";
 import { createHash } from "node:crypto";
 import { canonicalJson } from "../evidence/provenance";
 import { z } from "zod";
-import { configuredModels } from "../model-settings";
+import { configuredModels, modelProvider } from "../model-settings";
 
 export interface CallMetadata {
-  provider: "mubit" | "google_direct"; route: string; model: string; requestId: string | null;
+  provider: "mubit" | "google_direct" | "nvidia"; route: string; model: string; requestId: string | null;
   providerRequestId: string | null; latencyMs: number; inputTokens: number | null; outputTokens: number | null;
   totalTokens: number | null; estimatedCostUsd: number | null;
 }
@@ -15,6 +15,15 @@ export class ProviderError extends Error {
   }
 }
 export function providerConfig() {
+  if (modelProvider() === "nvidia") {
+    // Direct NVIDIA API catalog (OpenAI-compatible). ExplainWhy keeps its own durable call ledger; no gateway is involved.
+    const u = new URL(process.env.NVIDIA_BASE_URL || "https://integrate.api.nvidia.com/v1");
+    if (u.protocol !== "https:" || u.username || u.password || u.search || u.hash) throw new ProviderError("invalid_base_url", false, false);
+    if (!process.env.NVIDIA_API_KEY?.trim()) throw new ProviderError("missing_nvidia_key", false, false);
+    return { provider: "nvidia" as const, key: process.env.NVIDIA_API_KEY.trim(), base: u.href.replace(/\/$/, ""), geminiBase: "", geminiTransport: "native" as const, ...configuredModels(),
+      reasoning: z.enum(["low", "medium", "high"]).parse(process.env.MUBIT_REASONING_DEPTH || "low"),
+      structuredOutput: z.enum(["json_schema", "guided_json", "prompt"]).parse(process.env.NVIDIA_STRUCTURED_OUTPUT || "json_schema") };
+  }
   const base = process.env.MUBIT_BASE_URL || "https://api.mubit.ai/openai/v1";
   const geminiBase = process.env.MUBIT_GEMINI_BASE_URL || "https://api.mubit.ai/gemini";
   for (const value of [base, geminiBase]) {
@@ -23,6 +32,7 @@ export function providerConfig() {
   }
   if (!process.env.MUBIT_API_KEY) throw new ProviderError("missing_mubit_key", false, false);
   return {
+    provider: "mubit" as const, structuredOutput: "json_schema" as const,
     key: process.env.MUBIT_API_KEY, base: base.replace(/\/$/, ""), geminiBase: geminiBase.replace(/\/$/, ""),
     geminiTransport: z.enum(["native", "openai"]).parse(process.env.MUBIT_GEMINI_TRANSPORT || "native"),
     ...configuredModels(),
@@ -76,13 +86,13 @@ export async function gatewayRequest(route: string, body: unknown, provider: Cal
   let response: Response;
   try {
     response = await fetch(route, { method: "POST", redirect: "error", signal: AbortSignal.timeout(timeoutMs),
-      headers: { "content-type": "application/json", ...(native ? { "x-goog-api-key": key } : { authorization: `Bearer ${key}` }), ...(!direct && recording ? { "x-middleware-record": recording } : {}) }, body: JSON.stringify(body) });
+      headers: { "content-type": "application/json", ...(native ? { "x-goog-api-key": key } : { authorization: `Bearer ${key}` }), ...(provider === "mubit" && recording ? { "x-middleware-record": recording } : {}) }, body: JSON.stringify(body) });
   } catch { throw new ProviderError("transport_or_timeout", false, true, { provider, model, route, latencyMs: Date.now() - started }); }
-  const metadata: CallMetadata = { provider, model, route, requestId: response.headers.get("x-middleware-request-id"), providerRequestId: response.headers.get("x-request-id") || response.headers.get("request-id"), latencyMs: Date.now() - started, inputTokens: null, outputTokens: null, totalTokens: null, estimatedCostUsd: null };
+  const metadata: CallMetadata = { provider, model, route, requestId: response.headers.get(provider === "nvidia" ? "nvcf-reqid" : "x-middleware-request-id"), providerRequestId: response.headers.get("x-request-id") || response.headers.get("request-id"), latencyMs: Date.now() - started, inputTokens: null, outputTokens: null, totalTokens: null, estimatedCostUsd: null };
   if (!response.ok) {
     // Never echo provider bodies: they can include submitted data or credentials.
     const errorPayload = await response.json().catch(() => ({})) as { error?: { code?: string; message?: string } };
-    const diagnostic = String(errorPayload.error?.message || "").replace(/(?:mbt_|sk-|AIza)[A-Za-z0-9_-]+/g, "[redacted]").slice(0, 500);
+    const diagnostic = String(errorPayload.error?.message || "").replace(/(?:mbt_|sk-|AIza|nvapi-)[A-Za-z0-9_-]+/g, "[redacted]").slice(0, 500);
     if (process.env.EXPLAINWHY_PROVIDER_DIAGNOSTICS === "true") console.error(JSON.stringify({ status: response.status, diagnostic }));
     const retryable = response.headers.get("x-should-retry") !== "false" && [429, 503].includes(response.status);
     const retryAfter = Math.min(60_000, Math.max(1000, Number(response.headers.get("retry-after") || 1) * 1000));
@@ -90,7 +100,7 @@ export async function gatewayRequest(route: string, body: unknown, provider: Cal
   }
   let data: Record<string, unknown>;
   try { data = await response.json(); } catch { throw new ProviderError("invalid_json", false, true, metadata); }
-  if (!direct && !metadata.requestId) throw new ProviderError("missing_gateway_request_id", false, true, metadata);
+  if (provider === "mubit" && !metadata.requestId) throw new ProviderError("missing_gateway_request_id", false, true, metadata);
   if (!metadata.providerRequestId && typeof data.responseId === "string") metadata.providerRequestId = data.responseId;
   const usage = (data.usage || data.usageMetadata || {}) as Record<string, unknown>;
   metadata.inputTokens = finite(usage.prompt_tokens ?? usage.promptTokenCount);
@@ -104,6 +114,7 @@ export async function gatewayRequest(route: string, body: unknown, provider: Cal
 
 export async function callModel(req: ModelRequest): Promise<ModelResponse> {
   const config = providerConfig();
+  if (config.provider === "nvidia") return callNvidiaModel(req, config);
   const gemini = req.model.startsWith("gemini-");
   if (gemini && config.geminiTransport === "native") return callGeminiModel(req);
   const { body, metadata } = await gatewayRequest(`${gemini ? `${config.geminiBase}/v1beta/openai` : config.base}/chat/completions`, {
@@ -113,6 +124,25 @@ export async function callModel(req: ModelRequest): Promise<ModelResponse> {
     ...(req.schema ? { response_format: { type: "json_schema", json_schema: { name: req.schemaName || "normal_output", strict: true, schema: gemini ? geminiGenerationSchema(req.schema) : jsonSchema(req.schema) } } } : {}),
     ...(req.tools?.length ? { tools: req.tools.map((t) => ({ type: "function", function: { ...t, strict: true } })), tool_choice: req.forceTool ? { type: "function", function: { name: req.forceTool } } : "auto", parallel_tool_calls: false } : {}),
   }, "mubit", req.model, 60_000, req.recording);
+  return parseChatCompletion(body, req, metadata);
+}
+
+/** NVIDIA API catalog (Nemotron). Structured output: json_schema response_format, NIM guided_json, or schema-in-prompt. */
+async function callNvidiaModel(req: ModelRequest, config: ReturnType<typeof providerConfig>): Promise<ModelResponse> {
+  const schema = req.schema ? geminiGenerationSchema(req.schema) : null;
+  const system = schema && config.structuredOutput === "prompt" ? `${req.system}\nReturn exactly one JSON object, with no markdown, that matches this JSON Schema:\n${JSON.stringify(schema)}` : req.system;
+  const { body, metadata } = await gatewayRequest(`${config.base}/chat/completions`, {
+    model: req.model, messages: [{ role: "system", content: system }, ...(req.sessionId ? [{ role: "user", content: `Investigation session: ${req.sessionId}` }] : []), { role: "user", content: JSON.stringify(req.input) }],
+    max_tokens: req.maxOutputTokens ?? 6000, temperature: 0.2, top_p: 0.95, stream: false,
+    ...(process.env.NVIDIA_ENABLE_THINKING ? { chat_template_kwargs: { enable_thinking: process.env.NVIDIA_ENABLE_THINKING === "true" } } : {}),
+    ...(schema && config.structuredOutput === "json_schema" ? { response_format: { type: "json_schema", json_schema: { name: req.schemaName || "normal_output", schema } } } : {}),
+    ...(schema && config.structuredOutput === "guided_json" ? { nvext: { guided_json: schema } } : {}),
+    ...(req.tools?.length ? { tools: req.tools.map((t) => ({ type: "function", function: t })), tool_choice: req.forceTool ? { type: "function", function: { name: req.forceTool } } : "auto" } : {}),
+  }, "nvidia", req.model, 120_000);
+  return parseChatCompletion(body, req, metadata);
+}
+
+function parseChatCompletion(body: Record<string, unknown>, req: ModelRequest, metadata: CallMetadata): ModelResponse {
   const choices = body.choices as Array<{ finish_reason: string; message: { content?: string; refusal?: string; tool_calls?: Array<{ id: string; function: { name: string; arguments: string } }> } }> | undefined;
   const choice = choices?.[0];
   if (!choice || choice.message.refusal || !["stop", "tool_calls"].includes(choice.finish_reason)) throw new ProviderError("incomplete_or_refused", false, false, metadata);
@@ -124,11 +154,20 @@ export async function callModel(req: ModelRequest): Promise<ModelResponse> {
       if (!args || typeof args !== "object" || Array.isArray(args)) throw new Error("Invalid function arguments");
       return { id: c.id, name: c.function.name, arguments: args };
     });
-    const value = choice.message.content ? (req.schema ? JSON.parse(choice.message.content) as unknown : choice.message.content) : null;
+    // Reasoning models may prepend visible thinking; it is never an answer and never reaches the parser.
+    const content = metadata.provider === "nvidia" ? jsonPayload(choice.message.content || "", Boolean(req.schema)) : choice.message.content;
+    const value = content ? (req.schema ? JSON.parse(content) as unknown : content) : null;
     if (req.forceTool && !toolCalls.length) throw new Error("Missing forced function call");
-    if (!choice.message.content && !toolCalls.length) throw new Error("Empty response");
+    if (!content && !toolCalls.length) throw new Error("Empty response");
     return { value: req.schema ? req.schema.parse(value) : value, toolCalls, metadata };
   } catch (e) { throw new ProviderError("invalid_structured_output", false, false, metadata, 0, e instanceof z.ZodError ? e.issues.map((i) => `${i.path.join(".")}: ${i.message}`).slice(0, 6).join("; ") : "Invalid JSON or tool name"); }
+}
+
+function jsonPayload(text: string, structured: boolean): string {
+  const answer = text.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
+  if (!structured) return answer;
+  const fenced = /^```(?:json)?\s*([\s\S]*?)\s*```$/.exec(answer);
+  return fenced ? fenced[1] : answer;
 }
 
 /** Avoid oversized Gemini decoding grammars. Exact string/array limits remain enforced by local Zod. */
