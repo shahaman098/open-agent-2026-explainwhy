@@ -1,0 +1,5 @@
+import {money} from '@/lib/format';
+export function CampaignHistory({name,data,comparison}:{name:string;data:Array<{window:{startAt:string;endAt:string};counters:Record<string,number|null>}>;comparison?:{roas:number|null;spendMinor:number}}){
+ const values=data.map(d=>d.counters.adSpendMinor??0), max=Math.max(1,...values);
+ return <section className="m-3 p-4 rounded-lg border bg-white text-xs"><h2 className="font-bold">{name} · recorded daily spend</h2><p>Previous equal-length window: {comparison?`${money(comparison.spendMinor,'GBP')} spend · ${comparison.roas??'—'} ROAS`:'No observations'}</p>{values.length?<svg viewBox="0 0 700 100" className="w-full h-28" role="img" aria-label="Recorded daily advertising spend">{values.map((v,i)=><rect key={i} x={i*700/values.length+2} y={95-v/max*85} width={Math.max(1,700/values.length-4)} height={v/max*85} fill="#0a66c2"><title>{data[i].window.startAt}: {money(v,'GBP')}</title></rect>)}</svg>:<p>No observed history.</p>}<p>{data[0]?.window.startAt} → {data.at(-1)?.window.endAt} · GBP · recorded simulation events</p></section>;
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Architecture · Normal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="signals.html" aria-label="Normal dashboard"><span class="image-placeholder logo-placeholder">Normal logo</span></a>
+    <nav class="dashboard-nav" aria-label="Normal sections">
+      <a class="nav-link" href="overview.html">Overview</a>
+      <a class="nav-link" href="signals.html">Signals</a><a class="nav-link" href="investigations.html">Investigations</a>
+      <a class="nav-link" href="approvals.html">Approvals</a><a class="nav-link" href="activity.html">Activity</a><a class="nav-link" href="outcomes.html">Outcomes</a>
+    </nav>
+    <div class="workspace"><span class="image-placeholder account-placeholder">Nike mark</span><span class="workspace-copy"><strong>Nike</strong><small>Workspace</small></span><span class="run-chip">stage5_1792885194280</span></div>
+  </header>
+  <main class="page">
+    <div class="page-head"><div><p class="eyebrow">System · Selected simulation run</p><h1>Architecture</h1><p class="subhead">Observe → Detect → Retrieve → Investigate → Plan → Approve → Execute → Verify → Learn.</p></div><a class="btn" href="monitoring.html">Monitoring status</a></div>
+    <article class="card" style="margin-bottom:15px">
+      <div class="card-head"><div><h2>Operational pipeline</h2><p>Capability status combines records measured for this run with implementation readiness.</p></div><span class="tag">Run cutoff · 5 Oct 2026 12:00 UTC</span></div>
+      <div class="pipeline" aria-label="Observe to Learn pipeline">
+        <a class="pipeline-node" href="#observe"><strong>Observe</strong><span class="tag operational">Operational</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#detect"><strong>Detect</strong><span class="tag operational">Operational</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#retrieve"><strong>Retrieve</strong><span class="tag operational">Operational</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#investigate"><strong>Investigate</strong><span class="tag operational">Operational</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#plan"><strong>Plan</strong><span class="tag">Not implemented</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#approve"><strong>Approve</strong><span class="tag warn">Partner pending</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#execute"><strong>Execute</strong><span class="tag warn">Partner pending</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#verify"><strong>Verify</strong><span class="tag">Not implemented</span></a><span class="pipeline-arrow">→</span>
+        <a class="pipeline-node" href="#learn"><strong>Learn</strong><span class="tag">Not implemented</span></a>
+      </div>
+      <div class="card-body"><p class="section-note" style="margin:0">Operational status comes from persisted run records. “Not implemented” and “partner integration pending” describe implementation readiness, not run health.</p></div>
+    </article>
+    <section class="stage-grid">
+      <article class="card stage" id="observe"><div class="stage-top"><h3>Observe</h3><span class="tag operational">Operational</span></div><p>The Nike digital twin generates sessions, orders, advertising, deliveries, and reviews. Ingestion stores canonical events and hourly snapshots.</p><div class="callout" style="margin-top:11px">Persisted events and snapshots are present. The saved report does not include their exact record counts.</div><dl><dt>Input</dt><dd>Simulator ticks / connector webhooks</dd><dt>Output</dt><dd><code>business_events</code>, <code>metric_snapshots</code></dd><dt>Backend</dt><dd>Simulator · ingestion · analytics</dd></dl></article>
+      <article class="card stage" id="detect"><div class="stage-top"><h3>Detect</h3><span class="tag operational">Operational</span></div><p>Baselines, detection rules, and correlation identify persisted observations for review.</p><div class="callout" style="margin-top:11px">Analysis completed through 5 Oct 2026 12:00 UTC; one linked investigation is present.</div><dl><dt>Input</dt><dd>Metric snapshots and business events</dd><dt>Output</dt><dd>Anomalies · incidents · investigations</dd><dt>Backend</dt><dd>Detection and monitoring pipeline</dd></dl></article>
+      <article class="card stage" id="retrieve"><div class="stage-top"><h3>Retrieve</h3><span class="tag operational">Operational</span></div><p>Read-only tools query canonical records, verify source references, and save evidence with execution traces.</p><div class="metric-list" style="margin-top:11px"><div class="metric-line"><span>Tool runs</span><strong>7</strong></div><div class="metric-line"><span>Evidence records</span><strong>6</strong></div></div><dl><dt>Output</dt><dd>Evidence and tool execution trace</dd><dt>Current state</dt><dd>Completed at report cutoff</dd></dl></article>
+      <article class="card stage" id="investigate"><div class="stage-top"><h3>Investigate</h3><span class="tag operational">Operational</span></div><p>Mubit investigation compares hypotheses, requests evidence, and writes a structured diagnosis.</p><div class="metric-list" style="margin-top:11px"><div class="metric-line"><span>Persisted diagnosis</span><strong>1</strong></div><div class="metric-line"><span>Investigator status</span><strong>Completed</strong></div></div><dl><dt>Review</dt><dd>Human review required</dd><dt>Backend</dt><dd>Investigator worker</dd></dl></article>
+      <article class="card stage" id="plan"><div class="stage-top"><h3>Plan</h3><span class="tag">Not implemented</span></div><p>No executable plan or success criteria are generated yet.</p><dl><dt>Input</dt><dd>Diagnosis and evidence</dd><dt>Output</dt><dd>ProposedPlan · PlanHandoff</dd><dt>Current state</dt><dd>No plan record in selected run</dd></dl></article>
+      <article class="card stage" id="approve"><div class="stage-top"><h3>Approve</h3><span class="tag warn">Partner integration pending</span></div><p>The partner approval module consumes a plan handoff and records decisions.</p><dl><dt>Input</dt><dd>ProposedPlan</dd><dt>Output</dt><dd>PlanApproval</dd><dt>Current state</dt><dd>No approval decision</dd></dl></article>
+      <article class="card stage" id="execute"><div class="stage-top"><h3>Execute</h3><span class="tag warn">Partner integration pending</span></div><p>Adapters are ready; approval and orchestration are owned by the partner integration.</p><dl><dt>Input</dt><dd>Approved actions</dd><dt>Output</dt><dd>AgentMission · ActionExecution</dd><dt>Current state</dt><dd>No execution record</dd></dl></article>
+      <article class="card stage" id="verify"><div class="stage-top"><h3>Verify</h3><span class="tag">Not implemented</span></div><p>Before-and-after measurement against action success criteria is not available yet.</p><dl><dt>Input</dt><dd>ActionExecution · metric snapshots</dd><dt>Output</dt><dd>ActionOutcome</dd></dl></article>
+      <article class="card stage" id="learn"><div class="stage-top"><h3>Learn</h3><span class="tag">Not implemented</span></div><p>Outcome evaluation and corrections feeding future detection and planning are not available yet.</p><dl><dt>Input</dt><dd>ActionOutcome · ModelCorrection</dd><dt>Output</dt><dd>EvaluationResult</dd></dl></article>
+    </section>
+    <p class="footnote">Selected run <code>stage5_1792885194280</code>. Stage metrics shown here are available from its persisted Stage 5 report; unavailable event totals are not estimated.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "file": "Normal_NightShift_Demo.mp4",
+  "sha256": "17fa3459fc2de48a177a9f6add5529feaa8e124f6e170cdeeb8bd41d96c37a0b",
+  "duration_seconds": 110.16,
+  "bytes": 4980760,
+  "megabytes": 4.98,
+  "resolution": [
+    1488,
+    720
+  ],
+  "fps": "25/1",
+  "voice_id": "rsG3bwQLHQmLztP16wvR",
+  "voice_name": "Kris Sah",
+  "voice_model": "eleven_multilingual_v2",
+  "voice_settings": {
+    "stability": 0.6,
+    "similarity_boost": 0.9,
+    "style": 0.0,
+    "use_speaker_boost": true,
+    "speed": 1.0
+  },
+  "checks": {
+    "duration_under_120_seconds": true,
+    "size_under_300MB": true,
+    "compatible_video": true,
+    "compatible_audio": true,
+    "native_viewport_crop": true,
+    "video_and_voice_only": true,
+    "requested_clone": true,
+    "voice_settings_match": true,
+    "voice_model_matches": true,
+    "no_emotion_tags": true,
+    "one_native_browser_capture": true,
+    "continuous_forward_timing": true,
+    "recorded_actions_succeeded": true,
+    "current_model_named": true,
+    "adapter_savings_not_claimed": true,
+    "complete_av_decode": true
+  },
+  "ok": true,
+  "provenance": {
+    "capture": "continuous/take-003",
+    "source_frames": 497,
+    "video_timing": "One continuous capture retimed monotonically to natural narration; no edit cuts or inserted screenshots",
+    "audio": "demo-video/voice-correction/voice-5669509d2aeff59e.mp3",
+    "audio_sha256": "ca49840bd1a397c0567333a8acc2f4c2ac50d20f85e393e165ea9a08e0eb3e15",
+    "audio_effects": "None; AAC encoding and tail silence only",
+    "overlays": false,
+    "music": false,
+    "higgsfield_used": false,
+    "current_product_model": "Gemini 4 Argon (gemini-4-argon) through Mubit",
+    "limits": "Synthetic business; historical requests keep their actual model IDs. No adapter savings or model improvement established.",
+    "subjective_voice_likeness": "User confirmed the revised preview sounds like them"
+  }
+}

@@ -1,0 +1,1371 @@
+{
+  "metrics": {
+    "businessId": "nike_eval",
+    "simulationRunId": "s5eval_1792875702318_2_0",
+    "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+    "scenarioAfterInference": "delivery_delays",
+    "seed": 11,
+    "detected": true,
+    "completion": "insufficient_evidence",
+    "primaryCause": "unknown",
+    "mechanismInHypotheses": true,
+    "leadingMechanismMatch": false,
+    "hypothesisRevisions": 3,
+    "evidence": 3,
+    "citations": 3,
+    "invalidCitations": 0,
+    "latencyMs": 146456,
+    "modelCalls": 5,
+    "tokens": 22070,
+    "estimatedCostUsd": null,
+    "externalResearchRounds": 0,
+    "externalCausalValidity": "not_established_by_synthetic_evaluation",
+    "requestIds": [
+      "mreq_01a16fbece517cf282cb60b158494be1",
+      "mreq_01a16fbef1197a218865e9d9b7904f4e",
+      "mreq_01a16fbf2c2a7e909d7e2fc462d706bb",
+      "mreq_01a16fbf679f7962b10edcc8f0c46831",
+      "mreq_01a16fbf827676e3a4f5894c758e992e"
+    ]
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_1353f40d006de70836109921",
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792875702318_2_0",
+      "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+      "status": "insufficient_evidence",
+      "stage": "completed",
+      "createdAt": "2026-10-24T21:08:57.726Z",
+      "updatedAt": "2026-10-24T21:09:53.011Z",
+      "startedAt": "2026-10-24T21:08:57.873Z",
+      "completedAt": "2026-10-24T21:09:53.011Z",
+      "round": 2,
+      "toolCount": 4,
+      "researchCount": 0,
+      "sourceCount": 0,
+      "callCount": 5,
+      "reservedTokens": 124056,
+      "actualTokens": 22070,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 2,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-11T00:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-07T14:00:00.000Z",
+        "endAt": "2026-10-11T00:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-04T04:00:00.000Z",
+        "endAt": "2026-10-07T14:00:00.000Z"
+      },
+      "evidenceIds": [
+        "evd_f0cc10eb3a08c7c8",
+        "evd_58db1d7a6d351676",
+        "evd_1c872af7ebf584e3"
+      ],
+      "sourceIds": [],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T21:09:05.372Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "The observed anomaly directly concerns late deliveries, but no underlying shipping evidence is available yet to establish its extent, timing, or cause.",
+              "mechanism": "Shipments may be arriving after their promised dates because of fulfillment or transit delays.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "A due-date cohort analysis shows elevated late deliveries and an increase in open shipments past promise or recorded delay."
+              ],
+              "missingEvidence": [
+                "Shipping cohort results, delivery-status transitions, and backlog details.",
+                "Evidence distinguishing transit or fulfillment delays from changes in shipment mix or measurement."
+              ],
+              "falsificationTests": [
+                "Check whether the due-date cohort measure remains elevated when calculated using consistent promise-date and delivery-status rules; normal results would falsify a real deterioration."
+              ],
+              "chronology": "The reported anomaly is for the specified delivery window; no event-level chronology is supplied.",
+              "confounders": [
+                "A change in shipment mix or promise-date recording could affect the measured rate."
+              ],
+              "controlComparison": "Compare the affected due-date cohort with the baseline cohort using the same cohort-aware shipping metric.",
+              "hypothesisId": "hyp_7871777a7c9c07ca"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "Inventory constraints are an alternative, unverified mechanism that could disrupt fulfillment; the supplied information does not show that any product was out of stock.",
+              "mechanism": "Insufficient available inventory could delay dispatch or fulfillment for orders awaiting replenishment.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Inventory evidence shows stockouts or depletion during the relevant period, alongside affected orders or fulfillment delays."
+              ],
+              "missingEvidence": [
+                "Inventory levels, stockout events, and product-level order velocity.",
+                "A link between any inventory constraint and late shipments."
+              ],
+              "falsificationTests": [
+                "Check inventory levels and out-of-stock events across the relevant period; adequate availability with no stockout events would falsify this mechanism."
+              ],
+              "chronology": "No inventory or order chronology is supplied to determine whether a constraint preceded the delivery anomaly.",
+              "confounders": [
+                "Transit delays or changes in shipment mix could produce late deliveries independently of inventory."
+              ],
+              "controlComparison": "Compare inventory and shipment outcomes across products with and without any observed stock constraints.",
+              "hypothesisId": "hyp_5368010ddc9cc721"
+            }
+          ],
+          "decisionSummary": "The reported late-delivery-rate increase warrants checking shipping cohorts first. Its cause remains unknown; inventory constraints are an alternative that also needs evidence."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T21:09:20.031Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "The due-date cohort shows a clear deterioration in delivery outcomes, including delayed statuses and an open past-promise backlog. This supports a real delivery-performance problem, but the evidence does not identify whether fulfillment, transit, or another operational factor caused it.",
+              "mechanism": "Shipments may not be reaching customers by their recorded promise dates, leaving orders delayed or unresolved at the cutoff.",
+              "support": "strongly_supported",
+              "evidenceIds": [
+                "evd_f0cc10eb3a08c7c8"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Using consistent promise-date and delivery-status rules, due-date cohorts continue to show elevated late deliveries and past-promise backlog."
+              ],
+              "missingEvidence": [
+                "Shipment-level chronology separating fulfillment time from transit time.",
+                "Comparison by carrier, route, fulfillment location, and promise-date changes."
+              ],
+              "falsificationTests": [
+                "Recompute the due-date cohort using unchanged promise-date and status definitions; if the deterioration disappears, the apparent delivery problem is falsified.",
+                "Compare shipment and delivery timestamps across the affected and baseline cohorts; if actual delivery timing is unchanged and only status recording or promise dates shifted, the operational-delay mechanism is falsified."
+              ],
+              "chronology": "The elevated late-delivery cohort and unresolved past-promise shipments are observed in the incident window. The supplied evidence does not establish when the underlying delay began or which stage caused it.",
+              "confounders": [
+                "Changes in shipment mix or promise-date recording could affect the measured rate.",
+                "Many past-promise shipments have no delivered or lost event at cutoff, so their eventual outcomes are unresolved."
+              ],
+              "controlComparison": "The evidence compares promises due in the incident cohort with a baseline cohort, but does not provide carrier, route, or fulfillment-stage controls.",
+              "hypothesisId": "hyp_7871777a7c9c07ca"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "Inventory shortage is not supported as an explanation for the delivery deterioration: the observed inventory records show no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. Earlier transient shortages or product-specific links to delayed orders are not established.",
+              "mechanism": "If inventory were unavailable when orders needed to be fulfilled, replenishment waits could delay dispatch and ultimately delivery.",
+              "support": "contradicted",
+              "evidenceIds": [],
+              "counterEvidenceIds": [
+                "evd_58db1d7a6d351676"
+              ],
+              "expectedObservations": [
+                "A relevant inventory shortage precedes delayed dispatch for the affected orders or products."
+              ],
+              "missingEvidence": [
+                "Order-linked inventory availability and fulfillment timestamps across the incident period."
+              ],
+              "falsificationTests": [
+                "Check order-linked inventory levels and stockout events across the full fulfillment period; adequate availability for delayed orders would falsify this mechanism."
+              ],
+              "chronology": "The supplied inventory evidence describes the window and inventory state at its end, but does not link product-level inventory events to delayed shipments.",
+              "confounders": [
+                "A transient or product-specific shortage could be obscured by aggregate inventory observations.",
+                "Transit or fulfillment-stage delays could occur independently of inventory."
+              ],
+              "controlComparison": "The inventory evidence provides an overall product-level inventory summary, not a comparison of inventory availability for delayed versus on-time orders.",
+              "hypothesisId": "hyp_5368010ddc9cc721"
+            }
+          ],
+          "decisionSummary": "A delivery-performance deterioration is strongly supported by the due-date cohort evidence, but its operational source remains unknown. Inventory shortage is contradicted by the observed inventory summary. Further shipment-stage evidence would be needed to distinguish fulfillment, transit, and measurement explanations."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 3,
+          "createdAt": "2026-10-24T21:09:37.044Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "The due-date cohort shows more orders not delivered by their promise, delayed statuses, and a past-promise backlog. This supports a delivery-performance problem, but does not establish whether fulfillment, transit, or another operational stage caused it.",
+              "mechanism": "Orders may be dispatched or transported too slowly to arrive by their recorded promise dates.",
+              "support": "strongly_supported",
+              "evidenceIds": [
+                "evd_f0cc10eb3a08c7c8"
+              ],
+              "counterEvidenceIds": [
+                "evd_58db1d7a6d351676"
+              ],
+              "expectedObservations": [
+                "Using consistent promise-date and delivery-status definitions, subsequent due-date cohorts continue to show elevated late deliveries and past-promise backlog.",
+                "Shipment timestamps identify a delayed fulfillment or transit stage for affected orders."
+              ],
+              "missingEvidence": [
+                "Shipment-level chronology separating fulfillment time from transit time.",
+                "Comparison by carrier, route, fulfillment location, and promise-date changes."
+              ],
+              "falsificationTests": [
+                "Recompute the due-date cohort with unchanged promise-date and status definitions; disappearance of the deterioration would falsify the observed operational-delay interpretation.",
+                "Compare shipment and delivery timestamps across affected and baseline cohorts; unchanged actual delivery timing alongside shifted status recording or promise dates would falsify the proposed operational mechanism."
+              ],
+              "chronology": "The elevated late-delivery cohort and unresolved past-promise shipments are observed in the incident window. The evidence does not establish when the underlying delay began or which stage caused it.",
+              "confounders": [
+                "Shipment mix or promise-date recording could affect the measured rate.",
+                "Past-promise shipments without a delivered or lost event have unresolved eventual outcomes.",
+                "The inventory summary does not show current shortages, but does not link inventory availability to individual delayed orders."
+              ],
+              "controlComparison": "The cohort is compared with a baseline cohort, but there are no carrier, route, or fulfillment-stage controls.",
+              "hypothesisId": "hyp_7871777a7c9c07ca"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A change in promise-date or status-recording practices remains a viable alternative to a change in physical delivery performance. The evidence explicitly includes unresolved shipments at cutoff, so it cannot distinguish operational delay from measurement or cohort effects.",
+              "mechanism": "Changed promise dates, status capture, or cohort maturity could increase the measured late rate without a corresponding deterioration in actual delivery timing.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [
+                "evd_f0cc10eb3a08c7c8"
+              ],
+              "expectedObservations": [
+                "Promise-date or status-recording rules differ between the incident and baseline cohorts, or the apparent change diminishes as unresolved shipments receive final statuses."
+              ],
+              "missingEvidence": [
+                "Promise-date edit history and status-event audit trail.",
+                "Final delivery outcomes for shipments still unresolved at cutoff."
+              ],
+              "falsificationTests": [
+                "Audit promise-date edits and status timestamps against the baseline; stable rules and independently verified late physical deliveries would falsify this measurement explanation.",
+                "Recalculate the cohort after unresolved shipments receive final outcomes; persistence of the deterioration under consistent definitions would weaken this alternative."
+              ],
+              "chronology": "The reported cohort is measured at the incident cutoff, when some past-promise shipments remain unresolved. No evidence establishes whether measurement rules changed before or during the window.",
+              "confounders": [
+                "Real delivery delays could coexist with measurement changes.",
+                "Unresolved shipments may later be delivered, lost, or otherwise classified."
+              ],
+              "controlComparison": "The baseline comparison does not include a stated audit of promise-date definitions, event capture, or cohort maturity.",
+              "hypothesisId": "hyp_32b71fc240ca1474"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The aggregate inventory evidence does not support stockouts as the explanation: it reports no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. It does not rule out an earlier or order-specific inventory constraint.",
+              "mechanism": "Unavailable inventory could delay fulfillment while an order waits for stock.",
+              "support": "contradicted",
+              "evidenceIds": [],
+              "counterEvidenceIds": [
+                "evd_58db1d7a6d351676"
+              ],
+              "expectedObservations": [
+                "Order-linked inventory shortages precede delayed dispatch for affected orders."
+              ],
+              "missingEvidence": [
+                "Order-linked inventory availability and fulfillment timestamps over the full fulfillment period."
+              ],
+              "falsificationTests": [
+                "Check order-linked inventory and stockout events across the full fulfillment period; adequate availability for delayed orders would falsify this mechanism."
+              ],
+              "chronology": "The inventory summary describes conditions through the end of the incident window and does not link inventory events to delayed shipments.",
+              "confounders": [
+                "Aggregate inventory may conceal transient or product-specific constraints.",
+                "Transit and fulfillment delays can occur independently of inventory."
+              ],
+              "controlComparison": "Inventory is summarized across products, without comparing availability for delayed and on-time orders.",
+              "hypothesisId": "hyp_5368010ddc9cc721"
+            }
+          ],
+          "decisionSummary": "A delivery-performance deterioration is strongly supported, but the operational stage and the possibility of promise-date or status-measurement effects remain unresolved. Aggregate inventory evidence contradicts stockout as the primary explanation. Delivery mentions in reviews are suggestive but are a keyword heuristic, while the absence of low ratings does not rule out delivery problems."
+        }
+      ],
+      "steps": [
+        {
+          "stepId": "aij_1353f40d006de70836109921_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T21:08:57.873Z",
+          "completedAt": "2026-10-24T21:08:57.873Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:08:57.920Z",
+          "completedAt": "2026-10-24T21:09:05.373Z",
+          "resultSummary": "The reported late-delivery-rate increase warrants checking shipping cohorts first. Its cause remains unknown; inventory constraints are an alternative that also needs evidence.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Did the due-date cohort late-delivery rate, open backlog past promise, delivery transitions, or recorded delays change, and what is the chronology relative to baseline?",
+          "startedAt": "2026-10-24T21:09:05.392Z",
+          "completedAt": "2026-10-24T21:09:05.626Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_f0cc10eb3a08c7c8"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "inventory_analysis",
+          "question": "Were there stockouts, depletion, or inventory constraints during the relevant period, and do they align with delayed fulfillment?",
+          "startedAt": "2026-10-24T21:09:05.960Z",
+          "completedAt": "2026-10-24T21:09:06.076Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_58db1d7a6d351676"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": []
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there prior incidents with comparable delivery deterioration and documented diagnoses or plans that may inform discriminating checks?",
+          "startedAt": "2026-10-24T21:09:06.135Z",
+          "completedAt": "2026-10-24T21:09:06.269Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-11T00:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "includeOtherRuns": false
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:09:06.478Z",
+          "completedAt": "2026-10-24T21:09:20.031Z",
+          "resultSummary": "A delivery-performance deterioration is strongly supported by the due-date cohort evidence, but its operational source remains unknown. Inventory shortage is contradicted by the observed inventory summary. Further shipment-stage evidence would be needed to distinguish fulfillment, transit, and measurement explanations.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s6",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did delivery-related complaint mentions or low ratings change during the incident window compared with baseline, and are complaints concentrated in any products?",
+          "startedAt": "2026-10-24T21:09:20.062Z",
+          "completedAt": "2026-10-24T21:09:20.178Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_1c872af7ebf584e3"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": []
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s7",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:09:22.008Z",
+          "completedAt": "2026-10-24T21:09:37.044Z",
+          "resultSummary": "A delivery-performance deterioration is strongly supported, but the operational stage and the possibility of promise-date or status-measurement effects remain unresolved. Aggregate inventory evidence contradicts stockout as the primary explanation. Delivery mentions in reviews are suggestive but are a keyword heuristic, while the absence of low ratings does not rule out delivery problems.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s8",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T21:09:37.235Z",
+          "completedAt": "2026-10-24T21:09:52.059Z",
+          "resultSummary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "evidenceIds": [],
+          "error": "Model diagnosis unavailable or rejected; deterministic insufficient-evidence report"
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s9",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T21:09:52.059Z",
+          "completedAt": "2026-10-24T21:09:52.059Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s10",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T21:09:52.059Z",
+          "completedAt": "2026-10-24T21:09:52.059Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": null,
+      "stopReason": "The available shipping, inventory, feedback, and historical-incident analyses have been used. No remaining supplied read-only tool can distinguish physical delivery delays from promise-date or status-recording effects; shipment-level timestamps and audit history are not available.",
+      "reportId": "report_aij_1353f40d006de70836109921",
+      "attempts": 1
+    },
+    "report": {
+      "schemaVersion": 1,
+      "reportId": "report_aij_1353f40d006de70836109921",
+      "version": 1,
+      "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+      "diagnosisId": "diag_aij_1353f40d006de70836109921",
+      "createdAt": "2026-10-24T21:09:52.060Z",
+      "diagnosis": {
+        "primaryCause": "unknown",
+        "hypotheses": [
+          {
+            "cause": "unknown",
+            "strength": "weak",
+            "evidenceIds": [],
+            "counterEvidenceIds": [],
+            "explanation": "The available evidence does not justify a reliable causal conclusion."
+          },
+          {
+            "cause": "delivery_delays",
+            "strength": "weak",
+            "evidenceIds": [
+              "evd_f0cc10eb3a08c7c8"
+            ],
+            "counterEvidenceIds": [
+              "evd_58db1d7a6d351676"
+            ],
+            "explanation": "The due-date cohort shows more orders not delivered by their promise, delayed statuses, and a past-promise backlog. This supports a delivery-performance problem, but does not establish whether fulfillment, transit, or another operational stage caused it."
+          },
+          {
+            "cause": "stockout",
+            "strength": "weak",
+            "evidenceIds": [],
+            "counterEvidenceIds": [
+              "evd_58db1d7a6d351676"
+            ],
+            "explanation": "The aggregate inventory evidence does not support stockouts as the explanation: it reports no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. It does not rule out an earlier or order-specific inventory constraint."
+          }
+        ],
+        "summary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "missingEvidence": [
+          "ambiguous_evidence_role"
+        ],
+        "requiresReview": true,
+        "schemaVersion": 1,
+        "businessId": "nike_eval",
+        "diagnosisId": "diag_aij_1353f40d006de70836109921",
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "modelCallId": "aij_1353f40d006de70836109921_system_insufficient",
+        "taskKey": "revenue_diagnosis_v1",
+        "createdAt": "2026-10-24T21:09:52.059Z"
+      },
+      "executiveBrief": {
+        "whatChanged": "The detector observed changes in the incident metrics shown above.",
+        "explanation": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "certainty": "Insufficient evidence to select a reliable primary explanation.",
+        "impact": "A unique comparable business-wide revenue measurement is unavailable.",
+        "review": [
+          "ambiguous_evidence_role"
+        ]
+      },
+      "impact": {
+        "schemaVersion": 1,
+        "status": "unknown",
+        "evidenceId": null,
+        "metric": null,
+        "value": null,
+        "baseline": null,
+        "delta": null,
+        "unit": null,
+        "interpretation": "A unique comparable business-wide revenue measurement is unavailable.",
+        "limitations": [
+          "No financial loss estimate is justified."
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "diag_aij_1353f40d006de70836109921_claim_0",
+          "claim": "The available evidence does not justify a reliable causal conclusion.",
+          "kind": "hypothesis",
+          "evidenceIds": [],
+          "counterEvidenceIds": [],
+          "sourceIds": [],
+          "support": "insufficient_evidence",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_1353f40d006de70836109921_claim_1",
+          "claim": "The due-date cohort shows more orders not delivered by their promise, delayed statuses, and a past-promise backlog. This supports a delivery-performance problem, but does not establish whether fulfillment, transit, or another operational stage caused it.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_f0cc10eb3a08c7c8"
+          ],
+          "counterEvidenceIds": [
+            "evd_58db1d7a6d351676"
+          ],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_1353f40d006de70836109921_claim_2",
+          "claim": "The aggregate inventory evidence does not support stockouts as the explanation: it reports no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. It does not rule out an earlier or order-specific inventory constraint.",
+          "kind": "hypothesis",
+          "evidenceIds": [],
+          "counterEvidenceIds": [
+            "evd_58db1d7a6d351676"
+          ],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        }
+      ],
+      "ledger": [
+        {
+          "evidenceId": "evd_f0cc10eb3a08c7c8",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_1353f40d006de70836109921_claim_1"
+          ],
+          "role": "support",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_2_0_059cd78c6cd7/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_2_0&evidenceId=evd_f0cc10eb3a08c7c8"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_58db1d7a6d351676",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_1353f40d006de70836109921_claim_1",
+            "diag_aij_1353f40d006de70836109921_claim_2"
+          ],
+          "role": "contradiction",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_2_0_059cd78c6cd7/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_2_0&evidenceId=evd_58db1d7a6d351676"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_1c872af7ebf584e3",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [],
+          "role": "context",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_2_0_059cd78c6cd7/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_2_0&evidenceId=evd_1c872af7ebf584e3"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        }
+      ],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T21:09:05.372Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "The observed anomaly directly concerns late deliveries, but no underlying shipping evidence is available yet to establish its extent, timing, or cause.",
+              "mechanism": "Shipments may be arriving after their promised dates because of fulfillment or transit delays.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "A due-date cohort analysis shows elevated late deliveries and an increase in open shipments past promise or recorded delay."
+              ],
+              "missingEvidence": [
+                "Shipping cohort results, delivery-status transitions, and backlog details.",
+                "Evidence distinguishing transit or fulfillment delays from changes in shipment mix or measurement."
+              ],
+              "falsificationTests": [
+                "Check whether the due-date cohort measure remains elevated when calculated using consistent promise-date and delivery-status rules; normal results would falsify a real deterioration."
+              ],
+              "chronology": "The reported anomaly is for the specified delivery window; no event-level chronology is supplied.",
+              "confounders": [
+                "A change in shipment mix or promise-date recording could affect the measured rate."
+              ],
+              "controlComparison": "Compare the affected due-date cohort with the baseline cohort using the same cohort-aware shipping metric.",
+              "hypothesisId": "hyp_7871777a7c9c07ca"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "Inventory constraints are an alternative, unverified mechanism that could disrupt fulfillment; the supplied information does not show that any product was out of stock.",
+              "mechanism": "Insufficient available inventory could delay dispatch or fulfillment for orders awaiting replenishment.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Inventory evidence shows stockouts or depletion during the relevant period, alongside affected orders or fulfillment delays."
+              ],
+              "missingEvidence": [
+                "Inventory levels, stockout events, and product-level order velocity.",
+                "A link between any inventory constraint and late shipments."
+              ],
+              "falsificationTests": [
+                "Check inventory levels and out-of-stock events across the relevant period; adequate availability with no stockout events would falsify this mechanism."
+              ],
+              "chronology": "No inventory or order chronology is supplied to determine whether a constraint preceded the delivery anomaly.",
+              "confounders": [
+                "Transit delays or changes in shipment mix could produce late deliveries independently of inventory."
+              ],
+              "controlComparison": "Compare inventory and shipment outcomes across products with and without any observed stock constraints.",
+              "hypothesisId": "hyp_5368010ddc9cc721"
+            }
+          ],
+          "decisionSummary": "The reported late-delivery-rate increase warrants checking shipping cohorts first. Its cause remains unknown; inventory constraints are an alternative that also needs evidence."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T21:09:20.031Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "The due-date cohort shows a clear deterioration in delivery outcomes, including delayed statuses and an open past-promise backlog. This supports a real delivery-performance problem, but the evidence does not identify whether fulfillment, transit, or another operational factor caused it.",
+              "mechanism": "Shipments may not be reaching customers by their recorded promise dates, leaving orders delayed or unresolved at the cutoff.",
+              "support": "strongly_supported",
+              "evidenceIds": [
+                "evd_f0cc10eb3a08c7c8"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Using consistent promise-date and delivery-status rules, due-date cohorts continue to show elevated late deliveries and past-promise backlog."
+              ],
+              "missingEvidence": [
+                "Shipment-level chronology separating fulfillment time from transit time.",
+                "Comparison by carrier, route, fulfillment location, and promise-date changes."
+              ],
+              "falsificationTests": [
+                "Recompute the due-date cohort using unchanged promise-date and status definitions; if the deterioration disappears, the apparent delivery problem is falsified.",
+                "Compare shipment and delivery timestamps across the affected and baseline cohorts; if actual delivery timing is unchanged and only status recording or promise dates shifted, the operational-delay mechanism is falsified."
+              ],
+              "chronology": "The elevated late-delivery cohort and unresolved past-promise shipments are observed in the incident window. The supplied evidence does not establish when the underlying delay began or which stage caused it.",
+              "confounders": [
+                "Changes in shipment mix or promise-date recording could affect the measured rate.",
+                "Many past-promise shipments have no delivered or lost event at cutoff, so their eventual outcomes are unresolved."
+              ],
+              "controlComparison": "The evidence compares promises due in the incident cohort with a baseline cohort, but does not provide carrier, route, or fulfillment-stage controls.",
+              "hypothesisId": "hyp_7871777a7c9c07ca"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "Inventory shortage is not supported as an explanation for the delivery deterioration: the observed inventory records show no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. Earlier transient shortages or product-specific links to delayed orders are not established.",
+              "mechanism": "If inventory were unavailable when orders needed to be fulfilled, replenishment waits could delay dispatch and ultimately delivery.",
+              "support": "contradicted",
+              "evidenceIds": [],
+              "counterEvidenceIds": [
+                "evd_58db1d7a6d351676"
+              ],
+              "expectedObservations": [
+                "A relevant inventory shortage precedes delayed dispatch for the affected orders or products."
+              ],
+              "missingEvidence": [
+                "Order-linked inventory availability and fulfillment timestamps across the incident period."
+              ],
+              "falsificationTests": [
+                "Check order-linked inventory levels and stockout events across the full fulfillment period; adequate availability for delayed orders would falsify this mechanism."
+              ],
+              "chronology": "The supplied inventory evidence describes the window and inventory state at its end, but does not link product-level inventory events to delayed shipments.",
+              "confounders": [
+                "A transient or product-specific shortage could be obscured by aggregate inventory observations.",
+                "Transit or fulfillment-stage delays could occur independently of inventory."
+              ],
+              "controlComparison": "The inventory evidence provides an overall product-level inventory summary, not a comparison of inventory availability for delayed versus on-time orders.",
+              "hypothesisId": "hyp_5368010ddc9cc721"
+            }
+          ],
+          "decisionSummary": "A delivery-performance deterioration is strongly supported by the due-date cohort evidence, but its operational source remains unknown. Inventory shortage is contradicted by the observed inventory summary. Further shipment-stage evidence would be needed to distinguish fulfillment, transit, and measurement explanations."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 3,
+          "createdAt": "2026-10-24T21:09:37.044Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "The due-date cohort shows more orders not delivered by their promise, delayed statuses, and a past-promise backlog. This supports a delivery-performance problem, but does not establish whether fulfillment, transit, or another operational stage caused it.",
+              "mechanism": "Orders may be dispatched or transported too slowly to arrive by their recorded promise dates.",
+              "support": "strongly_supported",
+              "evidenceIds": [
+                "evd_f0cc10eb3a08c7c8"
+              ],
+              "counterEvidenceIds": [
+                "evd_58db1d7a6d351676"
+              ],
+              "expectedObservations": [
+                "Using consistent promise-date and delivery-status definitions, subsequent due-date cohorts continue to show elevated late deliveries and past-promise backlog.",
+                "Shipment timestamps identify a delayed fulfillment or transit stage for affected orders."
+              ],
+              "missingEvidence": [
+                "Shipment-level chronology separating fulfillment time from transit time.",
+                "Comparison by carrier, route, fulfillment location, and promise-date changes."
+              ],
+              "falsificationTests": [
+                "Recompute the due-date cohort with unchanged promise-date and status definitions; disappearance of the deterioration would falsify the observed operational-delay interpretation.",
+                "Compare shipment and delivery timestamps across affected and baseline cohorts; unchanged actual delivery timing alongside shifted status recording or promise dates would falsify the proposed operational mechanism."
+              ],
+              "chronology": "The elevated late-delivery cohort and unresolved past-promise shipments are observed in the incident window. The evidence does not establish when the underlying delay began or which stage caused it.",
+              "confounders": [
+                "Shipment mix or promise-date recording could affect the measured rate.",
+                "Past-promise shipments without a delivered or lost event have unresolved eventual outcomes.",
+                "The inventory summary does not show current shortages, but does not link inventory availability to individual delayed orders."
+              ],
+              "controlComparison": "The cohort is compared with a baseline cohort, but there are no carrier, route, or fulfillment-stage controls.",
+              "hypothesisId": "hyp_7871777a7c9c07ca"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A change in promise-date or status-recording practices remains a viable alternative to a change in physical delivery performance. The evidence explicitly includes unresolved shipments at cutoff, so it cannot distinguish operational delay from measurement or cohort effects.",
+              "mechanism": "Changed promise dates, status capture, or cohort maturity could increase the measured late rate without a corresponding deterioration in actual delivery timing.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [
+                "evd_f0cc10eb3a08c7c8"
+              ],
+              "expectedObservations": [
+                "Promise-date or status-recording rules differ between the incident and baseline cohorts, or the apparent change diminishes as unresolved shipments receive final statuses."
+              ],
+              "missingEvidence": [
+                "Promise-date edit history and status-event audit trail.",
+                "Final delivery outcomes for shipments still unresolved at cutoff."
+              ],
+              "falsificationTests": [
+                "Audit promise-date edits and status timestamps against the baseline; stable rules and independently verified late physical deliveries would falsify this measurement explanation.",
+                "Recalculate the cohort after unresolved shipments receive final outcomes; persistence of the deterioration under consistent definitions would weaken this alternative."
+              ],
+              "chronology": "The reported cohort is measured at the incident cutoff, when some past-promise shipments remain unresolved. No evidence establishes whether measurement rules changed before or during the window.",
+              "confounders": [
+                "Real delivery delays could coexist with measurement changes.",
+                "Unresolved shipments may later be delivered, lost, or otherwise classified."
+              ],
+              "controlComparison": "The baseline comparison does not include a stated audit of promise-date definitions, event capture, or cohort maturity.",
+              "hypothesisId": "hyp_32b71fc240ca1474"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The aggregate inventory evidence does not support stockouts as the explanation: it reports no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. It does not rule out an earlier or order-specific inventory constraint.",
+              "mechanism": "Unavailable inventory could delay fulfillment while an order waits for stock.",
+              "support": "contradicted",
+              "evidenceIds": [],
+              "counterEvidenceIds": [
+                "evd_58db1d7a6d351676"
+              ],
+              "expectedObservations": [
+                "Order-linked inventory shortages precede delayed dispatch for affected orders."
+              ],
+              "missingEvidence": [
+                "Order-linked inventory availability and fulfillment timestamps over the full fulfillment period."
+              ],
+              "falsificationTests": [
+                "Check order-linked inventory and stockout events across the full fulfillment period; adequate availability for delayed orders would falsify this mechanism."
+              ],
+              "chronology": "The inventory summary describes conditions through the end of the incident window and does not link inventory events to delayed shipments.",
+              "confounders": [
+                "Aggregate inventory may conceal transient or product-specific constraints.",
+                "Transit and fulfillment delays can occur independently of inventory."
+              ],
+              "controlComparison": "Inventory is summarized across products, without comparing availability for delayed and on-time orders.",
+              "hypothesisId": "hyp_5368010ddc9cc721"
+            }
+          ],
+          "decisionSummary": "A delivery-performance deterioration is strongly supported, but the operational stage and the possibility of promise-date or status-measurement effects remain unresolved. Aggregate inventory evidence contradicts stockout as the primary explanation. Delivery mentions in reviews are suggestive but are a keyword heuristic, while the absence of low ratings does not rule out delivery problems."
+        }
+      ],
+      "timeline": [
+        {
+          "stepId": "aij_1353f40d006de70836109921_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T21:08:57.873Z",
+          "completedAt": "2026-10-24T21:08:57.873Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:08:57.920Z",
+          "completedAt": "2026-10-24T21:09:05.373Z",
+          "resultSummary": "The reported late-delivery-rate increase warrants checking shipping cohorts first. Its cause remains unknown; inventory constraints are an alternative that also needs evidence.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Did the due-date cohort late-delivery rate, open backlog past promise, delivery transitions, or recorded delays change, and what is the chronology relative to baseline?",
+          "startedAt": "2026-10-24T21:09:05.392Z",
+          "completedAt": "2026-10-24T21:09:05.626Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_f0cc10eb3a08c7c8"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "inventory_analysis",
+          "question": "Were there stockouts, depletion, or inventory constraints during the relevant period, and do they align with delayed fulfillment?",
+          "startedAt": "2026-10-24T21:09:05.960Z",
+          "completedAt": "2026-10-24T21:09:06.076Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_58db1d7a6d351676"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": []
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there prior incidents with comparable delivery deterioration and documented diagnoses or plans that may inform discriminating checks?",
+          "startedAt": "2026-10-24T21:09:06.135Z",
+          "completedAt": "2026-10-24T21:09:06.269Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-11T00:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "includeOtherRuns": false
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:09:06.478Z",
+          "completedAt": "2026-10-24T21:09:20.031Z",
+          "resultSummary": "A delivery-performance deterioration is strongly supported by the due-date cohort evidence, but its operational source remains unknown. Inventory shortage is contradicted by the observed inventory summary. Further shipment-stage evidence would be needed to distinguish fulfillment, transit, and measurement explanations.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s6",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did delivery-related complaint mentions or low ratings change during the incident window compared with baseline, and are complaints concentrated in any products?",
+          "startedAt": "2026-10-24T21:09:20.062Z",
+          "completedAt": "2026-10-24T21:09:20.178Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_1c872af7ebf584e3"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": []
+          }
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s7",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:09:22.008Z",
+          "completedAt": "2026-10-24T21:09:37.044Z",
+          "resultSummary": "A delivery-performance deterioration is strongly supported, but the operational stage and the possibility of promise-date or status-measurement effects remain unresolved. Aggregate inventory evidence contradicts stockout as the primary explanation. Delivery mentions in reviews are suggestive but are a keyword heuristic, while the absence of low ratings does not rule out delivery problems.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s8",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T21:09:37.235Z",
+          "completedAt": "2026-10-24T21:09:52.059Z",
+          "resultSummary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "evidenceIds": [],
+          "error": "Model diagnosis unavailable or rejected; deterministic insufficient-evidence report"
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s9",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T21:09:52.059Z",
+          "completedAt": "2026-10-24T21:09:52.059Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1353f40d006de70836109921_s10",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T21:09:52.059Z",
+          "completedAt": "2026-10-24T21:09:52.059Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "sections": [
+        {
+          "title": "Executive summary",
+          "text": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "evidenceIds": [
+            "evd_f0cc10eb3a08c7c8"
+          ]
+        },
+        {
+          "title": "Observed evidence",
+          "text": "Delivery promise cohort and delayed orders: Cohort of 136 promises due in the 82 h ending 2026-10-11T00:00:00.000Z: 80 not delivered by promise (late rate 58.8%). Baseline late rate 28.0% on 125 promises (+110.1% change). 77 order(s) received a delayed status (average recorded delay 5490 min), 4 lost; 85 shipped order(s) are past promise with no delivered or lost event at the cutoff. Simulated fulfilment records; cohort membership is by promise due date, so immature promises never read as healthy.\n\nInventory levels, depletion and demand velocity: 17 product(s) observed to 2026-10-11T00:00:00.000Z: 0 at zero available units, 0 projected to run out within 72 h at current velocity, 111 units depleted in the 82 h window, 0 out-of-stock checkout failures. No product is currently out of stock. Simulated inventory records derived from canonical inventory.level_changed events.\n\nReview volume, low ratings and delivery complaints: 16 reviews over 82 h ending 2026-10-11T00:00:00.000Z: 0 rated ≤2 (0.0%), average rating 3.94, 7 mention delivery terms. Baseline: 23 reviews, low-rating share 0.0% (n/a change), average rating 4.26, reviews per hour -30.4% change. Most low-rated products: Nike Air Max 90 (0/3), Nike Vomero 18 (0/3), Nike Pegasus 42 (0/2). Simulated review records; delivery mentions are a keyword heuristic.",
+          "evidenceIds": [
+            "evd_f0cc10eb3a08c7c8",
+            "evd_58db1d7a6d351676",
+            "evd_1c872af7ebf584e3"
+          ]
+        },
+        {
+          "title": "Competing explanations",
+          "text": "unknown (weak): The available evidence does not justify a reliable causal conclusion.\n\ndelivery delays (weak): The due-date cohort shows more orders not delivered by their promise, delayed statuses, and a past-promise backlog. This supports a delivery-performance problem, but does not establish whether fulfillment, transit, or another operational stage caused it.\n\nstockout (weak): The aggregate inventory evidence does not support stockouts as the explanation: it reports no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. It does not rule out an earlier or order-specific inventory constraint.",
+          "evidenceIds": [
+            "evd_f0cc10eb3a08c7c8",
+            "evd_58db1d7a6d351676"
+          ]
+        },
+        {
+          "title": "Causal challenges and uncertainty",
+          "text": "The due-date cohort shows more orders not delivered by their promise, delayed statuses, and a past-promise backlog. This supports a delivery-performance problem, but does not establish whether fulfillment, transit, or another operational stage caused it.\nChronology: The elevated late-delivery cohort and unresolved past-promise shipments are observed in the incident window. The evidence does not establish when the underlying delay began or which stage caused it.\nControls: The cohort is compared with a baseline cohort, but there are no carrier, route, or fulfillment-stage controls.\nConfounders: Shipment mix or promise-date recording could affect the measured rate.; Past-promise shipments without a delivered or lost event have unresolved eventual outcomes.; The inventory summary does not show current shortages, but does not link inventory availability to individual delayed orders.\nCould be weakened by: Recompute the due-date cohort with unchanged promise-date and status definitions; disappearance of the deterioration would falsify the observed operational-delay interpretation.; Compare shipment and delivery timestamps across affected and baseline cohorts; unchanged actual delivery timing alongside shifted status recording or promise dates would falsify the proposed operational mechanism.\n\nA change in promise-date or status-recording practices remains a viable alternative to a change in physical delivery performance. The evidence explicitly includes unresolved shipments at cutoff, so it cannot distinguish operational delay from measurement or cohort effects.\nChronology: The reported cohort is measured at the incident cutoff, when some past-promise shipments remain unresolved. No evidence establishes whether measurement rules changed before or during the window.\nControls: The baseline comparison does not include a stated audit of promise-date definitions, event capture, or cohort maturity.\nConfounders: Real delivery delays could coexist with measurement changes.; Unresolved shipments may later be delivered, lost, or otherwise classified.\nCould be weakened by: Audit promise-date edits and status timestamps against the baseline; stable rules and independently verified late physical deliveries would falsify this measurement explanation.; Recalculate the cohort after unresolved shipments receive final outcomes; persistence of the deterioration under consistent definitions would weaken this alternative.\n\nThe aggregate inventory evidence does not support stockouts as the explanation: it reports no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. It does not rule out an earlier or order-specific inventory constraint.\nChronology: The inventory summary describes conditions through the end of the incident window and does not link inventory events to delayed shipments.\nControls: Inventory is summarized across products, without comparing availability for delayed and on-time orders.\nConfounders: Aggregate inventory may conceal transient or product-specific constraints.; Transit and fulfillment delays can occur independently of inventory.\nCould be weakened by: Check order-linked inventory and stockout events across the full fulfillment period; adequate availability for delayed orders would falsify this mechanism.",
+          "evidenceIds": []
+        },
+        {
+          "title": "External research",
+          "text": "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Business impact",
+          "text": "A unique comparable business-wide revenue measurement is unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Advisory next steps",
+          "text": "Review: ambiguous_evidence_role",
+          "evidenceIds": []
+        }
+      ],
+      "handoff": {
+        "schemaVersion": 1,
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "diagnosisId": "diag_aij_1353f40d006de70836109921",
+        "ready": false,
+        "supportedFindings": [],
+        "affectedEntities": [],
+        "evidenceIds": [
+          "evd_f0cc10eb3a08c7c8",
+          "evd_58db1d7a6d351676",
+          "evd_1c872af7ebf584e3"
+        ],
+        "impactReference": "report_aij_1353f40d006de70836109921",
+        "uncertainty": [
+          "ambiguous_evidence_role",
+          "The available shipping, inventory, feedback, and historical-incident analyses have been used. No remaining supplied read-only tool can distinguish physical delivery delays from promise-date or status-recording effects; shipment-level timestamps and audit history are not available."
+        ],
+        "constraints": [
+          "Human review required",
+          "Stage five is read-only; no executable plan or business mutation",
+          "Synthetic data; external events cannot establish simulated causation"
+        ],
+        "advisoryCandidates": [
+          "Investigate: ambiguous_evidence_role"
+        ],
+        "executable": false
+      },
+      "insufficientEvidence": {
+        "known": [
+          "Delivery promise cohort and delayed orders",
+          "Inventory levels, depletion and demand velocity",
+          "Review volume, low ratings and delivery complaints"
+        ],
+        "unknown": [
+          "ambiguous_evidence_role"
+        ],
+        "plausibleExplanations": [
+          "The available evidence does not justify a reliable causal conclusion.",
+          "The due-date cohort shows more orders not delivered by their promise, delayed statuses, and a past-promise backlog. This supports a delivery-performance problem, but does not establish whether fulfillment, transit, or another operational stage caused it.",
+          "The aggregate inventory evidence does not support stockouts as the explanation: it reports no current stockouts, near-term projected stockouts, or out-of-stock checkout failures. It does not rule out an earlier or order-specific inventory constraint."
+        ],
+        "reason": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "usefulNextEvidence": [
+          "ambiguous_evidence_role"
+        ],
+        "externalResearchUnavailable": true,
+        "conclusionsNotJustified": [
+          "A definitive single root cause",
+          "A causal financial loss estimate",
+          "A verified real-world cause of this synthetic incident"
+        ]
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          "Canonical diagnosis schema",
+          "Business/run/investigation ownership",
+          "Evidence references exist and resolve",
+          "Timestamp cutoff",
+          "Duplicate references rejected",
+          "Numerical prose rejected; impact computed deterministically",
+          "Known contradiction disclosure",
+          "Single diagnosis shared by brief, report and handoff"
+        ],
+        "semanticSupport": "model_assessed_not_deterministic_proof"
+      }
+    },
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_2_0",
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "callId": "aij_1353f40d006de70836109921_reasoning_0",
+        "jobId": "aij_1353f40d006de70836109921",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "e35f4bb7e0acd822bcffbd000cc1ddc326446d3d57235bc80c69a4dce63d14b3",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:08:57.971Z",
+        "completedAt": "2026-10-24T21:09:05.317Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fbece517cf282cb60b158494be1",
+          "providerRequestId": "req_5c8b2f0350d24e9d9a34cd45953a866f",
+          "latencyMs": 7322,
+          "inputTokens": 2009,
+          "outputTokens": 677,
+          "totalTokens": 2686,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 18012,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_2_0",
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "callId": "aij_1353f40d006de70836109921_reasoning_1",
+        "jobId": "aij_1353f40d006de70836109921",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "01a58b744cc5a9c8c15c24fbb7f17feb61b23822ecee42896bf4280fd4d9f104",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:09:06.533Z",
+        "completedAt": "2026-10-24T21:09:19.865Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fbef1197a218865e9d9b7904f4e",
+          "providerRequestId": "req_8a6b15a15ca54a43a8c79f3fdcfd9e0c",
+          "latencyMs": 12900,
+          "inputTokens": 3376,
+          "outputTokens": 1275,
+          "totalTokens": 4651,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 23684,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_2_0",
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "callId": "aij_1353f40d006de70836109921_reasoning_2",
+        "jobId": "aij_1353f40d006de70836109921",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "234a3bc3932e95d8aea2bec7a54f6703a7b7e3a1004ab7a06ad25fa0523d3fc3",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:09:22.062Z",
+        "completedAt": "2026-10-24T21:09:34.476Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fbf2c2a7e909d7e2fc462d706bb",
+          "providerRequestId": "req_d1dea12d65c0421d918979f0a58805c5",
+          "latencyMs": 12387,
+          "inputTokens": 3982,
+          "outputTokens": 1525,
+          "totalTokens": 5507,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 26029,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_2_0",
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "callId": "aij_1353f40d006de70836109921_diagnosis_0",
+        "jobId": "aij_1353f40d006de70836109921",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "079b7939f094519e1fa767a5164536953aae9f50e1de78a75a5e316fda2be413",
+        "checksum": "83d69e302c6292c2f0f40ea8bb4d23a65528036f7398e4024553f111a400a237",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:09:37.289Z",
+        "completedAt": "2026-10-24T21:09:43.068Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fbf679f7962b10edcc8f0c46831",
+          "providerRequestId": "req_a2399b97902649e8b828273eb3e021ec",
+          "latencyMs": 5761,
+          "inputTokens": 4016,
+          "outputTokens": 586,
+          "totalTokens": 4602,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 28155,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": "aij_1353f40d006de70836109921_diagnosis_1",
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_2_0",
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "callId": "aij_1353f40d006de70836109921_diagnosis_1",
+        "jobId": "aij_1353f40d006de70836109921",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "079b7939f094519e1fa767a5164536953aae9f50e1de78a75a5e316fda2be413",
+        "checksum": "1bf4a8b2cad1522e422d193537f90f868e6d219f889eff823ba99c65e5b9294f",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:09:44.138Z",
+        "completedAt": "2026-10-24T21:09:50.878Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fbf827676e3a4f5894c758e992e",
+          "providerRequestId": "req_277c280176984b7d83a661c5fc774ad9",
+          "latencyMs": 6722,
+          "inputTokens": 4020,
+          "outputTokens": 604,
+          "totalTokens": 4624,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 28176,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "callId": "aij_1353f40d006de70836109921_system_insufficient",
+        "adapterVersion": null,
+        "ambiguous": false,
+        "businessId": "nike_eval",
+        "checksum": "6533c2ef371aa9f00e3efb9934236676093b1e56562f22f1e58782f835d29053",
+        "completedAt": "2026-10-24T21:09:52.038Z",
+        "correctionId": null,
+        "error": "No accepted model diagnosis; deterministic fallback",
+        "investigationId": "inv_s5eval_1792875702318_2_0_059cd78c6cd7",
+        "jobId": "aij_1353f40d006de70836109921",
+        "metadata": null,
+        "outputDiagnosisId": "diag_aij_1353f40d006de70836109921",
+        "promptVersion": "1.0.1",
+        "reservedTokens": 0,
+        "simulationRunId": "s5eval_1792875702318_2_0",
+        "startedAt": "2026-10-24T21:09:52.038Z",
+        "status": "failed",
+        "task": "system.insufficient_evidence",
+        "validationStatus": "validated"
+      }
+    ],
+    "researchTraces": []
+  }
+}

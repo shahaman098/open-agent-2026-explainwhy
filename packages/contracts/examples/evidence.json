@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "evidenceId": "e_ads_01",
+  "investigationId": "inv_001",
+  "category": "advertising",
+  "title": "Acquisition efficiency deteriorating",
+  "observation": "Campaign A frequency is elevated and CTR is lower than its reference period.",
+  "window": {
+    "startAt": "2026-10-23T18:00:00Z",
+    "endAt": "2026-10-23T19:00:00Z"
+  },
+  "measurements": [
+    {
+      "metric": "frequency",
+      "value": 6.2,
+      "unit": "views per reached user",
+      "baseline": 3.1
+    },
+    {
+      "metric": "ctr",
+      "value": 0.015,
+      "unit": "ratio",
+      "baseline": 0.031
+    }
+  ],
+  "sourceRecords": [
+    {
+      "collection": "business_events",
+      "recordId": "evt_ad_001"
+    }
+  ],
+  "retrievedAt": "2026-10-23T19:01:00Z"
+}

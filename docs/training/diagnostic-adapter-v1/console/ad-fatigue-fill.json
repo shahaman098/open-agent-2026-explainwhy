@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "complete": true,
+  "dryRun": false,
+  "report": [
+    {
+      "question": "Message",
+      "wanted": "Investigate this synthetic shop incident. [TA] Repeated exposure to the same creative increased while its click-through rate deteriorated. [TB] A newly introduced creative targeting a comparable audience retained its previous response level. [TC] Landing-page conversion and stock availability did not deteriorate. Give a qualified explanation rather than a certainty claim.",
+      "got": "Investigate this synthetic shop incident. [TA] Repeated exposure to the same creative increased while its click-through rate deteriorated. [TB] A newly introduced creative targeting a comparable audience retained its previous response level. [TC] Landing-page conversion and stock availability did not deteriorate. Give a qualified explanation rather than a certainty claim.",
+      "ok": true
+    }
+  ],
+  "manualTable": null,
+  "script_version": "2.0.0+74233b855b41",
+  "observed_at": "2026-10-25T07:09:03.331Z",
+  "url": null,
+  "categories": {},
+  "verified_fields": [
+    "Message"
+  ]
+}

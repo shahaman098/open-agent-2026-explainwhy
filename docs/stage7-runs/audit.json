@@ -1,0 +1,109 @@
+{
+  "auditedAt": "2026-10-25T02:02:14.493Z",
+  "activeRun": "demo_nike",
+  "originalPlanUnchanged": true,
+  "budgetMinor": 6750,
+  "executions": [
+    {
+      "businessId": "nike_demo",
+      "simulationRunId": "stage7_1792893488465",
+      "planId": "stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2",
+      "planVersion": 1,
+      "approvalId": "approval_42075282-601d-4e26-a358-390bde15dd57",
+      "runId": "run_f40d3961-698f-47b7-847a-7c36c6c54992",
+      "immutableReviewedPlan": true,
+      "receiptCount": 1,
+      "checks": [
+        {
+          "executionId": "exec_ed075eca-a920-4536-ac66-99751ae18cb7",
+          "idempotencyKey": "nike_demo:stage7_1792893488465:stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2:v1:stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2_1_0",
+          "found": true,
+          "toolName": "ads.set_daily_budget",
+          "verification": "campaign cmp_basketball_search dailyBudgetMinor 9000 -> 6750 (read back at 2026-10-25T01:59:07.798Z)",
+          "stateMatches": true,
+          "callbackEventsPresent": true,
+          "details": {
+            "receiptsCollection": "action_receipts",
+            "eventsFound": 1,
+            "eventsExpected": 1,
+            "currentDailyBudgetMinor": 6750,
+            "expectedDailyBudgetMinor": 6750
+          }
+        }
+      ]
+    },
+    {
+      "businessId": "nike_demo",
+      "simulationRunId": "stage7_shipping_1792893488698",
+      "planId": "plan_plj_5922b64e2054da6a61cebc40",
+      "planVersion": 1,
+      "approvalId": "approval_835a7fb4-3fec-49e3-93d4-a3ca7ec77cab",
+      "runId": "run_1cda9390-565b-46f3-b097-e559b9318d13",
+      "immutableReviewedPlan": true,
+      "receiptCount": 2,
+      "checks": [
+        {
+          "executionId": "exec_898e2d46-1b77-4df0-994c-1df3245f952e",
+          "idempotencyKey": "nike_demo:stage7_shipping_1792893488698:plan_plj_5922b64e2054da6a61cebc40:v1:plan_plj_5922b64e2054da6a61cebc40_1_0",
+          "found": true,
+          "toolName": "customer.send_delay_notice",
+          "verification": "2 delay notice(s) written to demo_test_inbox for orders [stage7_shipping_1792893488698_order_0, stage7_shipping_1792893488698_order_1]; 0 unknown order(s) skipped",
+          "stateMatches": true,
+          "callbackEventsPresent": true,
+          "details": {
+            "receiptsCollection": "action_receipts",
+            "eventsFound": 2,
+            "eventsExpected": 2,
+            "messagesFound": 2
+          }
+        },
+        {
+          "executionId": "exec_392a5b0a-5cdc-4ae5-a257-fa200e5f3569",
+          "idempotencyKey": "nike_demo:stage7_shipping_1792893488698:plan_plj_5922b64e2054da6a61cebc40:v1:plan_plj_5922b64e2054da6a61cebc40_1_1",
+          "found": true,
+          "toolName": "storefront.publish_banner",
+          "verification": "banner banner_plan_plj_5922b64e2054da6a61cebc40_1_1 present on storefront (active 2026-10-23T19:00:00Z → 2026-10-24T19:00:00.000Z); read back at 2026-10-25T01:59:16.391Z",
+          "stateMatches": true,
+          "callbackEventsPresent": true,
+          "details": {
+            "receiptsCollection": "action_receipts",
+            "eventsFound": 1,
+            "eventsExpected": 1,
+            "bannerIds": [
+              "banner_plan_plj_5922b64e2054da6a61cebc40_1_1"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "storefrontOrders": [
+    {
+      "orderId": "ord_stage7_1792893488465_h00001",
+      "lines": [
+        {
+          "productId": "nk_pegasus_42",
+          "name": "Nike Pegasus 42",
+          "quantity": 1,
+          "unitPriceMinor": 12999,
+          "discountMinor": 0,
+          "lineTotalMinor": 12999
+        }
+      ],
+      "netRevenueMinor": 12999,
+      "currency": "GBP",
+      "status": "placed"
+    }
+  ],
+  "shippingMessages": 2,
+  "banners": [
+    {
+      "bannerId": "banner_plan_plj_5922b64e2054da6a61cebc40_1_1",
+      "message": "Some deliveries are taking longer than usual. Check your order status for updates.",
+      "startsAt": "2026-10-23T19:00:00Z",
+      "expiresAt": "2026-10-24T19:00:00.000Z",
+      "actionId": "plan_plj_5922b64e2054da6a61cebc40_1_1",
+      "publishedAt": "2026-10-23T19:00:00Z"
+    }
+  ]
+}

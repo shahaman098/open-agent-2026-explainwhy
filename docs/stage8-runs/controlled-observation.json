@@ -1,0 +1,903 @@
+{
+  "label": "Isolated copy of genuine saved plan. Budget change approved, executed and followed by real deterministic simulator ticks. No provider call or causal claim.",
+  "businessId": "nike_demo",
+  "simulationRunId": "stage8_1792895970876",
+  "planId": "stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2",
+  "planVersion": 1,
+  "actionId": "stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2_1_0",
+  "assessmentId": "boa_f0779cbd3b5516fc0bf0f461dc0d08b3",
+  "status": "completed",
+  "businessEffect": "unchanged",
+  "successCriteriaMet": false,
+  "virtualTime": "2026-10-06T18:00:00.000Z",
+  "window": {
+    "startAt": "2026-10-05T12:00:00.000Z",
+    "endAt": "2026-10-06T18:00:00.000Z"
+  },
+  "before": {
+    "window": {
+      "startAt": "2026-10-04T06:00:00.000Z",
+      "endAt": "2026-10-05T12:00:00.000Z"
+    },
+    "coveredMinutes": 1800,
+    "requiredMinutes": 1800,
+    "complete": true,
+    "metrics": {
+      "spendMinor": 12231,
+      "impressions": 8730,
+      "clicks": 52,
+      "ctr": 0.005956471935853379,
+      "attributedOrders": 0,
+      "attributedRevenueMinor": 0,
+      "roas": 0,
+      "costPerAcquisitionMinor": null
+    },
+    "eventIds": [
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000026",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000027",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000028",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000029",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002a",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002b",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002c",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002d",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002e",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002f",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002g",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002h",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002i",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002j",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002k",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002l",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002m",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002n",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002o",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002p",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002q",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002r",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002s",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002t",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002u",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002v",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002w",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002x",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002y",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002z"
+    ],
+    "snapshotIds": [
+      "snap_nike_demo_stage8_1792895970876_20261005T060000000Z_20261005T120000000Z_campaignIdcmpbasketballsearch"
+    ],
+    "series": [
+      {
+        "startAt": "2026-10-04T06:00:00.000Z",
+        "spendMinor": 248,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 177,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-04T07:00:00.000Z",
+        "spendMinor": 444,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 317,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-04T08:00:00.000Z",
+        "spendMinor": 538,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 384,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-04T09:00:00.000Z",
+        "spendMinor": 577,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 412,
+        "clicks": 5
+      },
+      {
+        "startAt": "2026-10-04T10:00:00.000Z",
+        "spendMinor": 712,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 508,
+        "clicks": 4
+      },
+      {
+        "startAt": "2026-10-04T11:00:00.000Z",
+        "spendMinor": 713,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 509,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-04T12:00:00.000Z",
+        "spendMinor": 832,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 594,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-04T13:00:00.000Z",
+        "spendMinor": 742,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 530,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-04T14:00:00.000Z",
+        "spendMinor": 766,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 547,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-04T15:00:00.000Z",
+        "spendMinor": 727,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 519,
+        "clicks": 6
+      },
+      {
+        "startAt": "2026-10-04T16:00:00.000Z",
+        "spendMinor": 735,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 525,
+        "clicks": 5
+      },
+      {
+        "startAt": "2026-10-04T17:00:00.000Z",
+        "spendMinor": 867,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 619,
+        "clicks": 4
+      },
+      {
+        "startAt": "2026-10-04T18:00:00.000Z",
+        "spendMinor": 405,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 289,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-04T19:00:00.000Z",
+        "spendMinor": 45,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 32,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-04T20:00:00.000Z",
+        "spendMinor": 7,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 5,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-04T21:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-04T22:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-04T23:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T00:00:00.000Z",
+        "spendMinor": 174,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 124,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-05T01:00:00.000Z",
+        "spendMinor": 128,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 91,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T02:00:00.000Z",
+        "spendMinor": 97,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 69,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-05T03:00:00.000Z",
+        "spendMinor": 62,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 44,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T04:00:00.000Z",
+        "spendMinor": 63,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 45,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T05:00:00.000Z",
+        "spendMinor": 114,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 81,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T06:00:00.000Z",
+        "spendMinor": 243,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 173,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-05T07:00:00.000Z",
+        "spendMinor": 437,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 312,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-05T08:00:00.000Z",
+        "spendMinor": 573,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 409,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-05T09:00:00.000Z",
+        "spendMinor": 583,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 416,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-05T10:00:00.000Z",
+        "spendMinor": 717,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 512,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-05T11:00:00.000Z",
+        "spendMinor": 682,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 487,
+        "clicks": 2
+      }
+    ]
+  },
+  "after": {
+    "window": {
+      "startAt": "2026-10-05T12:00:00.000Z",
+      "endAt": "2026-10-06T18:00:00.000Z"
+    },
+    "coveredMinutes": 1800,
+    "requiredMinutes": 1800,
+    "complete": true,
+    "metrics": {
+      "spendMinor": 9192,
+      "impressions": 6558,
+      "clicks": 32,
+      "ctr": 0.004879536444037816,
+      "attributedOrders": 0,
+      "attributedRevenueMinor": 0,
+      "roas": 0,
+      "costPerAcquisitionMinor": null
+    },
+    "eventIds": [
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000030",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000031",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000032",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000033",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000034",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000035",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000036",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000037",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000038",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t000039",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003a",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003b",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003c",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003d",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003e",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003f",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003g",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003h",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003i",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003j",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003k",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003l",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003m",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003n",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003o",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003p",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003q",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003r",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003s",
+      "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003t"
+    ],
+    "snapshotIds": [],
+    "series": [
+      {
+        "startAt": "2026-10-05T12:00:00.000Z",
+        "spendMinor": 549,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 392,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T13:00:00.000Z",
+        "spendMinor": 559,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 399,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T14:00:00.000Z",
+        "spendMinor": 518,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 370,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-05T15:00:00.000Z",
+        "spendMinor": 588,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 420,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-05T16:00:00.000Z",
+        "spendMinor": 556,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 397,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-05T17:00:00.000Z",
+        "spendMinor": 97,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 69,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-05T18:00:00.000Z",
+        "spendMinor": 9,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 6,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T19:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T20:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T21:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T22:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-05T23:00:00.000Z",
+        "spendMinor": 0,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-06T00:00:00.000Z",
+        "spendMinor": 129,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 92,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-06T01:00:00.000Z",
+        "spendMinor": 94,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 67,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-06T02:00:00.000Z",
+        "spendMinor": 69,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 49,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-06T03:00:00.000Z",
+        "spendMinor": 44,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 31,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-06T04:00:00.000Z",
+        "spendMinor": 42,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 30,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-06T05:00:00.000Z",
+        "spendMinor": 96,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 68,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-06T06:00:00.000Z",
+        "spendMinor": 184,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 131,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-06T07:00:00.000Z",
+        "spendMinor": 303,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 216,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-06T08:00:00.000Z",
+        "spendMinor": 432,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 308,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-06T09:00:00.000Z",
+        "spendMinor": 433,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 309,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-06T10:00:00.000Z",
+        "spendMinor": 461,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 329,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-06T11:00:00.000Z",
+        "spendMinor": 553,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 395,
+        "clicks": 1
+      },
+      {
+        "startAt": "2026-10-06T12:00:00.000Z",
+        "spendMinor": 558,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 398,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-06T13:00:00.000Z",
+        "spendMinor": 584,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 417,
+        "clicks": 2
+      },
+      {
+        "startAt": "2026-10-06T14:00:00.000Z",
+        "spendMinor": 520,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 371,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-06T15:00:00.000Z",
+        "spendMinor": 537,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 383,
+        "clicks": 3
+      },
+      {
+        "startAt": "2026-10-06T16:00:00.000Z",
+        "spendMinor": 607,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 433,
+        "clicks": 0
+      },
+      {
+        "startAt": "2026-10-06T17:00:00.000Z",
+        "spendMinor": 670,
+        "attributedRevenueMinor": 0,
+        "attributedOrders": 0,
+        "impressions": 478,
+        "clicks": 4
+      }
+    ]
+  },
+  "criterionResults": [
+    {
+      "metric": "ad_spend_minor",
+      "direction": "decrease",
+      "target": null,
+      "before": 12231,
+      "after": 9192,
+      "met": true,
+      "reason": "Compared exact values in equal-length campaign windows; no tolerance was invented."
+    },
+    {
+      "metric": "orders",
+      "direction": "maintain",
+      "target": null,
+      "before": 0,
+      "after": 0,
+      "met": true,
+      "reason": "Compared exact values in equal-length campaign windows; no tolerance was invented."
+    },
+    {
+      "metric": "ctr",
+      "direction": "increase",
+      "target": null,
+      "before": 0.005956471935853379,
+      "after": 0.004879536444037816,
+      "met": false,
+      "reason": "Compared exact values in equal-length campaign windows; no tolerance was invented."
+    }
+  ],
+  "summary": "Comparable campaign windows show unchanged observed return; causal attribution is not established.",
+  "limitations": [
+    "Zero attributed orders make campaign cost per acquisition unavailable in that window.",
+    "Observed campaign changes are associations. The simulator paces spend against budget; CTR and orders also depend on audience, scenario and random variation."
+  ],
+  "receiptId": "nike_demo:stage8_1792895970876:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2:v1:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2_1_0",
+  "receiptEventIds": [
+    "ev_stage8_1792895970876:action:nike_demo:stage8_1792895970876:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2:v1:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2_1_0:budget"
+  ],
+  "sourceReferences": [
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:action:nike_demo:stage8_1792895970876:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2:v1:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2_1_0:budget"
+    },
+    {
+      "collection": "action_receipts",
+      "recordId": "nike_demo:stage8_1792895970876:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2:v1:stage8_1792895970876_plan_plj_c70db54aa7f98907532859f2_1_0"
+    },
+    {
+      "collection": "action_executions",
+      "recordId": "exec_f4f3bf71-b02b-411f-9e7e-842a7a657a20"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000026"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000027"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000028"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000029"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002a"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002b"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002c"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002d"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002e"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002f"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002g"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002h"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002i"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002j"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002k"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002l"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002m"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002n"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002o"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002p"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002q"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002r"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002s"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002t"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002u"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002v"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002w"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002x"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002y"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00002z"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000030"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000031"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000032"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000033"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000034"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000035"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000036"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000037"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000038"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t000039"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003a"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003b"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003c"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003d"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003e"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003f"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003g"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003h"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003i"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003j"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003k"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003l"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003m"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003n"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003o"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003p"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003q"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003r"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003s"
+    },
+    {
+      "collection": "business_events",
+      "recordId": "ev_stage8_1792895970876:ad:cmp_basketball_search:t00003t"
+    },
+    {
+      "collection": "metric_snapshots",
+      "recordId": "snap_nike_demo_stage8_1792895970876_20261005T060000000Z_20261005T120000000Z_campaignIdcmpbasketballsearch"
+    }
+  ]
+}

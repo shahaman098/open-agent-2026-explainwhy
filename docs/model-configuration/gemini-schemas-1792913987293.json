@@ -1,0 +1,97 @@
+{
+  "observedAt": "2026-10-25T07:40:02.590Z",
+  "models": {
+    "investigator": "gemini-4-argon",
+    "diagnosis": "gemini-4-argon",
+    "planner": "gemini-4-argon",
+    "research": "gemini-4-argon"
+  },
+  "scope": "Synthetic schema probes, not business diagnosis or accuracy evaluation. No live business records changed.",
+  "results": [
+    {
+      "check": "planning_schema",
+      "passed": true,
+      "metadata": {
+        "provider": "mubit",
+        "model": "gemini-4-argon",
+        "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+        "requestId": "mreq_01a17200572779c3aae16bb140eca721",
+        "providerRequestId": "Q7LdavvFIoSZkdUP24u24Qw",
+        "latencyMs": 15294,
+        "inputTokens": 1897,
+        "outputTokens": 826,
+        "totalTokens": 2723,
+        "estimatedCostUsd": null
+      },
+      "value": {
+        "strategies": [
+          {
+            "key": "strat_no_action_investigate",
+            "title": "No Automated Action and Further Telemetry Investigation",
+            "explanation": "Take no automated adapter actions while investigating the absence of operational measurements indicated by evd_schema_probe.",
+            "benefit": "Prevents unwarranted changes to live systems when the primary cause is unknown and operational measurements are unavailable.",
+            "downside": "If an underlying operational issue exists, it will remain unaddressed until telemetry is restored.",
+            "risk": "low",
+            "feasibility": "High; requires only human review of monitoring pipelines.",
+            "reversibility": "Fully reversible; no system state is altered.",
+            "uncertainty": "High regarding underlying business performance due to missing operational data.",
+            "evidenceIds": [
+              "evd_schema_probe"
+            ],
+            "actions": [],
+            "advisory": [
+              "Verify why operational measurements are unavailable in the telemetry pipeline.",
+              "Confirm whether the current environment is running a synthetic test fixture or experiencing a data ingestion outage."
+            ],
+            "successCriteria": [
+              {
+                "metric": "orders",
+                "direction": "maintain",
+                "target": null,
+                "measurementWindowMinutes": 60
+              }
+            ],
+            "comparison": "Recommended because primaryCause is unknown, advisoryOnly is true, and no registered capabilities are available."
+          },
+          {
+            "key": "strat_manual_system_audit",
+            "title": "Comprehensive Manual Audit Across Storefront, Ads, and Fulfilment",
+            "explanation": "Keep automated adapters idle and conduct a manual human audit across all operational domains to establish a baseline while telemetry is offline.",
+            "benefit": "Can surface hidden issues across checkout, ad spend, or fulfilment without relying on automated telemetry.",
+            "downside": "Consumes higher manual engineering and operations effort when the trigger may only be a synthetic test fixture.",
+            "risk": "low",
+            "feasibility": "Medium; requires manual coordination across multiple operational teams.",
+            "reversibility": "Fully reversible; read-only manual inspection.",
+            "uncertainty": "High; manual checks may be unnecessary if evd_schema_probe simply reflects a routine test probe.",
+            "evidenceIds": [
+              "evd_schema_probe"
+            ],
+            "actions": [],
+            "advisory": [
+              "Manually inspect storefront checkout health and coupon validation logs.",
+              "Review active ad campaign spend and fulfilment queues directly in provider dashboards.",
+              "Require human approval before initiating any manual configuration changes."
+            ],
+            "successCriteria": [
+              {
+                "metric": "revenue_minor",
+                "direction": "maintain",
+                "target": null,
+                "measurementWindowMinutes": 120
+              },
+              {
+                "metric": "checkout_failure_rate",
+                "direction": "maintain",
+                "target": null,
+                "measurementWindowMinutes": 120
+              }
+            ],
+            "comparison": "Less suitable than targeted telemetry investigation because conducting a full manual operational audit is disproportionate when evidence indicates a synthetic test fixture."
+          }
+        ],
+        "recommendedKey": "strat_no_action_investigate",
+        "recommendation": "Recommend strat_no_action_investigate because the diagnosis primary cause is unknown, advisoryOnly is true, and evd_schema_probe indicates a synthetic test fixture with no operational measurements available. Human approval is required for any next steps, and strat_manual_system_audit is less suitable due to unnecessary manual overhead before confirming telemetry status."
+      }
+    }
+  ]
+}

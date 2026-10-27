@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoring · Normal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="signals.html" aria-label="Normal dashboard"><span class="image-placeholder logo-placeholder">Normal logo</span></a>
+    <nav class="dashboard-nav" aria-label="Normal sections">
+      <a class="nav-link" href="overview.html">Overview</a>
+      <a class="nav-link" href="signals.html">Signals</a><a class="nav-link" href="investigations.html">Investigations</a>
+      <a class="nav-link" href="approvals.html">Approvals</a><a class="nav-link" href="activity.html">Activity</a><a class="nav-link" href="outcomes.html">Outcomes</a>
+    </nav>
+    <div class="workspace"><span class="image-placeholder account-placeholder">Nike mark</span><span class="workspace-copy"><strong>Nike</strong><small>Workspace</small></span><span class="run-chip">stage5_1792885194280</span></div>
+  </header>
+  <main class="page">
+    <div class="page-head"><div><p class="eyebrow">System · Selected simulation run</p><h1>Monitoring</h1><p class="subhead">Scheduled monitor status and worker health for the selected simulation.</p></div><span class="tag info">Run stage5_1792885194280</span></div>
+    <section class="stats">
+      <article class="card stat"><label>Last scan</label><strong style="font-size:19px">5 Oct 2026</strong><span class="detail">As of 12:00 UTC</span></article>
+      <article class="card stat"><label>Direct trigger</label><strong>—</strong><span class="detail">Not included in report export</span></article>
+      <article class="card stat"><label>Change stream worker</label><strong>—</strong><span class="detail">Connection status not included</span></article>
+      <article class="card stat"><label>Metric snapshots</label><strong>Present</strong><span class="detail">Exact count not included in report export</span></article>
+    </section>
+    <article class="card">
+      <div class="card-head"><div><h2>Worker and scan health</h2><p>Monitoring scan cutoff and worker status for the selected run</p></div><span class="tag operational">Scan recorded</span></div>
+      <div class="card-body">
+        <dl class="rates">
+          <dt>Last analyzed through</dt><dd>5 Oct 2026 · 12:00 UTC</dd>
+          <dt>Worker heartbeat</dt><dd>Not present in static report</dd>
+          <dt>Jobs pending</dt><dd>—</dd>
+          <dt>Jobs running</dt><dd>—</dd>
+          <dt>Jobs completed</dt><dd>—</dd>
+          <dt>Jobs failed</dt><dd>—</dd>
+          <dt>Events observed</dt><dd>Persisted · count unavailable</dd>
+          <dt>Metric snapshots</dt><dd>Persisted · count unavailable</dd>
+        </dl>
+        <div class="callout blue" style="margin-top:16px">The simulator report confirms monitoring ran to the incident cutoff. It does not contain the worker heartbeat, job queue counts, or direct-trigger configuration needed to populate the full live health panel.</div>
+        <div class="inline-list" style="margin-top:16px"><a class="btn primary" href="architecture.html">View pipeline readiness</a><a class="btn" href="activity.html">Review run activity</a></div>
+      </div>
+    </article>
+    <p class="footnote">Static snapshot only. Live monitoring values are retrieved from the selected run's monitor endpoint and may change as the worker runs.</p>
+  </main>
+</body>
+</html>

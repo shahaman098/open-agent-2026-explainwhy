@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-10-25T07:39:53.171Z",
+  "models": {
+    "investigator": "gemini-4-argon",
+    "diagnosis": "gemini-4-argon",
+    "planner": "gemini-4-argon",
+    "research": "gemini-4-argon"
+  },
+  "scope": "Synthetic schema probes, not business diagnosis or accuracy evaluation. No live business records changed.",
+  "results": [
+    {
+      "check": "investigation_schema",
+      "passed": false,
+      "code": "invalid_structured_output",
+      "metadata": {
+        "provider": "mubit",
+        "model": "gemini-4-argon",
+        "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+        "requestId": "mreq_01a17200524e7c61bac68d2f4d2b5c2f",
+        "providerRequestId": "RLLdauW-LY3lxN8Pu77E-QE",
+        "latencyMs": 7111,
+        "inputTokens": 1405,
+        "outputTokens": 173,
+        "totalTokens": 1578,
+        "estimatedCostUsd": null
+      }
+    }
+  ]
+}

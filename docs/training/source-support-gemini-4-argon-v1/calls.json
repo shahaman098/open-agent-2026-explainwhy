@@ -1,0 +1,1666 @@
+[
+  {
+    "caseId": "e4d48454780440c0109ea7d2",
+    "phase": "collect",
+    "inputHash": "04f3a10a81c6ec1057922a42ec59a1bf4d309d7191c7e611a1c19b423bf79fe2",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:08.486Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_e4d48454780440c0109ea7d2",
+          "relation": "supported",
+          "rationale": "The passage explicitly states verbatim that Cedar Retail refunded duplicate subscription charges."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720ba6807de1b762f1ed1991320b",
+    "providerRequestId": "KbXdaqrrBtrYxs0P-YWQ2As",
+    "latencyMs": 3366,
+    "totalTokens": 520,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:11.859Z"
+  },
+  {
+    "caseId": "82e6c5ba9ec4809fe3012597",
+    "phase": "collect",
+    "inputHash": "042c30968e0b4453864ec3c85ec2874cd9b38c6d68f3d4412399c333f68fb36e",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:11.861Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_82e6c5ba9ec4809fe3012597",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that checkout stayed available during the billing incident, which directly contradicts the claim that checkout was unavailable."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720bb3627df28d10148136a0233f",
+    "providerRequestId": "LLXdauAJwIq90g-2rYGIAQ",
+    "latencyMs": 3381,
+    "totalTokens": 527,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:15.243Z"
+  },
+  {
+    "caseId": "d13d8ea7a93ced0a2f7061f7",
+    "phase": "collect",
+    "inputHash": "a040c78a8f67502af465361ee6073709cff7fbdd6e247f8775052a19071743ea",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:15.244Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_d13d8ea7a93ced0a2f7061f7",
+          "relation": "insufficient",
+          "rationale": "The passage mentions a specific incident involving a retail company refunding duplicate subscription charges and affecting billing, but it does not define subscription billing or state that it processes payments for recurring retail services."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720bc09b7670a3dcf02ee6a8acc5",
+    "providerRequestId": "L7XdatanF4PyvdIPr_6ToAI",
+    "latencyMs": 4122,
+    "totalTokens": 537,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:52:19.368Z"
+  },
+  {
+    "caseId": "21c8d3daf7987a1e33411438",
+    "phase": "collect",
+    "inputHash": "c245c42c7d6f3e6e13ebda2f9253467b04662722d03784e9107ce064fa8fdb7c",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:19.369Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_21c8d3daf7987a1e33411438",
+          "relation": "insufficient",
+          "rationale": "The passage confirms that Cedar Retail refunded duplicate subscription charges, but it does not specify whether every affected customer was refunded or if the refunds occurred within an hour."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720bd0b47481bbac2dda80594446",
+    "providerRequestId": "M7Xdap2iH43OvdIP456yyAU",
+    "latencyMs": 3884,
+    "totalTokens": 539,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:23.255Z"
+  },
+  {
+    "caseId": "120067f2168eae2a5928028c",
+    "phase": "collect",
+    "inputHash": "70ff6ced615d1a564af2b87479f2930afc987c15519cbe33e15e60232615051f",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:23.256Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_120067f2168eae2a5928028c",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Harbour Parcel paused collections in the coastal district because of flooded roads, directly supporting the claim."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720bdfe77422b90e17979ffd5f86",
+    "providerRequestId": "N7Xdaun9FuCtxN8PuY_QsA4",
+    "latencyMs": 2790,
+    "totalTokens": 534,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:26.048Z"
+  },
+  {
+    "caseId": "77108a2cb67f632d6239dc50",
+    "phase": "collect",
+    "inputHash": "e51a94b73580a70050e99fce2ae1ff7888135fc8b677dda0a8e3a58d76ca662a",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:26.049Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_77108a2cb67f632d6239dc50",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that inland collections continued normally, directly contradicting the claim that they were suspended."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720beace74a0b38d1645f05b4ccc",
+    "providerRequestId": "OrXdauCODeSTxN8P36n6iAc",
+    "latencyMs": 2828,
+    "totalTokens": 528,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:28.881Z"
+  },
+  {
+    "caseId": "84e395bf5c10e716572edb5a",
+    "phase": "collect",
+    "inputHash": "b025d0ebf9ab825e7fd8998b4a5405945d26f6fcd1f10d4dd98a13aeed6ec581",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:28.882Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_84e395bf5c10e716572edb5a",
+          "relation": "insufficient",
+          "rationale": "While the passage mentions a parcel carrier performing collections, it does not specify what is being collected or whether the collections are from retail warehouses."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720bf5e07722a6998847412c3fa0",
+    "providerRequestId": "PbXdavjjAqyQxN8P3b_C2AY",
+    "latencyMs": 3928,
+    "totalTokens": 528,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:52:32.813Z"
+  },
+  {
+    "caseId": "9ebd7d3604a8213cab3dc9d2",
+    "phase": "collect",
+    "inputHash": "96059c5a13c61cb57090b698bc5c3e6f019464747647e5b2bd86ed01c9924537",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:32.815Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_9ebd7d3604a8213cab3dc9d2",
+          "relation": "context_only",
+          "rationale": "The passage confirms that collections were paused in the coastal district due to flooded roads, providing context for the 'coastal pause', but it makes no mention of any retailer or any impact on revenue."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c053d70c08a92b53c23fcd774",
+    "providerRequestId": "QLXdatHQOZX6xs0P1cSusAQ",
+    "latencyMs": 3659,
+    "totalTokens": 544,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:52:36.475Z"
+  },
+  {
+    "caseId": "d142dc22d23fa316906ea157",
+    "phase": "collect",
+    "inputHash": "30a48c8ab670c79045fe0a2535ff7d8996802f352691a81f6cbda957981b49f6",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:36.477Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_d142dc22d23fa316906ea157",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Aster Stores found a stock-counting error and its inventory team corrected the count, which directly supports the claim."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c139074609ef58dec7659da6a",
+    "providerRequestId": "RLXdavPhLLankdUPhfuviQg",
+    "latencyMs": 3411,
+    "totalTokens": 533,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:39.894Z"
+  },
+  {
+    "caseId": "20af1bb6058dceab024f684c",
+    "phase": "collect",
+    "inputHash": "3d0cd9dda0599365bf473d9ee78110177f8047ff220fe018676735369e55b4df",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:39.895Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_20af1bb6058dceab024f684c",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that 'no physical goods were lost' in the warehouse stock-counting error, directly contradicting the claim that Aster Stores lost physical goods."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c20e279409a70f84d58295bd0",
+    "providerRequestId": "SLXdaufdBqPs7M8P86Cj6QY",
+    "latencyMs": 3036,
+    "totalTokens": 543,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:42.932Z"
+  },
+  {
+    "caseId": "2af61b993d3fbb86f8eff98f",
+    "phase": "collect",
+    "inputHash": "807178ee7fa4bb12d2a76209feda8803b7d43c7a64050bdc69423fed7dc44563",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:42.934Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_2af61b993d3fbb86f8eff98f",
+          "relation": "context_only",
+          "rationale": "The passage describes a specific incident where a warehouse stock-counting error was corrected by an inventory team, providing related context without explicitly stating the general claim that inventory records help retailers manage warehouse stock."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c2cc47c429020211330ae3755",
+    "providerRequestId": "S7Xdasv-A6SFkdUPtJ7pkAg",
+    "latencyMs": 4530,
+    "totalTokens": 542,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:47.465Z"
+  },
+  {
+    "caseId": "7b5c3b2a69d5f38610fe2a9a",
+    "phase": "collect",
+    "inputHash": "17a396fe7404716cf85437b36926c1221c5b644ba1c70130cf977af25b770b05",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:47.466Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_7b5c3b2a69d5f38610fe2a9a",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that the stock-counting error was found in \"one warehouse\", which contradicts the claim that it affected \"all Aster warehouses\"."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c3e7676a292988cc56dfa6eb9",
+    "providerRequestId": "T7XdauHiJNqZkdUPvfjm8Q0",
+    "latencyMs": 2792,
+    "totalTokens": 542,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:52:50.259Z"
+  },
+  {
+    "caseId": "0cf1f737f5d5caa8e9e8da75",
+    "phase": "collect",
+    "inputHash": "4123237c80cd35f4cd13caf9264e6ef08c4864b086687b1ed49915c80f7a9227",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:50.260Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_0cf1f737f5d5caa8e9e8da75",
+          "relation": "supported",
+          "rationale": "The passage directly states that Linden Payments disabled an experimental payment option after repeated timeouts."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c49607723b68ca77d5f267634",
+    "providerRequestId": "UrXdarX5FsSpkdUPvaqSsQw",
+    "latencyMs": 3308,
+    "totalTokens": 522,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:53.569Z"
+  },
+  {
+    "caseId": "e16f9654156ba9c0f0e9064f",
+    "phase": "collect",
+    "inputHash": "d5a7f15b0eeadd345aed11eeafc46bb6c322973619a2abae63b14da6cc42e31f",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:53.571Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_e16f9654156ba9c0f0e9064f",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that card payments remained operational throughout, directly contradicting the claim that they stopped working."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c56507313b265ef5e25f37e0f",
+    "providerRequestId": "VbXdauHTKdHtkdUP_sufkQY",
+    "latencyMs": 2916,
+    "totalTokens": 525,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:52:56.488Z"
+  },
+  {
+    "caseId": "0c19fc021b2cb98c26e02941",
+    "phase": "collect",
+    "inputHash": "bb8fdfbece8255bd5f4e48bedd2defa35934623e462740e809b0891873a330fb",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:52:56.489Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_0c19fc021b2cb98c26e02941",
+          "relation": "insufficient",
+          "rationale": "The passage discusses a specific entity (Linden Payments) disabling an experimental option while keeping card payments operational, which does not mention online merchants or support the general claim about what payment providers do."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c61b476538966ccaa7ead089f",
+    "providerRequestId": "WLXdauzkJbWpkdUPr-za2Qg",
+    "latencyMs": 13592,
+    "totalTokens": 546,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:53:10.083Z"
+  },
+  {
+    "caseId": "71bf6b5dd5350541fcf17215",
+    "phase": "collect",
+    "inputHash": "3faf95c78af379dfef9ff0deede1aba4c8101022c9aa319fb843a7a4b647e1e4",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:10.085Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_71bf6b5dd5350541fcf17215",
+          "relation": "insufficient",
+          "rationale": "The passage notes that the experimental payment option experienced repeated timeouts, but it does not mention what caused them or refer to a database failure."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720c96d47991b014c0e876ff0da7",
+    "providerRequestId": "ZrXdasSYDIuLkdUPpOeHgAg",
+    "latencyMs": 3082,
+    "totalTokens": 536,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:53:13.169Z"
+  },
+  {
+    "caseId": "0723fbfca93cf8b7faa307e1",
+    "phase": "collect",
+    "inputHash": "07d042fd31c40a646d6011324666894274160aae6d473fd26eaee27f5249590f",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:13.170Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_0723fbfca93cf8b7faa307e1",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Elm Advertising rejected a new creative for violating its image policy."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720ca2de74b384a599d8f8d75b81",
+    "providerRequestId": "abXdarj1EdDp7M8Pq8qSgQo",
+    "latencyMs": 2817,
+    "totalTokens": 515,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:53:15.987Z"
+  },
+  {
+    "caseId": "f9d7e72252141b27eea2b295",
+    "phase": "collect",
+    "inputHash": "c5a52de7213ac67ab29390c015434e249ca04c3d26c3507252f37f86fca33091",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:15.989Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_f9d7e72252141b27eea2b295",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that existing approved campaigns continued to serve, directly contradicting the claim that all approved campaigns stopped serving."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720cade77ae2af62634bfdeb5a90",
+    "providerRequestId": "bLXdau3AB7WykdUPn-unyQY",
+    "latencyMs": 3201,
+    "totalTokens": 535,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:53:19.192Z"
+  },
+  {
+    "caseId": "32954b39d6277c97c20f5449",
+    "phase": "collect",
+    "inputHash": "2ae88d84e0846aeab693b6abe696d829ed77086e2ae22a0fb42b642a1534ba52",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:19.193Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_32954b39d6277c97c20f5449",
+          "relation": "supported",
+          "rationale": "The passage demonstrates an advertising platform (Elm Advertising) rejecting a creative for a policy violation while allowing approved campaigns to serve, supporting the claim that creatives are reviewed against policies."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720cba6471d291f2d2199f338ea0",
+    "providerRequestId": "b7XdapTKEs6ckdUPvNDWwA0",
+    "latencyMs": 22881,
+    "totalTokens": 540,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:53:42.075Z"
+  },
+  {
+    "caseId": "00dd9591e724e172ca623d2a",
+    "phase": "collect",
+    "inputHash": "4bdf38ca8ad09882f98600c7a475b0357c1e3d4b0b2fb529feca8b9245f085ed",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:42.077Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_00dd9591e724e172ca623d2a",
+          "relation": "insufficient",
+          "rationale": "The passage mentions that a new creative was rejected while existing campaigns continued to serve, but it makes no mention of any merchant's sales or whether the rejection caused a fall in sales."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d13ca7c92b8b6957b15aeec29",
+    "providerRequestId": "hrXdatreDPfikdUP2eD04QQ",
+    "latencyMs": 3672,
+    "totalTokens": 546,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:53:45.749Z"
+  },
+  {
+    "caseId": "372ddab288339f4a31f191e7",
+    "phase": "collect",
+    "inputHash": "8657ed67cd917dcbbfef9af537ef270495b7dd9c0a75e3fce27f7199c28daac4",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:45.750Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_372ddab288339f4a31f191e7",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Rowan Market removed a batch of duplicate reviews, which directly supports the claim."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d22227253bba8fb887e9375dd",
+    "providerRequestId": "ibXdaufiNKKvkdUP4NqtgAg",
+    "latencyMs": 3108,
+    "totalTokens": 523,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:53:48.860Z"
+  },
+  {
+    "caseId": "bca984ffe7802dd41775f630",
+    "phase": "collect",
+    "inputHash": "31485cb7bb96320a7346a3a7625a6c3bec08e6598f7e139eaefa5a5dcf16cc79",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:48.860Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_bca984ffe7802dd41775f630",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that Rowan Market retained all verified original reviews, including negative ones, which directly contradicts the claim that it removed all negative verified reviews."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d2e497080aa29debabec7ff9e",
+    "providerRequestId": "jLXdatboO7iYkdUPs5CPiAk",
+    "latencyMs": 3461,
+    "totalTokens": 531,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:53:52.323Z"
+  },
+  {
+    "caseId": "b1df27a124ed1d384364797a",
+    "phase": "collect",
+    "inputHash": "c30d01f012d664e256efb6d8e698bad282692c31e5d261fdb0df95fb55e28cc0",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:52.325Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_b1df27a124ed1d384364797a",
+          "relation": "insufficient",
+          "rationale": "The passage discusses the removal of duplicate reviews and retention of verified ones, but does not state what the reviews actually describe (such as shopping experiences) or that they are specifically customer reviews."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d3bd07221bffef4bc7fa077cb",
+    "providerRequestId": "kLXdasyGHYnRnsEPkYvhkQg",
+    "latencyMs": 2602,
+    "totalTokens": 546,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:53:54.928Z"
+  },
+  {
+    "caseId": "b88924317d522ac9248326ac",
+    "phase": "collect",
+    "inputHash": "3daef4d60d1aacd9b82fec45360aadd533a6d0ce7aface31cbcc00d40976914b",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:53:54.930Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_b88924317d522ac9248326ac",
+          "relation": "insufficient",
+          "rationale": "The passage mentions that duplicate reviews were removed, but it does not state who created them or mention a competitor."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d460077008c78d41f0da32ef0",
+    "providerRequestId": "k7Xdap3VBLeTkdUPvZ6buQc",
+    "latencyMs": 5144,
+    "totalTokens": 527,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:00.076Z"
+  },
+  {
+    "caseId": "91593beaaab96d808d7c83a8",
+    "phase": "collect",
+    "inputHash": "c01f4b6491a04f491a05772d951c85750fa3fb6107e2590e5aae1e2f04bbff74",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:00.077Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_91593beaaab96d808d7c83a8",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Birch Outfitters extended its returns window for winter purchases."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d5a187491aee2547d260905b4",
+    "providerRequestId": "mLXdaqL2DfnNkdUP1-vggQQ",
+    "latencyMs": 4145,
+    "totalTokens": 521,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:04.223Z"
+  },
+  {
+    "caseId": "52dd10abf4399a0e6bb0e2d0",
+    "phase": "collect",
+    "inputHash": "ec9eff12af9c6edab1fb0e106a2dcb1cf99a3bdeff1aab3954263aacc5cb47ad",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:04.224Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_52dd10abf4399a0e6bb0e2d0",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that summer purchases kept the existing returns policy and that the extension was only for winter purchases, which directly contradicts the claim that the window was extended for summer purchases."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d6a517cf08dc574e99f4bd449",
+    "providerRequestId": "nLXdavu_FOD5nsEPldPUqAc",
+    "latencyMs": 4068,
+    "totalTokens": 547,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:08.296Z"
+  },
+  {
+    "caseId": "7c583950e4584087ba128516",
+    "phase": "collect",
+    "inputHash": "679a8bd5d3fd16bcb931c8b1d20248e2d89f9e1761223b07a706bdf6d011bd08",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:08.298Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_7c583950e4584087ba128516",
+          "relation": "insufficient",
+          "rationale": "The passage mentions a company's returns window and returns policy for seasonal purchases, but it does not define what returns policies are or state that they explain how customers can return purchases."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d7a377952a966f22199137dde",
+    "providerRequestId": "oLXdap--GvG1kdUPlbevgAI",
+    "latencyMs": 3484,
+    "totalTokens": 543,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:54:11.783Z"
+  },
+  {
+    "caseId": "326671e1a10e5e9e6a505776",
+    "phase": "collect",
+    "inputHash": "5c6750514f955520847b00fc015681c542d51feaf7cf983edc54c3bc0be5669a",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:11.785Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_326671e1a10e5e9e6a505776",
+          "relation": "insufficient",
+          "rationale": "The passage describes a change in the returns window for winter purchases at Birch Outfitters, but does not mention customer retention or any effect the policy change had on it."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d87d87641bab062480b653112",
+    "providerRequestId": "o7XdasXlN9DjnsEP9uev8Aw",
+    "latencyMs": 4339,
+    "totalTokens": 540,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:16.127Z"
+  },
+  {
+    "caseId": "8376784bf3cc1998e617e353",
+    "phase": "collect",
+    "inputHash": "f6e1de33313027c3f6ce9fd2d17d82423441e1e35c90d6ebc76ccfb84b39ef0a",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:16.128Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_8376784bf3cc1998e617e353",
+          "relation": "supported",
+          "rationale": "The passage verbatim states that Juniper Commerce completed scheduled catalogue maintenance."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720d98ce79c18f7ea95c4305930d",
+    "providerRequestId": "qLXdarmYEYjinsEP2Pma6Q0",
+    "latencyMs": 3565,
+    "totalTokens": 524,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:19.695Z"
+  },
+  {
+    "caseId": "e9f05ad650940dc1c5807bb3",
+    "phase": "collect",
+    "inputHash": "27c472bcacfc50b0edbc3f8ddecd2a8bb4cfa82bb1ff52e8bfad62077586319e",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:19.696Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_e9f05ad650940dc1c5807bb3",
+          "relation": "contradictory",
+          "rationale": "The source passage explicitly states that 'the payment service was not part of the maintenance,' directly contradicting the claim that it was included."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720da6ba7c20913990583ef9234f",
+    "providerRequestId": "q7XdavSxMcGIkdUPuN2z2Ao",
+    "latencyMs": 7391,
+    "totalTokens": 533,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:27.088Z"
+  },
+  {
+    "caseId": "15b914e6c2c5da7d6e147b23",
+    "phase": "collect",
+    "inputHash": "699f1a92becd40319941f1aedb873a31ba83c87f1da1f4f67a97d6e3fa0aa55b",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:27.089Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_15b914e6c2c5da7d6e147b23",
+          "relation": "context_only",
+          "rationale": "The passage mentions catalogue maintenance and product browsing resuming, which provides related context, but it does not explicitly state that the catalogues are online or that they let customers browse products."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720dc39f7ff09d725119b413d166",
+    "providerRequestId": "s7Xdav__D4SUkdUP5r50",
+    "latencyMs": 4236,
+    "totalTokens": 543,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:31.327Z"
+  },
+  {
+    "caseId": "45f7fb590e3e3b29509bcde9",
+    "phase": "collect",
+    "inputHash": "a09685f1a67691462aa406f48caadabb7e73f1c7e4758a10586f02bc59e98937",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:31.328Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_45f7fb590e3e3b29509bcde9",
+          "relation": "insufficient",
+          "rationale": "The passage confirms that scheduled catalogue maintenance was completed, but it does not mention the duration of the maintenance."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720dd42c7850bd2f285a3e07853a",
+    "providerRequestId": "t7XdaurPIKqxnsEPwMrjoAM",
+    "latencyMs": 3216,
+    "totalTokens": 525,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:34.545Z"
+  },
+  {
+    "caseId": "d0875ca7a7462766d99f1963",
+    "phase": "collect",
+    "inputHash": "7632f233c1b948f51a015f143a631fb2d13a2659cc9e992fffc5f22b6afb6314",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:34.546Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_d0875ca7a7462766d99f1963",
+          "relation": "supported",
+          "rationale": "The passage directly states verbatim that Maple Delivery rerouted northern shipments around a closed bridge."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720de0bd7ea28c6b8e14e1b5cfce",
+    "providerRequestId": "urXdapXOKcjlnsEP34uVyQo",
+    "latencyMs": 2864,
+    "totalTokens": 532,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:37.412Z"
+  },
+  {
+    "caseId": "1c9de401458c050f11ca7cfb",
+    "phase": "collect",
+    "inputHash": "6d74738768781cdafd067d2c7ace04c79619ada520d65c40bfbfbb0e48385689",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:37.412Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_1c9de401458c050f11ca7cfb",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that northern shipments were rerouted around a closed bridge, while southern shipments followed their usual routes."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720debf1799297ae74d9b018bbd2",
+    "providerRequestId": "vbXdarnSIcnHnsEPvO220Ac",
+    "latencyMs": 3257,
+    "totalTokens": 527,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:40.670Z"
+  },
+  {
+    "caseId": "b81a89d92f37d32e0c2ef273",
+    "phase": "collect",
+    "inputHash": "ea244075ec3d31b719c2b1d8134e464ef608e8ee7b546965f6804c14332192e8",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:40.671Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_b81a89d92f37d32e0c2ef273",
+          "relation": "insufficient",
+          "rationale": "The passage discusses delivery routes and shipments, but does not mention warehouses or destinations, nor does it state that delivery routes connect them."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720df8ad7da0945feab758764922",
+    "providerRequestId": "wLXdat6oMqrlnsEP1Pay2Qo",
+    "latencyMs": 2579,
+    "totalTokens": 536,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:54:43.253Z"
+  },
+  {
+    "caseId": "ffeffb7552ed1db13d367ac7",
+    "phase": "collect",
+    "inputHash": "282069d9a537be1cfb8bbd98223a8c594d3c9685313a56389183bb201c9bd79b",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:43.255Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_ffeffb7552ed1db13d367ac7",
+          "relation": "insufficient",
+          "rationale": "The passage states that northern shipments were rerouted, but it does not mention whether they arrived late."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e02c37fd3ae2b74791a2337cf",
+    "providerRequestId": "w7XdaoKCF9C1nsEP7v6lkA0",
+    "latencyMs": 2574,
+    "totalTokens": 520,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:45.830Z"
+  },
+  {
+    "caseId": "ee3719c7266596092d0eca2f",
+    "phase": "collect",
+    "inputHash": "61fd9205844d5da7aad3814d6ba8347c0682a28b997e1a4bdb786c002a2f1f02",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:45.831Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_ee3719c7266596092d0eca2f",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Willow Shop withdrew an expired promotion code, directly confirming the claim."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e0cd17d20b2160fdab67ff647",
+    "providerRequestId": "xbXdaruhOpOBkdUPxfvD8AY",
+    "latencyMs": 2309,
+    "totalTokens": 518,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:48.141Z"
+  },
+  {
+    "caseId": "ab9ae1838287b03645cd9825",
+    "phase": "collect",
+    "inputHash": "c149a5f7d63b3f9db9ca4fb1eb809fa059bd808ed0629ac12b7c8259399cec8c",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:48.141Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_ab9ae1838287b03645cd9825",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that Willow Shop's active promotion codes remained valid and usable at checkout, directly opposing the claim that they could not be used."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e15d97be3a5b1372fb75b95dd",
+    "providerRequestId": "yLXdarOuEonRnsEPkYvhkQg",
+    "latencyMs": 2294,
+    "totalTokens": 538,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:50.436Z"
+  },
+  {
+    "caseId": "ebd54747e24ee7d1b956b2e7",
+    "phase": "collect",
+    "inputHash": "f639e88ad84725b140b364c26e129115d8d3cbc810bc476c222ab70419dfb481",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:50.437Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_ebd54747e24ee7d1b956b2e7",
+          "relation": "insufficient",
+          "rationale": "The passage confirms that promotion codes are usable at checkout, but does not explicitly state that they apply discounts."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e1ed178618117a57cd9c6c25a",
+    "providerRequestId": "yrXdaoeFIqSfkdUP-IbR2Qs",
+    "latencyMs": 2288,
+    "totalTokens": 522,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:54:52.726Z"
+  },
+  {
+    "caseId": "3238d22c8381817f99e84d65",
+    "phase": "collect",
+    "inputHash": "3746b02524adf09ef79d53c28a7441f7b5fbaef455f9ab3805b72bb01fe1e1d1",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "full",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:54:52.728Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_3238d22c8381817f99e84d65",
+          "relation": "insufficient",
+          "rationale": "The passage confirms that an expired promotion code was withdrawn, while active codes remained usable, but it contains no information about conversion rates or any causal drop in conversion."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e27c57f61bd8e1413e9875c8f",
+    "providerRequestId": "zLXdarT3MriYkdUPs5CPiAk",
+    "latencyMs": 3862,
+    "totalTokens": 541,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:54:56.591Z"
+  },
+  {
+    "caseId": "14e0e9ceb47700fd8994dd40",
+    "phase": "baseline",
+    "inputHash": "ca33f002f6cc5cb7df5a8d91f26380a40d987fd26620114d1804c78cf314414a",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:04.276Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_14e0e9ceb47700fd8994dd40",
+          "relation": "supported",
+          "rationale": "The passage directly states that Quartz Fulfilment reported delays for refrigerated orders."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e552076d394dc837f67cb88ed",
+    "providerRequestId": "2LXdaqPXHqKvkdUP4NqtgAg",
+    "latencyMs": 3566,
+    "totalTokens": 529,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:07.846Z"
+  },
+  {
+    "caseId": "39440075b003b0c04659c2d3",
+    "phase": "baseline",
+    "inputHash": "bf642a04622059f2bf44889844a382ce81a3c10f001fc23c1e7ef954cc65f895",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:07.847Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_39440075b003b0c04659c2d3",
+          "relation": "contradictory",
+          "rationale": "The source explicitly states that standard orders met their promised delivery dates and that delays were reported for refrigerated orders only, directly contradicting the claim that standard orders missed their delivery dates."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e62d47f33a50322c1df4473d7",
+    "providerRequestId": "27XdarbaOYWikdUPq9CbuQ0",
+    "latencyMs": 3829,
+    "totalTokens": 555,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:11.677Z"
+  },
+  {
+    "caseId": "12ba086d12f235b2ccf2b1ff",
+    "phase": "baseline",
+    "inputHash": "6464a3d83ab666e6320774a422c4b09b29252f80a36fe0208f611da623e6d72e",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:11.678Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_12ba086d12f235b2ccf2b1ff",
+          "relation": "insufficient",
+          "rationale": "The passage only mentions delays for refrigerated orders at Quartz Fulfilment and does not define refrigerated fulfilment or state that it transports temperature-sensitive products."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e71cb7e20b15b9780383bcdf2",
+    "providerRequestId": "37XdatTMOOL4vdIPqePpMA",
+    "latencyMs": 2817,
+    "totalTokens": 543,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:55:14.497Z"
+  },
+  {
+    "caseId": "21591d25775ee0e315634e63",
+    "phase": "baseline",
+    "inputHash": "e6dc6424c2d1d2a02bf0bcb48955a8ec22e688024158ca4b1cbc29bc48ab5cea",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:14.497Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_21591d25775ee0e315634e63",
+          "relation": "insufficient",
+          "rationale": "The passage confirms that Quartz Fulfilment had delays for refrigerated orders, but explicitly notes that the report did not estimate lost revenue, providing no evidence that the delays caused a revenue decline."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e7cce792383b77ce16421a9c0",
+    "providerRequestId": "4rXdaqbgJaGjvdIPys2cmAI",
+    "latencyMs": 3203,
+    "totalTokens": 557,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:17.706Z"
+  },
+  {
+    "caseId": "87da3317c2aa1ffaf325a0dd",
+    "phase": "baseline",
+    "inputHash": "d9be1ec8306c4e4693373d051a38af8a5c7a871003b7ac2432191c86123a4d3e",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:17.708Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_87da3317c2aa1ffaf325a0dd",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Opal Commerce observed a traffic increase during a public festival, directly matching the claim without asserting causation."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e895c7a6098a831d655c876d6",
+    "providerRequestId": "5bXdau79M8fMvdIPlYSLuQQ",
+    "latencyMs": 3382,
+    "totalTokens": 528,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:21.096Z"
+  },
+  {
+    "caseId": "4b6590b8fab38e26897886b2",
+    "phase": "baseline",
+    "inputHash": "fa325726da9dc74e49082c8f6dbecaa90eb2e24ce145935b70c5f0ea045d85e1",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:21.100Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_4b6590b8fab38e26897886b2",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that the analysts' observations did not establish the cause of the traffic increase, which directly contradicts the claim that they established the festival caused it."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720e96a17dc0883383f57f5e5eee",
+    "providerRequestId": "6bXdapbGDrSCxs0PvPHZ6QQ",
+    "latencyMs": 4083,
+    "totalTokens": 554,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:25.190Z"
+  },
+  {
+    "caseId": "9b78f33b6e44c23dd796cdcb",
+    "phase": "baseline",
+    "inputHash": "049d053ea1e6485add0a22cb82dbad382aef9d5f7d86598cb43f221793eed2f3",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:25.193Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_9b78f33b6e44c23dd796cdcb",
+          "relation": "insufficient",
+          "rationale": "The passage mentions a 'traffic increase' observed by 'Opal Commerce', which could refer to physical foot traffic or online traffic, and does not mention website analytics or online stores."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720ea69572f187fb2c91f208c738",
+    "providerRequestId": "7bXdaqn9Eq3XxN8Pk_DqsQU",
+    "latencyMs": 3219,
+    "totalTokens": 542,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:55:28.415Z"
+  },
+  {
+    "caseId": "7f6f78eb647322bad4350833",
+    "phase": "baseline",
+    "inputHash": "5fcb761f190146b0315df6475c751758fc87da82cba18770706daab8a9773bb1",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:28.416Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_7f6f78eb647322bad4350833",
+          "relation": "insufficient",
+          "rationale": "The passage explicitly states that analysts did not establish what caused the traffic increase, making the evidence insufficient to support the causal claim."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720eb32b7ae38fa83c1d442a5746",
+    "providerRequestId": "8LXdap7aH7DRvdIP-djVwAQ",
+    "latencyMs": 4661,
+    "totalTokens": 533,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:33.079Z"
+  },
+  {
+    "caseId": "7cbfa7a71d5298637c13c781",
+    "phase": "baseline",
+    "inputHash": "fe8d17b5c6ae1e2a9b028836b62b3287f44dc6894f5b925c4c60cddda3e3ad99",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:33.080Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_7cbfa7a71d5298637c13c781",
+          "relation": "supported",
+          "rationale": "The passage directly states that Amber Checkout published a report explicitly stating that service had recovered on Monday evening."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720ec56571329649ef4df333c569",
+    "providerRequestId": "9bXdasTXFonnnsEPgPXvmAg",
+    "latencyMs": 3067,
+    "totalTokens": 535,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:36.148Z"
+  },
+  {
+    "caseId": "41b30b734a54a0f8d9206509",
+    "phase": "baseline",
+    "inputHash": "a42cac22bae751c15a8ec0d125b2c015c1630e805b8250a774c3c331830f8597",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:36.149Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_41b30b734a54a0f8d9206509",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that Amber Checkout reported service had recovered on Monday evening, which contradicts the claim that they said service remained interrupted throughout Tuesday."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720ed1607ad09522de5d18c514bd",
+    "providerRequestId": "-LXdatqQEITqkdUP6u2YkAU",
+    "latencyMs": 3166,
+    "totalTokens": 543,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:39.315Z"
+  },
+  {
+    "caseId": "1f74113f1155d20926fd3eb1",
+    "phase": "baseline",
+    "inputHash": "1736481a792fbf70e0bcd3e83aae53e9ba01b6d9d48ae530c887e0e9d3b0f35f",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:39.316Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_1f74113f1155d20926fd3eb1",
+          "relation": "supported",
+          "rationale": "The passage describes a published report detailing a service interruption and its subsequent recovery, which supports the general claim that service status reports describe availability incidents."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720eddc07bc283aa35f9f558ed54",
+    "providerRequestId": "-7XdapOLHPe4nsEPpvTykQg",
+    "latencyMs": 3515,
+    "totalTokens": 541,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:55:42.833Z"
+  },
+  {
+    "caseId": "434c62061b257ea73cfd53df",
+    "phase": "baseline",
+    "inputHash": "07263d1f779a5678974ad5ab9868dd8454c1df1751c83923c2f5b50d3da6505e",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:42.834Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_434c62061b257ea73cfd53df",
+          "relation": "insufficient",
+          "rationale": "The passage confirms a service interruption occurred on Monday and recovered that evening, but it does not state when the interruption began."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720eeb807080ac60352bfffe395e",
+    "providerRequestId": "_rXdaqS5OoL0kdUPpdatsQE",
+    "latencyMs": 2657,
+    "totalTokens": 529,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:45.492Z"
+  },
+  {
+    "caseId": "726826ff0cebfa9db41988e1",
+    "phase": "baseline",
+    "inputHash": "08d8e2f16f52b49595938682e599a2c85f11d6c188697cde89951fcc5d331c99",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:45.493Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_726826ff0cebfa9db41988e1",
+          "relation": "supported",
+          "rationale": "The passage explicitly states verbatim that Coral Ads restored reporting for search campaigns."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720ef5e173b09394d97545d5487a",
+    "providerRequestId": "Abbdar3HJ5j4nsEP-JKGiAg",
+    "latencyMs": 4226,
+    "totalTokens": 517,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:55:49.721Z"
+  },
+  {
+    "caseId": "97a1a240d89ea339cf01fb6c",
+    "phase": "baseline",
+    "inputHash": "e37460ac53c68274d31a5e25812899df6b3d749aa0b03c16f383d49df4c259dd",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:55:49.721Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_97a1a240d89ea339cf01fb6c",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that Coral Ads' notice said display reporting was still delayed, whereas search campaign reporting was what had been restored."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720f0663783195b0be2ed20cca61",
+    "providerRequestId": "BbbdaoXsM5OhkdUP_-HxqAc",
+    "latencyMs": 31485,
+    "totalTokens": 535,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:21.208Z"
+  },
+  {
+    "caseId": "6ff1495fa69c2e0ab447b8b0",
+    "phase": "baseline",
+    "inputHash": "65d855961fcd97b72bdb09c6f3fc45f0f900bf06e305d4f55773a13e7f4c2df1",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:21.210Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_6ff1495fa69c2e0ab447b8b0",
+          "relation": "insufficient",
+          "rationale": "The passage mentions reporting for search and display campaigns, as well as campaign delivery and billing, but it does not define advertising reports or state that they summarise campaign measurements."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720f81657293b69989a9ff8d9cdd",
+    "providerRequestId": "JbbdavDeFPG1kdUPlbevgAI",
+    "latencyMs": 3278,
+    "totalTokens": 539,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:56:24.491Z"
+  },
+  {
+    "caseId": "9f645f8b9eafd3e2c74f6311",
+    "phase": "baseline",
+    "inputHash": "eb6468bd769a8d361d57675f2b8054b3f272eaccdd896911477e909408df46b1",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:24.491Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_9f645f8b9eafd3e2c74f6311",
+          "relation": "insufficient",
+          "rationale": "The passage only mentions reporting issues for Coral Ads and explicitly notes that the notice did not discuss campaign delivery."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720f8e387b22a93012f52034ad64",
+    "providerRequestId": "KLbdao3fJvzxnsEPqe_bwQU",
+    "latencyMs": 3628,
+    "totalTokens": 538,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:28.122Z"
+  },
+  {
+    "caseId": "3002f73f3f2826c4a4f97a60",
+    "phase": "baseline",
+    "inputHash": "eeb25bfab3fb8444f5f8997a0149404968224e73e6983fe3b4a853f6240d4898",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:28.124Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_3002f73f3f2826c4a4f97a60",
+          "relation": "insufficient",
+          "rationale": "The passage only reports what Indigo Retail claimed ('Indigo said its own inspection found no defect'), rather than establishing as an independent fact that the inspection found no defect."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720f9c667fd28d51d4e447948106",
+    "providerRequestId": "LLbdatC3EO6hkdUPr83tmAg",
+    "latencyMs": 2973,
+    "totalTokens": 559,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:56:31.099Z"
+  },
+  {
+    "caseId": "4a118d6f8816a9c86622cbe3",
+    "phase": "baseline",
+    "inputHash": "1e3f0a96a3892521c74420441f34194a58f0a6f440113ad9bd176104895a265b",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:31.100Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_4a118d6f8816a9c86622cbe3",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that Indigo Retail's own inspection found no defect in the inspected batch, which directly contradicts the claim that the inspection confirmed a defect."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720fa80673e0ad58b1dc2280715c",
+    "providerRequestId": "L7bdao7IDZOhkdUP29b1-AU",
+    "latencyMs": 6074,
+    "totalTokens": 554,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:37.175Z"
+  },
+  {
+    "caseId": "9a85ab01d77379601f172002",
+    "phase": "baseline",
+    "inputHash": "948dde3004f7b566bef55c6986b546e4468a5519526c04572756876603e61e47",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:37.176Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_9a85ab01d77379601f172002",
+          "relation": "insufficient",
+          "rationale": "The passage mentions an inspection regarding a packaging defect in a batch, but it does not state when packaging inspections generally occur or whether they check products before shipment."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720fbfc37f10ae6813a9f4185d8d",
+    "providerRequestId": "Nbbdap-AFMnHnsEPvO220Ac",
+    "latencyMs": 3126,
+    "totalTokens": 554,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": false,
+    "completedAt": "2026-10-25T07:56:40.302Z"
+  },
+  {
+    "caseId": "a67b5e0ba9bb97f90cbe3edb",
+    "phase": "baseline",
+    "inputHash": "028323b15337d61ad10f20896d74876ea40251868f9411e21e7e059400c61b59",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:40.303Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_a67b5e0ba9bb97f90cbe3edb",
+          "relation": "insufficient",
+          "rationale": "The passage states that only one inspected batch had no defect found according to Indigo Retail, while other batches had not been inspected, and a supplier alleged a defect. This does not establish whether every batch was free of defects."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720fcbfb7ed08e6af7786c34a80b",
+    "providerRequestId": "OLbdapqQGreTkdUP6rj4kAk",
+    "latencyMs": 2936,
+    "totalTokens": 554,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:43.239Z"
+  },
+  {
+    "caseId": "6deaf39e793a44d374d10221",
+    "phase": "baseline",
+    "inputHash": "98b39858a916d76073bd0724064e49d43b9dad7856ad7e655324cf3228d2487a",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:43.240Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_6deaf39e793a44d374d10221",
+          "relation": "supported",
+          "rationale": "The passage explicitly states that Topaz Market confirmed its warehouse reopened after an inspection."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720fd7737310bcfe2fb190dbf5d2",
+    "providerRequestId": "O7bdarvBGueZ3boP4KTBkA4",
+    "latencyMs": 2511,
+    "totalTokens": 539,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:45.752Z"
+  },
+  {
+    "caseId": "402d5bdc26bfebd7a8b80568",
+    "phase": "baseline",
+    "inputHash": "cd25efb2608d8a7ae948a2d51afb1a62950f2b095ceec465d16912ad67ea3f8d",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:45.754Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_402d5bdc26bfebd7a8b80568",
+          "relation": "contradictory",
+          "rationale": "The passage explicitly states that Topaz Market denied any stock loss, directly contradicting the claim that it confirmed stock was lost."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720fe1457a409ecd699d4e8bc073",
+    "providerRequestId": "Pbbdao-LNbezkdUP5LigmQg",
+    "latencyMs": 2502,
+    "totalTokens": 547,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:48.258Z"
+  },
+  {
+    "caseId": "b81a13ab40dc810a9ea14e81",
+    "phase": "baseline",
+    "inputHash": "8d811bd2eee9905ea3b73be314a3d44d4e3d07d9ce7096b8dcd4669dfed3e541",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:48.259Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_b81a13ab40dc810a9ea14e81",
+          "relation": "context_only",
+          "rationale": "The passage mentions a specific warehouse reopening after an inspection, which provides topical context, but it does not define or confirm the general claim that warehouse inspections assess storage facilities."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720feb12749191d4329230ef7942",
+    "providerRequestId": "QLbdasDUFpON7M8PlJnf8Qo",
+    "latencyMs": 3254,
+    "totalTokens": 551,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:51.513Z"
+  },
+  {
+    "caseId": "2134a25930115e2764c41154",
+    "phase": "baseline",
+    "inputHash": "31040a13e40822342a42d08e973ccc7e91e434ee136d5a7055a39d01684117ce",
+    "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+    "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+    "recording": "metadata",
+    "status": "completed",
+    "startedAt": "2026-10-25T07:56:51.514Z",
+    "output": {
+      "assessments": [
+        {
+          "sourceId": "src_2134a25930115e2764c41154",
+          "relation": "insufficient",
+          "rationale": "The passage confirms that Topaz Market's warehouse reopened after an inspection and denied stock loss, but it provides no information regarding whether this reopening increased sales."
+        }
+      ]
+    },
+    "requestId": "mreq_01a1720ff7c47670bebec394a18314bf",
+    "providerRequestId": "Q7bdau6oJZWZkdUP35TA8Qw",
+    "latencyMs": 4070,
+    "totalTokens": 564,
+    "costUsd": null,
+    "agreesWithAuthoredLabel": true,
+    "completedAt": "2026-10-25T07:56:55.587Z"
+  }
+]

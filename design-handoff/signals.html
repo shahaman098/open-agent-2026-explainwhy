@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signals · Normal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="investigations.html" aria-label="Normal dashboard"><span class="image-placeholder logo-placeholder">Normal logo</span></a>
+    <nav class="dashboard-nav" aria-label="Normal sections">
+      <a class="nav-link" href="overview.html">Overview</a>
+      <a class="nav-link current" href="signals.html">Signals</a>
+      <a class="nav-link" href="investigations.html">Investigations</a>
+      <a class="nav-link" href="approvals.html">Approvals</a>
+      <a class="nav-link" href="activity.html">Activity</a>
+      <a class="nav-link" href="outcomes.html">Outcomes</a>
+    </nav>
+    <div class="workspace">
+      <span class="image-placeholder account-placeholder">Nike mark</span>
+      <span class="workspace-copy"><strong>Nike</strong><small>Workspace</small></span>
+      <span class="run-chip" title="Selected simulation run">stage5_1792885194280</span>
+    </div>
+  </header>
+  <main class="page">
+    <div class="signals-layout">
+      <aside class="card signal-list-card" aria-label="All signals">
+        <div class="signal-list-head">
+          <div class="section-title-row"><div><h2>Signals</h2><span class="muted small">Advertising performance · selected run</span></div><span class="tag">5 campaigns</span></div>
+          <input class="search" aria-label="Search signals" placeholder="Search signals" value="advertising">
+          <div class="inline-list" style="margin-top:9px"><span class="tag">All statuses</span><span class="tag">All severities</span></div>
+        </div>
+        <div class="signal-list-scroll">
+          <article class="signal-group selected">
+            <div class="signal-title"><div><strong>Paid advertising · efficiency decline</strong><small>CTR and attributed-order performance</small></div><span class="tag review">Investigating</span></div>
+            <div class="signal-metric-row"><div><small>5 affected campaigns</small><br><strong>CTR 0.33%</strong></div><span class="tag danger">−82.5%</span></div>
+            <div class="signal-subrow"><span>Incident window · 30 hours</span><span>4–5 Oct 2026</span></div>
+            <div class="signal-subrow"><span>Spend +27.2% / hour</span><span>Orders −56.5%</span></div>
+            <div class="inline-list" style="margin-top:11px"><a class="tag info" href="investigation-detail.html">View investigation ↗</a><span class="tag">Evidence-backed</span></div>
+          </article>
+          <article class="signal-group">
+            <div class="signal-title"><div><strong>Storefront conversion</strong><small>20 orders from 787 sessions</small></div><span class="tag ok">Observed</span></div>
+            <div class="signal-metric-row"><div><small>Conversion rate</small><br><strong>2.54%</strong></div><span class="tag">No checkout failures</span></div>
+            <div class="signal-subrow"><span>Incident window</span><span>4–5 Oct 2026</span></div>
+          </article>
+          <article class="signal-group">
+            <div class="signal-title"><div><strong>Delivery promise cohort</strong><small>Orders past promised delivery</small></div><span class="tag warn">Watch</span></div>
+            <div class="signal-metric-row"><div><small>Late deliveries</small><br><strong>5 of 44</strong></div><span class="tag warn">11.4%</span></div>
+            <div class="signal-subrow"><span>Baseline 0 of 13</span><span>3 delayed orders</span></div>
+          </article>
+        </div>
+      </aside>
+
+      <section class="signal-detail" aria-label="Signal details">
+        <article class="card signal-context"><strong>5 affected campaigns</strong><span>Advertising performance · 4 Oct 2026 06:00 → 5 Oct 2026 12:00 UTC</span></article>
+        <article class="card chart-area">
+          <div class="section-title-row"><div><h2>Campaign performance vs baseline</h2><span class="muted small">Relative index · baseline = 100</span></div><span class="tag">5 campaigns analysed</span></div>
+          <div class="chart-legend"><span><i class="legend-dot"></i>Incident window</span><span><i class="legend-line"></i>Baseline reference</span></div>
+          <div class="chart" role="img" aria-label="Incident-window advertising metrics indexed to baseline: CTR 17.5, hourly spend 127.2, attributed orders 43.5">
+            <div class="chart-y"><span>150</span><span>100</span><span>50</span><span>0</span></div>
+            <div class="chart-plot">
+              <div class="chart-baseline"><span class="chart-baseline-label">Baseline · 100</span></div>
+              <div class="chart-bar-group"><span class="chart-bar current" style="height:12%"></span><span class="chart-label">CTR · 17.5</span></div>
+              <div class="chart-bar-group"><span class="chart-bar" style="height:85%"></span><span class="chart-label">Hourly spend · 127.2</span></div>
+              <div class="chart-bar-group"><span class="chart-bar current" style="height:29%"></span><span class="chart-label">Attributed orders · 43.5</span></div>
+            </div>
+          </div>
+          <p class="section-note">Index values are calculated from the recorded percentage changes. The report does not include a daily campaign series or individual campaign values.</p>
+        </article>
+        <article class="card signal-summary">
+          <div class="section-title-row"><h2>Investigator summary</h2><span class="tag review">Review required</span></div>
+          <p>Reduced clicks and attributed orders alongside higher hourly spend support deteriorating advertising efficiency. Higher frequency with lower CTR is also consistent with ad fatigue. The aggregate evidence does not distinguish the mechanisms or establish a definitive cause.</p>
+          <div class="summary-points">
+            <div class="summary-point"><small>Observed CTR</small><strong>0.33%</strong></div>
+            <div class="summary-point"><small>Attributed orders</small><strong>10 · −56.5% / hour</strong></div>
+            <div class="summary-point"><small>Ad spend</small><strong>£625.83</strong></div>
+          </div>
+          <div class="inline-list" style="margin-top:14px"><a class="btn" href="investigation-detail.html">Open investigation workspace</a><a class="btn" href="outcomes.html">Review business outcomes</a></div>
+        </article>
+      </section>
+    </div>
+    <p class="footnote">Static snapshot · run <code>stage5_1792885194280</code> · report cutoff 5 Oct 2026 12:00 UTC.</p>
+  </main>
+</body>
+</html>

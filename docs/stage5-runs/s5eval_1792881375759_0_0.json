@@ -1,0 +1,954 @@
+{
+  "metrics": {
+    "businessId": "nike_eval",
+    "simulationRunId": "s5eval_1792881375759_0_0",
+    "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+    "scenarioAfterInference": "promo_checkout_failure",
+    "seed": 11,
+    "detected": true,
+    "completion": "completed",
+    "primaryCause": "discount_failure",
+    "mechanismInHypotheses": true,
+    "leadingMechanismMatch": true,
+    "hypothesisRevisions": 2,
+    "evidence": 2,
+    "citations": 4,
+    "invalidCitations": 0,
+    "latencyMs": 73209,
+    "modelCalls": 3,
+    "tokens": 11735,
+    "estimatedCostUsd": null,
+    "externalResearchRounds": 0,
+    "externalCausalValidity": "not_established_by_synthetic_evaluation",
+    "requestIds": [
+      "mreq_01a1700f53ac70538018c9ad42a5dd69",
+      "mreq_01a1700f8e8677a1b3a0752933309808",
+      "mreq_01a1700fd38f733396050620e07b83ae"
+    ]
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_0a96f2ad125e103456797001",
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792881375759_0_0",
+      "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+      "status": "completed",
+      "stage": "completed",
+      "createdAt": "2026-10-24T22:36:52.721Z",
+      "updatedAt": "2026-10-24T22:37:29.522Z",
+      "startedAt": "2026-10-24T22:36:52.867Z",
+      "completedAt": "2026-10-24T22:37:29.522Z",
+      "round": 1,
+      "toolCount": 2,
+      "researchCount": 0,
+      "sourceCount": 0,
+      "callCount": 3,
+      "reservedTokens": 67594,
+      "actualTokens": 11735,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 0,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-08T00:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-04T20:00:00.000Z",
+        "endAt": "2026-10-08T00:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-01T16:00:00.000Z",
+        "endAt": "2026-10-04T20:00:00.000Z"
+      },
+      "evidenceIds": [
+        "evd_f04bb6ff8d201818",
+        "evd_16c3151ad097c4a8"
+      ],
+      "sourceIds": [],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T22:37:02.579Z",
+          "hypotheses": [
+            {
+              "cause": "checkout_failure",
+              "explanation": "Checkout failure rate increased in the incident window, but there are no underlying failure-code, device, or order observations yet to establish the cause or scope.",
+              "mechanism": "A technical or payment-path problem could prevent sessions from completing checkout.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Checkout failures should rise relative to sessions, with a discernible failure code or device pattern.",
+                "Order completion or conversion should deteriorate in the same period."
+              ],
+              "missingEvidence": [
+                "Checkout failure codes and device breakdown",
+                "Session and order trends before and during the incident"
+              ],
+              "falsificationTests": [
+                "Compare checkout failures by code and device with the baseline; a lack of a corresponding increase would weaken this hypothesis."
+              ],
+              "chronology": "The reported checkout failure-rate anomaly falls within the incident window; event-level timing is unavailable.",
+              "confounders": [
+                "The supplied anomaly has no denominator or event-level breakdown.",
+                "Coupon failures may be related to checkout failures or may represent a separate issue."
+              ],
+              "controlComparison": "No channel, product, device, or unaffected-period comparison is supplied.",
+              "hypothesisId": "hyp_d9393daa624a00c9"
+            },
+            {
+              "cause": "discount_failure",
+              "explanation": "Coupon failure rate also increased in the reported window, making a coupon application or validation problem a distinct possibility; the evidence does not show whether this accounts for checkout failures.",
+              "mechanism": "A coupon validation or application failure could block checkout completion or deter customers from completing purchases.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Coupon-related failures should be identifiable in checkout failure records.",
+                "Checkout completion should be worse for sessions attempting coupons than for comparable sessions not attempting them."
+              ],
+              "missingEvidence": [
+                "Coupon-specific failure details and timing",
+                "Checkout outcomes split by coupon use"
+              ],
+              "falsificationTests": [
+                "Check whether coupon failures are present among checkout failure records and compare completion for coupon-attempting versus non-coupon sessions; no association would weaken this hypothesis."
+              ],
+              "chronology": "The reported coupon failure-rate anomaly coincides with the checkout anomaly window; finer chronology is unavailable.",
+              "confounders": [
+                "The supplied observations do not establish whether coupon failures caused checkout failures or share another cause.",
+                "The anomaly has no event-level details or denominator."
+              ],
+              "controlComparison": "No comparison between coupon and non-coupon sessions is supplied.",
+              "hypothesisId": "hyp_c7ddfdbb79b7dc39"
+            }
+          ],
+          "decisionSummary": "Two distinct checkout-related possibilities are plausible from the reported rate anomalies, but neither is established. Inspect checkout failure details and overall conversion before drawing a causal conclusion."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T22:37:25.463Z",
+          "hypotheses": [
+            {
+              "cause": "discount_failure",
+              "explanation": "Coupon rejection is the recorded failure code for all observed checkout failures, making a coupon validation or application problem the clearest lead. The evidence does not establish how many customers attempted coupons or whether resolving the issue would restore conversion.",
+              "mechanism": "A rejected coupon could block or discourage completion for customers attempting to use it.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_f04bb6ff8d201818",
+                "evd_16c3151ad097c4a8"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Coupon-attempting sessions should show more rejected coupons and lower completion than comparable sessions without coupon attempts.",
+                "The timing of coupon rejections should align with the conversion decline."
+              ],
+              "missingEvidence": [
+                "Coupon attempts and outcomes split by session",
+                "Event-level timing of rejections and completed orders",
+                "A comparison with sessions not attempting coupons"
+              ],
+              "falsificationTests": [
+                "Compare checkout completion for coupon-attempting sessions with comparable non-coupon sessions; no meaningful difference would weaken this hypothesis.",
+                "Check whether coupon rejections began after conversion had already declined; if so, they would be less likely to explain the decline."
+              ],
+              "chronology": "The checkout and coupon failure anomalies are reported in the same period as the conversion decline, but the supplied records do not establish their event-level order.",
+              "confounders": [
+                "The failure records do not show whether coupon rejection prevented completion or was recoverable.",
+                "The revenue evidence describes the conversion change but does not identify its cause."
+              ],
+              "controlComparison": "No coupon versus non-coupon session comparison is supplied.",
+              "hypothesisId": "hyp_c7ddfdbb79b7dc39"
+            },
+            {
+              "cause": "checkout_failure",
+              "explanation": "Checkout failures increased while conversion declined, so checkout disruption remains a distinct possibility. However, the recorded failure code is coupon_rejected, which points more specifically to a coupon-related path than to a general checkout or payment failure.",
+              "mechanism": "A checkout-path problem could prevent some sessions from completing, though the available failure-code evidence does not establish a broader technical failure.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_16c3151ad097c4a8"
+              ],
+              "counterEvidenceIds": [
+                "evd_f04bb6ff8d201818"
+              ],
+              "expectedObservations": [
+                "A broader checkout problem should produce failures beyond coupon rejection or a consistent affected device or checkout-path pattern.",
+                "Checkout failure timing should precede or coincide with reduced order completion."
+              ],
+              "missingEvidence": [
+                "Failure breakdown by device and checkout path",
+                "Event-level sequence from checkout attempt to failure or order",
+                "Comparison of affected and unaffected checkout paths"
+              ],
+              "falsificationTests": [
+                "Inspect failure codes and device or path patterns; if failures are confined to coupon rejection with no broader checkout issue, this hypothesis is weakened.",
+                "Compare conversion timing against checkout failures; a decline preceding the failures would weaken a causal role for checkout disruption."
+              ],
+              "chronology": "The conversion decline overlaps the reported checkout-failure window; finer timing is unavailable.",
+              "confounders": [
+                "Coupon rejection may be the specific failure mechanism rather than a general checkout defect.",
+                "The evidence does not establish whether failed checkout attempts account for the overall conversion change."
+              ],
+              "controlComparison": "No device, checkout-path, or unaffected-period comparison is supplied.",
+              "hypothesisId": "hyp_d9393daa624a00c9"
+            }
+          ],
+          "decisionSummary": "Coupon rejection is the strongest observed lead, but its effect on conversion is not established. A broader checkout cause remains possible but is less specifically supported. The available evidence cannot distinguish cause from association, so the diagnosis remains provisional."
+        }
+      ],
+      "steps": [
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T22:36:52.867Z",
+          "completedAt": "2026-10-24T22:36:52.867Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T22:36:52.920Z",
+          "completedAt": "2026-10-24T22:37:02.580Z",
+          "resultSummary": "Two distinct checkout-related possibilities are plausible from the reported rate anomalies, but neither is established. Inspect checkout failure details and overall conversion before drawing a causal conclusion.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "checkout_analysis",
+          "question": "What changed in checkout failures by failure code and device, and how did session volume and purchase completion compare before versus during the incident?",
+          "startedAt": "2026-10-24T22:37:02.600Z",
+          "completedAt": "2026-10-24T22:37:05.303Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_f04bb6ff8d201818"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792881375759_0_0",
+            "window": {
+              "startAt": "2026-10-04T20:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T16:00:00.000Z",
+              "endAt": "2026-10-04T20:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "revenue_analysis",
+          "question": "How did orders, conversion, revenue, and sessions change across the incident window versus baseline, including available channel and product breakdowns?",
+          "startedAt": "2026-10-24T22:37:05.361Z",
+          "completedAt": "2026-10-24T22:37:07.720Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_16c3151ad097c4a8"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792881375759_0_0",
+            "window": {
+              "startAt": "2026-10-04T20:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T16:00:00.000Z",
+              "endAt": "2026-10-04T20:00:00.000Z"
+            },
+            "limit": 50,
+            "groupBy": [
+              "product",
+              "category",
+              "channel"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s4",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T22:37:08.026Z",
+          "completedAt": "2026-10-24T22:37:25.463Z",
+          "resultSummary": "Coupon rejection is the strongest observed lead, but its effect on conversion is not established. A broader checkout cause remains possible but is less specifically supported. The available evidence cannot distinguish cause from association, so the diagnosis remains provisional.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s5",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T22:37:25.728Z",
+          "completedAt": "2026-10-24T22:37:29.498Z",
+          "resultSummary": "The supported leading explanation is a coupon-related failure coinciding with lower conversion. Its contribution to the decline is not established: the available evidence lacks coupon-attempt outcomes and event-level chronology. A broader checkout issue is a weaker alternative. Treat this diagnosis as provisional.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s6",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T22:37:29.498Z",
+          "completedAt": "2026-10-24T22:37:29.498Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s7",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T22:37:29.498Z",
+          "completedAt": "2026-10-24T22:37:29.498Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": null,
+      "stopReason": "Checkout and revenue analyses have already been collected. The remaining evidence does not establish coupon-attempt outcomes or event-level chronology, and no available read-only tool can resolve that specific gap from the supplied tool descriptions.",
+      "reportId": "report_aij_0a96f2ad125e103456797001",
+      "attempts": 1
+    },
+    "report": {
+      "schemaVersion": 1,
+      "reportId": "report_aij_0a96f2ad125e103456797001",
+      "version": 1,
+      "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+      "diagnosisId": "diag_aij_0a96f2ad125e103456797001",
+      "createdAt": "2026-10-24T22:37:29.500Z",
+      "diagnosis": {
+        "primaryCause": "discount_failure",
+        "hypotheses": [
+          {
+            "cause": "discount_failure",
+            "strength": "moderate",
+            "evidenceIds": [
+              "evd_f04bb6ff8d201818",
+              "evd_16c3151ad097c4a8"
+            ],
+            "counterEvidenceIds": [],
+            "explanation": "Coupon rejection is recorded for all observed checkout failures during a period of lower conversion. This supports a coupon-related failure as a leading explanation, but the records do not show whether customers attempted coupons, whether rejection prevented completion, or whether the failures preceded the conversion decline."
+          },
+          {
+            "cause": "checkout_failure",
+            "strength": "weak",
+            "evidenceIds": [
+              "evd_16c3151ad097c4a8"
+            ],
+            "counterEvidenceIds": [
+              "evd_f04bb6ff8d201818"
+            ],
+            "explanation": "Checkout failures overlapped with the conversion decline, so a broader checkout disruption remains possible. The recorded failures are specifically coupon rejections, which weakens the case for a general checkout-path problem."
+          }
+        ],
+        "summary": "The supported leading explanation is a coupon-related failure coinciding with lower conversion. Its contribution to the decline is not established: the available evidence lacks coupon-attempt outcomes and event-level chronology. A broader checkout issue is a weaker alternative. Treat this diagnosis as provisional.",
+        "missingEvidence": [
+          "Compare coupon-attempt sessions and outcomes with comparable sessions that did not attempt coupons; determine whether rejection preceded abandonment or completion.",
+          "Check event-level timing of coupon rejections, checkout failures, and completed orders against the onset of the conversion decline; a decline that predates the failures would weaken their causal role.",
+          "Break down failures by device and checkout path to determine whether problems extend beyond coupon rejection."
+        ],
+        "requiresReview": true,
+        "schemaVersion": 1,
+        "businessId": "nike_eval",
+        "diagnosisId": "diag_aij_0a96f2ad125e103456797001",
+        "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+        "modelCallId": "aij_0a96f2ad125e103456797001_diagnosis_0",
+        "taskKey": "revenue_diagnosis_v1",
+        "createdAt": "2026-10-24T22:37:29.498Z"
+      },
+      "executiveBrief": {
+        "whatChanged": "The detector observed changes in the incident metrics shown above.",
+        "explanation": "The supported leading explanation is a coupon-related failure coinciding with lower conversion. Its contribution to the decline is not established: the available evidence lacks coupon-attempt outcomes and event-level chronology. A broader checkout issue is a weaker alternative. Treat this diagnosis as provisional.",
+        "certainty": "Qualified model assessment requiring operator review; not a calibrated probability.",
+        "impact": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+        "review": [
+          "Compare coupon-attempt sessions and outcomes with comparable sessions that did not attempt coupons; determine whether rejection preceded abandonment or completion.",
+          "Check event-level timing of coupon rejections, checkout failures, and completed orders against the onset of the conversion decline; a decline that predates the failures would weaken their causal role.",
+          "Break down failures by device and checkout path to determine whether problems extend beyond coupon rejection."
+        ]
+      },
+      "impact": {
+        "schemaVersion": 1,
+        "status": "measured",
+        "evidenceId": "evd_16c3151ad097c4a8",
+        "metric": "net_revenue_minor_per_hour",
+        "value": 10536.8947,
+        "baseline": 14628.5526,
+        "delta": -4091.6579,
+        "unit": "GBP minor units/hour",
+        "interpretation": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+        "limitations": [
+          "Simulated operational data.",
+          "Baseline composition and time-window differences may confound the comparison.",
+          "Campaign-level percentages are not added or averaged."
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "diag_aij_0a96f2ad125e103456797001_claim_0",
+          "claim": "Coupon rejection is recorded for all observed checkout failures during a period of lower conversion. This supports a coupon-related failure as a leading explanation, but the records do not show whether customers attempted coupons, whether rejection prevented completion, or whether the failures preceded the conversion decline.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_f04bb6ff8d201818",
+            "evd_16c3151ad097c4a8"
+          ],
+          "counterEvidenceIds": [],
+          "sourceIds": [],
+          "support": "moderately_supported",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_0a96f2ad125e103456797001_claim_1",
+          "claim": "Checkout failures overlapped with the conversion decline, so a broader checkout disruption remains possible. The recorded failures are specifically coupon rejections, which weakens the case for a general checkout-path problem.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_16c3151ad097c4a8"
+          ],
+          "counterEvidenceIds": [
+            "evd_f04bb6ff8d201818"
+          ],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        }
+      ],
+      "ledger": [
+        {
+          "evidenceId": "evd_f04bb6ff8d201818",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_0a96f2ad125e103456797001_claim_0",
+            "diag_aij_0a96f2ad125e103456797001_claim_1"
+          ],
+          "role": "mixed",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792881375759_0_0_3154805b5294/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792881375759_0_0&evidenceId=evd_f04bb6ff8d201818"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_16c3151ad097c4a8",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_0a96f2ad125e103456797001_claim_0",
+            "diag_aij_0a96f2ad125e103456797001_claim_1"
+          ],
+          "role": "support",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792881375759_0_0_3154805b5294/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792881375759_0_0&evidenceId=evd_16c3151ad097c4a8"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        }
+      ],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T22:37:02.579Z",
+          "hypotheses": [
+            {
+              "cause": "checkout_failure",
+              "explanation": "Checkout failure rate increased in the incident window, but there are no underlying failure-code, device, or order observations yet to establish the cause or scope.",
+              "mechanism": "A technical or payment-path problem could prevent sessions from completing checkout.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Checkout failures should rise relative to sessions, with a discernible failure code or device pattern.",
+                "Order completion or conversion should deteriorate in the same period."
+              ],
+              "missingEvidence": [
+                "Checkout failure codes and device breakdown",
+                "Session and order trends before and during the incident"
+              ],
+              "falsificationTests": [
+                "Compare checkout failures by code and device with the baseline; a lack of a corresponding increase would weaken this hypothesis."
+              ],
+              "chronology": "The reported checkout failure-rate anomaly falls within the incident window; event-level timing is unavailable.",
+              "confounders": [
+                "The supplied anomaly has no denominator or event-level breakdown.",
+                "Coupon failures may be related to checkout failures or may represent a separate issue."
+              ],
+              "controlComparison": "No channel, product, device, or unaffected-period comparison is supplied.",
+              "hypothesisId": "hyp_d9393daa624a00c9"
+            },
+            {
+              "cause": "discount_failure",
+              "explanation": "Coupon failure rate also increased in the reported window, making a coupon application or validation problem a distinct possibility; the evidence does not show whether this accounts for checkout failures.",
+              "mechanism": "A coupon validation or application failure could block checkout completion or deter customers from completing purchases.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Coupon-related failures should be identifiable in checkout failure records.",
+                "Checkout completion should be worse for sessions attempting coupons than for comparable sessions not attempting them."
+              ],
+              "missingEvidence": [
+                "Coupon-specific failure details and timing",
+                "Checkout outcomes split by coupon use"
+              ],
+              "falsificationTests": [
+                "Check whether coupon failures are present among checkout failure records and compare completion for coupon-attempting versus non-coupon sessions; no association would weaken this hypothesis."
+              ],
+              "chronology": "The reported coupon failure-rate anomaly coincides with the checkout anomaly window; finer chronology is unavailable.",
+              "confounders": [
+                "The supplied observations do not establish whether coupon failures caused checkout failures or share another cause.",
+                "The anomaly has no event-level details or denominator."
+              ],
+              "controlComparison": "No comparison between coupon and non-coupon sessions is supplied.",
+              "hypothesisId": "hyp_c7ddfdbb79b7dc39"
+            }
+          ],
+          "decisionSummary": "Two distinct checkout-related possibilities are plausible from the reported rate anomalies, but neither is established. Inspect checkout failure details and overall conversion before drawing a causal conclusion."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T22:37:25.463Z",
+          "hypotheses": [
+            {
+              "cause": "discount_failure",
+              "explanation": "Coupon rejection is the recorded failure code for all observed checkout failures, making a coupon validation or application problem the clearest lead. The evidence does not establish how many customers attempted coupons or whether resolving the issue would restore conversion.",
+              "mechanism": "A rejected coupon could block or discourage completion for customers attempting to use it.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_f04bb6ff8d201818",
+                "evd_16c3151ad097c4a8"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Coupon-attempting sessions should show more rejected coupons and lower completion than comparable sessions without coupon attempts.",
+                "The timing of coupon rejections should align with the conversion decline."
+              ],
+              "missingEvidence": [
+                "Coupon attempts and outcomes split by session",
+                "Event-level timing of rejections and completed orders",
+                "A comparison with sessions not attempting coupons"
+              ],
+              "falsificationTests": [
+                "Compare checkout completion for coupon-attempting sessions with comparable non-coupon sessions; no meaningful difference would weaken this hypothesis.",
+                "Check whether coupon rejections began after conversion had already declined; if so, they would be less likely to explain the decline."
+              ],
+              "chronology": "The checkout and coupon failure anomalies are reported in the same period as the conversion decline, but the supplied records do not establish their event-level order.",
+              "confounders": [
+                "The failure records do not show whether coupon rejection prevented completion or was recoverable.",
+                "The revenue evidence describes the conversion change but does not identify its cause."
+              ],
+              "controlComparison": "No coupon versus non-coupon session comparison is supplied.",
+              "hypothesisId": "hyp_c7ddfdbb79b7dc39"
+            },
+            {
+              "cause": "checkout_failure",
+              "explanation": "Checkout failures increased while conversion declined, so checkout disruption remains a distinct possibility. However, the recorded failure code is coupon_rejected, which points more specifically to a coupon-related path than to a general checkout or payment failure.",
+              "mechanism": "A checkout-path problem could prevent some sessions from completing, though the available failure-code evidence does not establish a broader technical failure.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_16c3151ad097c4a8"
+              ],
+              "counterEvidenceIds": [
+                "evd_f04bb6ff8d201818"
+              ],
+              "expectedObservations": [
+                "A broader checkout problem should produce failures beyond coupon rejection or a consistent affected device or checkout-path pattern.",
+                "Checkout failure timing should precede or coincide with reduced order completion."
+              ],
+              "missingEvidence": [
+                "Failure breakdown by device and checkout path",
+                "Event-level sequence from checkout attempt to failure or order",
+                "Comparison of affected and unaffected checkout paths"
+              ],
+              "falsificationTests": [
+                "Inspect failure codes and device or path patterns; if failures are confined to coupon rejection with no broader checkout issue, this hypothesis is weakened.",
+                "Compare conversion timing against checkout failures; a decline preceding the failures would weaken a causal role for checkout disruption."
+              ],
+              "chronology": "The conversion decline overlaps the reported checkout-failure window; finer timing is unavailable.",
+              "confounders": [
+                "Coupon rejection may be the specific failure mechanism rather than a general checkout defect.",
+                "The evidence does not establish whether failed checkout attempts account for the overall conversion change."
+              ],
+              "controlComparison": "No device, checkout-path, or unaffected-period comparison is supplied.",
+              "hypothesisId": "hyp_d9393daa624a00c9"
+            }
+          ],
+          "decisionSummary": "Coupon rejection is the strongest observed lead, but its effect on conversion is not established. A broader checkout cause remains possible but is less specifically supported. The available evidence cannot distinguish cause from association, so the diagnosis remains provisional."
+        }
+      ],
+      "timeline": [
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T22:36:52.867Z",
+          "completedAt": "2026-10-24T22:36:52.867Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T22:36:52.920Z",
+          "completedAt": "2026-10-24T22:37:02.580Z",
+          "resultSummary": "Two distinct checkout-related possibilities are plausible from the reported rate anomalies, but neither is established. Inspect checkout failure details and overall conversion before drawing a causal conclusion.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "checkout_analysis",
+          "question": "What changed in checkout failures by failure code and device, and how did session volume and purchase completion compare before versus during the incident?",
+          "startedAt": "2026-10-24T22:37:02.600Z",
+          "completedAt": "2026-10-24T22:37:05.303Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_f04bb6ff8d201818"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792881375759_0_0",
+            "window": {
+              "startAt": "2026-10-04T20:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T16:00:00.000Z",
+              "endAt": "2026-10-04T20:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "revenue_analysis",
+          "question": "How did orders, conversion, revenue, and sessions change across the incident window versus baseline, including available channel and product breakdowns?",
+          "startedAt": "2026-10-24T22:37:05.361Z",
+          "completedAt": "2026-10-24T22:37:07.720Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_16c3151ad097c4a8"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792881375759_0_0",
+            "window": {
+              "startAt": "2026-10-04T20:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T16:00:00.000Z",
+              "endAt": "2026-10-04T20:00:00.000Z"
+            },
+            "limit": 50,
+            "groupBy": [
+              "product",
+              "category",
+              "channel"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s4",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T22:37:08.026Z",
+          "completedAt": "2026-10-24T22:37:25.463Z",
+          "resultSummary": "Coupon rejection is the strongest observed lead, but its effect on conversion is not established. A broader checkout cause remains possible but is less specifically supported. The available evidence cannot distinguish cause from association, so the diagnosis remains provisional.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s5",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T22:37:25.728Z",
+          "completedAt": "2026-10-24T22:37:29.498Z",
+          "resultSummary": "The supported leading explanation is a coupon-related failure coinciding with lower conversion. Its contribution to the decline is not established: the available evidence lacks coupon-attempt outcomes and event-level chronology. A broader checkout issue is a weaker alternative. Treat this diagnosis as provisional.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s6",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T22:37:29.498Z",
+          "completedAt": "2026-10-24T22:37:29.498Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_0a96f2ad125e103456797001_s7",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T22:37:29.498Z",
+          "completedAt": "2026-10-24T22:37:29.498Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "sections": [
+        {
+          "title": "Executive summary",
+          "text": "The supported leading explanation is a coupon-related failure coinciding with lower conversion. Its contribution to the decline is not established: the available evidence lacks coupon-attempt outcomes and event-level chronology. A broader checkout issue is a weaker alternative. Treat this diagnosis as provisional.",
+          "evidenceIds": [
+            "evd_f04bb6ff8d201818",
+            "evd_16c3151ad097c4a8"
+          ]
+        },
+        {
+          "title": "Observed evidence",
+          "text": "Sessions, conversion and checkout failures: 4330 sessions and 75 orders over 76 h ending 2026-10-08T00:00:00.000Z (conversion 1.73%); 34 checkout failures (0.79% of sessions). Baseline: conversion 2.36% (-26.5% change), failures per hour +580% change, sessions per hour -2.8% change. Failure codes: coupon_rejected ×34. Simulated storefront records; device and channel slices join orders to their canonical session.\n\nRevenue, orders and conversion versus baseline: Over 76 h ending 2026-10-08T00:00:00.000Z: 75 orders, net revenue £8008.04, 4330 sessions, conversion 1.73%. Baseline (76 h): hourly revenue -28% change, hourly orders -28.6%, hourly sessions -2.8%. Decomposition: sessions share 0.086, conversion share 0.939, AOV share -0.026 of the revenue change. Values are simulated business records; this describes what changed, not why.",
+          "evidenceIds": [
+            "evd_f04bb6ff8d201818",
+            "evd_16c3151ad097c4a8"
+          ]
+        },
+        {
+          "title": "Competing explanations",
+          "text": "discount failure (moderate): Coupon rejection is recorded for all observed checkout failures during a period of lower conversion. This supports a coupon-related failure as a leading explanation, but the records do not show whether customers attempted coupons, whether rejection prevented completion, or whether the failures preceded the conversion decline.\n\ncheckout failure (weak): Checkout failures overlapped with the conversion decline, so a broader checkout disruption remains possible. The recorded failures are specifically coupon rejections, which weakens the case for a general checkout-path problem.",
+          "evidenceIds": [
+            "evd_f04bb6ff8d201818",
+            "evd_16c3151ad097c4a8"
+          ]
+        },
+        {
+          "title": "Causal challenges and uncertainty",
+          "text": "Coupon rejection is the recorded failure code for all observed checkout failures, making a coupon validation or application problem the clearest lead. The evidence does not establish how many customers attempted coupons or whether resolving the issue would restore conversion.\nChronology: The checkout and coupon failure anomalies are reported in the same period as the conversion decline, but the supplied records do not establish their event-level order.\nControls: No coupon versus non-coupon session comparison is supplied.\nConfounders: The failure records do not show whether coupon rejection prevented completion or was recoverable.; The revenue evidence describes the conversion change but does not identify its cause.\nCould be weakened by: Compare checkout completion for coupon-attempting sessions with comparable non-coupon sessions; no meaningful difference would weaken this hypothesis.; Check whether coupon rejections began after conversion had already declined; if so, they would be less likely to explain the decline.\n\nCheckout failures increased while conversion declined, so checkout disruption remains a distinct possibility. However, the recorded failure code is coupon_rejected, which points more specifically to a coupon-related path than to a general checkout or payment failure.\nChronology: The conversion decline overlaps the reported checkout-failure window; finer timing is unavailable.\nControls: No device, checkout-path, or unaffected-period comparison is supplied.\nConfounders: Coupon rejection may be the specific failure mechanism rather than a general checkout defect.; The evidence does not establish whether failed checkout attempts account for the overall conversion change.\nCould be weakened by: Inspect failure codes and device or path patterns; if failures are confined to coupon rejection with no broader checkout issue, this hypothesis is weakened.; Compare conversion timing against checkout failures; a decline preceding the failures would weaken a causal role for checkout disruption.",
+          "evidenceIds": []
+        },
+        {
+          "title": "External research",
+          "text": "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Business impact",
+          "text": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+          "evidenceIds": [
+            "evd_16c3151ad097c4a8"
+          ]
+        },
+        {
+          "title": "Advisory next steps",
+          "text": "Review: Compare coupon-attempt sessions and outcomes with comparable sessions that did not attempt coupons; determine whether rejection preceded abandonment or completion.\nReview: Check event-level timing of coupon rejections, checkout failures, and completed orders against the onset of the conversion decline; a decline that predates the failures would weaken their causal role.\nReview: Break down failures by device and checkout path to determine whether problems extend beyond coupon rejection.",
+          "evidenceIds": []
+        }
+      ],
+      "handoff": {
+        "schemaVersion": 1,
+        "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+        "diagnosisId": "diag_aij_0a96f2ad125e103456797001",
+        "ready": true,
+        "supportedFindings": [
+          "Coupon rejection is recorded for all observed checkout failures during a period of lower conversion. This supports a coupon-related failure as a leading explanation, but the records do not show whether customers attempted coupons, whether rejection prevented completion, or whether the failures preceded the conversion decline."
+        ],
+        "affectedEntities": [],
+        "evidenceIds": [
+          "evd_f04bb6ff8d201818",
+          "evd_16c3151ad097c4a8"
+        ],
+        "impactReference": "report_aij_0a96f2ad125e103456797001",
+        "uncertainty": [
+          "Compare coupon-attempt sessions and outcomes with comparable sessions that did not attempt coupons; determine whether rejection preceded abandonment or completion.",
+          "Check event-level timing of coupon rejections, checkout failures, and completed orders against the onset of the conversion decline; a decline that predates the failures would weaken their causal role.",
+          "Break down failures by device and checkout path to determine whether problems extend beyond coupon rejection.",
+          "Checkout and revenue analyses have already been collected. The remaining evidence does not establish coupon-attempt outcomes or event-level chronology, and no available read-only tool can resolve that specific gap from the supplied tool descriptions."
+        ],
+        "constraints": [
+          "Human review required",
+          "Stage five is read-only; no executable plan or business mutation",
+          "Synthetic data; external events cannot establish simulated causation"
+        ],
+        "advisoryCandidates": [
+          "Investigate: Compare coupon-attempt sessions and outcomes with comparable sessions that did not attempt coupons; determine whether rejection preceded abandonment or completion.",
+          "Investigate: Check event-level timing of coupon rejections, checkout failures, and completed orders against the onset of the conversion decline; a decline that predates the failures would weaken their causal role.",
+          "Investigate: Break down failures by device and checkout path to determine whether problems extend beyond coupon rejection."
+        ],
+        "executable": false
+      },
+      "insufficientEvidence": null,
+      "validation": {
+        "passed": true,
+        "checks": [
+          "Canonical diagnosis schema",
+          "Business/run/investigation ownership",
+          "Evidence references exist and resolve",
+          "Timestamp cutoff",
+          "Duplicate references rejected",
+          "Numerical prose rejected; impact computed deterministically",
+          "Known contradiction disclosure",
+          "Single diagnosis shared by brief, report and handoff"
+        ],
+        "semanticSupport": "model_assessed_not_deterministic_proof"
+      }
+    },
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792881375759_0_0",
+        "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+        "callId": "aij_0a96f2ad125e103456797001_reasoning_0",
+        "jobId": "aij_0a96f2ad125e103456797001",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "e5b16e81f6e7c71ed47c0dacd3781a05444b061750332f41aae15fe44ce86dfb",
+        "status": "completed",
+        "startedAt": "2026-10-24T22:36:52.979Z",
+        "completedAt": "2026-10-24T22:37:02.512Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a1700f53ac70538018c9ad42a5dd69",
+          "providerRequestId": "req_eb7fac67b6d547c6803e4529b3b33772",
+          "latencyMs": 9504,
+          "inputTokens": 2084,
+          "outputTokens": 855,
+          "totalTokens": 2939,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 18219,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792881375759_0_0",
+        "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+        "callId": "aij_0a96f2ad125e103456797001_reasoning_1",
+        "jobId": "aij_0a96f2ad125e103456797001",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "c44f170811f8130d8a06fa0284e1276baf4a700e7c9699a7fb16dae20cf3856c",
+        "status": "completed",
+        "startedAt": "2026-10-24T22:37:08.082Z",
+        "completedAt": "2026-10-24T22:37:25.402Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a1700f8e8677a1b3a0752933309808",
+          "providerRequestId": "req_8721148924db4f1cb0c7b30214fe0674",
+          "latencyMs": 17298,
+          "inputTokens": 3516,
+          "outputTokens": 1517,
+          "totalTokens": 5033,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 24081,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792881375759_0_0",
+        "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+        "callId": "aij_0a96f2ad125e103456797001_diagnosis_0",
+        "jobId": "aij_0a96f2ad125e103456797001",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "079b7939f094519e1fa767a5164536953aae9f50e1de78a75a5e316fda2be413",
+        "checksum": "ba890acba7ab7c80b55588be181d42398e1da0bd0389fcb6e2671b741771f99c",
+        "status": "completed",
+        "startedAt": "2026-10-24T22:37:25.785Z",
+        "completedAt": "2026-10-24T22:37:29.455Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a1700fd38f733396050620e07b83ae",
+          "providerRequestId": "req_aaf62271b3094927afb0614bc4996634",
+          "latencyMs": 3650,
+          "inputTokens": 3409,
+          "outputTokens": 354,
+          "totalTokens": 3763,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 25294,
+        "outputDiagnosisId": "diag_aij_0a96f2ad125e103456797001",
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      }
+    ],
+    "researchTraces": []
+  }
+}

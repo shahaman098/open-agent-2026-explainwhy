@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "approvalId": "approval_001",
+  "planId": "plan_001",
+  "planVersion": 1,
+  "decision": "approved",
+  "approvedActionIds": [
+    "act_ads_001",
+    "act_email_001",
+    "act_banner_001"
+  ],
+  "rejectedActionIds": [],
+  "reviewedByUserId": "owner_demo",
+  "reviewedAt": "2026-10-23T19:04:00Z",
+  "expiresAt": "2026-10-23T19:20:00Z"
+}

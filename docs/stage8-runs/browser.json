@@ -1,0 +1,25 @@
+{
+  "advertisingRun": "stage7_1792893488465",
+  "advertisingAssessmentId": "boa_c34fb47c9e570d34d2d288043d427bc2",
+  "advertisingStatus": "pending_measurement",
+  "advertisingBeforeMinutes": 1800,
+  "advertisingAfterMinutes": 0,
+  "shippingRun": "stage7_shipping_1792893488698",
+  "shippingActions": [
+    {
+      "type": "storefront.publish_banner",
+      "status": "pending_measurement",
+      "effect": "inconclusive"
+    },
+    {
+      "type": "customer.send_delay_notice",
+      "status": "pending_measurement",
+      "effect": "inconclusive"
+    }
+  ],
+  "controlledRun": "stage8_1792895970876",
+  "controlledStatus": "completed",
+  "controlledEffect": "unchanged",
+  "controlledCriteriaMet": false,
+  "pageErrors": []
+}

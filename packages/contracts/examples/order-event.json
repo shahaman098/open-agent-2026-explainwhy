@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "eventId": "evt_order_001",
+  "source": "simulator",
+  "type": "order.completed",
+  "occurredAt": "2026-10-23T18:30:00Z",
+  "receivedAt": "2026-10-23T18:30:01Z",
+  "provenance": {
+    "sourceRecordId": "sim-order-1",
+    "connectorId": "simulator_v1",
+    "simulated": true,
+    "ingestMethod": "simulation"
+  },
+  "simulationRunId": "run_nova_001",
+  "payload": {
+    "orderId": "ord_001",
+    "sessionId": "sess_001",
+    "customerId": "customer_demo_001",
+    "productIds": [
+      "sku_headphones"
+    ],
+    "grossTotalMinor": 6999,
+    "discountMinor": 1000,
+    "netRevenueMinor": 5999,
+    "currency": "GBP",
+    "campaignId": "campaign_A"
+  }
+}

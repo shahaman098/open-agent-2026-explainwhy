@@ -1,0 +1,79 @@
+{
+  "observedAt": "2026-10-25T07:37:52.639Z",
+  "models": {
+    "investigator": "gemini-4-argon",
+    "diagnosis": "gemini-4-argon",
+    "planner": "gemini-4-argon",
+    "research": "gemini-4-argon"
+  },
+  "scope": "Synthetic schema probes, not business diagnosis or accuracy evaluation. No live business records changed.",
+  "results": [
+    {
+      "check": "investigation_schema",
+      "passed": false,
+      "code": "http_400",
+      "metadata": {
+        "provider": "mubit",
+        "model": "gemini-4-argon",
+        "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+        "requestId": "mreq_01a171fe72a777c3a1c7626ac329ec6e",
+        "providerRequestId": null,
+        "latencyMs": 3467,
+        "inputTokens": null,
+        "outputTokens": null,
+        "totalTokens": null,
+        "estimatedCostUsd": null
+      }
+    },
+    {
+      "check": "diagnosis_schema",
+      "passed": true,
+      "metadata": {
+        "provider": "mubit",
+        "model": "gemini-4-argon",
+        "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+        "requestId": "mreq_01a171fe80047760bf4fec9798a5bc01",
+        "providerRequestId": "yrHdaqvUNYjinsEP2Pma6Q0",
+        "latencyMs": 4506,
+        "inputTokens": 701,
+        "outputTokens": 89,
+        "totalTokens": 790,
+        "estimatedCostUsd": null
+      },
+      "value": {
+        "primaryCause": "unknown",
+        "hypotheses": [
+          {
+            "cause": "unknown",
+            "strength": "weak",
+            "evidenceIds": [],
+            "counterEvidenceIds": [],
+            "explanation": "No operational evidence is available to determine a cause during this schema-connectivity probe."
+          }
+        ],
+        "summary": "Diagnosis is unknown because no operational evidence is available. Manual review is required.",
+        "missingEvidence": [
+          "No operational evidence available"
+        ],
+        "requiresReview": true
+      }
+    },
+    {
+      "check": "planning_schema",
+      "passed": false,
+      "code": "http_400",
+      "metadata": {
+        "provider": "mubit",
+        "model": "gemini-4-argon",
+        "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+        "requestId": "mreq_01a171fe919c7473b8131d93a9d26627",
+        "providerRequestId": null,
+        "latencyMs": 1391,
+        "inputTokens": null,
+        "outputTokens": null,
+        "totalTokens": null,
+        "estimatedCostUsd": null
+      }
+    }
+  ]
+}

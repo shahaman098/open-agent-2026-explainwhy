@@ -1,0 +1,92 @@
+{
+  "scope": {
+    "businessId": "nike_eval",
+    "simulationRunId": "source_acceptance_1792884717962",
+    "investigationId": "official_source_check"
+  },
+  "cutoff": "2026-10-24T23:31:57.962Z",
+  "originalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+  "requestId": "mreq_01a17041ba5d7d438aeac776b172d216",
+  "tokens": 374,
+  "providerError": null,
+  "sources": [
+    {
+      "schemaVersion": 1,
+      "sourceId": "src_425e21019b7bed98dc2afc2c",
+      "claimId": "clm_4830d40c665c9c29ad0bdfd3",
+      "investigationId": "official_source_check",
+      "businessId": "nike_eval",
+      "simulationRunId": "source_acceptance_1792884717962",
+      "originalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "canonicalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "title": "NIKE, Inc. Announces Changes to Its Operating Model",
+      "publisher": "about.nike.com",
+      "author": null,
+      "publishedAt": "2026-10-01T20:20:00.000Z",
+      "updatedAt": "2026-10-05T20:30:16.000Z",
+      "retrievedAt": "2026-10-24T23:31:57.963Z",
+      "eventWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-05T23:59:59.000Z"
+      },
+      "proposedClaim": "NIKE shared an employee note about changes to its operating model.",
+      "excerpt": "NIKE, Inc. today shared the following note with employees regarding changes to its operating model.",
+      "excerptMatched": true,
+      "contentHash": "39c647979760ecf77399dc680d57fab23042a81638cb4b011f41760351360eae",
+      "status": "contextual",
+      "semanticAssessment": "model_only",
+      "temporalValidity": "within_cutoff",
+      "claimSupport": "supported",
+      "publisherIdentity": "official_domain",
+      "previewImageUrl": "https://nmp.about.nike.com/about/prod/412311af-5388-4bcd-b4ac-e4be088ab686/final-tribrand-black-3000x2000.jpg?m=eyJlZGl0cyI6eyJqcGVnIjp7InF1YWxpdHkiOjEwMH0sIndlYnAiOnsicXVhbGl0eSI6MTAwfSwiZXh0cmFjdCI6eyJsZWZ0IjowLCJ0b3AiOjAsIndpZHRoIjozMDAwLCJoZWlnaHQiOjIwMDB9LCJyZXNpemUiOnsid2lkdGgiOjkwMH19fQ%3D%3D&s=88808cf41a95f770ebaf102c910efad3b8c6735e9f48f0eda2ba39c3cbd4be68",
+      "limitations": [
+        "An accessible page or matching passage does not establish semantic support or a business cause.",
+        "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+        "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+        "Independent Mubit passage assessment: supported. The passage directly states that NIKE shared a note with employees regarding changes to its operating model."
+      ],
+      "duplicateOf": null,
+      "httpStatus": 200
+    },
+    {
+      "schemaVersion": 1,
+      "sourceId": "src_aa8f07f021135a2a564c1abd",
+      "claimId": "clm_4c511f0276f2652ab67cd210",
+      "investigationId": "official_source_check",
+      "businessId": "nike_eval",
+      "simulationRunId": "source_acceptance_1792884717962",
+      "originalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "canonicalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "title": "NIKE, Inc. Announces Changes to Its Operating Model",
+      "publisher": "about.nike.com",
+      "author": null,
+      "publishedAt": "2026-10-01T20:20:00.000Z",
+      "updatedAt": "2026-10-05T20:30:16.000Z",
+      "retrievedAt": "2026-10-24T23:31:57.966Z",
+      "eventWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-05T23:59:59.000Z"
+      },
+      "proposedClaim": "The operating model change was caused by a Google Ads outage.",
+      "excerpt": "NIKE, Inc. today shared the following note with employees regarding changes to its operating model.",
+      "excerptMatched": true,
+      "contentHash": "39c647979760ecf77399dc680d57fab23042a81638cb4b011f41760351360eae",
+      "status": "insufficient_evidence",
+      "semanticAssessment": "model_only",
+      "temporalValidity": "within_cutoff",
+      "claimSupport": "insufficient",
+      "publisherIdentity": "official_domain",
+      "previewImageUrl": "https://nmp.about.nike.com/about/prod/412311af-5388-4bcd-b4ac-e4be088ab686/final-tribrand-black-3000x2000.jpg?m=eyJlZGl0cyI6eyJqcGVnIjp7InF1YWxpdHkiOjEwMH0sIndlYnAiOnsicXVhbGl0eSI6MTAwfSwiZXh0cmFjdCI6eyJsZWZ0IjowLCJ0b3AiOjAsIndpZHRoIjozMDAwLCJoZWlnaHQiOjIwMDB9LCJyZXNpemUiOnsid2lkdGgiOjkwMH19fQ%3D%3D&s=88808cf41a95f770ebaf102c910efad3b8c6735e9f48f0eda2ba39c3cbd4be68",
+      "limitations": [
+        "An accessible page or matching passage does not establish semantic support or a business cause.",
+        "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+        "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+        "Independent Mubit passage assessment: insufficient. The passage mentions operating model changes but does not say they were caused by a Google Ads outage.",
+        "Duplicate URL/content; not independent corroboration."
+      ],
+      "duplicateOf": "src_425e21019b7bed98dc2afc2c",
+      "httpStatus": 200
+    }
+  ],
+  "persistedCount": 2
+}

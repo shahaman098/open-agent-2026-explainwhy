@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "complete": true,
+  "dryRun": false,
+  "report": [
+    {
+      "question": "Message",
+      "wanted": "Investigate this synthetic shop incident. [SA] A creator mention increased product-page visits. [SB] The promoted items then ran out of stock and shoppers saw unavailable-size messages. [SC] In-stock unpromoted items could still be purchased; checkout error logs remained normal. Identify the likely mechanism limiting sales, and cite the evidence.",
+      "got": "Investigate this synthetic shop incident. [SA] A creator mention increased product-page visits. [SB] The promoted items then ran out of stock and shoppers saw unavailable-size messages. [SC] In-stock unpromoted items could still be purchased; checkout error logs remained normal. Identify the likely mechanism limiting sales, and cite the evidence.",
+      "ok": true
+    }
+  ],
+  "manualTable": null,
+  "script_version": "2.0.0+74233b855b41",
+  "observed_at": "2026-10-25T07:08:00.517Z",
+  "url": null,
+  "categories": {},
+  "verified_fields": [
+    "Message"
+  ]
+}

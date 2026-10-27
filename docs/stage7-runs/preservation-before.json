@@ -1,0 +1,161 @@
+{
+  "collections": {
+    "action_receipts": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "anomalies": {
+      "count": 77,
+      "hash": "558a91071d1bcb9ec8fa4fbe17bbdd98788af10ff73c6163cd57e234e79b2d56"
+    },
+    "business_events": {
+      "count": 94998,
+      "hash": "481c0c697e460bb7f8128afb4213210ee2ae69c919448c3d5a5d4282ac76de4a"
+    },
+    "businesses": {
+      "count": 2,
+      "hash": "8b8f294b799e049dd21580350e7223ecae4ad0bfc8e464b95823c746ffdeff72"
+    },
+    "connection_tests": {
+      "count": 2,
+      "hash": "c127c9ce816c9e9023ba1c7aa823dcdf369aedc6677c8411b9be3b4968e154cc"
+    },
+    "detection_findings": {
+      "count": 263,
+      "hash": "988b374cc218fad6ac972d293f5b6e8e40e884ec0900f1eeb85d983f44e3f2b3"
+    },
+    "detection_observations": {
+      "count": 342,
+      "hash": "bb9462b9b5b20599813d9c531901e1ddc85acb3a02a6816ef6f0e596ee15e27c"
+    },
+    "diagnoses": {
+      "count": 6,
+      "hash": "de390295418053a0252438e2c23c765676bc12582dc7e7b70a104fddd2ddad8e"
+    },
+    "evidence": {
+      "count": 38,
+      "hash": "d7430516a8ad2c47a9b70fe33ed0fad56c9b1b93c5d3ae669274c5d60eb61267"
+    },
+    "evidence_collections": {
+      "count": 3,
+      "hash": "af9550c368af917394e05a182e0fb29fc4e3ebe315c8bb2601028b1f9329bb57"
+    },
+    "evidence_details": {
+      "count": 36,
+      "hash": "e681662696698acbb886077cf46299ca1981f816ab17de96abc059bb27c85c74"
+    },
+    "evidence_tool_runs": {
+      "count": 41,
+      "hash": "e086e2e51274895844a30eab609755391c65964dcd1e5ff1302356bf08756123"
+    },
+    "external_sources": {
+      "count": 4,
+      "hash": "b8078fe60a1982ca63646b96a148fbe7ade1e6175881222fcf523b7d0307f7f0"
+    },
+    "incidents": {
+      "count": 14,
+      "hash": "3a92859e5194b9e5c0dd8eec73958a682291b90130376bcc78658cfb48ab1aea"
+    },
+    "investigation_calls": {
+      "count": 22,
+      "hash": "e4e2eba3454388cb6a016489a6d6d69ab939384b7959cde61726d2caeeb11d93"
+    },
+    "investigation_jobs": {
+      "count": 6,
+      "hash": "35df14c55ab52ad4a1851384482133c49f0f9d1cb7309b3147641e94b9e11387"
+    },
+    "investigation_reports": {
+      "count": 5,
+      "hash": "a205583d4a1c09458b65f28a3d1d3891015ab89f7f12dfa460fb01f166cc96a2"
+    },
+    "investigations": {
+      "count": 12,
+      "hash": "0267b2b6a56236f178243c9cdbc1d632632d8e5688b113b2958897aa1989bd2b"
+    },
+    "metric_snapshots": {
+      "count": 1983,
+      "hash": "043147b31b9a81338d17710f784416e81de4ff2f8e2b327c8c65e1140cdb6c41"
+    },
+    "monitor_runs": {
+      "count": 38,
+      "hash": "6a236ea4c57d73c05519d164788ed87ef14d52e3ee5d5deab598f5d7f1f72497"
+    },
+    "monitor_state": {
+      "count": 15,
+      "hash": "4d09bb1f92d6ef08f60c30156a8810dd1b8fd60cf8d84996421f80472e7f631b"
+    },
+    "monitoring_jobs": {
+      "count": 25,
+      "hash": "c40130c07aea6bb34330c4060ced8b10b04abd1ad2709b1878002b8e2661e816"
+    },
+    "monitoring_windows": {
+      "count": 48,
+      "hash": "6362a0c8158134dc494bea0151527237e54532013e748a927c18c1008c03e6a7"
+    },
+    "monitoring_workers": {
+      "count": 1,
+      "hash": "e2515a4be325354ca32006c2aea70382a866ddb8b1f0578e158d904eb636b165"
+    },
+    "planning_jobs": {
+      "count": 2,
+      "hash": "fc5f9ae43764a19f9e2b0e72156cbc105a669b192e71bbf6ebaaddeb6097f233"
+    },
+    "plans": {
+      "count": 2,
+      "hash": "390c0a2c3e057fe7269a2f42e1a0bff215c45994e902b4c6e17e1a9c9a912943"
+    },
+    "reference_financials": {
+      "count": 1,
+      "hash": "a951862920408ef340ec1f8556414aeb9172cc95f11c58ce5bf04d49de49012f"
+    },
+    "reference_products": {
+      "count": 17,
+      "hash": "121f9cb981667f8c71de96c7892561e0c918f26c17ce12d1d17df69702703ace"
+    },
+    "simulated_campaigns": {
+      "count": 75,
+      "hash": "683f0eb95ba0ad0966bbbd33ba136ac08a673e117c009bae668a73c6add380bd"
+    },
+    "simulated_customers": {
+      "count": 5189,
+      "hash": "64a97d59a0566d975d0a59a2deb83c5b24e78d20b0441f32bb0527e9e0e4656d"
+    },
+    "simulated_messages": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "simulated_orders": {
+      "count": 1386,
+      "hash": "6bc7f4a93d1850aa604c886cedeff3741025cb4c7f2ebe2884746cd6f96915a6"
+    },
+    "simulated_products": {
+      "count": 306,
+      "hash": "99c69e437a0eee43d35a8caa749bb6ee2a188e62b0a5d646c5871985ae172a69"
+    },
+    "simulated_reviews": {
+      "count": 5,
+      "hash": "8e7dd3a1d002a68e6085eb72d9305d1907c1788da4743f2276621242179476ab"
+    },
+    "simulated_sessions": {
+      "count": 62245,
+      "hash": "fe8cb6745c42c60d8bbc3c80ab8c3d46e9f0a5709348b7ed64626be34c8d59ea"
+    },
+    "simulated_shipments": {
+      "count": 1354,
+      "hash": "c9099151aba590d4a955948e5fc12043ab4be6c3f236300daf0a628fd872a6c7"
+    },
+    "simulated_storefront": {
+      "count": 15,
+      "hash": "aba7b81b1e8c3416f42c0bc0b94691c9dd76803490de91f7721944b3f64f5014"
+    },
+    "simulator_ground_truth": {
+      "count": 15,
+      "hash": "cdb6775ec2e92c16c4a348ee7afa11c3a95f2477cdf998dd57c8b50036bf7e61"
+    },
+    "simulator_state": {
+      "count": 15,
+      "hash": "15fae255e58280ab7acbaeb5c50961742517f867728b371f5897d709fe3ad3de"
+    }
+  },
+  "active": "demo_nike"
+}

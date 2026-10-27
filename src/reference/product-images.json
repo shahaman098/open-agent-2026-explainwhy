@@ -1,0 +1,826 @@
+{
+  "ref_nike_dunk_low_retro": {
+    "styleCode": "IX7260-133",
+    "sourceUrl": "https://www.nike.com/gb/t/dunk-low-retro-mens-shoes-1fXTLnJI/IX7260-133",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_dunk_low_retro-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6ee93a16-c214-471a-b20e-cf25f5775571/NIKE+DUNK+LOW+RETRO.png",
+        "alt": "Nike Dunk Low Retro — view 1"
+      }
+    ]
+  },
+  "ref_nike_pegasus_42": {
+    "styleCode": "IB1873-402",
+    "sourceUrl": "https://www.nike.com/gb/t/pegasus-42-mens-road-running-shoes-M9ckDyR3/IB1873-402",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b37630f3-bdc9-468b-a98c-abf8a8b5ba58/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/dae39d3d-6550-42d3-b474-4cc1ff16d5e3/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6972faee-3324-4913-b0e5-3cfaaa250c66/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/72310067-07f8-4bd3-9c76-da85cad70ac7/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/36d2ab8b-2842-4f70-98f9-cfb3ac116597/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/be9a3c95-94ae-4cd8-a428-777e3c3a448d/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8c11c653-ce0f-4e01-8f34-ff6c76f89662/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_42-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/7f9ecd79-372c-43fe-b88a-2248f55ad5b7/AIR+ZOOM+PEGASUS+42.png",
+        "alt": "Nike Pegasus 42 — view 8"
+      }
+    ]
+  },
+  "ref_nike_tech_essentials_hoodie": {
+    "styleCode": "DD5284-002",
+    "sourceUrl": "https://www.nike.com/gb/t/sportswear-tech-essentials-mens-full-zip-fleece-hoodie-oHBVk1hW/DD5284-002",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_tech_essentials_hoodie-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/9b3adca5-2ea6-42f1-9eea-87da2804e175/M+NSW+TE+FZ+FLC+HOODIE.png",
+        "alt": "Nike Sportswear Tech Essentials — view 1"
+      }
+    ]
+  },
+  "ref_nike_vomero_18": {
+    "styleCode": "HM6803-005",
+    "sourceUrl": "https://www.nike.com/gb/t/vomero-18-mens-road-running-shoes-SMtmxlKz/HM6803-005",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_vomero_18-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/47c3d001-a95c-4805-9c5c-c16be4776b1b/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d175ef25-1a13-4332-94e6-3e7210c27dea/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4493370e-a4bc-4163-ad75-7381e02f0cba/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c1666ac7-e34b-4fbd-90fa-dbaec849f4e6/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c6384dd4-8bb2-444f-b52e-bfa405f1e9fb/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ab4068ec-a152-4ec8-a7f7-7998a8992298/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8f194665-4934-4fc3-b2bd-29843ba30bdb/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/dd6464de-6255-4711-969d-f93056e16a89/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_vomero_18-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/363f84d2-9986-4151-8ff9-c494fc76e1bf/NIKE+VOMERO+18.png",
+        "alt": "Nike Vomero 18 — view 9"
+      }
+    ]
+  },
+  "ref_nike_air_force_1_07": {
+    "styleCode": "CT2302-100",
+    "sourceUrl": "https://www.nike.com/gb/t/air-force-1-07-shoe-E5NnNyBr/CT2302-100",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_PDP_144_v1/f_auto,q_auto:eco,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a42a5d53-2f99-4e78-a081-9d07a2d0774a/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a42a5d53-2f99-4e78-a081-9d07a2d0774a/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/deec30c7-92b4-46c9-8a7f-39a73eccdffa/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6363d086-10e5-4892-adf0-182acd58d116/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f65792df-0c9a-45a6-a54a-0f5e9ba2396f/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/0480640f-fc4b-4940-a212-9fa2c7cf9f9d/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/973de232-7836-4315-89f6-61c42ae8ef7d/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/24499fd8-1ad2-4098-a20d-6fc2e59f7bba/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_force_1_07-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/10597866-c2a8-4b54-8d52-df2bec50a6e4/AIR+FORCE+1+%2707.png",
+        "alt": "Nike Air Force 1 '07 — view 9"
+      }
+    ]
+  },
+  "ref_nike_pegasus_plus_2": {
+    "styleCode": "IM2541-101",
+    "sourceUrl": "https://www.nike.com/gb/t/pegasus-plus-2-mens-road-running-shoes-bVq2jMv5/IM2541-101",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6a69bd46-726a-4ccf-9de3-89a0f33c0465/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ef606fb3-dac8-42f0-a03f-64a13b61c4a2/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/aa7f4d2b-aaef-42e3-8d72-9c796aefb35a/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/f0a4b3bd-0c70-4efb-a43c-52eccfd8c000/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6d931124-e451-43a1-b41c-d27e1a11e5e3/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/0e9458cf-61de-4443-ac5b-dcee67d109f4/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/de338b97-d5df-4ff1-9104-827426f488ae/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/124d7d8e-e0ff-40ff-bb5b-44410d4de476/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/65bbf9c2-8af2-4a21-b930-1357d7de9761/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 9"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-9.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c46059bc-5c58-4272-a04d-f2901c362b20/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 10"
+      },
+      {
+        "src": "/assets/products/ref_nike_pegasus_plus_2-10.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/dfa9c6a6-f5ce-4192-94fc-51b87aaf8da5/NIKE+PEGASUS+PLUS+2.png",
+        "alt": "Nike Pegasus Plus 2 — view 11"
+      }
+    ]
+  },
+  "ref_nike_giannis_freak_8": {
+    "styleCode": "IR0238-002",
+    "sourceUrl": "https://www.nike.com/gb/t/giannis-freak-8-etched-in-stone-basketball-shoes-UnMjh9X7/IR0238-002",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/84e7f6ae-6476-4e9b-b442-8ec37ec7381b/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/84e7f6ae-6476-4e9b-b442-8ec37ec7381b/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/9244596b-e03f-411d-9360-2ac146880ed2/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/73fcf708-adf3-4251-8642-0ffbd62ce726/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c368911b-1fa1-4b9c-a1ed-d6e22e930f39/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2895e322-d24a-4137-ac4d-201b3c249fca/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4f084dc5-0fd9-4d2e-beb7-2d16a464f4b7/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4858b369-d000-4be4-9b6a-e10c871bb35d/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_giannis_freak_8-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2f970faa-c13b-420c-a0bf-022d98110767/GIANNIS+FREAK+8+LX.png",
+        "alt": "Giannis Freak 8 'Etched in Stone' — view 9"
+      }
+    ]
+  },
+  "ref_nike_quest_7": {
+    "styleCode": "IM6368-001",
+    "sourceUrl": "https://www.nike.com/gb/t/quest-7-mens-road-running-shoes-R6dnTZx6/IM6368-001",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_quest_7-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/41333a8d-e467-4b16-b0dc-7acd850af253/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_quest_7-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1187a3fd-2005-4ce5-b7fc-2a0430aa2e67/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_quest_7-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/63e11a4a-bfae-4f4d-a1eb-8d3e3b67656c/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_quest_7-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8411f5d8-f1f5-4484-a944-bf05a9ec2274/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_quest_7-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d615c9ec-7f67-4f1d-9dfc-32167e49616a/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_quest_7-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/451bbce9-2676-4de8-b0c2-3eaa31764ad5/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_quest_7-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/61d640c6-c823-41a8-88be-2221ba9bfd45/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_quest_7-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6b7aad71-149a-4c3a-8194-334235797db7/NIKE+QUEST+7.png",
+        "alt": "Nike Quest 7 — view 8"
+      }
+    ]
+  },
+  "ref_nike_kobe_ad_protro": {
+    "styleCode": "IO8233-500",
+    "sourceUrl": "https://www.nike.com/gb/t/kobe-ad-protro-basketball-shoes-N0qKeqfm/IO8233-500",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a4166b1c-3887-4023-b35a-a95940ebba63/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a4166b1c-3887-4023-b35a-a95940ebba63/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/66161bfc-c7d7-43b7-958d-ceb8f2ff4e87/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/861d0a9a-2092-43f8-9e9b-202bce2908dd/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/03dae2f1-f913-4f00-ab20-88227f4046a1/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/e83014ee-b254-4d96-80f2-4b95a1589858/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4c35c04f-b864-4a04-83af-952975b3710d/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5178da95-3782-4e12-8a54-47356bf1fc57/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/25430a23-6345-4710-9389-decc9f41f3e9/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 9"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-9.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/00525587-2607-47c0-a7c8-fcb04c400b1d/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 10"
+      },
+      {
+        "src": "/assets/products/ref_nike_kobe_ad_protro-10.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/791a2daf-aba1-43bc-9d6d-a5662de71195/KOBE+AD+PROTRO.png",
+        "alt": "Kobe A.D. Protro — view 11"
+      }
+    ]
+  },
+  "ref_nike_ja_4_nightmare": {
+    "styleCode": "IM4135-405",
+    "sourceUrl": "https://www.nike.com/gb/t/ja-4-nightmare-basketball-shoes-O1MlsSTs/IM4135-405",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4faaad0f-02b0-483f-ba8a-35036ac8b8f2/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4faaad0f-02b0-483f-ba8a-35036ac8b8f2/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/bdeff18c-b445-42f8-a5af-cf7b43ac159f/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6f148181-6f30-46c3-9d6a-757d4817e005/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/e77b8e58-2967-49b2-afba-774c08e966de/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2296be33-9ecb-4fc2-a6fe-d1f028ce3449/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b68cb932-b9f9-476a-92fb-d6f4b453e07e/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/87a12c76-1861-48e9-8d55-3e7e06886962/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c0860ab1-5699-4e0c-bee4-49d976329f6a/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 9"
+      },
+      {
+        "src": "/assets/products/ref_nike_ja_4_nightmare-9.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/968e383a-6c14-45b4-8fb4-147be7bdbcfb/JA+4.png",
+        "alt": "Ja 4 'Nightmare' — view 10"
+      }
+    ]
+  },
+  "ref_nike_air_max_90": {
+    "styleCode": "FQ2377-001",
+    "sourceUrl": "https://www.nike.com/gb/t/air-max-90-mens-shoes-S5wGk8/FQ2377-001",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_air_max_90-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/2311adcf-4695-4bbe-bbe3-70b1f4c0cffb/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/2311adcf-4695-4bbe-bbe3-70b1f4c0cffb/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/613f7a8a-501e-43b8-8c6a-56a4445bc8d9/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/ea13188c-ea17-42fc-9c22-8b471c4af817/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/e81814e9-a78d-4efc-bfe1-f347388277c1/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/80a726d9-a082-4a2c-a6ea-c9d82dff8204/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/2ce91b71-c2b4-460c-96f6-0cf4aa003792/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/cb25e185-dc9e-4ab2-a038-7ab1ef4cde72/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/36c261a7-2130-438f-aaaf-94256fbfa881/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 9"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-9.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/949d9d6b-1edd-4858-ac69-efb579c3ddce/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 10"
+      },
+      {
+        "src": "/assets/products/ref_nike_air_max_90-10.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/9ee4cd64-51c2-4b40-a1ab-6f8983dce533/NIKE+AIR+MAX+90.png",
+        "alt": "Nike Air Max 90 — view 11"
+      }
+    ]
+  },
+  "ref_nike_hyverse_top": {
+    "styleCode": "DV9839-010",
+    "sourceUrl": "https://www.nike.com/gb/t/hyverse-mens-dri-fit-uv-short-sleeve-versatile-top-yNoHIsud/DV9839-010",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_hyverse_top-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5b962ee5-94ae-4653-a882-0962ecc0797a/M+NK+DF+UV+HYVERSE+SS.png",
+        "alt": "Nike Hyverse — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_hyverse_top-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5b962ee5-94ae-4653-a882-0962ecc0797a/M+NK+DF+UV+HYVERSE+SS.png",
+        "alt": "Nike Hyverse — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_hyverse_top-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/3f7be8b9-8c3a-47a0-a013-5feaf9c73fea/M+NK+DF+UV+HYVERSE+SS.png",
+        "alt": "Nike Hyverse — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_hyverse_top-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/85aef24e-97aa-4314-99f0-02fe16ce8c4f/M+NK+DF+UV+HYVERSE+SS.png",
+        "alt": "Nike Hyverse — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_hyverse_top-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/bf84e1c6-4432-490a-b411-25494ae5e9db/M+NK+DF+UV+HYVERSE+SS.png",
+        "alt": "Nike Hyverse — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_hyverse_top-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/3687e371-c3bf-4f52-b3f6-7c7aae5cbd32/M+NK+DF+UV+HYVERSE+SS.png",
+        "alt": "Nike Hyverse — view 6"
+      }
+    ]
+  },
+  "ref_nike_sportswear_tshirt": {
+    "styleCode": "IM5670-010",
+    "sourceUrl": "https://www.nike.com/gb/t/sportswear-mens-t-shirt-RlYJjnWP/IM5670-010",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_sportswear_tshirt-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/82d76aeb-139f-4188-a8ad-27230f565792/M+NSW+TEE+LSE+WILD.png",
+        "alt": "Nike Sportswear — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_sportswear_tshirt-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/82d76aeb-139f-4188-a8ad-27230f565792/M+NSW+TEE+LSE+WILD.png",
+        "alt": "Nike Sportswear — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_sportswear_tshirt-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/9df32a69-9b4d-4120-8ff7-61d1c9d18c9b/M+NSW+TEE+LSE+WILD.png",
+        "alt": "Nike Sportswear — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_sportswear_tshirt-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8ab59e7e-9c42-4121-93ba-654353ad242b/M+NSW+TEE+LSE+WILD.png",
+        "alt": "Nike Sportswear — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_sportswear_tshirt-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1bda299b-71ae-4b45-bb3f-e32bc4fca6e9/M+NSW+TEE+LSE+WILD.png",
+        "alt": "Nike Sportswear — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_sportswear_tshirt-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/3f78562f-ef37-4683-bef0-1a658bee59b6/M+NSW+TEE+LSE+WILD.png",
+        "alt": "Nike Sportswear — view 6"
+      }
+    ]
+  },
+  "ref_nike_p_6000": {
+    "styleCode": "IX6221-101",
+    "sourceUrl": "https://www.nike.com/gb/t/p-6000-shoes-kAwc1Ns8/IX6221-101",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_p_6000-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/61cfc2cc-ec43-4a68-87ae-6dfd415a25fe/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/61cfc2cc-ec43-4a68-87ae-6dfd415a25fe/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/19fdbd00-2790-49c1-b673-8cd0239b29ed/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a9a20c8e-ba26-45f1-8932-8a608a91398d/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/dd250104-6ca8-41be-998a-47b661f6afcf/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/6e6099e5-212d-4d65-94ba-d353cff221df/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/976d6b3b-a99a-4a65-9c54-02f584b95c8c/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/832bf726-8aed-41e4-a201-afa6fd7126b4/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_p_6000-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5ffe6948-b224-48ac-8723-5e5c6ad5bc02/NIKE+P-6000+ESS.png",
+        "alt": "Nike P-6000 — view 9"
+      }
+    ]
+  },
+  "ref_nike_mercurial_superfly_11_academy": {
+    "styleCode": "IO1485-102",
+    "sourceUrl": "https://www.nike.com/gb/t/mercurial-superfly-11-academy-multi-ground-high-top-football-boots-QIsaJWl5/IO1485-102",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/da30554e-9e0c-4d00-a4f9-afa5fa09ac5c/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/da30554e-9e0c-4d00-a4f9-afa5fa09ac5c/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/64d6de15-2108-4a77-b4d2-0aea37c513f9/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/401d5df6-059b-455f-b7aa-ce442d5e190f/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/3dd7ab8e-120e-4c23-85fc-788ebd99a284/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a3f9044a-f898-4e1c-a83b-b5ed8ae7a338/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d2588e01-04ea-44c0-aa0f-8d35f87abb9c/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/a96da7e8-d062-4e8d-b781-e5a7bd744f05/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8e5aba39-364e-4cb4-84cb-93d6396fcc3d/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 9"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_superfly_11_academy-9.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/881ed2b2-6ed3-44b1-a208-c7c0ebd1519b/SUPERFLY+11+ACADEMY+FG%2FMG.png",
+        "alt": "Nike Mercurial Superfly 11 Academy — view 10"
+      }
+    ]
+  },
+  "ref_nike_phantom_6_low_elite": {
+    "styleCode": "HJ2146-100",
+    "sourceUrl": "https://www.nike.com/gb/t/phantom-6-low-elite-firm-ground-football-boot-vPs0Q9v9/HJ2146-100",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b253c634-7d65-42cc-85f1-a803c48f18f1/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b253c634-7d65-42cc-85f1-a803c48f18f1/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/baa488fa-d504-44aa-901d-083b1c880b32/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/5d54d662-bbb7-4e58-9edd-ad6a81ab8c88/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/aefd1398-279f-4613-9ba1-3b326806d92d/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/52084038-c451-4f6c-8436-923777c581ff/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8919fcd5-50e2-4f99-9762-52768238bbc3/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/93f1448f-3702-4134-99bb-48269a47ba0d/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/de0e78c1-1616-46b0-adc2-c4b4377f5bdc/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 9"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-9.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/28d5b344-22a7-49b9-8552-5ff9d284fad1/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 10"
+      },
+      {
+        "src": "/assets/products/ref_nike_phantom_6_low_elite-10.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/e80fe8a7-d99f-40a2-b171-bdd3ed8faadf/PHANTOM+6+LOW+ELITE+FG.png",
+        "alt": "Nike Phantom 6 Low Elite — view 11"
+      }
+    ]
+  },
+  "ref_nike_mercurial_vapor_17_elite": {
+    "styleCode": "IF8508-102",
+    "sourceUrl": "https://www.nike.com/gb/t/mercurial-vapor-17-elite-firm-ground-low-top-football-boots-Qg9ZBlyn/IF8508-102",
+    "verifiedAt": "2026-10-25",
+    "images": [
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-0.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/007d54db-bd1c-41c1-84aa-79994b54af82/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 1"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-1.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/007d54db-bd1c-41c1-84aa-79994b54af82/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 2"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-2.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/7af83d13-d577-438a-8826-25f753d00e3a/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 3"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-3.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8c37bb33-7f72-427f-a260-f0b4fac9a727/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 4"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-4.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/7be71b15-7a36-4065-b265-cfa956b977ad/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 5"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-5.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/e99546ba-f543-4c31-90dd-b83e16053fc2/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 6"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-6.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/361e78f2-b7c5-4804-a221-9d7861336209/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 7"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-7.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/fd3f740e-3164-4b3a-a825-64d5e4ef0640/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 8"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-8.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/84dce930-e0e8-4dfd-9142-357c1a1acd3b/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 9"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-9.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/7ad7a5ba-ec0e-4d0f-9930-ecf0c2cf8704/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 10"
+      },
+      {
+        "src": "/assets/products/ref_nike_mercurial_vapor_17_elite-10.webp",
+        "sourceUrl": "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/abe0e5a4-0e10-4a13-a2b7-153749545be8/VAPOR+17+ELITE+FG.png",
+        "alt": "Nike Mercurial Vapor 17 Elite — view 11"
+      }
+    ]
+  }
+}

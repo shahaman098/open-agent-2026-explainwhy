@@ -1,0 +1,100 @@
+Browser tab: 1331642560, Title: "Request — Middleware console", URL: "https://app.mubit.ai/console/projects/ws-31028979027c7c75/requests/01a1720b-a7d2-73c2-9927-0d03bf682101".
+1 AXWebArea Request — Middleware console, URL: app.mubit.ai/console/projects/ws-31028979027c7c75/requests/01a1720b-a7d2-73c2-9927-0d03bf682101
+	2 container app
+		3 container Console
+			4 link Description: All projects, Value: app.mubit.ai/console/
+			5 pop up button (collapsed) Description: Project: normal-1792783517785903653, Secondary Actions: Expand
+			6 container
+				7 text PROJECT
+				8 content list PROJECT
+					9 link Description: Overview, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
+					10 link Description: Tasks 41, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/workloads
+					11 link Description: Adapters 3, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/adapters
+					12 link Description: Try models, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/try
+					13 link Description: Requests, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/requests
+					14 link Description: Learnings, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/learnings
+				15 text CONFIGURE
+				16 content list CONFIGURE
+					17 link Description: Connect, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/connect
+					18 link Description: Import past calls, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/imports
+					19 link Description: Mubit keys 1, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/keys
+					20 link Description: Settings, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/policy
+				21 text WORKSPACE
+				22 content list WORKSPACE
+					23 link Description: Projects, Value: app.mubit.ai/console/
+					24 link Description: Provider keys, Value: app.mubit.ai/console/provider-keys?project=ws-31028979027c7c75
+					25 link Description: Members, Value: app.mubit.ai/console/members
+					26 link Description: Billing, Value: app.mubit.ai/console/billing
+			27 button Getting started
+			28 link Description: How Mubit works, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/integration
+			29 text Normal
+			30 pop up button (collapsed) Description: [account redacted], Admin: account menu, Secondary Actions: Expand
+		31 container
+			32 container Breadcrumb
+				33 link Description: normal-1792783517785903653, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
+				34 text Request
+			35 pop up button (collapsed) Description: Search pages, Secondary Actions: Expand
+				36 text Search…
+				37 text ⌘ K
+			38 button Switch to dark mode
+			39 pop up button (collapsed) Description: Notifications, 1, Secondary Actions: Expand
+		40 container
+			41 link Description: Requests, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/requests
+			42 heading Assess whether each supplied 2, Value: 1
+				43 text Assess whether each supplied 2
+			44 text 8 min ago · gemini-4-argon
+			45 heading Summary, Value: 2
+				46 text Summary
+			47 definition list
+				48 container Served by
+					49 text Served by
+				50 text Your provider
+				51 container Status
+					52 text Status
+				53 text 200 · answered
+				54 container Response
+					55 text Response
+				56 text 3.04 s in all
+			57 heading Request, Value: 2
+				58 text Request
+			59 text 0 messages · 0 tools · not streamed
+			60 text Last user message
+			61 text —
+			62 text System prompt
+			63 text none
+			64 heading Response, Value: 2
+				65 text Response
+			66 text No text in the reply.
+			67 definition list
+				68 container Finish reason
+					69 text Finish reason
+				70 text —
+				71 container Tool calls
+					72 text Tool calls
+				73 text 0
+			74 heading Usage, Value: 2
+				75 text Usage
+			76 definition list
+				77 container Tokens
+					78 text Tokens
+				79 text not reported
+			80 heading Rating, Value: 2
+				81 text Rating
+			82 text Not rated.
+			83 heading Rate this reply, Value: 3, ID: v-0-2
+				84 text Rate this reply
+			85 container Rate this reply
+				86 checkbox Good, Value: 0
+				87 checkbox Bad, Value: 0
+			88 button (collapsed) Details, Secondary Actions: Expand
+				89 text Details
+		90 container Engine 0.14.0 · checked Oct 25, 2026, 08:00:16 AM
+			91 text Service status: Operational
+		92 container
+			93 container Getting started guide
+				94 button (collapsed) Description: Expand getting started guide, Secondary Actions: Expand
+					95 text 2/3
+					96 text Get started
+			97 button (collapsed) Description: Get help, Secondary Actions: Expand
+
+The focused UI element is 1 AXWebArea Request — Middleware console, URL: app.mubit.ai/console/projects/ws-31028979027c7c75/requests/01a1720b-a7d2-73c2-9927-0d03bf682101

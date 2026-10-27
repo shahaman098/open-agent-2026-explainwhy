@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "complete": true,
+  "dryRun": false,
+  "report": [
+    {
+      "question": "Message",
+      "wanted": "Investigate this synthetic shop incident. [UA] The analytics dashboard reports a sudden fall in purchase events. [UB] Payment-provider settlement and warehouse order records show normal completed sales. [UC] The purchase-event collector began returning errors at the same time as the dashboard drop. Explain what the evidence does and does not establish.",
+      "got": "Investigate this synthetic shop incident. [UA] The analytics dashboard reports a sudden fall in purchase events. [UB] Payment-provider settlement and warehouse order records show normal completed sales. [UC] The purchase-event collector began returning errors at the same time as the dashboard drop. Explain what the evidence does and does not establish.",
+      "ok": true
+    }
+  ],
+  "manualTable": null,
+  "script_version": "2.0.0+74233b855b41",
+  "observed_at": "2026-10-25T07:09:54.287Z",
+  "url": null,
+  "categories": {},
+  "verified_fields": [
+    "Message"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "caseCount": 3,
+  "results": [
+    {
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792874349834_0_0",
+      "scenarioAfterInference": "healthy",
+      "seed": 11,
+      "detected": false,
+      "completion": "no_incident",
+      "expectedHealthy": true,
+      "latencyMs": 18994,
+      "modelCalls": 0,
+      "tokens": 0,
+      "isolatedFixtureRemovedAfterVerification": true
+    },
+    {
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792874349834_0_1",
+      "scenarioAfterInference": "healthy",
+      "seed": 808,
+      "detected": false,
+      "completion": "no_incident",
+      "expectedHealthy": true,
+      "latencyMs": 27073,
+      "modelCalls": 0,
+      "tokens": 0,
+      "isolatedFixtureRemovedAfterVerification": true
+    },
+    {
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792874349834_0_2",
+      "scenarioAfterInference": "healthy",
+      "seed": 4242,
+      "detected": false,
+      "completion": "no_incident",
+      "expectedHealthy": true,
+      "latencyMs": 22106,
+      "modelCalls": 0,
+      "tokens": 0,
+      "isolatedFixtureRemovedAfterVerification": true
+    }
+  ],
+  "calibration": "Qualitative support only; no calibrated probabilities",
+  "costs": "Unknown unless configured provider rates are supplied",
+  "hiddenScenarioBoundary": "Setup and post-inference scoring only"
+}

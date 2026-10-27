@@ -1,0 +1,83 @@
+{
+  "provider": "mubit",
+  "model": "gemini-4-argon",
+  "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+  "requestId": "mreq_01a16fb34e43712080b07821010c8e0a",
+  "providerRequestId": "eBvdavHGJ7KfkdUPiu-H8Qw",
+  "latencyMs": 4416,
+  "inputTokens": 228,
+  "outputTokens": 100,
+  "totalTokens": 328,
+  "estimatedCostUsd": null,
+  "groundingPresent": true,
+  "queries": [
+    "official Google Search status dashboard"
+  ],
+  "sources": [
+    {
+      "schemaVersion": 1,
+      "sourceId": "src_fca55d5c3ae8c8062b633790",
+      "claimId": "clm_fda5ea77a818c860b05e47d6",
+      "investigationId": "connectivity_source_check",
+      "businessId": "nike_eval",
+      "simulationRunId": "research_1792875388729",
+      "originalUrl": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtWhRe51vUXQnZtuaYVp2Zmtxe-h4wQI1RaLuWsQs8IbUEQ8J1d1hgWr7iOmhHPZ9vgi2rlhF5DYIg-DnsJKQvZALMQxJvH7REpcnHZmcsQs8neBXPw0o=",
+      "canonicalUrl": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtWhRe51vUXQnZtuaYVp2Zmtxe-h4wQI1RaLuWsQs8IbUEQ8J1d1hgWr7iOmhHPZ9vgi2rlhF5DYIg-DnsJKQvZALMQxJvH7REpcnHZmcsQs8neBXPw0o=",
+      "title": "Unverified source",
+      "publisher": null,
+      "author": null,
+      "publishedAt": null,
+      "updatedAt": null,
+      "retrievedAt": "2026-10-24T20:56:28.730Z",
+      "eventWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-24T20:56:28.728Z"
+      },
+      "proposedClaim": "**Official URL:** https://status.search.google.com/",
+      "excerpt": "",
+      "excerptMatched": false,
+      "contentHash": null,
+      "status": "unavailable",
+      "semanticAssessment": "not_assessed",
+      "temporalValidity": "unknown",
+      "limitations": [
+        "robots_restricted_or_unavailable"
+      ],
+      "duplicateOf": null,
+      "httpStatus": null
+    },
+    {
+      "schemaVersion": 1,
+      "sourceId": "src_419903cc7251b1b4911d48b7",
+      "claimId": "clm_06f2f800bd836987360e7311",
+      "investigationId": "connectivity_source_check",
+      "businessId": "nike_eval",
+      "simulationRunId": "research_1792875388729",
+      "originalUrl": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEl445NOzfHE4a5mKy3v-x22Ybzqev9185ND9IuqutwISG20hC0sKTipvSZgoIHeXSh5A5ZXldJuLK5MSe1EXb9mw5m0X3gCwNP5Uvllt50IpdGoink1KctJNYVuIhKduc26vhjGDI7-oMBwsUvxSB_62lC",
+      "canonicalUrl": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEl445NOzfHE4a5mKy3v-x22Ybzqev9185ND9IuqutwISG20hC0sKTipvSZgoIHeXSh5A5ZXldJuLK5MSe1EXb9mw5m0X3gCwNP5Uvllt50IpdGoink1KctJNYVuIhKduc26vhjGDI7-oMBwsUvxSB_62lC",
+      "title": "Unverified source",
+      "publisher": null,
+      "author": null,
+      "publishedAt": null,
+      "updatedAt": null,
+      "retrievedAt": "2026-10-24T20:56:28.852Z",
+      "eventWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-24T20:56:28.728Z"
+      },
+      "proposedClaim": "**Finding:** The dashboard provides real-time status updates and incident history for the core systems that power Google Search—specifically **Crawling, Indexing, Serving, and Ranking** (including major announced core and spam algorithm updates)",
+      "excerpt": "",
+      "excerptMatched": false,
+      "contentHash": null,
+      "status": "unavailable",
+      "semanticAssessment": "not_assessed",
+      "temporalValidity": "unknown",
+      "limitations": [
+        "robots_restricted_or_unavailable"
+      ],
+      "duplicateOf": null,
+      "httpStatus": null
+    }
+  ],
+  "limitation": "Search discovery, independent retrieval, timing and claim support are separate checks. No source is promoted on grounding alone."
+}

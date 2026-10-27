@@ -1,0 +1,1839 @@
+{
+  "businessId": "nike_demo",
+  "simulationRunId": "stage7_1792893488465",
+  "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+  "planId": "stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2",
+  "planVersion": 1,
+  "sourceRun": "stage5_1792885194280",
+  "sourcePlanId": "plan_plj_c70db54aa7f98907532859f2",
+  "sourcePlanHash": "b210b5a7fc826c8c39d43c5a5239395cb28b07299831726933f88297a94f3864",
+  "label": "Isolated acceptance copy of saved genuine Stage 5/6 report and strategy; no model call",
+  "counts": {
+    "simulator_state": 1,
+    "simulated_products": 17,
+    "simulated_campaigns": 5,
+    "simulated_storefront": 1,
+    "simulated_orders": 115,
+    "simulated_shipments": 115,
+    "simulated_customers": 359,
+    "simulated_sessions": 5051,
+    "business_events": 6105,
+    "metric_snapshots": 136,
+    "evidence": 6,
+    "evidence_details": 6,
+    "investigation_jobs": 1,
+    "investigation_reports": 1,
+    "diagnoses": 1,
+    "investigations": 1,
+    "anomalies": 7,
+    "planning_jobs": 1,
+    "plans": 1
+  },
+  "handoff": {
+    "plan": {
+      "schemaVersion": 1,
+      "businessId": "nike_demo",
+      "planId": "stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2",
+      "planVersion": 1,
+      "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+      "diagnosisId": "stage7_1792893488465_diag_aij_8975b41f9c5b32fd37f01dcd",
+      "status": "awaiting_approval",
+      "objective": "Reduce the weakest recent campaign budget",
+      "summary": "Lower the daily budget for cmp_basketball_search by 25%, from 9000 to 6750 GBP minor units, subject to human approval. In the observed 30-hour window it spent 12231 GBP minor units, had no attributed orders, and its ROAS was 0 versus a baseline of 8.73. This is a cautious, reversible response to the clearest campaign-level concern; aggregate evidence does not establish why performance changed.\nExpected benefit: Limits exposure to the campaign with the weakest observed recent return while retaining the campaign and its delivery.\nDownside / risk: Could reduce useful reach if the zero attributed orders are a short-term fluctuation or attribution issue; a budget change does not diagnose fatigue or campaign settings.\nFeasibility: The registered ads.set_daily_budget capability supports this existing affected campaign and the proposed 25% change. Human approval is required.\nReversibility: The budget can be restored or adjusted later, subject to approval; assess results before further changes.\nUncertainty: One 30-hour window is limited evidence. The data cannot distinguish ad fatigue, campaign-specific inefficiency, delivery changes, or attribution effects.\nComparison: This is the most contained available intervention: it focuses on the campaign with zero recent attributed orders and the strongest recent ROAS deterioration, while avoiding a broad change across campaigns. It cannot resolve the cause and should be reviewed against comparable follow-up data.",
+      "actions": [
+        {
+          "actionId": "stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2_1_0",
+          "agent": "marketing",
+          "title": "Reduce basketball search daily budget",
+          "rationale": "The campaign had 0 attributed orders and 0 ROAS during the measured window despite 12231 GBP minor units of spend; a bounded reduction limits further exposure without assuming a definitive cause.\nExecution preconditions: Exact plan/version approval required; no execution is authorized by planning. Re-read campaign cmp_basketball_search: budget 9000 GBP minor units; status active; updated 2026-10-05T12:00:00.000Z. Abort on mismatch. Require human approval before applying the budget change. Review campaign-level spend, attributed orders, and ROAS over a comparable follow-up window before making additional changes.\nRollback / contingency: With human approval, restore the campaign's prior daily budget of 9000 GBP minor units if subsequent comparable data indicates the reduction is not appropriate.\nPartial failure: If the budget update is rejected or fails, treat the campaign budget as unchanged; verify its current value before considering any further action.",
+          "evidenceIds": [
+            "stage7_1792893488465_evd_f7788889a1db104f"
+          ],
+          "dependsOnActionIds": [],
+          "requiresApproval": true,
+          "risk": "medium",
+          "actionType": "ads.set_daily_budget",
+          "params": {
+            "campaignId": "cmp_basketball_search",
+            "newDailyBudgetMinor": 6750,
+            "currency": "GBP"
+          }
+        }
+      ],
+      "successCriteria": [
+        {
+          "metric": "ad_spend_minor",
+          "direction": "decrease",
+          "measurementWindowMinutes": 1800
+        },
+        {
+          "metric": "orders",
+          "direction": "maintain",
+          "measurementWindowMinutes": 1800
+        },
+        {
+          "metric": "ctr",
+          "direction": "increase",
+          "measurementWindowMinutes": 1800
+        }
+      ],
+      "createdAt": "2026-10-25T01:16:05.143Z",
+      "expiresAt": "2026-10-26T01:16:05.143Z"
+    },
+    "diagnosis": {
+      "primaryCause": "ad_inefficiency",
+      "hypotheses": [
+        {
+          "cause": "ad_inefficiency",
+          "strength": "moderate",
+          "evidenceIds": [
+            "stage7_1792893488465_evd_f7788889a1db104f"
+          ],
+          "counterEvidenceIds": [
+            "stage7_1792893488465_evd_a495ad4154d1fba8"
+          ],
+          "explanation": "Reduced click and attributed-order outcomes alongside higher hourly spend support deteriorating advertising efficiency. The evidence does not identify whether campaign settings, delivery, audience response, or attribution changes drove the pattern."
+        },
+        {
+          "cause": "ad_fatigue",
+          "strength": "moderate",
+          "evidenceIds": [
+            "stage7_1792893488465_evd_f7788889a1db104f"
+          ],
+          "counterEvidenceIds": [],
+          "explanation": "Higher observed frequency alongside lower CTR is consistent with ad fatigue, but the same aggregate observations cannot distinguish fatigue from changes in creative, targeting, placement, delivery, or measurement."
+        },
+        {
+          "cause": "delivery_delays",
+          "strength": "weak",
+          "evidenceIds": [
+            "stage7_1792893488465_evd_9a7016a036513c4d"
+          ],
+          "counterEvidenceIds": [
+            "stage7_1792893488465_evd_a495ad4154d1fba8",
+            "stage7_1792893488465_evd_d8f3521276a79759"
+          ],
+          "explanation": "Late deliveries and a past-promise backlog were observed, so delivery experiences could be a contributing factor. No customer, product, or campaign linkage establishes that they explain the advertising deterioration; storefront conversion did not decline, and feedback evidence is sparse."
+        }
+      ],
+      "summary": "Advertising inefficiency is the best-supported explanation for the deterioration, while ad fatigue remains a plausible competing mechanism. The available aggregate evidence does not distinguish them or establish a definitive cause. Delivery delays are a possible but weakly supported contributor. Checkout failure and stockout are not supported by the supplied records; lower sessions, orders, and revenue do not by themselves identify their cause.",
+      "missingEvidence": [
+        "Compare creative- and audience-level CTR and frequency trends with matched groups that had different exposure histories; a lack of association between exposure and response would weaken ad fatigue.",
+        "Review campaign setting, delivery, and attribution change histories against the onset of the decline, and compare affected campaigns with matched controls; no preceding change or equivalent deterioration in controls would weaken campaign-specific inefficiency.",
+        "Link delayed fulfillment to affected products, regions, or audiences and establish whether delays preceded performance changes; no overlap or a decline predating the relevant delays would weaken delivery delays as a contributor."
+      ],
+      "requiresReview": true,
+      "schemaVersion": 1,
+      "businessId": "nike_demo",
+      "diagnosisId": "stage7_1792893488465_diag_aij_8975b41f9c5b32fd37f01dcd",
+      "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+      "modelCallId": "stage7_1792893488465_aij_8975b41f9c5b32fd37f01dcd_diagnosis_0",
+      "taskKey": "revenue_diagnosis_v1",
+      "createdAt": "2026-10-24T23:42:10.310Z"
+    },
+    "evidence": [
+      {
+        "schemaVersion": 1,
+        "businessId": "nike_demo",
+        "evidenceId": "stage7_1792893488465_evd_f7788889a1db104f",
+        "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+        "category": "advertising",
+        "title": "Campaign performance versus baseline and peers",
+        "observation": "5 campaign(s) analysed over 30 h ending 2026-10-05T12:00:00.000Z: CTR 0.33%, spend £625.83, 10 attributed orders, CPA £62.58, ROAS 1.64. Versus baseline: CTR -82.5%, hourly spend +27.2%, hourly attributed orders -56.5%. Observations are simulated ad-platform records; frequency and CTR describe exposure and response, not intent.",
+        "window": {
+          "startAt": "2026-10-04T06:00:00.000Z",
+          "endAt": "2026-10-05T12:00:00.000Z"
+        },
+        "measurements": [
+          {
+            "metric": "ctr",
+            "value": 0.0033,
+            "unit": "ratio",
+            "baseline": 0.0187
+          },
+          {
+            "metric": "affected_ctr",
+            "value": 0.0033,
+            "unit": "ratio",
+            "baseline": 0.0187
+          },
+          {
+            "metric": "impressions",
+            "value": 74935,
+            "unit": "count",
+            "baseline": 58835
+          },
+          {
+            "metric": "clicks",
+            "value": 245,
+            "unit": "count",
+            "baseline": 1098
+          },
+          {
+            "metric": "ad_spend_minor_per_hour",
+            "value": 2086.1,
+            "unit": "GBP minor units/hour",
+            "baseline": 1639.5667
+          },
+          {
+            "metric": "attributed_orders_per_hour",
+            "value": 0.3333,
+            "unit": "count/hour",
+            "baseline": 0.7667
+          },
+          {
+            "metric": "cost_per_acquisition_minor",
+            "value": 6258.3,
+            "unit": "GBP minor units",
+            "baseline": 2138.5652
+          },
+          {
+            "metric": "roas",
+            "value": 1.6424,
+            "unit": "ratio",
+            "baseline": 5.7932
+          },
+          {
+            "metric": "average_frequency",
+            "value": 6.15,
+            "unit": "impressions/user",
+            "baseline": 2.962
+          },
+          {
+            "metric": "attributed_sessions_per_hour",
+            "value": 7.2,
+            "unit": "count/hour",
+            "baseline": 31.1
+          }
+        ],
+        "sourceRecords": [
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t000026"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t000026"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t000026"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t000026"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t000026"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t000027"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t000027"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t000027"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t000027"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t000027"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t000028"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t000028"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t000028"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t000028"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t000028"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t000029"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t000029"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t000029"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t000029"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t000029"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t00002a"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t00002a"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t00002a"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t00002a"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t00002a"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t00002b"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t00002b"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t00002b"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t00002b"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t00002b"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t00002c"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t00002c"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t00002c"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t00002c"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t00002c"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t00002d"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t00002d"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t00002d"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t00002d"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t00002d"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t00002e"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t00002e"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t00002e"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t00002e"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t00002e"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_apparel_search:t00002f"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_basketball_search:t00002f"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_football_mercurial:t00002f"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_lifestyle_af1:t00002f"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:ad:cmp_running_pegasus:t00002f"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003aj"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ah"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ak"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ai"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003at"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ar"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003as"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003aq"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ap"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003au"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003bf"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003bc"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003bh"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003be"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003bg"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003bd"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003bb"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ba"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ca"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003c9"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003c2"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003c3"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003cd"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003c6"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003c4"
+          }
+        ],
+        "retrievedAt": "2026-10-24T23:41:21.749Z"
+      },
+      {
+        "schemaVersion": 1,
+        "businessId": "nike_demo",
+        "evidenceId": "stage7_1792893488465_evd_b84e8e049f7ebc7c",
+        "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+        "category": "sales",
+        "title": "Revenue, orders and conversion versus baseline",
+        "observation": "Over 30 h ending 2026-10-05T12:00:00.000Z: 20 orders, net revenue £1944.54, 787 sessions, conversion 2.54%. Baseline (30 h): hourly revenue -46.9% change, hourly orders -37.5%, hourly sessions -46.9%. Decomposition: sessions share 0.998, conversion share -0.257, AOV share 0.259 of the revenue change. Values are simulated business records; this describes what changed, not why.",
+        "window": {
+          "startAt": "2026-10-04T06:00:00.000Z",
+          "endAt": "2026-10-05T12:00:00.000Z"
+        },
+        "measurements": [
+          {
+            "metric": "net_revenue_minor",
+            "value": 194454,
+            "unit": "GBP minor units",
+            "baseline": 366546
+          },
+          {
+            "metric": "net_revenue_minor_per_hour",
+            "value": 6481.8,
+            "unit": "GBP minor units/hour",
+            "baseline": 12218.2
+          },
+          {
+            "metric": "orders",
+            "value": 20,
+            "unit": "count",
+            "baseline": 32
+          },
+          {
+            "metric": "orders_per_hour",
+            "value": 0.6667,
+            "unit": "count/hour",
+            "baseline": 1.0667
+          },
+          {
+            "metric": "sessions",
+            "value": 787,
+            "unit": "count",
+            "baseline": 1482
+          },
+          {
+            "metric": "sessions_per_hour",
+            "value": 26.2333,
+            "unit": "count/hour",
+            "baseline": 49.4
+          },
+          {
+            "metric": "conversion_rate",
+            "value": 0.0254,
+            "unit": "ratio",
+            "baseline": 0.0216
+          },
+          {
+            "metric": "average_order_value_minor",
+            "value": 9722.7,
+            "unit": "GBP minor units",
+            "baseline": 11454.5625
+          },
+          {
+            "metric": "refund_minor",
+            "value": 0,
+            "unit": "GBP minor units",
+            "baseline": 0
+          }
+        ],
+        "sourceRecords": [
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T060000000Z_20261004T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T070000000Z_20261004T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T080000000Z_20261004T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T090000000Z_20261004T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T100000000Z_20261004T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T110000000Z_20261004T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T120000000Z_20261004T130000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T130000000Z_20261004T140000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T140000000Z_20261004T150000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T150000000Z_20261004T160000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T160000000Z_20261004T170000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T170000000Z_20261004T180000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T180000000Z_20261004T190000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T190000000Z_20261004T200000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T200000000Z_20261004T210000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T210000000Z_20261004T220000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T220000000Z_20261004T230000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T230000000Z_20261005T000000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T000000000Z_20261005T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T010000000Z_20261005T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T020000000Z_20261005T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T030000000Z_20261005T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T040000000Z_20261005T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T050000000Z_20261005T060000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T060000000Z_20261005T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T070000000Z_20261005T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T080000000Z_20261005T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T090000000Z_20261005T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T100000000Z_20261005T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T110000000Z_20261005T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T000000000Z_20261003T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T010000000Z_20261003T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T020000000Z_20261003T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T030000000Z_20261003T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T040000000Z_20261003T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T050000000Z_20261003T060000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T060000000Z_20261003T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T070000000Z_20261003T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T080000000Z_20261003T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T090000000Z_20261003T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T100000000Z_20261003T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T110000000Z_20261003T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T120000000Z_20261003T130000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T130000000Z_20261003T140000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T140000000Z_20261003T150000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T150000000Z_20261003T160000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T160000000Z_20261003T170000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T170000000Z_20261003T180000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T180000000Z_20261003T190000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T190000000Z_20261003T200000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T200000000Z_20261003T210000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T210000000Z_20261003T220000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T220000000Z_20261003T230000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T230000000Z_20261004T000000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T000000000Z_20261004T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T010000000Z_20261004T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T020000000Z_20261004T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T030000000Z_20261004T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T040000000Z_20261004T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T050000000Z_20261004T060000000Z_global"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002o"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002p"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002q"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002r"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002s"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002t"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002u"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002v"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002w"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002x"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002z"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_00002y"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000030"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000031"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000032"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000033"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000035"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000034"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000037"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:order:ord_stage7_1792893488465_000036"
+          }
+        ],
+        "retrievedAt": "2026-10-24T23:41:22.292Z"
+      },
+      {
+        "schemaVersion": 1,
+        "businessId": "nike_demo",
+        "evidenceId": "stage7_1792893488465_evd_a495ad4154d1fba8",
+        "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+        "category": "technical",
+        "title": "Sessions, conversion and checkout failures",
+        "observation": "787 sessions and 20 orders over 30 h ending 2026-10-05T12:00:00.000Z (conversion 2.54%); 0 checkout failures (0.00% of sessions). Baseline: conversion 2.16% (+17.7% change), failures per hour n/a change, sessions per hour -46.9% change. Simulated storefront records; device and channel slices join orders to their canonical session.",
+        "window": {
+          "startAt": "2026-10-04T06:00:00.000Z",
+          "endAt": "2026-10-05T12:00:00.000Z"
+        },
+        "measurements": [
+          {
+            "metric": "sessions_per_hour",
+            "value": 26.2333,
+            "unit": "count/hour",
+            "baseline": 49.4
+          },
+          {
+            "metric": "orders_per_hour",
+            "value": 0.6667,
+            "unit": "count/hour",
+            "baseline": 1.0667
+          },
+          {
+            "metric": "conversion_rate",
+            "value": 0.0254,
+            "unit": "ratio",
+            "baseline": 0.0216
+          },
+          {
+            "metric": "checkout_failures",
+            "value": 0,
+            "unit": "count",
+            "baseline": 0
+          },
+          {
+            "metric": "checkout_failures_per_hour",
+            "value": 0,
+            "unit": "count/hour",
+            "baseline": 0
+          },
+          {
+            "metric": "checkout_failure_rate",
+            "value": 0,
+            "unit": "ratio",
+            "baseline": 0
+          }
+        ],
+        "sourceRecords": [
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T060000000Z_20261004T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T070000000Z_20261004T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T080000000Z_20261004T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T090000000Z_20261004T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T100000000Z_20261004T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T110000000Z_20261004T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T120000000Z_20261004T130000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T130000000Z_20261004T140000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T140000000Z_20261004T150000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T150000000Z_20261004T160000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T160000000Z_20261004T170000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T170000000Z_20261004T180000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T180000000Z_20261004T190000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T190000000Z_20261004T200000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T200000000Z_20261004T210000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T210000000Z_20261004T220000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T220000000Z_20261004T230000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T230000000Z_20261005T000000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T000000000Z_20261005T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T010000000Z_20261005T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T020000000Z_20261005T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T030000000Z_20261005T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T040000000Z_20261005T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T050000000Z_20261005T060000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T060000000Z_20261005T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T070000000Z_20261005T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T080000000Z_20261005T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T090000000Z_20261005T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T100000000Z_20261005T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T110000000Z_20261005T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T000000000Z_20261003T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T010000000Z_20261003T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T020000000Z_20261003T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T030000000Z_20261003T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T040000000Z_20261003T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T050000000Z_20261003T060000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T060000000Z_20261003T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T070000000Z_20261003T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T080000000Z_20261003T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T090000000Z_20261003T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T100000000Z_20261003T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T110000000Z_20261003T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T120000000Z_20261003T130000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T130000000Z_20261003T140000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T140000000Z_20261003T150000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T150000000Z_20261003T160000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T160000000Z_20261003T170000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T170000000Z_20261003T180000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T180000000Z_20261003T190000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T190000000Z_20261003T200000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T200000000Z_20261003T210000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T210000000Z_20261003T220000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T220000000Z_20261003T230000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T230000000Z_20261004T000000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T000000000Z_20261004T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T010000000Z_20261004T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T020000000Z_20261004T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T030000000Z_20261004T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T040000000Z_20261004T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T050000000Z_20261004T060000000Z_global"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003aj"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003am"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003al"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ah"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ak"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003an"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ao"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ai"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003at"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b7"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b8"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b5"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b4"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ar"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b6"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003az"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b3"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003as"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b0"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003aq"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ap"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b2"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003av"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003b1"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:session:sess_stage7_1792893488465_0003ay"
+          }
+        ],
+        "retrievedAt": "2026-10-24T23:41:23.008Z"
+      },
+      {
+        "schemaVersion": 1,
+        "businessId": "nike_demo",
+        "evidenceId": "stage7_1792893488465_evd_06b28132c53717ce",
+        "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+        "category": "inventory",
+        "title": "Inventory levels, depletion and demand velocity",
+        "observation": "17 product(s) observed to 2026-10-05T12:00:00.000Z: 0 at zero available units, 0 projected to run out within 72 h at current velocity, 10 units depleted in the 30 h window, 0 out-of-stock checkout failures. No product is currently out of stock. Simulated inventory records derived from canonical inventory.level_changed events.",
+        "window": {
+          "startAt": "2026-10-04T06:00:00.000Z",
+          "endAt": "2026-10-05T12:00:00.000Z"
+        },
+        "measurements": [
+          {
+            "metric": "products_observed",
+            "value": 17,
+            "unit": "count"
+          },
+          {
+            "metric": "products_out_of_stock",
+            "value": 0,
+            "unit": "count"
+          },
+          {
+            "metric": "products_at_risk_72h",
+            "value": 0,
+            "unit": "count"
+          },
+          {
+            "metric": "units_depleted_in_window",
+            "value": 10,
+            "unit": "units"
+          },
+          {
+            "metric": "out_of_stock_checkout_failures",
+            "value": 0,
+            "unit": "count"
+          },
+          {
+            "metric": "inventory_level_events_in_window",
+            "value": 19,
+            "unit": "count"
+          }
+        ],
+        "sourceRecords": [
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_phantom_6_low_elite:t00001l"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_mercurial_vapor_17_elite:t000012"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_kobe_ad_protro:t00001t"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_pegasus_plus_2:t00002h"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_dunk_low_retro:t00002y"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_giannis_freak_8:t00002j"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_ja_4_nightmare:t00002e"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_p_6000:t00002u"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_vomero_18:t00002d"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_mercurial_superfly_11_academy:t00001q"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_air_max_90:t00001t"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_pegasus_42:t00001t"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_quest_7:t000009"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_tech_essentials_hoodie:t00002o"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_hyverse_top:t000029"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_air_force_1_07:t00001u"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_sportswear_tshirt:t00002y"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_sportswear_tshirt:t000025"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_vomero_18:t000025"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_ja_4_nightmare:t000028"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_ja_4_nightmare:t00002a"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_vomero_18:t00002b"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_ja_4_nightmare:t00002c"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_sportswear_tshirt:t00002g"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_tech_essentials_hoodie:t00002j"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_dunk_low_retro:t00002s"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:inv:nk_sportswear_tshirt:t00002w"
+          }
+        ],
+        "retrievedAt": "2026-10-24T23:41:35.462Z"
+      },
+      {
+        "schemaVersion": 1,
+        "businessId": "nike_demo",
+        "evidenceId": "stage7_1792893488465_evd_d8f3521276a79759",
+        "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+        "category": "reviews",
+        "title": "Review volume, low ratings and delivery complaints",
+        "observation": "1 reviews over 30 h ending 2026-10-05T12:00:00.000Z: 0 rated ≤2 (0.0%), average rating 4.00, 1 mention delivery terms. Most low-rated products: Nike Vomero 18 (0/1). Simulated review records; delivery mentions are a keyword heuristic.",
+        "window": {
+          "startAt": "2026-10-04T06:00:00.000Z",
+          "endAt": "2026-10-05T12:00:00.000Z"
+        },
+        "measurements": [
+          {
+            "metric": "reviews",
+            "value": 1,
+            "unit": "count"
+          },
+          {
+            "metric": "reviews_per_hour",
+            "value": 0.0333,
+            "unit": "count/hour"
+          },
+          {
+            "metric": "low_rating_reviews",
+            "value": 0,
+            "unit": "count"
+          },
+          {
+            "metric": "low_rating_rate",
+            "value": 0,
+            "unit": "ratio"
+          },
+          {
+            "metric": "average_rating",
+            "value": 4,
+            "unit": "stars"
+          },
+          {
+            "metric": "delivery_mention_reviews",
+            "value": 1,
+            "unit": "count"
+          }
+        ],
+        "sourceRecords": [
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:review:rev_stage7_1792893488465_000001"
+          }
+        ],
+        "retrievedAt": "2026-10-24T23:41:35.614Z"
+      },
+      {
+        "schemaVersion": 1,
+        "businessId": "nike_demo",
+        "evidenceId": "stage7_1792893488465_evd_9a7016a036513c4d",
+        "investigationId": "inv_stage7_1792893488465_d07498fe5b17",
+        "category": "fulfillment",
+        "title": "Delivery promise cohort and delayed orders",
+        "observation": "Cohort of 44 promises due in the 30 h ending 2026-10-05T12:00:00.000Z: 5 not delivered by promise (late rate 11.4%). Baseline late rate 0.0% on 13 promises (n/a change). 3 order(s) received a delayed status (average recorded delay 1919 min), 0 lost; 5 shipped order(s) are past promise with no delivered or lost event at the cutoff. Simulated fulfilment records; cohort membership is by promise due date, so immature promises never read as healthy.",
+        "window": {
+          "startAt": "2026-10-04T06:00:00.000Z",
+          "endAt": "2026-10-05T12:00:00.000Z"
+        },
+        "measurements": [
+          {
+            "metric": "promises_due",
+            "value": 44,
+            "unit": "count",
+            "baseline": 13
+          },
+          {
+            "metric": "late_deliveries",
+            "value": 5,
+            "unit": "count",
+            "baseline": 0
+          },
+          {
+            "metric": "late_delivery_rate",
+            "value": 0.1136,
+            "unit": "ratio",
+            "baseline": 0
+          },
+          {
+            "metric": "orders_marked_delayed",
+            "value": 3,
+            "unit": "count",
+            "baseline": 0
+          },
+          {
+            "metric": "orders_lost",
+            "value": 0,
+            "unit": "count",
+            "baseline": 0
+          },
+          {
+            "metric": "average_recorded_delay_minutes",
+            "value": 1919,
+            "unit": "minutes"
+          },
+          {
+            "metric": "open_backlog_past_promise",
+            "value": 5,
+            "unit": "count"
+          }
+        ],
+        "sourceRecords": [
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T060000000Z_20261004T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T070000000Z_20261004T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T080000000Z_20261004T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T090000000Z_20261004T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T100000000Z_20261004T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T110000000Z_20261004T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T120000000Z_20261004T130000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T130000000Z_20261004T140000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T140000000Z_20261004T150000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T150000000Z_20261004T160000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T160000000Z_20261004T170000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T170000000Z_20261004T180000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T180000000Z_20261004T190000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T190000000Z_20261004T200000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T200000000Z_20261004T210000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T210000000Z_20261004T220000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T220000000Z_20261004T230000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T230000000Z_20261005T000000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T000000000Z_20261005T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T010000000Z_20261005T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T020000000Z_20261005T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T030000000Z_20261005T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T040000000Z_20261005T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T050000000Z_20261005T060000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T060000000Z_20261005T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T070000000Z_20261005T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T080000000Z_20261005T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T090000000Z_20261005T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T100000000Z_20261005T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261005T110000000Z_20261005T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T000000000Z_20261003T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T010000000Z_20261003T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T020000000Z_20261003T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T030000000Z_20261003T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T040000000Z_20261003T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T050000000Z_20261003T060000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T060000000Z_20261003T070000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T070000000Z_20261003T080000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T080000000Z_20261003T090000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T090000000Z_20261003T100000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T100000000Z_20261003T110000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T110000000Z_20261003T120000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T120000000Z_20261003T130000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T130000000Z_20261003T140000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T140000000Z_20261003T150000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T150000000Z_20261003T160000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T160000000Z_20261003T170000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T170000000Z_20261003T180000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T180000000Z_20261003T190000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T190000000Z_20261003T200000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T200000000Z_20261003T210000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T210000000Z_20261003T220000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T220000000Z_20261003T230000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261003T230000000Z_20261004T000000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T000000000Z_20261004T010000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T010000000Z_20261004T020000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T020000000Z_20261004T030000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T030000000Z_20261004T040000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T040000000Z_20261004T050000000Z_global"
+          },
+          {
+            "collection": "metric_snapshots",
+            "recordId": "snap_nike_demo_stage7_1792893488465_20261004T050000000Z_20261004T060000000Z_global"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_00000n:delayed"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_00000r:delayed"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_00001p:delayed"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_00000n:shipped"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_00000r:shipped"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_000013:shipped"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_00001p:shipped"
+          },
+          {
+            "collection": "business_events",
+            "recordId": "ev_stage7_1792893488465:delivery:ord_stage7_1792893488465_00001c:shipped"
+          }
+        ],
+        "retrievedAt": "2026-10-24T23:41:35.782Z"
+      }
+    ]
+  }
+}

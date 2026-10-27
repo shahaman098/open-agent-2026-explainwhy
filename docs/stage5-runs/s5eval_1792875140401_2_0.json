@@ -1,0 +1,499 @@
+{
+  "metrics": {
+    "businessId": "nike_eval",
+    "simulationRunId": "s5eval_1792875140401_2_0",
+    "investigationId": "inv_s5eval_1792875140401_2_0_059cd78c6cd7",
+    "scenarioAfterInference": "delivery_delays",
+    "seed": 11,
+    "detected": true,
+    "completion": "failed",
+    "primaryCause": null,
+    "mechanismInHypotheses": false,
+    "leadingMechanismMatch": false,
+    "hypothesisRevisions": 2,
+    "evidence": 2,
+    "citations": 0,
+    "invalidCitations": 0,
+    "latencyMs": 150086,
+    "modelCalls": 4,
+    "tokens": 15835,
+    "estimatedCostUsd": null,
+    "externalResearchRounds": 0,
+    "externalCausalValidity": "not_established_by_synthetic_evaluation",
+    "requestIds": [
+      "mreq_01a16fb35eb97a61a0509d600ee4edfe",
+      "mreq_01a16fb3e78679c0b036ec201dd5ea2a",
+      "mreq_01a16fb42e1d7f40be07c99e6ae986c0",
+      "mreq_01a16fb44d1f7e10b3322c39d201b60a"
+    ]
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_1ce935a03e03bc17ebbca7e0",
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792875140401_2_0",
+      "investigationId": "inv_s5eval_1792875140401_2_0_059cd78c6cd7",
+      "status": "failed",
+      "stage": "failed",
+      "createdAt": "2026-10-24T20:56:17.587Z",
+      "updatedAt": "2026-10-24T20:57:37.651Z",
+      "startedAt": "2026-10-24T20:56:27.538Z",
+      "completedAt": "2026-10-24T20:57:37.651Z",
+      "round": 1,
+      "toolCount": 3,
+      "researchCount": 0,
+      "sourceCount": 0,
+      "callCount": 4,
+      "reservedTokens": 94089,
+      "actualTokens": 15835,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 0,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-11T00:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-07T14:00:00.000Z",
+        "endAt": "2026-10-11T00:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-04T04:00:00.000Z",
+        "endAt": "2026-10-07T14:00:00.000Z"
+      },
+      "evidenceIds": [
+        "evd_7a562f6594597067",
+        "evd_5f828687e1d57fb3"
+      ],
+      "sourceIds": [],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T20:56:42.552Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "The reported anomaly is consistent with more shipments missing their promised delivery date, but the supplied observation alone does not establish why the rate changed.",
+              "mechanism": "A fulfillment or carrier disruption could cause due-date shipments to remain undelivered past their promise.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Shipping records show an increase in late due-date cohorts during the incident window.",
+                "Delivery transitions show delayed or still-open shipments, potentially concentrated by carrier, route, or shipment cohort."
+              ],
+              "missingEvidence": [
+                "Cohort-aware shipping details, delivery status transitions, delay duration, and open backlog.",
+                "A comparison with the baseline and unaffected shipment cohorts."
+              ],
+              "falsificationTests": [
+                "Check whether cohort-aware shipping records reproduce the reported increase; if they do not, this mechanism is falsified.",
+                "Compare delivery transitions and the open past-promise backlog with baseline; no increase would weigh against a fulfillment-delay explanation."
+              ],
+              "chronology": "The anomaly is reported for the stated daily window; no shipment-level chronology is supplied.",
+              "confounders": [
+                "A change in which shipments were due during the window could affect the comparison.",
+                "The aggregate observation does not identify a carrier, route, or operational change."
+              ],
+              "controlComparison": "Compare due-date cohorts in the incident window with baseline cohorts and, where available, unaffected shipment groups.",
+              "hypothesisId": "hyp_4256d0e48822191c"
+            },
+            {
+              "cause": "negative_sentiment",
+              "explanation": "Customer dissatisfaction could accompany or amplify a delivery-performance problem, but no review evidence is supplied and sentiment would not by itself explain the measured delivery-rate change.",
+              "mechanism": "Late deliveries could prompt more delivery-related low ratings or complaints, providing a separate downstream signal of customer impact.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Review records show delivery-related complaints or a rise in low-star reviews after the affected deliveries."
+              ],
+              "missingEvidence": [
+                "Review volume, ratings, complaint themes, and their timing relative to deliveries."
+              ],
+              "falsificationTests": [
+                "Compare review timing and delivery-related complaint patterns with baseline; no corresponding change would weaken this downstream-impact hypothesis."
+              ],
+              "chronology": "No review or delivery-level chronology is supplied, so temporal ordering cannot yet be assessed.",
+              "confounders": [
+                "Review volume and themes may change for reasons unrelated to delivery performance."
+              ],
+              "controlComparison": "Compare reviews during the incident period with baseline and, if available, products or cohorts not experiencing delivery issues.",
+              "hypothesisId": "hyp_0b32f004ba8d0964"
+            }
+          ],
+          "decisionSummary": "The supplied evidence contains only an aggregate late-delivery-rate anomaly. Its cause and operational scope remain undetermined; inspect cohort-aware shipping records and independent customer feedback before drawing a causal conclusion."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T20:57:18.598Z",
+          "hypotheses": [
+            {
+              "cause": "delivery_delays",
+              "explanation": "Shipping evidence confirms a deterioration in delivery performance: more due-date promises were not met, with delayed and lost orders and a substantial past-promise backlog. This supports the observed operational problem, but does not identify its underlying cause.",
+              "mechanism": "A fulfillment or carrier disruption could leave shipments undelivered beyond their promised dates. The supplied evidence does not identify a carrier, route, or operational change.",
+              "support": "strongly_supported",
+              "evidenceIds": [
+                "evd_7a562f6594597067"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Due-date cohorts show elevated late delivery compared with their corresponding baseline.",
+                "Delivery events show delayed, lost, or still-open shipments past promise."
+              ],
+              "missingEvidence": [
+                "Carrier-, route-, or fulfillment-stage breakdowns that could distinguish operational mechanisms.",
+                "A like-for-like reconciliation between the incident anomaly and the shipping tool's cohort and baseline measurements."
+              ],
+              "falsificationTests": [
+                "Recompute the anomaly using the same due-date cohort, cutoff, and baseline definitions; if the deterioration is not reproducible, the asserted change is falsified.",
+                "Inspect shipment transitions and past-promise status at the cutoff; if they do not show excess late or unresolved shipments, the fulfillment-delay interpretation is weakened."
+              ],
+              "chronology": "The shipping cohort covers promises due during the incident window and records orders that were delayed, lost, or still unresolved at the cutoff. This establishes an observed delivery problem, but not what initiated it.",
+              "confounders": [
+                "Cohort membership and promise-date composition may differ between comparison windows.",
+                "The anomaly's daily window and reported baseline do not match the shipping tool's wider cohort window and baseline, so their rates are not directly interchangeable.",
+                "Open shipments at cutoff may reflect incomplete outcome observation, although the cohort method explicitly does not treat immature promises as healthy."
+              ],
+              "controlComparison": "The shipping evidence compares due-date cohorts with a baseline, but no unaffected carrier, route, or fulfillment group is supplied as a control.",
+              "hypothesisId": "hyp_4256d0e48822191c"
+            },
+            {
+              "cause": "negative_sentiment",
+              "explanation": "Customer feedback shows delivery-related mentions, but does not establish a broad negative-sentiment increase: low ratings were absent in both periods, review volume fell, and average rating declined. Delivery complaints may be a downstream customer-impact signal, not a cause of late delivery.",
+              "mechanism": "Customers experiencing late deliveries may mention delivery in reviews; a rise in such mentions could reflect dissatisfaction associated with the operational problem.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_5f828687e1d57fb3"
+              ],
+              "counterEvidenceIds": [
+                "evd_5f828687e1d57fb3"
+              ],
+              "expectedObservations": [
+                "Reviews linked in time to affected deliveries contain delivery complaints or show a change in rating patterns.",
+                "The timing of complaints follows or coincides with delayed deliveries."
+              ],
+              "missingEvidence": [
+                "Review-level linkage to affected orders or delivery cohorts.",
+                "Qualitative validation of delivery-mention classifications, which are based on a keyword heuristic."
+              ],
+              "falsificationTests": [
+                "Review the underlying review text and timing against delivery cohorts; if delivery mentions do not concern affected deliveries or do not increase relative to a comparable control, the downstream-impact mechanism is falsified."
+              ],
+              "chronology": "Feedback and shipping observations cover the same broad incident period, but no review-to-order linkage establishes whether complaints followed particular delivery failures.",
+              "confounders": [
+                "Review volume and rating changes can occur for reasons unrelated to delivery.",
+                "Keyword-based mentions may not represent complaints.",
+                "Feedback does not explain the operational delivery-rate change."
+              ],
+              "controlComparison": "The feedback evidence includes a baseline comparison, but no unaffected product or customer cohort is identified; the review and shipment populations are not linked.",
+              "hypothesisId": "hyp_0b32f004ba8d0964"
+            }
+          ],
+          "decisionSummary": "The delivery-performance deterioration is confirmed by cohort-aware shipping evidence, but its operational cause remains unknown. Feedback offers a possible downstream impact signal, not a causal explanation, and does not establish a broad sentiment decline. The reported anomaly and shipping analysis use different windows and baselines, so their measurements should not be conflated."
+        }
+      ],
+      "steps": [
+        {
+          "stepId": "aij_1ce935a03e03bc17ebbca7e0_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T20:56:27.538Z",
+          "completedAt": "2026-10-24T20:56:27.538Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1ce935a03e03bc17ebbca7e0_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:56:27.588Z",
+          "completedAt": "2026-10-24T20:56:42.552Z",
+          "resultSummary": "The supplied evidence contains only an aggregate late-delivery-rate anomaly. Its cause and operational scope remain undetermined; inspect cohort-aware shipping records and independent customer feedback before drawing a causal conclusion.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1ce935a03e03bc17ebbca7e0_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Do cohort-aware due-date metrics and delivery transitions confirm the anomaly, and what happened to delays, losses, delay duration, and the open past-promise backlog versus baseline?",
+          "startedAt": "2026-10-24T20:56:43.552Z",
+          "completedAt": "2026-10-24T20:56:49.556Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_7a562f6594597067"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_1ce935a03e03bc17ebbca7e0_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did review volume, low-star share, or delivery-related complaint mentions change during or after the affected delivery window versus baseline?",
+          "startedAt": "2026-10-24T20:56:51.616Z",
+          "completedAt": "2026-10-24T20:56:54.649Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_5f828687e1d57fb3"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": []
+          }
+        },
+        {
+          "stepId": "aij_1ce935a03e03bc17ebbca7e0_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there earlier incidents with comparable delivery-performance observations, and what evidence or diagnoses were recorded?",
+          "startedAt": "2026-10-24T20:56:55.612Z",
+          "completedAt": "2026-10-24T20:56:55.712Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-11T00:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_2_0",
+            "window": {
+              "startAt": "2026-10-07T14:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-04T04:00:00.000Z",
+              "endAt": "2026-10-07T14:00:00.000Z"
+            },
+            "limit": 50,
+            "includeOtherRuns": false
+          }
+        },
+        {
+          "stepId": "aij_1ce935a03e03bc17ebbca7e0_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:56:59.559Z",
+          "completedAt": "2026-10-24T20:57:18.599Z",
+          "resultSummary": "The delivery-performance deterioration is confirmed by cohort-aware shipping evidence, but its operational cause remains unknown. Feedback offers a possible downstream impact signal, not a causal explanation, and does not establish a broad sentiment decline. The reported anomaly and shipping analysis use different windows and baselines, so their measurements should not be conflated.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_1ce935a03e03bc17ebbca7e0_s6",
+          "type": "diagnosis",
+          "status": "running",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T20:57:20.591Z",
+          "completedAt": null,
+          "resultSummary": "",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": "ambiguous_evidence_role",
+      "stopReason": "The relevant read-only shipping and feedback analyses have been completed, and historical incident retrieval found no prior cases. Available evidence confirms the delivery problem but does not discriminate its underlying mechanism; no further supplied tool or public research question would resolve that gap.",
+      "reportId": null,
+      "attempts": 1
+    },
+    "report": null,
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_2_0",
+        "investigationId": "inv_s5eval_1792875140401_2_0_059cd78c6cd7",
+        "callId": "aij_1ce935a03e03bc17ebbca7e0_reasoning_0",
+        "jobId": "aij_1ce935a03e03bc17ebbca7e0",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "6c7153c89c1faa1899af3d602c0f3996a9229299f2913ac840701e09a1d9fe23",
+        "checksum": "80369fb876715e5b5fce8633cefbfc02bab1d2ad83d8a54626c92eda79d3a5b9",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:56:27.651Z",
+        "completedAt": "2026-10-24T20:56:39.836Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb35eb97a61a0509d600ee4edfe",
+          "providerRequestId": "req_d2b0f5b2521b4d62849a02e38e33270f",
+          "latencyMs": 11266,
+          "inputTokens": 1981,
+          "outputTokens": 1074,
+          "totalTokens": 3055,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 18013,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_2_0",
+        "investigationId": "inv_s5eval_1792875140401_2_0_059cd78c6cd7",
+        "callId": "aij_1ce935a03e03bc17ebbca7e0_reasoning_1",
+        "jobId": "aij_1ce935a03e03bc17ebbca7e0",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "6c7153c89c1faa1899af3d602c0f3996a9229299f2913ac840701e09a1d9fe23",
+        "checksum": "cf51f3a0ddeeea3b434e97ff13a26e4d21685f5a825afdc03a96b440b5f28316",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:57:01.560Z",
+        "completedAt": "2026-10-24T20:57:16.520Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb3e78679c0b036ec201dd5ea2a",
+          "providerRequestId": "req_d0caae96689344f89eb82d2d89d46efa",
+          "latencyMs": 12941,
+          "inputTokens": 3474,
+          "outputTokens": 1227,
+          "totalTokens": 4701,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 24157,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_2_0",
+        "investigationId": "inv_s5eval_1792875140401_2_0_059cd78c6cd7",
+        "callId": "aij_1ce935a03e03bc17ebbca7e0_diagnosis_0",
+        "jobId": "aij_1ce935a03e03bc17ebbca7e0",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "af5c5a0496548b202278ec5e341c67a5eee42ff84d2b4db5c73f7041513df6df",
+        "checksum": "cbfaf8130a60476efc322a0904544e60969a00dc6bcb0d13d4cd8bc06a55009f",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:57:21.623Z",
+        "completedAt": "2026-10-24T20:57:26.834Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb42e1d7f40be07c99e6ae986c0",
+          "providerRequestId": "req_da3e9addbee04b99a47f1ff1470c59f7",
+          "latencyMs": 5179,
+          "inputTokens": 3491,
+          "outputTokens": 497,
+          "totalTokens": 3988,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 25949,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": "aij_1ce935a03e03bc17ebbca7e0_diagnosis_1",
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_2_0",
+        "investigationId": "inv_s5eval_1792875140401_2_0_059cd78c6cd7",
+        "callId": "aij_1ce935a03e03bc17ebbca7e0_diagnosis_1",
+        "jobId": "aij_1ce935a03e03bc17ebbca7e0",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "af5c5a0496548b202278ec5e341c67a5eee42ff84d2b4db5c73f7041513df6df",
+        "checksum": "851dab6c95ca17a37dc825d7e1d612124595191540a2aefb68843fb06a19113d",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:57:29.601Z",
+        "completedAt": "2026-10-24T20:57:35.695Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb44d1f7e10b3322c39d201b60a",
+          "providerRequestId": "req_dc7d2336ccbc49e088da28a16e7879f8",
+          "latencyMs": 6070,
+          "inputTokens": 3495,
+          "outputTokens": 596,
+          "totalTokens": 4091,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 25970,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "callId": "aij_1ce935a03e03bc17ebbca7e0_system_insufficient",
+        "adapterVersion": null,
+        "ambiguous": false,
+        "businessId": "nike_eval",
+        "checksum": "6533c2ef371aa9f00e3efb9934236676093b1e56562f22f1e58782f835d29053",
+        "completedAt": "2026-10-24T20:57:37.620Z",
+        "correctionId": null,
+        "error": "No accepted model diagnosis; deterministic fallback",
+        "investigationId": "inv_s5eval_1792875140401_2_0_059cd78c6cd7",
+        "jobId": "aij_1ce935a03e03bc17ebbca7e0",
+        "metadata": null,
+        "outputDiagnosisId": null,
+        "promptVersion": "1.0.0",
+        "reservedTokens": 0,
+        "simulationRunId": "s5eval_1792875140401_2_0",
+        "startedAt": "2026-10-24T20:57:37.620Z",
+        "status": "failed",
+        "task": "system.insufficient_evidence",
+        "validationStatus": "deterministic_fallback"
+      }
+    ],
+    "researchTraces": []
+  }
+}

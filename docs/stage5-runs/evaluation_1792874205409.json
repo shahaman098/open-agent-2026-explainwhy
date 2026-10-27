@@ -1,0 +1,49 @@
+{
+  "caseCount": 2,
+  "results": [
+    {
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792874205409_0_0",
+      "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+      "scenarioAfterInference": "ad_fatigue",
+      "seed": 11,
+      "detected": true,
+      "completion": "completed",
+      "primaryCause": "ad_fatigue",
+      "mechanismInHypotheses": true,
+      "leadingMechanismMatch": true,
+      "hypothesisRevisions": 4,
+      "evidence": 6,
+      "citations": 4,
+      "invalidCitations": 0,
+      "latencyMs": 84509,
+      "modelCalls": 5,
+      "tokens": 30068,
+      "estimatedCostUsd": null,
+      "externalResearchRounds": 0,
+      "externalCausalValidity": "not_established_by_synthetic_evaluation",
+      "requestIds": [
+        "mreq_01a16fa1a737755194f1a1e8fa2e716c",
+        "mreq_01a16fa1d80476d38a08cbf2ece62eb2",
+        "mreq_01a16fa213187690b7f4774ed6bec7d5",
+        "mreq_01a16fa252fe71a3b5442d061384656a",
+        "mreq_01a16fa28037701285da4a9412b86d2c"
+      ]
+    },
+    {
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792874205409_1_0",
+      "scenarioAfterInference": "promo_checkout_failure",
+      "seed": 11,
+      "detected": false,
+      "completion": "no_incident",
+      "expectedHealthy": false,
+      "latencyMs": 13134,
+      "modelCalls": 0,
+      "tokens": 0
+    }
+  ],
+  "calibration": "Qualitative support only; no calibrated probabilities",
+  "costs": "Unknown unless configured provider rates are supplied",
+  "hiddenScenarioBoundary": "Setup and post-inference scoring only"
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approvals · Normal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="signals.html" aria-label="Normal dashboard"><span class="image-placeholder logo-placeholder">Normal logo</span></a>
+    <nav class="dashboard-nav" aria-label="Normal sections">
+      <a class="nav-link" href="overview.html">Overview</a>
+      <a class="nav-link" href="signals.html">Signals</a><a class="nav-link" href="investigations.html">Investigations</a>
+      <a class="nav-link current" href="approvals.html">Approvals</a><a class="nav-link" href="activity.html">Activity</a><a class="nav-link" href="outcomes.html">Outcomes</a>
+    </nav>
+    <div class="workspace"><span class="image-placeholder account-placeholder">Nike mark</span><span class="workspace-copy"><strong>Nike</strong><small>Workspace</small></span><span class="run-chip">stage5_1792885194280</span></div>
+  </header>
+  <main class="page">
+    <div class="page-head"><div><p class="eyebrow">Operations · Selected simulation run</p><h1>Approvals</h1><p class="subhead">Review the plan, approval, and execution stages for the selected run.</p></div><span class="tag info">Nike — Unaffiliated Simulation</span></div>
+    <section class="stats">
+      <article class="card stat"><label>Approval queue</label><strong>Unavailable</strong><span class="detail">No queue is exposed for this run</span></article>
+      <article class="card stat"><label>Selected run</label><strong style="font-size:18px">stage5_17928…</strong><span class="detail">Seed 42</span></article>
+      <article class="card stat"><label>Approval stage</label><strong style="font-size:19px">Partner pending</strong><span class="detail">Approval module is partner-owned</span></article>
+      <article class="card stat"><label>Decision records</label><strong>None</strong><span class="detail">No approval decisions recorded</span></article>
+    </section>
+    <article class="card">
+      <div class="card-head"><div><h2>Plan and approval handoff</h2><p>Capability and handoff status for the selected simulation</p></div><span class="tag warn">No executable plan</span></div>
+      <div class="card-body">
+        <div class="callout amber">Approval and execution are pending the partner integration. No approval queue or decision is currently exposed for this run.</div>
+        <div class="stage-grid" style="margin-top:15px">
+          <article class="card stage"><div class="stage-top"><h3>Plan</h3><span class="tag">Not implemented</span></div><p>Evidence-backed proposed actions, success criteria, expiry, and approval requirements.</p><dl><dt>Backend</dt><dd>Future planner</dd><dt>Implemented</dt><dd>No</dd><dt>Current state</dt><dd>No plan records exist</dd></dl></article>
+          <article class="card stage"><div class="stage-top"><h3>Approve</h3><span class="tag warn">Partner integration pending</span></div><p>Partner approval UI consumes the plan handoff and records a decision per proposed action.</p><dl><dt>Backend</dt><dd>Partner</dd><dt>Implemented</dt><dd>No</dd><dt>Current state</dt><dd>No decision records</dd></dl></article>
+          <article class="card stage"><div class="stage-top"><h3>Execute</h3><span class="tag warn">Partner integration pending</span></div><p>Approved actions run through the partner orchestrator and existing Normal adapters.</p><dl><dt>Backend</dt><dd>Adapters ready; partner orchestrator</dd><dt>Implemented</dt><dd>No</dd><dt>Current state</dt><dd>No approved actions</dd></dl></article>
+        </div>
+        <div class="inline-list" style="margin-top:16px"><a class="btn" href="architecture.html">Review architecture stages</a><a class="btn" href="investigations.html">Open investigations</a></div>
+      </div>
+    </article>
+    <p class="footnote">A completed investigation requires human review, but this selected run has no proposed plan or partner decision record.</p>
+  </main>
+</body>
+</html>

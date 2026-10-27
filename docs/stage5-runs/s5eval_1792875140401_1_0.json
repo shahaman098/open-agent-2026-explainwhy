@@ -1,0 +1,956 @@
+{
+  "metrics": {
+    "businessId": "nike_eval",
+    "simulationRunId": "s5eval_1792875140401_1_0",
+    "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+    "scenarioAfterInference": "ad_fatigue",
+    "seed": 11,
+    "detected": true,
+    "completion": "failed",
+    "primaryCause": null,
+    "mechanismInHypotheses": false,
+    "leadingMechanismMatch": false,
+    "hypothesisRevisions": 4,
+    "evidence": 6,
+    "citations": 0,
+    "invalidCitations": 0,
+    "latencyMs": 134681,
+    "modelCalls": 6,
+    "tokens": 34365,
+    "estimatedCostUsd": null,
+    "externalResearchRounds": 0,
+    "externalCausalValidity": "not_established_by_synthetic_evaluation",
+    "requestIds": [
+      "mreq_01a16fb061007eb0a065ea0def7478df",
+      "mreq_01a16fb085ca7af38e5a8184e53f9d5c",
+      "mreq_01a16fb0c0a27fb3a28a39ecefb67ab7",
+      "mreq_01a16fb0f8ef74e19b3e9ed95eb4f419",
+      "mreq_01a16fb157247c60bab10342b8b3782b",
+      "mreq_01a16fb1b87f7fd193787688a2ad3e9b"
+    ]
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_db0f75a20a7173e8a46b2909",
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792875140401_1_0",
+      "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+      "status": "failed",
+      "stage": "failed",
+      "createdAt": "2026-10-24T20:53:12.202Z",
+      "updatedAt": "2026-10-24T20:54:51.516Z",
+      "startedAt": "2026-10-24T20:53:12.376Z",
+      "completedAt": "2026-10-24T20:54:51.516Z",
+      "round": 3,
+      "toolCount": 7,
+      "researchCount": 0,
+      "sourceCount": 0,
+      "callCount": 6,
+      "reservedTokens": 166543,
+      "actualTokens": 34365,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 0,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-08T00:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-04T06:00:00.000Z",
+        "endAt": "2026-10-08T00:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-04T06:00:00.000Z"
+      },
+      "evidenceIds": [
+        "evd_90dc41eac019d3d2",
+        "evd_a740fd4e161119e9",
+        "evd_841417363e19a958",
+        "evd_73d8094720029502",
+        "evd_6191f5467adb3b3e",
+        "evd_6549901369bf707d"
+      ],
+      "sourceIds": [],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T20:53:33.913Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "The reported CTR declines across affected campaigns are consistent with audiences becoming less responsive to repeated or stale creative. The current evidence does not show exposure frequency, creative changes, or audience overlap, so fatigue is only a tentative explanation.",
+              "mechanism": "Repeated exposure or creative wear-out could reduce click-through and worsen acquisition cost.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Frequency rises or engagement falls before or alongside the CTR decline.",
+                "Affected campaigns with greater exposure or older creative deteriorate more than comparable campaigns."
+              ],
+              "missingEvidence": [
+                "Campaign-level frequency and reach trends.",
+                "Creative and audience changes, and a comparison with unaffected campaigns.",
+                "Checks for changes in attribution, metric definitions, or reporting completeness."
+              ],
+              "falsificationTests": [
+                "Compare frequency and CTR over time by campaign and creative; fatigue is weakened if frequency and creative exposure are stable while CTR falls similarly across low-exposure campaigns.",
+                "Verify that the CTR definition and ad-event collection did not change during the observed period."
+              ],
+              "chronology": "The supplied anomalies place the CTR declines in the incident window, but do not establish whether exposure or creative conditions changed beforehand.",
+              "confounders": [
+                "A measurement or attribution change could create apparent CTR declines.",
+                "Changes in auction mix, targeting, or delivery could affect CTR independently of fatigue.",
+                "The evidence has no unaffected-campaign results or creative-level detail."
+              ],
+              "controlComparison": "No control comparison is supplied; compare affected campaigns against unaffected campaigns in advertising analysis.",
+              "hypothesisId": "hyp_007e40b98d904a8f"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "A change in delivery, auction conditions, targeting, or campaign configuration could reduce click-through and increase acquisition cost across campaigns. The anomalies alone cannot distinguish these mechanisms from fatigue or a measurement change.",
+              "mechanism": "Less relevant or lower-quality ad delivery, or changed campaign settings, could produce fewer clicks per impression and less efficient acquisition.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Changes in impressions, spend, reach, or attributed sessions accompany the CTR deterioration.",
+                "Affected campaigns diverge from unaffected campaigns after controlling for their prior performance and reporting coverage."
+              ],
+              "missingEvidence": [
+                "Campaign-level spend, impressions, clicks, attributed sessions, and frequency over time.",
+                "Campaign setting, targeting, and delivery changes.",
+                "Verification of ad-event coverage, deduplication, and attribution definitions."
+              ],
+              "falsificationTests": [
+                "Compare campaign delivery and efficiency metrics with unaffected campaigns; this hypothesis is weakened if delivery, targeting, and auction-related indicators are stable and only older creatives show deterioration.",
+                "Audit event coverage and metric definitions across the window; a reporting discontinuity would weaken a real-delivery explanation."
+              ],
+              "chronology": "The supplied anomalies show deteriorated ad metrics during the incident window, but provide no preceding delivery or configuration history.",
+              "confounders": [
+                "Ad fatigue could produce similar CTR and acquisition-cost changes.",
+                "Measurement or attribution changes could mimic operational deterioration.",
+                "Concurrent changes in demand or post-click conversion could affect acquisition cost."
+              ],
+              "controlComparison": "Use unaffected campaigns as controls in advertising analysis; no control results are supplied yet.",
+              "hypothesisId": "hyp_b2e98d633e003157"
+            }
+          ],
+          "decisionSummary": "The supplied observations establish advertising deterioration but do not identify its cause. Ad fatigue and delivery or campaign inefficiency are plausible, and measurement changes remain an unresolved alternative. Read-only comparisons are needed before making a stronger causal assessment."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T20:53:50.469Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "Higher average frequency alongside sharply lower CTR is consistent with audiences responding less to repeated exposure. This supports fatigue as a plausible contributor, but the evidence does not show creative age, audience overlap, or whether frequency rose before CTR fell.",
+              "mechanism": "Repeated exposure or stale creative may reduce engagement, lowering clicks and attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_90dc41eac019d3d2"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Frequency rises before or alongside declining CTR within affected campaigns.",
+                "Campaigns or creatives with greater exposure show worse engagement than lower-exposure controls."
+              ],
+              "missingEvidence": [
+                "Campaign- and creative-level frequency and CTR trends.",
+                "Creative refresh dates, audience overlap, and campaign configuration history.",
+                "Unaffected campaign results using the same measurement definitions."
+              ],
+              "falsificationTests": [
+                "Compare CTR trends by creative and audience exposure; fatigue is weakened if equally exposed and low-exposure creatives decline similarly.",
+                "Check whether the CTR decline began before frequency increased; that chronology would weaken fatigue as the initiating cause.",
+                "Verify ad-event coverage and metric definitions remained stable across the comparison windows."
+              ],
+              "chronology": "The aggregate advertising evidence covers the incident window and shows elevated frequency with lower CTR, but does not establish which changed first.",
+              "confounders": [
+                "Changes in targeting, auction mix, or delivery could also reduce CTR.",
+                "A measurement or attribution discontinuity could create apparent deterioration.",
+                "The evidence is aggregated across campaigns and does not isolate creative or audience effects."
+              ],
+              "controlComparison": "No unaffected-campaign comparison is supplied. Compare affected campaigns with the rest using the same time windows and definitions.",
+              "hypothesisId": "hyp_007e40b98d904a8f"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "The combination of increased hourly spend and impressions with fewer clicks and attributed orders indicates weaker measured advertising efficiency. The evidence establishes the deterioration, but does not identify whether delivery, targeting, auction conditions, or another factor caused it.",
+              "mechanism": "A change in campaign delivery or traffic quality could produce fewer clicks and attributed sessions per unit of exposure or spend, increasing acquisition cost.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_90dc41eac019d3d2"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Campaign-level delivery, targeting, or auction indicators change around the onset of the performance decline.",
+                "Affected campaigns deteriorate more than comparable unaffected campaigns under consistent measurement."
+              ],
+              "missingEvidence": [
+                "Campaign-level delivery and efficiency trends before and during the incident.",
+                "Targeting, bidding, placement, and configuration change history.",
+                "Ad-event coverage and attribution audits."
+              ],
+              "falsificationTests": [
+                "Compare affected campaigns with unaffected campaigns and inspect settings and delivery history; stable delivery and settings with deterioration concentrated in highly exposed creatives would weaken this explanation relative to fatigue.",
+                "Audit ad-event collection and attribution definitions; a discontinuity coinciding with the decline would weaken a real delivery-inefficiency explanation."
+              ],
+              "chronology": "Advertising deterioration is observed during the incident window, but supplied evidence does not show whether a delivery or configuration change preceded it.",
+              "confounders": [
+                "Ad fatigue can produce similar engagement and acquisition-cost changes.",
+                "Measurement changes can mimic operational inefficiency.",
+                "Lower overall session volume is observed, while storefront conversion is near baseline; this does not establish whether ad delivery caused the broader traffic decline."
+              ],
+              "controlComparison": "No control campaign results are supplied. Compare affected campaigns against other campaigns over identical windows and metric definitions.",
+              "hypothesisId": "hyp_b2e98d633e003157"
+            }
+          ],
+          "decisionSummary": "Advertising performance clearly deteriorated. Elevated exposure frequency makes ad fatigue plausible, while broader delivery or campaign inefficiency remains an alternative. Storefront conversion was near baseline and checkout failures were not observed, so the supplied evidence points more toward reduced traffic acquisition than a checkout problem. Cause and chronology remain unconfirmed."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 3,
+          "createdAt": "2026-10-24T20:54:04.960Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "Higher average exposure frequency alongside lower CTR is consistent with reduced response to repeated exposure. The aggregate evidence does not establish that exposure rose before engagement fell or isolate creative-level effects.",
+              "mechanism": "Repeated exposure or stale creative could reduce engagement, lowering clicks and attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_90dc41eac019d3d2"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Within affected campaigns, higher-exposure creatives or audiences show a greater CTR decline than lower-exposure comparators.",
+                "Creative or audience exposure increases precede or coincide with declining engagement."
+              ],
+              "missingEvidence": [
+                "Campaign- and creative-level trends in frequency and CTR.",
+                "Creative refresh dates, audience overlap, and campaign configuration history.",
+                "Comparable unaffected-campaign results using consistent measurement definitions."
+              ],
+              "falsificationTests": [
+                "Compare CTR trends across creatives and audiences by exposure; similar declines at low and high exposure would weaken fatigue.",
+                "Check whether CTR deterioration began before exposure frequency increased; that chronology would weaken fatigue as the initiating explanation.",
+                "Verify ad-event coverage and metric definitions remained stable across the compared windows."
+              ],
+              "chronology": "The aggregate incident-window evidence shows elevated frequency and lower CTR, but does not establish which changed first.",
+              "confounders": [
+                "Targeting, auction mix, or delivery changes could also reduce CTR.",
+                "A measurement or attribution discontinuity could create an apparent decline.",
+                "The evidence is aggregated and does not isolate creative or audience effects."
+              ],
+              "controlComparison": "No unaffected-campaign comparison is supplied. Compare affected campaigns with other campaigns over identical windows and definitions.",
+              "hypothesisId": "hyp_007e40b98d904a8f"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "The advertising evidence shows weaker measured engagement and acquisition performance while hourly spend increased. This establishes deterioration in observed efficiency, not its cause.",
+              "mechanism": "Changes in targeting, bidding, placement, auction conditions, or traffic quality could yield fewer clicks and attributed orders per unit of exposure or spend.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_90dc41eac019d3d2"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Campaign delivery, targeting, bidding, placement, or auction indicators change around the onset.",
+                "Affected campaigns deteriorate more than comparable unaffected campaigns under consistent measurement."
+              ],
+              "missingEvidence": [
+                "Campaign-level delivery and efficiency trends around the onset.",
+                "Targeting, bidding, placement, and configuration change history.",
+                "Ad-event coverage and attribution audits."
+              ],
+              "falsificationTests": [
+                "Compare affected campaigns with unaffected campaigns and inspect delivery and settings history; stable delivery and settings, with decline concentrated in highly exposed creatives, would weaken this explanation relative to fatigue.",
+                "Audit ad-event collection and attribution definitions; a coincident discontinuity would weaken the interpretation as real delivery inefficiency."
+              ],
+              "chronology": "Advertising deterioration is observed during the incident window, but the evidence does not show whether a delivery or configuration change preceded it.",
+              "confounders": [
+                "Ad fatigue could produce similar engagement and acquisition changes.",
+                "Measurement changes could mimic operational inefficiency.",
+                "Overall sessions declined while storefront conversion remained near baseline; this does not establish whether advertising caused the broader traffic decline."
+              ],
+              "controlComparison": "No control-campaign results are supplied. Compare affected campaigns with other campaigns over the same windows and metric definitions.",
+              "hypothesisId": "hyp_b2e98d633e003157"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "Inventory availability has not been checked. Stockouts could constrain purchases or affect campaign performance for promoted products, but the current evidence does not support this as a cause.",
+              "mechanism": "Unavailable promoted products could reduce purchase opportunity and potentially affect the quality or response of traffic directed to those products.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Inventory records show low or unavailable stock for promoted products during the decline.",
+                "Affected products or campaigns with stock constraints perform worse than comparable in-stock products or campaigns."
+              ],
+              "missingEvidence": [
+                "Product-level inventory levels and stockout events during the incident window.",
+                "Mapping between affected campaigns and promoted products."
+              ],
+              "falsificationTests": [
+                "Check inventory levels and stockout events for promoted products over the incident window; adequate availability throughout would weaken this hypothesis.",
+                "Compare performance for products with constrained stock against in-stock products using consistent time windows."
+              ],
+              "chronology": "No inventory chronology is available, so stock constraints cannot be placed before or after the advertising decline.",
+              "confounders": [
+                "Ad fatigue or delivery inefficiency could explain the observed advertising metrics without any inventory constraint.",
+                "The supplied evidence does not map campaigns to products."
+              ],
+              "controlComparison": "Compare promoted products with inventory constraints against in-stock products; no such comparison is currently supplied.",
+              "hypothesisId": "hyp_391ddc0abe9e8e9f"
+            }
+          ],
+          "decisionSummary": "Advertising deterioration is observed, but its cause remains unresolved. Fatigue and broader delivery inefficiency are plausible alternatives; storefront conversion was near baseline and checkout failures were not observed. Inventory has not been assessed, so stockout remains an untested possibility rather than an evidenced explanation."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 4,
+          "createdAt": "2026-10-24T20:54:32.469Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "Higher observed average frequency coincides with sharply lower CTR and attributed sessions. This is consistent with reduced response to repeated exposure, but the aggregate evidence does not establish that repeated exposure caused the decline.",
+              "mechanism": "Repeated exposure or stale creative could reduce engagement, leaving fewer clicks and attributed sessions despite continuing spend.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_90dc41eac019d3d2"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "CTR declines more among creatives or audiences with higher exposure than among lower-exposure comparators.",
+                "Frequency rises before or alongside the engagement decline."
+              ],
+              "missingEvidence": [
+                "Campaign- and creative-level frequency and CTR trends around onset.",
+                "Creative refresh, audience overlap, and campaign configuration history.",
+                "A comparable unaffected-campaign series with consistent definitions."
+              ],
+              "falsificationTests": [
+                "Compare CTR trends by exposure level; similar declines at low and high exposure would weaken fatigue.",
+                "Check whether CTR deterioration preceded any increase in frequency; that chronology would weaken fatigue as the initiating explanation.",
+                "Audit ad-event coverage and metric definitions across the comparison windows."
+              ],
+              "chronology": "The aggregate incident-window evidence shows elevated frequency and lower CTR, but does not establish which changed first.",
+              "confounders": [
+                "Targeting, placement, auction mix, or delivery changes could also lower CTR.",
+                "A measurement or attribution discontinuity could create an apparent decline.",
+                "The evidence is aggregated and does not isolate creative or audience effects."
+              ],
+              "controlComparison": "No unaffected-campaign comparison is supplied; compare affected campaigns with other campaigns over identical windows and definitions.",
+              "hypothesisId": "hyp_007e40b98d904a8f"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Observed advertising engagement and acquisition efficiency deteriorated while hourly spend increased. This establishes a performance change, not an operational cause.",
+              "mechanism": "Changes in bidding, targeting, placement, auction conditions, or traffic quality could produce fewer clicks and attributed orders for the observed exposure and spend.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_90dc41eac019d3d2"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Delivery, targeting, bidding, placement, or auction indicators change near the deterioration.",
+                "Affected campaigns perform worse than comparable campaigns under consistent measurement."
+              ],
+              "missingEvidence": [
+                "Campaign-level trends and settings history around the onset.",
+                "Auction and placement diagnostics.",
+                "Ad-event coverage and attribution audits."
+              ],
+              "falsificationTests": [
+                "Compare affected and unaffected campaigns and inspect delivery and settings history; stable settings and delivery with declines concentrated among highly exposed creatives would weaken this hypothesis relative to fatigue.",
+                "Audit event collection and attribution definitions; a coincident discontinuity would weaken the interpretation as real delivery inefficiency."
+              ],
+              "chronology": "Advertising deterioration is observed during the incident window, but no supplied evidence establishes whether a delivery or configuration change preceded it.",
+              "confounders": [
+                "Ad fatigue could produce similar engagement and acquisition changes.",
+                "Measurement changes could mimic operational inefficiency.",
+                "Overall sessions declined while storefront conversion was near baseline; this does not establish that advertising caused the broader traffic decline."
+              ],
+              "controlComparison": "No control-campaign results are supplied; compare affected campaigns with other campaigns over the same windows and metric definitions.",
+              "hypothesisId": "hyp_b2e98d633e003157"
+            },
+            {
+              "cause": "delivery_delays",
+              "explanation": "Delivery complaints and late or still-open promises are present, but the observed late-rate difference is modest and the evidence does not connect these events to the advertising decline.",
+              "mechanism": "Poor delivery experiences could reduce customer sentiment or willingness to engage with ads, but that pathway is not demonstrated here.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_6191f5467adb3b3e",
+                "evd_73d8094720029502"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Delivery problems precede a change in customer sentiment or ad engagement among affected products or audiences.",
+                "Products or audiences exposed to delivery problems show worse engagement than comparable unaffected groups."
+              ],
+              "missingEvidence": [
+                "Product- or customer-linked chronology connecting delivery experience to ad engagement.",
+                "Comparable delivery and engagement trends for unaffected products or audiences."
+              ],
+              "falsificationTests": [
+                "Compare engagement timing and trends for products or audiences with and without delivery issues; no differential or a decline predating delivery issues would weaken this hypothesis.",
+                "Review delivery complaint content and timing against the advertising decline rather than relying on keyword mentions alone."
+              ],
+              "chronology": "Delivery delays and complaints are observed in the incident window, but their timing relative to the advertising deterioration is not established.",
+              "confounders": [
+                "The review evidence reports no low-rated reviews, and delivery mentions are a keyword heuristic.",
+                "The delivery cohort includes promises still open at cutoff.",
+                "Ad fatigue, delivery inefficiency, or measurement changes could explain the advertising metrics independently."
+              ],
+              "controlComparison": "No product- or audience-level comparison linking delivery status to advertising response is supplied.",
+              "hypothesisId": "hyp_98ccdc87e0f6faba"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The supplied inventory analysis reports no current stockouts, no products at risk within its stated horizon, and no out-of-stock checkout failures. This weakens stockout as an explanation, although campaign-to-product inventory chronology is not supplied.",
+              "mechanism": "Unavailable promoted products could reduce purchase opportunity or change the response to campaign traffic.",
+              "support": "contradicted",
+              "evidenceIds": [
+                "evd_6549901369bf707d"
+              ],
+              "counterEvidenceIds": [
+                "evd_6549901369bf707d"
+              ],
+              "expectedObservations": [
+                "Promoted products show unavailable inventory during the advertising decline.",
+                "Campaigns promoting constrained products perform worse than comparable campaigns promoting available products."
+              ],
+              "missingEvidence": [
+                "Campaign-to-product mapping and product-level inventory history across the full incident window."
+              ],
+              "falsificationTests": [
+                "Check promoted-product inventory history across the incident window; adequate availability throughout would further weaken this hypothesis.",
+                "Compare campaign performance for constrained and available products using consistent windows."
+              ],
+              "chronology": "The supplied evidence describes inventory through the cutoff but does not provide campaign-linked inventory chronology.",
+              "confounders": [
+                "The available inventory summary may not identify which products each campaign promoted.",
+                "Ad fatigue, delivery inefficiency, or measurement changes do not require an inventory constraint."
+              ],
+              "controlComparison": "No campaign-to-product comparison is supplied; the aggregate inventory results show no current stockout signal.",
+              "hypothesisId": "hyp_391ddc0abe9e8e9f"
+            }
+          ],
+          "decisionSummary": "Advertising performance deterioration is observed, but its cause remains unresolved. Elevated frequency alongside lower CTR is consistent with ad fatigue; broader delivery or measurement changes remain alternatives. The broader traffic decline coincides with near-baseline storefront conversion and no observed checkout failures. Delivery evidence does not establish a link to ad performance, and the inventory evidence weighs against stockout. All supplied analysis tools have been run; no further read-only checks are available in this round."
+        }
+      ],
+      "steps": [
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T20:53:12.376Z",
+          "completedAt": "2026-10-24T20:53:12.376Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:53:12.422Z",
+          "completedAt": "2026-10-24T20:53:33.913Z",
+          "resultSummary": "The supplied observations establish advertising deterioration but do not identify its cause. Ad fatigue and delivery or campaign inefficiency are plausible, and measurement changes remain an unresolved alternative. Read-only comparisons are needed before making a stronger causal assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "advertising_analysis",
+          "question": "Compare affected campaigns with unaffected campaigns and baseline over the incident window. Examine impressions, clicks, CTR, spend, CPA, ROAS, frequency, attributed sessions, hourly chronology, and any available measurement or coverage discontinuities.",
+          "startedAt": "2026-10-24T20:53:33.933Z",
+          "completedAt": "2026-10-24T20:53:34.108Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_90dc41eac019d3d2"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_1_0",
+            "window": {
+              "startAt": "2026-10-04T06:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T06:00:00.000Z"
+            },
+            "limit": 50,
+            "campaignIds": [
+              "cmp_apparel_search",
+              "cmp_basketball_search",
+              "cmp_football_mercurial",
+              "cmp_lifestyle_af1",
+              "cmp_running_pegasus"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "revenue_analysis",
+          "question": "Check whether orders, revenue, and conversion changed over the same period and whether changes are concentrated in paid traffic or also appear in other channels.",
+          "startedAt": "2026-10-24T20:53:34.164Z",
+          "completedAt": "2026-10-24T20:53:35.326Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_a740fd4e161119e9"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_1_0",
+            "window": {
+              "startAt": "2026-10-04T06:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T06:00:00.000Z"
+            },
+            "limit": 50,
+            "groupBy": [
+              "product",
+              "category",
+              "channel"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "checkout_analysis",
+          "question": "Check whether checkout failures or conversion changed during the incident window, to separate ad acquisition deterioration from post-click purchase friction.",
+          "startedAt": "2026-10-24T20:53:35.375Z",
+          "completedAt": "2026-10-24T20:53:36.645Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_841417363e19a958"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_1_0",
+            "window": {
+              "startAt": "2026-10-04T06:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T06:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:53:36.932Z",
+          "completedAt": "2026-10-24T20:53:50.469Z",
+          "resultSummary": "Advertising performance clearly deteriorated. Elevated exposure frequency makes ad fatigue plausible, while broader delivery or campaign inefficiency remains an alternative. Storefront conversion was near baseline and checkout failures were not observed, so the supplied evidence points more toward reduced traffic acquisition than a checkout problem. Cause and chronology remain unconfirmed.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s6",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did review volume, low ratings, or complaint themes change during the incident window in a way that could indicate a concurrent sentiment or product issue?",
+          "startedAt": "2026-10-24T20:53:50.490Z",
+          "completedAt": "2026-10-24T20:53:50.616Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_73d8094720029502"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_1_0",
+            "window": {
+              "startAt": "2026-10-04T06:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T06:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": []
+          }
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s7",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Did late-delivery rates or the overdue shipment backlog change around the incident window, potentially contributing to customer sentiment or demand changes?",
+          "startedAt": "2026-10-24T20:53:50.678Z",
+          "completedAt": "2026-10-24T20:53:50.864Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_6191f5467adb3b3e"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_1_0",
+            "window": {
+              "startAt": "2026-10-04T06:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T06:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s8",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there prior incidents with comparable cross-campaign CTR and acquisition deterioration, and what recorded diagnoses or measurement caveats were documented?",
+          "startedAt": "2026-10-24T20:53:50.917Z",
+          "completedAt": "2026-10-24T20:53:51.016Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-08T00:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_1_0",
+            "window": {
+              "startAt": "2026-10-04T06:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T06:00:00.000Z"
+            },
+            "limit": 50,
+            "includeOtherRuns": false
+          }
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s9",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:53:51.387Z",
+          "completedAt": "2026-10-24T20:54:04.961Z",
+          "resultSummary": "Advertising deterioration is observed, but its cause remains unresolved. Fatigue and broader delivery inefficiency are plausible alternatives; storefront conversion was near baseline and checkout failures were not observed. Inventory has not been assessed, so stockout remains an untested possibility rather than an evidenced explanation.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s10",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "inventory_analysis",
+          "question": "Across the full scope, were there stockout events or constrained inventory during the incident window, and do affected products show different availability or depletion from comparable in-stock products?",
+          "startedAt": "2026-10-24T20:54:04.993Z",
+          "completedAt": "2026-10-24T20:54:07.491Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_6549901369bf707d"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875140401_1_0",
+            "window": {
+              "startAt": "2026-10-04T06:00:00.000Z",
+              "endAt": "2026-10-08T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T06:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": []
+          }
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s11",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:54:15.455Z",
+          "completedAt": "2026-10-24T20:54:32.470Z",
+          "resultSummary": "Advertising performance deterioration is observed, but its cause remains unresolved. Elevated frequency alongside lower CTR is consistent with ad fatigue; broader delivery or measurement changes remain alternatives. The broader traffic decline coincides with near-baseline storefront conversion and no observed checkout failures. Delivery evidence does not establish a link to ad performance, and the inventory evidence weighs against stockout. All supplied analysis tools have been run; no further read-only checks are available in this round.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_db0f75a20a7173e8a46b2909_s12",
+          "type": "diagnosis",
+          "status": "running",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T20:54:37.444Z",
+          "completedAt": null,
+          "resultSummary": "",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": "ambiguous_evidence_role",
+      "stopReason": "The supplied read-only analyses are exhausted. The evidence supports observed deterioration but does not discriminate sufficiently among fatigue, delivery inefficiency, and measurement or other confounding changes.",
+      "reportId": null,
+      "attempts": 1
+    },
+    "report": null,
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_1_0",
+        "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+        "callId": "aij_db0f75a20a7173e8a46b2909_reasoning_0",
+        "jobId": "aij_db0f75a20a7173e8a46b2909",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "6c7153c89c1faa1899af3d602c0f3996a9229299f2913ac840701e09a1d9fe23",
+        "checksum": "aa5f326b08e51fbbeeac87dedbedf00fb81c548c73218ba3539882207dfa1750",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:53:12.495Z",
+        "completedAt": "2026-10-24T20:53:21.881Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb061007eb0a065ea0def7478df",
+          "providerRequestId": "req_43295ee0201b405990ffcd84e7e865df",
+          "latencyMs": 9364,
+          "inputTokens": 2447,
+          "outputTokens": 980,
+          "totalTokens": 3427,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 19259,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": "aij_db0f75a20a7173e8a46b2909_reasoning_0_repair",
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_1_0",
+        "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+        "callId": "aij_db0f75a20a7173e8a46b2909_reasoning_0_repair",
+        "jobId": "aij_db0f75a20a7173e8a46b2909",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "6c7153c89c1faa1899af3d602c0f3996a9229299f2913ac840701e09a1d9fe23",
+        "checksum": "71bb2e027bb38cf4c8358ce4a8cdff28677f8dd84c19fac182867b0e99892dac",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:53:21.965Z",
+        "completedAt": "2026-10-24T20:53:33.676Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb085ca7af38e5a8184e53f9d5c",
+          "providerRequestId": "req_ea1c868e14454c3ba0ba42762f0969cb",
+          "latencyMs": 11690,
+          "inputTokens": 2452,
+          "outputTokens": 1028,
+          "totalTokens": 3480,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 19284,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_1_0",
+        "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+        "callId": "aij_db0f75a20a7173e8a46b2909_reasoning_1",
+        "jobId": "aij_db0f75a20a7173e8a46b2909",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "6c7153c89c1faa1899af3d602c0f3996a9229299f2913ac840701e09a1d9fe23",
+        "checksum": "9a72f4b5903c3e314925a8d1ac4f195fa765a9716defaadf395c10eba8d6cad0",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:53:36.986Z",
+        "completedAt": "2026-10-24T20:53:50.395Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb0c0a27fb3a28a39ecefb67ab7",
+          "providerRequestId": "req_9911853acb1c4f8ea703071aabf8e58f",
+          "latencyMs": 13380,
+          "inputTokens": 4505,
+          "outputTokens": 1370,
+          "totalTokens": 5875,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 27754,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_1_0",
+        "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+        "callId": "aij_db0f75a20a7173e8a46b2909_reasoning_2",
+        "jobId": "aij_db0f75a20a7173e8a46b2909",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "6c7153c89c1faa1899af3d602c0f3996a9229299f2913ac840701e09a1d9fe23",
+        "checksum": "4bbe1c56fb30d1c5e39bc374b9d59bd6b1731b54b24b1f3a28195e98eae1718a",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:53:51.442Z",
+        "completedAt": "2026-10-24T20:54:04.894Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb0f8ef74e19b3e9ed95eb4f419",
+          "providerRequestId": "req_ec3e4d1df69e4f84b2499f58eea2bfd2",
+          "latencyMs": 13431,
+          "inputTokens": 5439,
+          "outputTokens": 1588,
+          "totalTokens": 7027,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 31000,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_1_0",
+        "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+        "callId": "aij_db0f75a20a7173e8a46b2909_reasoning_3",
+        "jobId": "aij_db0f75a20a7173e8a46b2909",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "6c7153c89c1faa1899af3d602c0f3996a9229299f2913ac840701e09a1d9fe23",
+        "checksum": "7ab2a7ca27ce2e9479bf66b2f64582f5bd9a424c1006182073d4576501409b2c",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:54:15.513Z",
+        "completedAt": "2026-10-24T20:54:31.208Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb157247c60bab10342b8b3782b",
+          "providerRequestId": "req_ea87c0d613b1416eaf2fe2ae93f2601e",
+          "latencyMs": 15671,
+          "inputTokens": 5999,
+          "outputTokens": 1814,
+          "totalTokens": 7813,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 33542,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875140401_1_0",
+        "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+        "callId": "aij_db0f75a20a7173e8a46b2909_diagnosis_0",
+        "jobId": "aij_db0f75a20a7173e8a46b2909",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.0",
+        "promptFingerprint": "af5c5a0496548b202278ec5e341c67a5eee42ff84d2b4db5c73f7041513df6df",
+        "checksum": "e7a5f4de8e62efc402576f1da6e840cf2424642ffbf4fb51377446ddb8eb7122",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:54:39.520Z",
+        "completedAt": "2026-10-24T20:54:49.274Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fb1b87f7fd193787688a2ad3e9b",
+          "providerRequestId": "req_eafc0e80d63d4ac7b8fdb4f8a1727dde",
+          "latencyMs": 8803,
+          "inputTokens": 6086,
+          "outputTokens": 657,
+          "totalTokens": 6743,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 35704,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": "aij_db0f75a20a7173e8a46b2909_diagnosis_1",
+        "adapterVersion": null
+      },
+      {
+        "callId": "aij_db0f75a20a7173e8a46b2909_system_insufficient",
+        "adapterVersion": null,
+        "ambiguous": false,
+        "businessId": "nike_eval",
+        "checksum": "3a14985e25e3f1de50c524d07b6cac4fe196e7b413a0c475033789da93a8bc04",
+        "completedAt": "2026-10-24T20:54:51.498Z",
+        "correctionId": null,
+        "error": "No accepted model diagnosis; deterministic fallback",
+        "investigationId": "inv_s5eval_1792875140401_1_0_d07498fe5b17",
+        "jobId": "aij_db0f75a20a7173e8a46b2909",
+        "metadata": null,
+        "outputDiagnosisId": null,
+        "promptVersion": "1.0.0",
+        "reservedTokens": 0,
+        "simulationRunId": "s5eval_1792875140401_1_0",
+        "startedAt": "2026-10-24T20:54:51.498Z",
+        "status": "failed",
+        "task": "system.insufficient_evidence",
+        "validationStatus": "deterministic_fallback"
+      }
+    ],
+    "researchTraces": []
+  }
+}

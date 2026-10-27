@@ -1,0 +1,28 @@
+{
+  "primaryCause": "ad_fatigue",
+  "hypotheses": [
+    {
+      "cause": "ad_fatigue",
+      "strength": "moderate",
+      "evidenceIds": [
+        "e_ads_01"
+      ],
+      "counterEvidenceIds": [],
+      "explanation": "Campaign frequency rose while CTR declined."
+    },
+    {
+      "cause": "delivery_delays",
+      "strength": "moderate",
+      "evidenceIds": [
+        "e_ship_01"
+      ],
+      "counterEvidenceIds": [],
+      "explanation": "Shipping delays increased and may affect repeat purchases."
+    }
+  ],
+  "summary": "Marketing inefficiency and fulfilment delays are plausible contributors; further review is needed.",
+  "missingEvidence": [
+    "Comparable unaffected customer cohort"
+  ],
+  "requiresReview": true
+}

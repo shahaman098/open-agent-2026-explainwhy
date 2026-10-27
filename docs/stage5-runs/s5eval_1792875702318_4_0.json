@@ -1,0 +1,493 @@
+{
+  "metrics": {
+    "businessId": "nike_eval",
+    "simulationRunId": "s5eval_1792875702318_4_0",
+    "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+    "scenarioAfterInference": "negative_reviews",
+    "seed": 11,
+    "detected": true,
+    "completion": "insufficient_evidence",
+    "primaryCause": "unknown",
+    "mechanismInHypotheses": false,
+    "leadingMechanismMatch": false,
+    "hypothesisRevisions": 0,
+    "evidence": 0,
+    "citations": 0,
+    "invalidCitations": 0,
+    "latencyMs": 162246,
+    "modelCalls": 3,
+    "tokens": 2886,
+    "estimatedCostUsd": null,
+    "externalResearchRounds": 0,
+    "externalCausalValidity": "not_established_by_synthetic_evaluation",
+    "requestIds": [
+      "mreq_01a16fc5e04075b28ba3e214c0fe51c3",
+      "mreq_01a16fc612247da0b1f107977805a308",
+      "mreq_01a16fc63d4770738724e6c6e7fdae3b"
+    ]
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_14807d204eb64c49a8681976",
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792875702318_4_0",
+      "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+      "status": "insufficient_evidence",
+      "stage": "completed",
+      "createdAt": "2026-10-24T21:16:41.060Z",
+      "updatedAt": "2026-10-24T21:17:05.385Z",
+      "startedAt": "2026-10-24T21:16:41.234Z",
+      "completedAt": "2026-10-24T21:17:05.385Z",
+      "round": 0,
+      "toolCount": 0,
+      "researchCount": 0,
+      "sourceCount": 0,
+      "callCount": 3,
+      "reservedTokens": 54161,
+      "actualTokens": 2886,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 2,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-18T00:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-16T08:00:00.000Z",
+        "endAt": "2026-10-18T00:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-14T16:00:00.000Z",
+        "endAt": "2026-10-16T08:00:00.000Z"
+      },
+      "evidenceIds": [],
+      "sourceIds": [],
+      "hypotheses": [],
+      "steps": [
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T21:16:41.234Z",
+          "completedAt": "2026-10-24T21:16:41.234Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s1",
+          "type": "reasoning",
+          "status": "failed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:16:41.287Z",
+          "completedAt": "2026-10-24T21:16:57.018Z",
+          "resultSummary": "",
+          "evidenceIds": [],
+          "error": "Provider unavailable: http_503"
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s2",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T21:16:59.015Z",
+          "completedAt": "2026-10-24T21:17:05.362Z",
+          "resultSummary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "evidenceIds": [],
+          "error": "Model diagnosis unavailable or rejected; deterministic insufficient-evidence report"
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s3",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T21:17:05.362Z",
+          "completedAt": "2026-10-24T21:17:05.362Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s4",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T21:17:05.362Z",
+          "completedAt": "2026-10-24T21:17:05.362Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": null,
+      "stopReason": "Provider unavailable: http_503",
+      "reportId": "report_aij_14807d204eb64c49a8681976",
+      "attempts": 1
+    },
+    "report": {
+      "schemaVersion": 1,
+      "reportId": "report_aij_14807d204eb64c49a8681976",
+      "version": 1,
+      "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+      "diagnosisId": "diag_aij_14807d204eb64c49a8681976",
+      "createdAt": "2026-10-24T21:17:05.363Z",
+      "diagnosis": {
+        "primaryCause": "unknown",
+        "hypotheses": [
+          {
+            "cause": "unknown",
+            "strength": "weak",
+            "evidenceIds": [],
+            "counterEvidenceIds": [],
+            "explanation": "The available evidence does not justify a reliable causal conclusion."
+          }
+        ],
+        "summary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "missingEvidence": [
+          "http_"
+        ],
+        "requiresReview": true,
+        "schemaVersion": 1,
+        "businessId": "nike_eval",
+        "diagnosisId": "diag_aij_14807d204eb64c49a8681976",
+        "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+        "modelCallId": "aij_14807d204eb64c49a8681976_system_insufficient",
+        "taskKey": "revenue_diagnosis_v1",
+        "createdAt": "2026-10-24T21:17:05.362Z"
+      },
+      "executiveBrief": {
+        "whatChanged": "The detector observed changes in the incident metrics shown above.",
+        "explanation": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "certainty": "Insufficient evidence to select a reliable primary explanation.",
+        "impact": "A unique comparable business-wide revenue measurement is unavailable.",
+        "review": [
+          "http_"
+        ]
+      },
+      "impact": {
+        "schemaVersion": 1,
+        "status": "unknown",
+        "evidenceId": null,
+        "metric": null,
+        "value": null,
+        "baseline": null,
+        "delta": null,
+        "unit": null,
+        "interpretation": "A unique comparable business-wide revenue measurement is unavailable.",
+        "limitations": [
+          "No financial loss estimate is justified."
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "diag_aij_14807d204eb64c49a8681976_claim_0",
+          "claim": "The available evidence does not justify a reliable causal conclusion.",
+          "kind": "hypothesis",
+          "evidenceIds": [],
+          "counterEvidenceIds": [],
+          "sourceIds": [],
+          "support": "insufficient_evidence",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        }
+      ],
+      "ledger": [],
+      "hypotheses": [],
+      "timeline": [
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T21:16:41.234Z",
+          "completedAt": "2026-10-24T21:16:41.234Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s1",
+          "type": "reasoning",
+          "status": "failed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:16:41.287Z",
+          "completedAt": "2026-10-24T21:16:57.018Z",
+          "resultSummary": "",
+          "evidenceIds": [],
+          "error": "Provider unavailable: http_503"
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s2",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T21:16:59.015Z",
+          "completedAt": "2026-10-24T21:17:05.362Z",
+          "resultSummary": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "evidenceIds": [],
+          "error": "Model diagnosis unavailable or rejected; deterministic insufficient-evidence report"
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s3",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T21:17:05.362Z",
+          "completedAt": "2026-10-24T21:17:05.362Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_14807d204eb64c49a8681976_s4",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T21:17:05.362Z",
+          "completedAt": "2026-10-24T21:17:05.362Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "sections": [
+        {
+          "title": "Executive summary",
+          "text": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Observed evidence",
+          "text": "No verified internal evidence was available.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Competing explanations",
+          "text": "unknown (weak): The available evidence does not justify a reliable causal conclusion.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Causal challenges and uncertainty",
+          "text": "Insufficient evidence for causal comparison.",
+          "evidenceIds": []
+        },
+        {
+          "title": "External research",
+          "text": "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Business impact",
+          "text": "A unique comparable business-wide revenue measurement is unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Advisory next steps",
+          "text": "Review: http_",
+          "evidenceIds": []
+        }
+      ],
+      "handoff": {
+        "schemaVersion": 1,
+        "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+        "diagnosisId": "diag_aij_14807d204eb64c49a8681976",
+        "ready": false,
+        "supportedFindings": [],
+        "affectedEntities": [
+          "nk_quest_7"
+        ],
+        "evidenceIds": [],
+        "impactReference": "report_aij_14807d204eb64c49a8681976",
+        "uncertainty": [
+          "http_",
+          "Provider unavailable: http_503"
+        ],
+        "constraints": [
+          "Human review required",
+          "Stage five is read-only; no executable plan or business mutation",
+          "Synthetic data; external events cannot establish simulated causation"
+        ],
+        "advisoryCandidates": [
+          "Investigate: http_"
+        ],
+        "executable": false
+      },
+      "insufficientEvidence": {
+        "known": [],
+        "unknown": [
+          "http_"
+        ],
+        "plausibleExplanations": [
+          "The available evidence does not justify a reliable causal conclusion."
+        ],
+        "reason": "Insufficient evidence for a reliable diagnosis. Review the recorded observations and investigation limitations.",
+        "usefulNextEvidence": [
+          "http_"
+        ],
+        "externalResearchUnavailable": true,
+        "conclusionsNotJustified": [
+          "A definitive single root cause",
+          "A causal financial loss estimate",
+          "A verified real-world cause of this synthetic incident"
+        ]
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          "Canonical diagnosis schema",
+          "Business/run/investigation ownership",
+          "Evidence references exist and resolve",
+          "Timestamp cutoff",
+          "Duplicate references rejected",
+          "Numerical prose rejected; impact computed deterministically",
+          "Known contradiction disclosure",
+          "Single diagnosis shared by brief, report and handoff"
+        ],
+        "semanticSupport": "model_assessed_not_deterministic_proof"
+      }
+    },
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_4_0",
+        "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+        "callId": "aij_14807d204eb64c49a8681976_reasoning_0",
+        "jobId": "aij_14807d204eb64c49a8681976",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "6efab59fb806b05dce8e9ba50f632970aeef8dffb2657ec9ba25ab016b44eab1",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:16:41.344Z",
+        "completedAt": "2026-10-24T21:16:52.481Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc5e04075b28ba3e214c0fe51c3",
+          "providerRequestId": "req_5999f36d689a40e4a28905303d89f35d",
+          "latencyMs": 11116,
+          "inputTokens": 2015,
+          "outputTokens": 871,
+          "totalTokens": 2886,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 18025,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": "aij_14807d204eb64c49a8681976_reasoning_0_repair",
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_4_0",
+        "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+        "callId": "aij_14807d204eb64c49a8681976_reasoning_0_repair",
+        "jobId": "aij_14807d204eb64c49a8681976",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "078d0214abc53f8c200c27aeb60e3fc857152a592fa585e5b9c0cf4cf2958d4d",
+        "status": "failed",
+        "startedAt": "2026-10-24T21:16:54.094Z",
+        "completedAt": "2026-10-24T21:16:54.189Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc612247da0b1f107977805a308",
+          "providerRequestId": null,
+          "latencyMs": 61,
+          "inputTokens": null,
+          "outputTokens": null,
+          "totalTokens": null,
+          "estimatedCostUsd": null
+        },
+        "error": "Model request failed: http_503",
+        "ambiguous": true,
+        "reservedTokens": 18050,
+        "outputDiagnosisId": null,
+        "validationStatus": null,
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_4_0",
+        "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+        "callId": "aij_14807d204eb64c49a8681976_diagnosis_0",
+        "jobId": "aij_14807d204eb64c49a8681976",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "079b7939f094519e1fa767a5164536953aae9f50e1de78a75a5e316fda2be413",
+        "checksum": "398e6e4c7df617a094c7cecfa8a9a825553b6adae96c7f5f57ca7f207375d7df",
+        "status": "failed",
+        "startedAt": "2026-10-24T21:17:05.105Z",
+        "completedAt": "2026-10-24T21:17:05.281Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc63d4770738724e6c6e7fdae3b",
+          "providerRequestId": null,
+          "latencyMs": 145,
+          "inputTokens": null,
+          "outputTokens": null,
+          "totalTokens": null,
+          "estimatedCostUsd": null
+        },
+        "error": "Model request failed: http_503",
+        "ambiguous": true,
+        "reservedTokens": 18086,
+        "outputDiagnosisId": null,
+        "validationStatus": "rejected",
+        "correctionId": "aij_14807d204eb64c49a8681976_diagnosis_1",
+        "adapterVersion": null
+      },
+      {
+        "callId": "aij_14807d204eb64c49a8681976_system_insufficient",
+        "adapterVersion": null,
+        "ambiguous": false,
+        "businessId": "nike_eval",
+        "checksum": "17146ac2cece63df91bc754c90a7fc6a9edda4848ab1a4f69e44dda714ca6d21",
+        "completedAt": "2026-10-24T21:17:05.343Z",
+        "correctionId": null,
+        "error": "No accepted model diagnosis; deterministic fallback",
+        "investigationId": "inv_s5eval_1792875702318_4_0_dbb32daf2342",
+        "jobId": "aij_14807d204eb64c49a8681976",
+        "metadata": null,
+        "outputDiagnosisId": "diag_aij_14807d204eb64c49a8681976",
+        "promptVersion": "1.0.1",
+        "reservedTokens": 0,
+        "simulationRunId": "s5eval_1792875702318_4_0",
+        "startedAt": "2026-10-24T21:17:05.343Z",
+        "status": "failed",
+        "task": "system.insufficient_evidence",
+        "validationStatus": "validated"
+      }
+    ],
+    "researchTraces": []
+  }
+}

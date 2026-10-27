@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "investigationId": "inv_001",
+  "anomalyIds": [
+    "anomaly_rev_001"
+  ],
+  "status": "awaiting_review",
+  "title": "Unexpected decline in revenue",
+  "evidenceIds": [
+    "e_ads_01",
+    "e_ship_01"
+  ],
+  "diagnosisId": "diag_001",
+  "planId": "plan_001",
+  "startedAt": "2026-10-23T19:00:04Z",
+  "updatedAt": "2026-10-23T19:03:00Z"
+}

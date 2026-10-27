@@ -1,0 +1,67 @@
+{
+  "name": "native-snake-case",
+  "start": "2026-10-25T07:54:45.522Z",
+  "url": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+  "recording": "full",
+  "request": {
+    "system_instruction": {
+      "parts": [
+        {
+          "text": "Return the requested connectivity acknowledgement as JSON. This is a synthetic capture diagnostic, not a source-support training example."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Reply with {\"ok\":true}."
+          }
+        ]
+      }
+    ],
+    "generation_config": {
+      "max_output_tokens": 2048,
+      "response_mime_type": "application/json"
+    }
+  },
+  "status": 200,
+  "requestId": "mreq_01a1720e0be07630b782d2cc7920b521",
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "{\"ok\":true}",
+              "thoughtSignature": "ElkKVwFpFH0T2GLfARirZgZAl9slKs9GBZSpNIFgvvn6a80SvgMfff+zdse9U1JFtW5R2zMOOKf44zkjGUDDdFOawDA4qIACAGzShB5GlgOcd1klxCZ0t7ASGA=="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 133,
+      "candidatesTokenCount": 9,
+      "totalTokenCount": 142,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 133
+        }
+      ],
+      "candidatesTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 9
+        }
+      ]
+    },
+    "modelVersion": "gemini-4-argon",
+    "responseId": "xbXdaqqmLoawxN8PuaLD4As"
+  }
+}

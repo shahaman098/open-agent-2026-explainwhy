@@ -1,0 +1,6 @@
+# Keep full console screenshots local; publish the account-free capture.
+console/*.png
+!console/submission-queue.png
+diagnostics/*.png
+*.tmp
+run.lock

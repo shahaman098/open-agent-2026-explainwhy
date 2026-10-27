@@ -1,0 +1,1949 @@
+{
+  "metrics": {
+    "businessId": "nike_eval",
+    "simulationRunId": "s5eval_1792875702318_3_0",
+    "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+    "scenarioAfterInference": "viral_demand",
+    "seed": 11,
+    "detected": true,
+    "completion": "insufficient_evidence",
+    "primaryCause": "unknown",
+    "mechanismInHypotheses": true,
+    "leadingMechanismMatch": false,
+    "hypothesisRevisions": 4,
+    "evidence": 5,
+    "citations": 8,
+    "invalidCitations": 0,
+    "latencyMs": 255628,
+    "modelCalls": 5,
+    "tokens": 27806,
+    "estimatedCostUsd": null,
+    "externalResearchRounds": 0,
+    "externalCausalValidity": "not_established_by_synthetic_evaluation",
+    "requestIds": [
+      "mreq_01a16fc182ba7951bbe683c94b27cb12",
+      "mreq_01a16fc21ffa79b399326e11b5ff7bda",
+      "mreq_01a16fc2f0df7bf1a5c7cdf0ce283303",
+      "mreq_01a16fc349c17bc2990d8c6fef6f56fa",
+      "mreq_01a16fc38ccf7a82bcbe28b9352dde25"
+    ]
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_2844311dfb96d02846b56d9b",
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792875702318_3_0",
+      "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+      "status": "insufficient_evidence",
+      "stage": "completed",
+      "createdAt": "2026-10-24T21:11:51.335Z",
+      "updatedAt": "2026-10-24T21:14:14.896Z",
+      "startedAt": "2026-10-24T21:11:52.375Z",
+      "completedAt": "2026-10-24T21:14:14.896Z",
+      "round": 3,
+      "toolCount": 7,
+      "researchCount": 0,
+      "sourceCount": 0,
+      "callCount": 5,
+      "reservedTokens": 134673,
+      "actualTokens": 27806,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 2,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-11T00:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-04T10:00:00.000Z",
+        "endAt": "2026-10-11T00:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-04T10:00:00.000Z"
+      },
+      "evidenceIds": [
+        "evd_70371b4a1b7ca27a",
+        "evd_fd2b218bfc32179e",
+        "evd_d3c564007c808776",
+        "evd_54c4fc888cebb40f",
+        "evd_6781e55afade28ae"
+      ],
+      "sourceIds": [],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T21:12:09.225Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "A demand surge is plausible given the reported order increases and the affected product and channel, but the available evidence does not establish what drove the increase.",
+              "mechanism": "A sudden increase in social exposure or sharing could bring additional shoppers to the product and raise orders.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "A rise in social-attributed sessions or orders preceding or coinciding with the order increase.",
+                "An increase in product demand not explained by a comparable change in other products or channels."
+              ],
+              "missingEvidence": [
+                "Traffic and order trends split by channel and product.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders across the anomaly window and baseline; a lack of corresponding social traffic growth would weaken this mechanism."
+              ],
+              "chronology": "The reported order increases fall within the stated window, but the evidence does not establish whether social activity preceded them.",
+              "confounders": [
+                "A change in paid advertising, conversion, or measurement could also account for some or all of the observed increase."
+              ],
+              "controlComparison": "Compare the affected product and social channel with other products and channels over the same periods.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "Stock pressure is possible in the context of elevated orders, but the incident title is not independent evidence that inventory was depleted or that customers were unable to buy.",
+              "mechanism": "If available inventory fell below demand, the product could become unavailable and produce out-of-stock checkout failures or constrain subsequent orders.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Inventory depletion or stockout events during the window.",
+                "Out-of-stock checkout failures or a subsequent order decline associated with unavailable stock."
+              ],
+              "missingEvidence": [
+                "Product inventory levels and changes during the window.",
+                "Out-of-stock checkout failures and product order velocity."
+              ],
+              "falsificationTests": [
+                "Check product inventory and out-of-stock failures across the window; stable availability and no such failures would weaken the stockout explanation."
+              ],
+              "chronology": "The order increases are reported during the window; no inventory event timing is supplied.",
+              "confounders": [
+                "High order volume can occur without a stockout if inventory is sufficient.",
+                "A stock concern does not by itself explain the initial demand increase."
+              ],
+              "controlComparison": "Compare inventory and out-of-stock failures for the affected product with its order velocity and, where available, other products.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            }
+          ],
+          "decisionSummary": "The observations establish an order increase, not its cause. Social-driven demand and inventory constraint are distinct possibilities; neither is confirmed. Check revenue patterns, advertising activity, and inventory before attributing the change."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T21:12:53.427Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "The evidence shows a broad increase in sessions and orders, but does not identify social sharing or establish that social activity drove the increase. Viral or social-driven demand remains a tentative possibility, not a demonstrated cause.",
+              "mechanism": "A rise in social exposure or sharing could bring additional shoppers to the product and increase demand.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "counterEvidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "expectedObservations": [
+                "Product-level social-attributed sessions or orders rise before or alongside the demand increase.",
+                "The affected product or social channel changes more than suitable product and channel controls."
+              ],
+              "missingEvidence": [
+                "Traffic and orders split by product and channel.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders with the baseline and control products; no corresponding social growth would weaken this explanation."
+              ],
+              "chronology": "The revenue and order evidence covers the stated incident period, but provides no timing showing that social activity preceded the increase.",
+              "confounders": [
+                "Other sources of traffic could explain the session increase.",
+                "The campaign evidence is aggregated and does not establish social-channel performance."
+              ],
+              "controlComparison": "Compare product-level social traffic and orders with other products and channels over the same periods; the supplied evidence does not provide that split.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The affected product was out of stock by the end of the observed period, with depletion and out-of-stock checkout failures recorded. This supports an inventory constraint during the period, but does not show that the constraint caused the initial demand surge.",
+              "mechanism": "Demand depletes available units; once stock is unavailable, customers encounter out-of-stock checkout failures and further purchases may be constrained.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_d3c564007c808776"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Inventory availability declines before or during out-of-stock checkout failures.",
+                "Product orders or checkout completion become constrained after availability is exhausted."
+              ],
+              "missingEvidence": [
+                "Timestamped inventory and failure events aligned with product-level orders.",
+                "Product-level order and checkout-completion trends before and after stock became unavailable."
+              ],
+              "falsificationTests": [
+                "Align inventory events, product orders, and out-of-stock failures by time; if failures do not coincide with unavailable stock or the timing does not follow depletion, this mechanism is weakened."
+              ],
+              "chronology": "Inventory evidence confirms the product was out of stock at the period end and records depletion and failures during the period, but does not establish when stock became unavailable relative to the initial order increase.",
+              "confounders": [
+                "Elevated demand may explain depletion, so stockout does not establish the cause of the surge.",
+                "The aggregate revenue evidence does not show whether orders were constrained for this product."
+              ],
+              "controlComparison": "Compare the affected product's inventory and purchase completion over time with its own pre-depletion period and, if available, comparable products.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            }
+          ],
+          "decisionSummary": "Demand and sessions rose, and the affected product experienced inventory depletion, stockout, and checkout failures. The evidence does not establish what caused the demand increase or when the stock constraint began. Campaign-level results do not show a comparable increase in attributed orders. Further product- and channel-level timing is needed."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 3,
+          "createdAt": "2026-10-24T21:13:46.693Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "Sessions and orders increased, but the evidence does not identify social traffic or sharing as the source. Social-driven demand remains possible, not established.",
+              "mechanism": "A rise in social exposure or sharing could bring additional shoppers to the affected product and increase demand.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "counterEvidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "expectedObservations": [
+                "Social-attributed sessions or orders for the affected product increase before or alongside the demand rise.",
+                "The affected product or social channel changes more than suitable product and channel controls."
+              ],
+              "missingEvidence": [
+                "Product-level traffic and orders split by channel.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders with the baseline and control products; absent corresponding social growth would weaken this explanation."
+              ],
+              "chronology": "The aggregate demand evidence covers the incident period but does not show whether social activity preceded the increase.",
+              "confounders": [
+                "Other traffic sources could explain the session increase.",
+                "Campaign measures are aggregated and do not identify social-channel performance."
+              ],
+              "controlComparison": "Compare product-level social traffic and orders with other products and channels over the same periods; the supplied evidence has no such split.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The affected product was out of stock by the end of the observed period, and inventory depletion and out-of-stock checkout failures were recorded. This supports an inventory constraint, but does not establish that it caused the demand surge.",
+              "mechanism": "Demand can deplete inventory; once stock is unavailable, checkout failures can prevent further purchases.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_d3c564007c808776"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Availability declines before or during out-of-stock checkout failures.",
+                "Product purchase completion becomes constrained after availability is exhausted."
+              ],
+              "missingEvidence": [
+                "Timestamped inventory, product-order, and failure events aligned in time.",
+                "Product-level order and checkout-completion trends before and after stock became unavailable."
+              ],
+              "falsificationTests": [
+                "Align inventory changes, product orders, and out-of-stock failures by time; if failures do not coincide with unavailable stock, or the timing does not follow depletion, the mechanism is weakened."
+              ],
+              "chronology": "The records establish end-of-period stockout and failures during the observation window, but not when stock became unavailable relative to the demand increase.",
+              "confounders": [
+                "Elevated demand could explain depletion, so the stockout does not establish the cause of the surge.",
+                "Aggregate revenue and order measures do not show whether this product's orders were constrained."
+              ],
+              "controlComparison": "Compare the affected product's inventory and purchase completion before and after depletion, and with comparable products if available.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Campaign-attributed orders were approximately flat per hour while overall orders rose; campaign efficiency measures also weakened slightly against baseline. This indicates campaigns do not, on the available aggregate evidence, explain the broader increase, but does not establish a material advertising failure.",
+              "mechanism": "If campaign spend rises without a corresponding increase in attributed orders, paid acquisition may contribute less efficiently than other traffic sources.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Campaign-level spend and attributed orders show a sustained worsening relationship.",
+                "Campaign-attributed traffic or orders underperform suitable unaffected campaign controls."
+              ],
+              "missingEvidence": [
+                "Campaign-level time series and product-level attribution.",
+                "Comparable campaign controls and attribution-quality checks."
+              ],
+              "falsificationTests": [
+                "Compare campaign-level spend, attributed orders, and efficiency over matched periods with suitable controls; stable or improved performance after attribution checks would weaken this explanation."
+              ],
+              "chronology": "The campaign and aggregate results cover the same observation window; their timing does not establish whether advertising changes preceded the demand increase.",
+              "confounders": [
+                "Attribution may not capture all campaign influence.",
+                "The campaign data is aggregated and may conceal different outcomes among campaigns."
+              ],
+              "controlComparison": "The supplied campaign result compares campaigns with baseline and peers, but does not provide product-level or channel-level matching to the overall order increase.",
+              "hypothesisId": "hyp_a8abe1a12fab9647"
+            }
+          ],
+          "decisionSummary": "Demand and sessions increased, while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the demand increase or establish when the stock constraint began. Campaign-level attributed orders did not rise in line with overall orders, but this does not rule out unmeasured campaign influence. Cause of the surge remains uncertain."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 4,
+          "createdAt": "2026-10-24T21:14:07.764Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "Sessions and orders increased, but the evidence does not identify social traffic or sharing as their source. Social-driven demand remains possible, not established.",
+              "mechanism": "A rise in social exposure or sharing could bring additional shoppers to the affected product and increase demand.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "counterEvidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "expectedObservations": [
+                "Social-attributed sessions or orders for the affected product increase before or alongside the demand rise.",
+                "The affected product or social channel changes more than suitable product and channel controls."
+              ],
+              "missingEvidence": [
+                "Product-level traffic and orders split by channel.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders with the baseline and control products; absent corresponding social growth would weaken this explanation."
+              ],
+              "chronology": "Aggregate demand increased during the incident window, but the evidence does not establish whether social activity preceded it.",
+              "confounders": [
+                "Other traffic sources could explain the session increase.",
+                "Campaign measures are aggregated and do not identify social-channel performance."
+              ],
+              "controlComparison": "The available evidence has no product- and channel-level comparison; compare the affected product's social traffic and orders with other products and channels over matched periods.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The affected product was out of stock by the end of the observed period, with depletion and out-of-stock checkout failures recorded. This supports an inventory constraint, but does not establish that the constraint caused the demand surge.",
+              "mechanism": "Demand can deplete inventory; once stock is unavailable, checkout failures can prevent further purchases.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_d3c564007c808776"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Availability declines before or during out-of-stock checkout failures.",
+                "Product purchase completion becomes constrained after availability is exhausted."
+              ],
+              "missingEvidence": [
+                "Timestamped inventory, product-order, and failure events aligned in time.",
+                "Product-level order and checkout-completion trends before and after stock became unavailable."
+              ],
+              "falsificationTests": [
+                "Align inventory changes, product orders, and out-of-stock failures by time; failures that do not coincide with unavailable stock, or timing inconsistent with depletion, would weaken this explanation."
+              ],
+              "chronology": "The evidence establishes an end-of-period stockout and failures during the observation window, but not when stock became unavailable relative to the demand increase.",
+              "confounders": [
+                "Elevated demand could explain depletion, so the stockout does not establish the cause of the surge.",
+                "Aggregate revenue and order measures do not show whether this product's orders were constrained."
+              ],
+              "controlComparison": "Compare the affected product's inventory and purchase completion before and after depletion, and with comparable products if available.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Campaign-attributed orders were approximately flat per hour while overall orders rose; campaign efficiency measures also weakened slightly against baseline. This does not establish a material advertising failure or rule out advertising influence.",
+              "mechanism": "If campaign spend rises without a corresponding increase in attributed orders, paid acquisition may contribute less efficiently than other traffic sources.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Campaign-level spend and attributed orders show a sustained worsening relationship.",
+                "Campaign-attributed traffic or orders underperform suitable unaffected campaign controls."
+              ],
+              "missingEvidence": [
+                "Campaign-level time series and product-level attribution.",
+                "Comparable campaign controls and attribution-quality checks."
+              ],
+              "falsificationTests": [
+                "Compare campaign-level spend, attributed orders, and efficiency over matched periods with suitable controls; stable or improved performance after attribution checks would weaken this explanation."
+              ],
+              "chronology": "Campaign and aggregate results cover the same observation window; their timing does not establish whether advertising changes preceded the demand increase.",
+              "confounders": [
+                "Attribution may not capture all campaign influence.",
+                "Aggregated campaign results may conceal different outcomes among campaigns."
+              ],
+              "controlComparison": "The supplied campaign result compares campaigns with baseline and peers, but does not provide product-level or channel-level matching to the overall order increase.",
+              "hypothesisId": "hyp_a8abe1a12fab9647"
+            },
+            {
+              "cause": "delivery_delays",
+              "explanation": "Some orders were late, delayed, lost, or still past promise at the cutoff. The late rate was only slightly higher than baseline, and this evidence does not explain the demand surge.",
+              "mechanism": "Fulfilment delays or losses could impair customer experience and affect later demand, but no evidence links these outcomes to the increase in orders.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_6781e55afade28ae"
+              ],
+              "counterEvidenceIds": [
+                "evd_54c4fc888cebb40f"
+              ],
+              "expectedObservations": [
+                "Customer demand or sentiment changes after relevant delivery problems occur.",
+                "Affected products or delivery cohorts show worse outcomes than comparable controls."
+              ],
+              "missingEvidence": [
+                "Order-level linkage between delivery outcomes and subsequent customer behavior.",
+                "Matched product or delivery-cohort comparisons."
+              ],
+              "falsificationTests": [
+                "Compare subsequent purchases and feedback for customers with delayed or lost orders against matched on-time orders; no difference would weaken a claim that delivery problems affected demand."
+              ],
+              "chronology": "Delivery outcomes are recorded during the incident window, but the evidence does not establish their timing relative to the demand increase.",
+              "confounders": [
+                "The delivery cohort is based on promise due dates, and some orders remained unresolved at the cutoff.",
+                "Review evidence is limited and does not measure all customer experiences."
+              ],
+              "controlComparison": "The late rate is compared with a baseline, but there is no matched comparison linking delivery outcomes to demand or customer behavior.",
+              "hypothesisId": "hyp_313ef280b9851c35"
+            }
+          ],
+          "decisionSummary": "Demand and sessions increased while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the increase or establish when the stock constraint began. Campaign measures do not explain the aggregate increase, and delivery issues are observed but not linked to it. The cause of the surge remains uncertain."
+        }
+      ],
+      "steps": [
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T21:11:52.375Z",
+          "completedAt": "2026-10-24T21:11:52.375Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:11:54.231Z",
+          "completedAt": "2026-10-24T21:12:09.225Z",
+          "resultSummary": "The observations establish an order increase, not its cause. Social-driven demand and inventory constraint are distinct possibilities; neither is confirmed. Check revenue patterns, advertising activity, and inventory before attributing the change.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "revenue_analysis",
+          "question": "How did orders, revenue, sessions, conversion, and order value change for the affected product and social channel versus baseline and other products or channels?",
+          "startedAt": "2026-10-24T21:12:09.245Z",
+          "completedAt": "2026-10-24T21:12:30.455Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_70371b4a1b7ca27a"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "groupBy": [
+              "product",
+              "category",
+              "channel"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "advertising_analysis",
+          "question": "Did paid campaign delivery, spend, frequency, attributed sessions, or performance change around the order increase, compared with baseline and other campaigns?",
+          "startedAt": "2026-10-24T21:12:30.593Z",
+          "completedAt": "2026-10-24T21:12:34.374Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_fd2b218bfc32179e"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "campaignIds": []
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "inventory_analysis",
+          "question": "Did inventory deplete or stock out during the window, and were there out-of-stock checkout failures relative to product order velocity?",
+          "startedAt": "2026-10-24T21:12:34.452Z",
+          "completedAt": "2026-10-24T21:12:34.607Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_d3c564007c808776"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": [
+              "nk_dunk_low_retro"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:12:35.458Z",
+          "completedAt": "2026-10-24T21:12:53.427Z",
+          "resultSummary": "Demand and sessions rose, and the affected product experienced inventory depletion, stockout, and checkout failures. The evidence does not establish what caused the demand increase or when the stock constraint began. Campaign-level results do not show a comparable increase in attributed orders. Further product- and channel-level timing is needed.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s6",
+          "type": "tool",
+          "status": "failed",
+          "identifier": "checkout_analysis",
+          "question": "How did checkout failures by cause and purchase completion change over time, especially for the affected product and around the stockout?",
+          "startedAt": "2026-10-24T21:12:53.449Z",
+          "completedAt": "2026-10-24T21:13:19.641Z",
+          "resultSummary": "Error: checkout_analysis exceeded 25000 ms",
+          "evidenceIds": [],
+          "error": "Error: checkout_analysis exceeded 25000 ms",
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s7",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did review volume, ratings, or complaint themes for the affected product change during the demand period, potentially indicating a sentiment-related confounder?",
+          "startedAt": "2026-10-24T21:13:24.642Z",
+          "completedAt": "2026-10-24T21:13:24.915Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_54c4fc888cebb40f"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": [
+              "nk_dunk_low_retro"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s8",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:13:28.883Z",
+          "completedAt": "2026-10-24T21:13:46.693Z",
+          "resultSummary": "Demand and sessions increased, while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the demand increase or establish when the stock constraint began. Campaign-level attributed orders did not rise in line with overall orders, but this does not rule out unmeasured campaign influence. Cause of the surge remains uncertain.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s9",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there prior incidents with comparable demand increases, product stockouts, or channel patterns that provide useful recorded controls or chronology?",
+          "startedAt": "2026-10-24T21:13:46.780Z",
+          "completedAt": "2026-10-24T21:13:46.913Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-11T00:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "includeOtherRuns": false
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s10",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Did late-delivery rates or delivery backlogs change during the incident window, providing context for the delivery mentions in reviews?",
+          "startedAt": "2026-10-24T21:13:46.990Z",
+          "completedAt": "2026-10-24T21:13:50.789Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_6781e55afade28ae"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s11",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:13:51.692Z",
+          "completedAt": "2026-10-24T21:14:07.764Z",
+          "resultSummary": "Demand and sessions increased while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the increase or establish when the stock constraint began. Campaign measures do not explain the aggregate increase, and delivery issues are observed but not linked to it. The cause of the surge remains uncertain.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s12",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T21:14:08.879Z",
+          "completedAt": "2026-10-24T21:14:14.874Z",
+          "resultSummary": "Revenue, sessions, and orders increased, but the evidence does not identify what drove the increase. The affected product was out of stock by the end of the window and had out-of-stock checkout failures, supporting an inventory constraint on some purchases without establishing when it began or whether it explains the surge. Campaign evidence does not establish a paid-ad driver; delivery issues are present but not linked to demand. The checkout analysis failed, limiting assessment of conversion and failure patterns. The primary cause remains unknown.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s13",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T21:14:14.874Z",
+          "completedAt": "2026-10-24T21:14:14.874Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s14",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T21:14:14.874Z",
+          "completedAt": "2026-10-24T21:14:14.874Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": null,
+      "stopReason": "The available read-only analyses have been exhausted or failed, and the remaining evidence is insufficient to distinguish the source of the demand increase. Further causal attribution would require product- and channel-level chronology or customer-linked comparisons.",
+      "reportId": "report_aij_2844311dfb96d02846b56d9b",
+      "attempts": 1
+    },
+    "report": {
+      "schemaVersion": 1,
+      "reportId": "report_aij_2844311dfb96d02846b56d9b",
+      "version": 1,
+      "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+      "diagnosisId": "diag_aij_2844311dfb96d02846b56d9b",
+      "createdAt": "2026-10-24T21:14:14.875Z",
+      "diagnosis": {
+        "primaryCause": "unknown",
+        "hypotheses": [
+          {
+            "cause": "stockout",
+            "strength": "moderate",
+            "evidenceIds": [
+              "evd_d3c564007c808776"
+            ],
+            "counterEvidenceIds": [
+              "evd_70371b4a1b7ca27a"
+            ],
+            "explanation": "The affected product was out of stock by the end of the observation window, with depletion and out-of-stock checkout failures recorded. This supports a stock constraint on some purchases, but does not establish that the constraint caused the demand increase; the timing of depletion relative to the surge is unknown."
+          },
+          {
+            "cause": "viral_demand",
+            "strength": "weak",
+            "evidenceIds": [
+              "evd_70371b4a1b7ca27a"
+            ],
+            "counterEvidenceIds": [
+              "evd_fd2b218bfc32179e"
+            ],
+            "explanation": "Sessions and orders increased, which is consistent with increased demand, but the evidence does not identify social traffic or sharing as its source. Campaign-attributed orders were approximately flat per hour, so the available evidence does not establish a specific acquisition source."
+          },
+          {
+            "cause": "ad_inefficiency",
+            "strength": "weak",
+            "evidenceIds": [
+              "evd_fd2b218bfc32179e"
+            ],
+            "counterEvidenceIds": [
+              "evd_70371b4a1b7ca27a"
+            ],
+            "explanation": "Campaign-attributed orders were approximately flat per hour while overall orders increased, and campaign efficiency measures weakened slightly against baseline. This may indicate limited paid contribution to the aggregate increase, but does not establish a material advertising failure or rule out advertising influence."
+          },
+          {
+            "cause": "delivery_delays",
+            "strength": "weak",
+            "evidenceIds": [
+              "evd_6781e55afade28ae"
+            ],
+            "counterEvidenceIds": [
+              "evd_54c4fc888cebb40f"
+            ],
+            "explanation": "Some orders were late, delayed, lost, or unresolved at the cutoff. The late rate was only slightly above baseline, and there is no evidence linking delivery outcomes to the demand increase."
+          }
+        ],
+        "summary": "Revenue, sessions, and orders increased, but the evidence does not identify what drove the increase. The affected product was out of stock by the end of the window and had out-of-stock checkout failures, supporting an inventory constraint on some purchases without establishing when it began or whether it explains the surge. Campaign evidence does not establish a paid-ad driver; delivery issues are present but not linked to demand. The checkout analysis failed, limiting assessment of conversion and failure patterns. The primary cause remains unknown.",
+        "missingEvidence": [
+          "Timestamped product-level inventory, orders, and checkout failures are needed to test whether stock depletion preceded or followed the demand increase and whether purchase completion changed after depletion.",
+          "Product- and channel-level sessions and orders, including social attribution and relevant exposure or sharing changes, are needed to test whether social demand preceded the increase relative to suitable controls.",
+          "The failed checkout analysis should be retried or equivalent event-level evidence gathered to assess checkout completion and failure patterns by time, product, and failure code.",
+          "Order-linked delivery outcomes and subsequent customer behavior, compared with matched on-time orders, are needed to test whether fulfillment problems affected demand."
+        ],
+        "requiresReview": true,
+        "schemaVersion": 1,
+        "businessId": "nike_eval",
+        "diagnosisId": "diag_aij_2844311dfb96d02846b56d9b",
+        "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+        "modelCallId": "aij_2844311dfb96d02846b56d9b_diagnosis_0",
+        "taskKey": "revenue_diagnosis_v1",
+        "createdAt": "2026-10-24T21:14:14.874Z"
+      },
+      "executiveBrief": {
+        "whatChanged": "The detector observed changes in the incident metrics shown above.",
+        "explanation": "Revenue, sessions, and orders increased, but the evidence does not identify what drove the increase. The affected product was out of stock by the end of the window and had out-of-stock checkout failures, supporting an inventory constraint on some purchases without establishing when it began or whether it explains the surge. Campaign evidence does not establish a paid-ad driver; delivery issues are present but not linked to demand. The checkout analysis failed, limiting assessment of conversion and failure patterns. The primary cause remains unknown.",
+        "certainty": "Insufficient evidence to select a reliable primary explanation.",
+        "impact": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+        "review": [
+          "Timestamped product-level inventory, orders, and checkout failures are needed to test whether stock depletion preceded or followed the demand increase and whether purchase completion changed after depletion.",
+          "Product- and channel-level sessions and orders, including social attribution and relevant exposure or sharing changes, are needed to test whether social demand preceded the increase relative to suitable controls.",
+          "The failed checkout analysis should be retried or equivalent event-level evidence gathered to assess checkout completion and failure patterns by time, product, and failure code."
+        ]
+      },
+      "impact": {
+        "schemaVersion": 1,
+        "status": "measured",
+        "evidenceId": "evd_70371b4a1b7ca27a",
+        "metric": "net_revenue_minor_per_hour",
+        "value": 24225.557,
+        "baseline": 15537.0122,
+        "delta": 8688.5448,
+        "unit": "GBP minor units/hour",
+        "interpretation": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+        "limitations": [
+          "Simulated operational data.",
+          "Baseline composition and time-window differences may confound the comparison.",
+          "Campaign-level percentages are not added or averaged."
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "diag_aij_2844311dfb96d02846b56d9b_claim_0",
+          "claim": "The affected product was out of stock by the end of the observation window, with depletion and out-of-stock checkout failures recorded. This supports a stock constraint on some purchases, but does not establish that the constraint caused the demand increase; the timing of depletion relative to the surge is unknown.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_d3c564007c808776"
+          ],
+          "counterEvidenceIds": [
+            "evd_70371b4a1b7ca27a"
+          ],
+          "sourceIds": [],
+          "support": "moderately_supported",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_2844311dfb96d02846b56d9b_claim_1",
+          "claim": "Sessions and orders increased, which is consistent with increased demand, but the evidence does not identify social traffic or sharing as its source. Campaign-attributed orders were approximately flat per hour, so the available evidence does not establish a specific acquisition source.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_70371b4a1b7ca27a"
+          ],
+          "counterEvidenceIds": [
+            "evd_fd2b218bfc32179e"
+          ],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_2844311dfb96d02846b56d9b_claim_2",
+          "claim": "Campaign-attributed orders were approximately flat per hour while overall orders increased, and campaign efficiency measures weakened slightly against baseline. This may indicate limited paid contribution to the aggregate increase, but does not establish a material advertising failure or rule out advertising influence.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_fd2b218bfc32179e"
+          ],
+          "counterEvidenceIds": [
+            "evd_70371b4a1b7ca27a"
+          ],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_2844311dfb96d02846b56d9b_claim_3",
+          "claim": "Some orders were late, delayed, lost, or unresolved at the cutoff. The late rate was only slightly above baseline, and there is no evidence linking delivery outcomes to the demand increase.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_6781e55afade28ae"
+          ],
+          "counterEvidenceIds": [
+            "evd_54c4fc888cebb40f"
+          ],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        }
+      ],
+      "ledger": [
+        {
+          "evidenceId": "evd_70371b4a1b7ca27a",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_2844311dfb96d02846b56d9b_claim_1",
+            "diag_aij_2844311dfb96d02846b56d9b_claim_0",
+            "diag_aij_2844311dfb96d02846b56d9b_claim_2"
+          ],
+          "role": "mixed",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_3_0_a3c0ffd24aec/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_3_0&evidenceId=evd_70371b4a1b7ca27a"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_fd2b218bfc32179e",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_2844311dfb96d02846b56d9b_claim_2",
+            "diag_aij_2844311dfb96d02846b56d9b_claim_1"
+          ],
+          "role": "mixed",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_3_0_a3c0ffd24aec/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_3_0&evidenceId=evd_fd2b218bfc32179e"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_d3c564007c808776",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_2844311dfb96d02846b56d9b_claim_0"
+          ],
+          "role": "support",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_3_0_a3c0ffd24aec/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_3_0&evidenceId=evd_d3c564007c808776"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_54c4fc888cebb40f",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_2844311dfb96d02846b56d9b_claim_3"
+          ],
+          "role": "contradiction",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_3_0_a3c0ffd24aec/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_3_0&evidenceId=evd_54c4fc888cebb40f"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_6781e55afade28ae",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_2844311dfb96d02846b56d9b_claim_3"
+          ],
+          "role": "support",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792875702318_3_0_a3c0ffd24aec/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792875702318_3_0&evidenceId=evd_6781e55afade28ae"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        }
+      ],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T21:12:09.225Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "A demand surge is plausible given the reported order increases and the affected product and channel, but the available evidence does not establish what drove the increase.",
+              "mechanism": "A sudden increase in social exposure or sharing could bring additional shoppers to the product and raise orders.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "A rise in social-attributed sessions or orders preceding or coinciding with the order increase.",
+                "An increase in product demand not explained by a comparable change in other products or channels."
+              ],
+              "missingEvidence": [
+                "Traffic and order trends split by channel and product.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders across the anomaly window and baseline; a lack of corresponding social traffic growth would weaken this mechanism."
+              ],
+              "chronology": "The reported order increases fall within the stated window, but the evidence does not establish whether social activity preceded them.",
+              "confounders": [
+                "A change in paid advertising, conversion, or measurement could also account for some or all of the observed increase."
+              ],
+              "controlComparison": "Compare the affected product and social channel with other products and channels over the same periods.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "Stock pressure is possible in the context of elevated orders, but the incident title is not independent evidence that inventory was depleted or that customers were unable to buy.",
+              "mechanism": "If available inventory fell below demand, the product could become unavailable and produce out-of-stock checkout failures or constrain subsequent orders.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Inventory depletion or stockout events during the window.",
+                "Out-of-stock checkout failures or a subsequent order decline associated with unavailable stock."
+              ],
+              "missingEvidence": [
+                "Product inventory levels and changes during the window.",
+                "Out-of-stock checkout failures and product order velocity."
+              ],
+              "falsificationTests": [
+                "Check product inventory and out-of-stock failures across the window; stable availability and no such failures would weaken the stockout explanation."
+              ],
+              "chronology": "The order increases are reported during the window; no inventory event timing is supplied.",
+              "confounders": [
+                "High order volume can occur without a stockout if inventory is sufficient.",
+                "A stock concern does not by itself explain the initial demand increase."
+              ],
+              "controlComparison": "Compare inventory and out-of-stock failures for the affected product with its order velocity and, where available, other products.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            }
+          ],
+          "decisionSummary": "The observations establish an order increase, not its cause. Social-driven demand and inventory constraint are distinct possibilities; neither is confirmed. Check revenue patterns, advertising activity, and inventory before attributing the change."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T21:12:53.427Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "The evidence shows a broad increase in sessions and orders, but does not identify social sharing or establish that social activity drove the increase. Viral or social-driven demand remains a tentative possibility, not a demonstrated cause.",
+              "mechanism": "A rise in social exposure or sharing could bring additional shoppers to the product and increase demand.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "counterEvidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "expectedObservations": [
+                "Product-level social-attributed sessions or orders rise before or alongside the demand increase.",
+                "The affected product or social channel changes more than suitable product and channel controls."
+              ],
+              "missingEvidence": [
+                "Traffic and orders split by product and channel.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders with the baseline and control products; no corresponding social growth would weaken this explanation."
+              ],
+              "chronology": "The revenue and order evidence covers the stated incident period, but provides no timing showing that social activity preceded the increase.",
+              "confounders": [
+                "Other sources of traffic could explain the session increase.",
+                "The campaign evidence is aggregated and does not establish social-channel performance."
+              ],
+              "controlComparison": "Compare product-level social traffic and orders with other products and channels over the same periods; the supplied evidence does not provide that split.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The affected product was out of stock by the end of the observed period, with depletion and out-of-stock checkout failures recorded. This supports an inventory constraint during the period, but does not show that the constraint caused the initial demand surge.",
+              "mechanism": "Demand depletes available units; once stock is unavailable, customers encounter out-of-stock checkout failures and further purchases may be constrained.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_d3c564007c808776"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Inventory availability declines before or during out-of-stock checkout failures.",
+                "Product orders or checkout completion become constrained after availability is exhausted."
+              ],
+              "missingEvidence": [
+                "Timestamped inventory and failure events aligned with product-level orders.",
+                "Product-level order and checkout-completion trends before and after stock became unavailable."
+              ],
+              "falsificationTests": [
+                "Align inventory events, product orders, and out-of-stock failures by time; if failures do not coincide with unavailable stock or the timing does not follow depletion, this mechanism is weakened."
+              ],
+              "chronology": "Inventory evidence confirms the product was out of stock at the period end and records depletion and failures during the period, but does not establish when stock became unavailable relative to the initial order increase.",
+              "confounders": [
+                "Elevated demand may explain depletion, so stockout does not establish the cause of the surge.",
+                "The aggregate revenue evidence does not show whether orders were constrained for this product."
+              ],
+              "controlComparison": "Compare the affected product's inventory and purchase completion over time with its own pre-depletion period and, if available, comparable products.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            }
+          ],
+          "decisionSummary": "Demand and sessions rose, and the affected product experienced inventory depletion, stockout, and checkout failures. The evidence does not establish what caused the demand increase or when the stock constraint began. Campaign-level results do not show a comparable increase in attributed orders. Further product- and channel-level timing is needed."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 3,
+          "createdAt": "2026-10-24T21:13:46.693Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "Sessions and orders increased, but the evidence does not identify social traffic or sharing as the source. Social-driven demand remains possible, not established.",
+              "mechanism": "A rise in social exposure or sharing could bring additional shoppers to the affected product and increase demand.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "counterEvidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "expectedObservations": [
+                "Social-attributed sessions or orders for the affected product increase before or alongside the demand rise.",
+                "The affected product or social channel changes more than suitable product and channel controls."
+              ],
+              "missingEvidence": [
+                "Product-level traffic and orders split by channel.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders with the baseline and control products; absent corresponding social growth would weaken this explanation."
+              ],
+              "chronology": "The aggregate demand evidence covers the incident period but does not show whether social activity preceded the increase.",
+              "confounders": [
+                "Other traffic sources could explain the session increase.",
+                "Campaign measures are aggregated and do not identify social-channel performance."
+              ],
+              "controlComparison": "Compare product-level social traffic and orders with other products and channels over the same periods; the supplied evidence has no such split.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The affected product was out of stock by the end of the observed period, and inventory depletion and out-of-stock checkout failures were recorded. This supports an inventory constraint, but does not establish that it caused the demand surge.",
+              "mechanism": "Demand can deplete inventory; once stock is unavailable, checkout failures can prevent further purchases.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_d3c564007c808776"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Availability declines before or during out-of-stock checkout failures.",
+                "Product purchase completion becomes constrained after availability is exhausted."
+              ],
+              "missingEvidence": [
+                "Timestamped inventory, product-order, and failure events aligned in time.",
+                "Product-level order and checkout-completion trends before and after stock became unavailable."
+              ],
+              "falsificationTests": [
+                "Align inventory changes, product orders, and out-of-stock failures by time; if failures do not coincide with unavailable stock, or the timing does not follow depletion, the mechanism is weakened."
+              ],
+              "chronology": "The records establish end-of-period stockout and failures during the observation window, but not when stock became unavailable relative to the demand increase.",
+              "confounders": [
+                "Elevated demand could explain depletion, so the stockout does not establish the cause of the surge.",
+                "Aggregate revenue and order measures do not show whether this product's orders were constrained."
+              ],
+              "controlComparison": "Compare the affected product's inventory and purchase completion before and after depletion, and with comparable products if available.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Campaign-attributed orders were approximately flat per hour while overall orders rose; campaign efficiency measures also weakened slightly against baseline. This indicates campaigns do not, on the available aggregate evidence, explain the broader increase, but does not establish a material advertising failure.",
+              "mechanism": "If campaign spend rises without a corresponding increase in attributed orders, paid acquisition may contribute less efficiently than other traffic sources.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Campaign-level spend and attributed orders show a sustained worsening relationship.",
+                "Campaign-attributed traffic or orders underperform suitable unaffected campaign controls."
+              ],
+              "missingEvidence": [
+                "Campaign-level time series and product-level attribution.",
+                "Comparable campaign controls and attribution-quality checks."
+              ],
+              "falsificationTests": [
+                "Compare campaign-level spend, attributed orders, and efficiency over matched periods with suitable controls; stable or improved performance after attribution checks would weaken this explanation."
+              ],
+              "chronology": "The campaign and aggregate results cover the same observation window; their timing does not establish whether advertising changes preceded the demand increase.",
+              "confounders": [
+                "Attribution may not capture all campaign influence.",
+                "The campaign data is aggregated and may conceal different outcomes among campaigns."
+              ],
+              "controlComparison": "The supplied campaign result compares campaigns with baseline and peers, but does not provide product-level or channel-level matching to the overall order increase.",
+              "hypothesisId": "hyp_a8abe1a12fab9647"
+            }
+          ],
+          "decisionSummary": "Demand and sessions increased, while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the demand increase or establish when the stock constraint began. Campaign-level attributed orders did not rise in line with overall orders, but this does not rule out unmeasured campaign influence. Cause of the surge remains uncertain."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 4,
+          "createdAt": "2026-10-24T21:14:07.764Z",
+          "hypotheses": [
+            {
+              "cause": "viral_demand",
+              "explanation": "Sessions and orders increased, but the evidence does not identify social traffic or sharing as their source. Social-driven demand remains possible, not established.",
+              "mechanism": "A rise in social exposure or sharing could bring additional shoppers to the affected product and increase demand.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "counterEvidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "expectedObservations": [
+                "Social-attributed sessions or orders for the affected product increase before or alongside the demand rise.",
+                "The affected product or social channel changes more than suitable product and channel controls."
+              ],
+              "missingEvidence": [
+                "Product-level traffic and orders split by channel.",
+                "Evidence of a relevant social exposure or sharing change."
+              ],
+              "falsificationTests": [
+                "Compare product-level social-attributed sessions and orders with the baseline and control products; absent corresponding social growth would weaken this explanation."
+              ],
+              "chronology": "Aggregate demand increased during the incident window, but the evidence does not establish whether social activity preceded it.",
+              "confounders": [
+                "Other traffic sources could explain the session increase.",
+                "Campaign measures are aggregated and do not identify social-channel performance."
+              ],
+              "controlComparison": "The available evidence has no product- and channel-level comparison; compare the affected product's social traffic and orders with other products and channels over matched periods.",
+              "hypothesisId": "hyp_bc0c977052b141ed"
+            },
+            {
+              "cause": "stockout",
+              "explanation": "The affected product was out of stock by the end of the observed period, with depletion and out-of-stock checkout failures recorded. This supports an inventory constraint, but does not establish that the constraint caused the demand surge.",
+              "mechanism": "Demand can deplete inventory; once stock is unavailable, checkout failures can prevent further purchases.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_d3c564007c808776"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Availability declines before or during out-of-stock checkout failures.",
+                "Product purchase completion becomes constrained after availability is exhausted."
+              ],
+              "missingEvidence": [
+                "Timestamped inventory, product-order, and failure events aligned in time.",
+                "Product-level order and checkout-completion trends before and after stock became unavailable."
+              ],
+              "falsificationTests": [
+                "Align inventory changes, product orders, and out-of-stock failures by time; failures that do not coincide with unavailable stock, or timing inconsistent with depletion, would weaken this explanation."
+              ],
+              "chronology": "The evidence establishes an end-of-period stockout and failures during the observation window, but not when stock became unavailable relative to the demand increase.",
+              "confounders": [
+                "Elevated demand could explain depletion, so the stockout does not establish the cause of the surge.",
+                "Aggregate revenue and order measures do not show whether this product's orders were constrained."
+              ],
+              "controlComparison": "Compare the affected product's inventory and purchase completion before and after depletion, and with comparable products if available.",
+              "hypothesisId": "hyp_d40e3c9768f73a25"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Campaign-attributed orders were approximately flat per hour while overall orders rose; campaign efficiency measures also weakened slightly against baseline. This does not establish a material advertising failure or rule out advertising influence.",
+              "mechanism": "If campaign spend rises without a corresponding increase in attributed orders, paid acquisition may contribute less efficiently than other traffic sources.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_fd2b218bfc32179e"
+              ],
+              "counterEvidenceIds": [
+                "evd_70371b4a1b7ca27a"
+              ],
+              "expectedObservations": [
+                "Campaign-level spend and attributed orders show a sustained worsening relationship.",
+                "Campaign-attributed traffic or orders underperform suitable unaffected campaign controls."
+              ],
+              "missingEvidence": [
+                "Campaign-level time series and product-level attribution.",
+                "Comparable campaign controls and attribution-quality checks."
+              ],
+              "falsificationTests": [
+                "Compare campaign-level spend, attributed orders, and efficiency over matched periods with suitable controls; stable or improved performance after attribution checks would weaken this explanation."
+              ],
+              "chronology": "Campaign and aggregate results cover the same observation window; their timing does not establish whether advertising changes preceded the demand increase.",
+              "confounders": [
+                "Attribution may not capture all campaign influence.",
+                "Aggregated campaign results may conceal different outcomes among campaigns."
+              ],
+              "controlComparison": "The supplied campaign result compares campaigns with baseline and peers, but does not provide product-level or channel-level matching to the overall order increase.",
+              "hypothesisId": "hyp_a8abe1a12fab9647"
+            },
+            {
+              "cause": "delivery_delays",
+              "explanation": "Some orders were late, delayed, lost, or still past promise at the cutoff. The late rate was only slightly higher than baseline, and this evidence does not explain the demand surge.",
+              "mechanism": "Fulfilment delays or losses could impair customer experience and affect later demand, but no evidence links these outcomes to the increase in orders.",
+              "support": "tentative",
+              "evidenceIds": [
+                "evd_6781e55afade28ae"
+              ],
+              "counterEvidenceIds": [
+                "evd_54c4fc888cebb40f"
+              ],
+              "expectedObservations": [
+                "Customer demand or sentiment changes after relevant delivery problems occur.",
+                "Affected products or delivery cohorts show worse outcomes than comparable controls."
+              ],
+              "missingEvidence": [
+                "Order-level linkage between delivery outcomes and subsequent customer behavior.",
+                "Matched product or delivery-cohort comparisons."
+              ],
+              "falsificationTests": [
+                "Compare subsequent purchases and feedback for customers with delayed or lost orders against matched on-time orders; no difference would weaken a claim that delivery problems affected demand."
+              ],
+              "chronology": "Delivery outcomes are recorded during the incident window, but the evidence does not establish their timing relative to the demand increase.",
+              "confounders": [
+                "The delivery cohort is based on promise due dates, and some orders remained unresolved at the cutoff.",
+                "Review evidence is limited and does not measure all customer experiences."
+              ],
+              "controlComparison": "The late rate is compared with a baseline, but there is no matched comparison linking delivery outcomes to demand or customer behavior.",
+              "hypothesisId": "hyp_313ef280b9851c35"
+            }
+          ],
+          "decisionSummary": "Demand and sessions increased while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the increase or establish when the stock constraint began. Campaign measures do not explain the aggregate increase, and delivery issues are observed but not linked to it. The cause of the surge remains uncertain."
+        }
+      ],
+      "timeline": [
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T21:11:52.375Z",
+          "completedAt": "2026-10-24T21:11:52.375Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:11:54.231Z",
+          "completedAt": "2026-10-24T21:12:09.225Z",
+          "resultSummary": "The observations establish an order increase, not its cause. Social-driven demand and inventory constraint are distinct possibilities; neither is confirmed. Check revenue patterns, advertising activity, and inventory before attributing the change.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "revenue_analysis",
+          "question": "How did orders, revenue, sessions, conversion, and order value change for the affected product and social channel versus baseline and other products or channels?",
+          "startedAt": "2026-10-24T21:12:09.245Z",
+          "completedAt": "2026-10-24T21:12:30.455Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_70371b4a1b7ca27a"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "groupBy": [
+              "product",
+              "category",
+              "channel"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "advertising_analysis",
+          "question": "Did paid campaign delivery, spend, frequency, attributed sessions, or performance change around the order increase, compared with baseline and other campaigns?",
+          "startedAt": "2026-10-24T21:12:30.593Z",
+          "completedAt": "2026-10-24T21:12:34.374Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_fd2b218bfc32179e"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "campaignIds": []
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "inventory_analysis",
+          "question": "Did inventory deplete or stock out during the window, and were there out-of-stock checkout failures relative to product order velocity?",
+          "startedAt": "2026-10-24T21:12:34.452Z",
+          "completedAt": "2026-10-24T21:12:34.607Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_d3c564007c808776"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": [
+              "nk_dunk_low_retro"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:12:35.458Z",
+          "completedAt": "2026-10-24T21:12:53.427Z",
+          "resultSummary": "Demand and sessions rose, and the affected product experienced inventory depletion, stockout, and checkout failures. The evidence does not establish what caused the demand increase or when the stock constraint began. Campaign-level results do not show a comparable increase in attributed orders. Further product- and channel-level timing is needed.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s6",
+          "type": "tool",
+          "status": "failed",
+          "identifier": "checkout_analysis",
+          "question": "How did checkout failures by cause and purchase completion change over time, especially for the affected product and around the stockout?",
+          "startedAt": "2026-10-24T21:12:53.449Z",
+          "completedAt": "2026-10-24T21:13:19.641Z",
+          "resultSummary": "Error: checkout_analysis exceeded 25000 ms",
+          "evidenceIds": [],
+          "error": "Error: checkout_analysis exceeded 25000 ms",
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s7",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did review volume, ratings, or complaint themes for the affected product change during the demand period, potentially indicating a sentiment-related confounder?",
+          "startedAt": "2026-10-24T21:13:24.642Z",
+          "completedAt": "2026-10-24T21:13:24.915Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_54c4fc888cebb40f"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "productIds": [
+              "nk_dunk_low_retro"
+            ]
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s8",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:13:28.883Z",
+          "completedAt": "2026-10-24T21:13:46.693Z",
+          "resultSummary": "Demand and sessions increased, while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the demand increase or establish when the stock constraint began. Campaign-level attributed orders did not rise in line with overall orders, but this does not rule out unmeasured campaign influence. Cause of the surge remains uncertain.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s9",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there prior incidents with comparable demand increases, product stockouts, or channel patterns that provide useful recorded controls or chronology?",
+          "startedAt": "2026-10-24T21:13:46.780Z",
+          "completedAt": "2026-10-24T21:13:46.913Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-11T00:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50,
+            "includeOtherRuns": false
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s10",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Did late-delivery rates or delivery backlogs change during the incident window, providing context for the delivery mentions in reviews?",
+          "startedAt": "2026-10-24T21:13:46.990Z",
+          "completedAt": "2026-10-24T21:13:50.789Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_6781e55afade28ae"
+          ],
+          "error": null,
+          "parameters": {
+            "businessId": "nike_eval",
+            "simulationRunId": "s5eval_1792875702318_3_0",
+            "window": {
+              "startAt": "2026-10-04T10:00:00.000Z",
+              "endAt": "2026-10-11T00:00:00.000Z"
+            },
+            "baselineWindow": {
+              "startAt": "2026-10-01T00:00:00.000Z",
+              "endAt": "2026-10-04T10:00:00.000Z"
+            },
+            "limit": 50
+          }
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s11",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T21:13:51.692Z",
+          "completedAt": "2026-10-24T21:14:07.764Z",
+          "resultSummary": "Demand and sessions increased while the affected product depleted to a stockout and recorded out-of-stock checkout failures. The evidence does not identify what drove the increase or establish when the stock constraint began. Campaign measures do not explain the aggregate increase, and delivery issues are observed but not linked to it. The cause of the surge remains uncertain.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s12",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T21:14:08.879Z",
+          "completedAt": "2026-10-24T21:14:14.874Z",
+          "resultSummary": "Revenue, sessions, and orders increased, but the evidence does not identify what drove the increase. The affected product was out of stock by the end of the window and had out-of-stock checkout failures, supporting an inventory constraint on some purchases without establishing when it began or whether it explains the surge. Campaign evidence does not establish a paid-ad driver; delivery issues are present but not linked to demand. The checkout analysis failed, limiting assessment of conversion and failure patterns. The primary cause remains unknown.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s13",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T21:14:14.874Z",
+          "completedAt": "2026-10-24T21:14:14.874Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_2844311dfb96d02846b56d9b_s14",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T21:14:14.874Z",
+          "completedAt": "2026-10-24T21:14:14.874Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "sections": [
+        {
+          "title": "Executive summary",
+          "text": "Revenue, sessions, and orders increased, but the evidence does not identify what drove the increase. The affected product was out of stock by the end of the window and had out-of-stock checkout failures, supporting an inventory constraint on some purchases without establishing when it began or whether it explains the surge. Campaign evidence does not establish a paid-ad driver; delivery issues are present but not linked to demand. The checkout analysis failed, limiting assessment of conversion and failure patterns. The primary cause remains unknown.",
+          "evidenceIds": [
+            "evd_d3c564007c808776",
+            "evd_70371b4a1b7ca27a",
+            "evd_fd2b218bfc32179e",
+            "evd_6781e55afade28ae"
+          ]
+        },
+        {
+          "title": "Observed evidence",
+          "text": "Revenue, orders and conversion versus baseline: Over 158 h ending 2026-10-11T00:00:00.000Z: 352 orders, net revenue £38276.38, 15865 sessions, conversion 2.22%. Baseline (82 h): hourly revenue +55.9% change, hourly orders +57.5%, hourly sessions +77.3%. Decomposition: sessions share 1.289, conversion share -0.267, AOV share -0.022 of the revenue change. Values are simulated business records; this describes what changed, not why.\n\nCampaign performance versus baseline and peers: 5 campaign(s) analysed over 158 h ending 2026-10-11T00:00:00.000Z: CTR 1.92%, spend £3095.03, 140 attributed orders, CPA £22.11, ROAS 4.94. Versus baseline: CTR -1.7%, hourly spend +6.8%, hourly attributed orders +0.9%. Observations are simulated ad-platform records; frequency and CTR describe exposure and response, not intent.\n\nInventory levels, depletion and demand velocity: 1 product(s) observed to 2026-10-11T00:00:00.000Z: 1 at zero available units, 0 projected to run out within 72 h at current velocity, 98 units depleted in the 158 h window, 19 out-of-stock checkout failures. Out of stock: Nike Dunk Low Retro. Simulated inventory records derived from canonical inventory.level_changed events.\n\nReview volume, low ratings and delivery complaints: 16 reviews over 158 h ending 2026-10-11T00:00:00.000Z: 0 rated ≤2 (0.0%), average rating 4.00, 2 mention delivery terms. Most low-rated products: Nike Dunk Low Retro (0/16). Simulated review records; delivery mentions are a keyword heuristic.\n\nDelivery promise cohort and delayed orders: Cohort of 302 promises due in the 158 h ending 2026-10-11T00:00:00.000Z: 29 not delivered by promise (late rate 9.6%). Baseline late rate 8.7% on 23 promises (+10.4% change). 25 order(s) received a delayed status (average recorded delay 1933 min), 2 lost; 7 shipped order(s) are past promise with no delivered or lost event at the cutoff. Simulated fulfilment records; cohort membership is by promise due date, so immature promises never read as healthy.",
+          "evidenceIds": [
+            "evd_70371b4a1b7ca27a",
+            "evd_fd2b218bfc32179e",
+            "evd_d3c564007c808776",
+            "evd_54c4fc888cebb40f",
+            "evd_6781e55afade28ae"
+          ]
+        },
+        {
+          "title": "Competing explanations",
+          "text": "stockout (moderate): The affected product was out of stock by the end of the observation window, with depletion and out-of-stock checkout failures recorded. This supports a stock constraint on some purchases, but does not establish that the constraint caused the demand increase; the timing of depletion relative to the surge is unknown.\n\nviral demand (weak): Sessions and orders increased, which is consistent with increased demand, but the evidence does not identify social traffic or sharing as its source. Campaign-attributed orders were approximately flat per hour, so the available evidence does not establish a specific acquisition source.\n\nad inefficiency (weak): Campaign-attributed orders were approximately flat per hour while overall orders increased, and campaign efficiency measures weakened slightly against baseline. This may indicate limited paid contribution to the aggregate increase, but does not establish a material advertising failure or rule out advertising influence.\n\ndelivery delays (weak): Some orders were late, delayed, lost, or unresolved at the cutoff. The late rate was only slightly above baseline, and there is no evidence linking delivery outcomes to the demand increase.",
+          "evidenceIds": [
+            "evd_d3c564007c808776",
+            "evd_70371b4a1b7ca27a",
+            "evd_fd2b218bfc32179e",
+            "evd_6781e55afade28ae",
+            "evd_54c4fc888cebb40f"
+          ]
+        },
+        {
+          "title": "Causal challenges and uncertainty",
+          "text": "Sessions and orders increased, but the evidence does not identify social traffic or sharing as their source. Social-driven demand remains possible, not established.\nChronology: Aggregate demand increased during the incident window, but the evidence does not establish whether social activity preceded it.\nControls: The available evidence has no product- and channel-level comparison; compare the affected product's social traffic and orders with other products and channels over matched periods.\nConfounders: Other traffic sources could explain the session increase.; Campaign measures are aggregated and do not identify social-channel performance.\nCould be weakened by: Compare product-level social-attributed sessions and orders with the baseline and control products; absent corresponding social growth would weaken this explanation.\n\nThe affected product was out of stock by the end of the observed period, with depletion and out-of-stock checkout failures recorded. This supports an inventory constraint, but does not establish that the constraint caused the demand surge.\nChronology: The evidence establishes an end-of-period stockout and failures during the observation window, but not when stock became unavailable relative to the demand increase.\nControls: Compare the affected product's inventory and purchase completion before and after depletion, and with comparable products if available.\nConfounders: Elevated demand could explain depletion, so the stockout does not establish the cause of the surge.; Aggregate revenue and order measures do not show whether this product's orders were constrained.\nCould be weakened by: Align inventory changes, product orders, and out-of-stock failures by time; failures that do not coincide with unavailable stock, or timing inconsistent with depletion, would weaken this explanation.\n\nCampaign-attributed orders were approximately flat per hour while overall orders rose; campaign efficiency measures also weakened slightly against baseline. This does not establish a material advertising failure or rule out advertising influence.\nChronology: Campaign and aggregate results cover the same observation window; their timing does not establish whether advertising changes preceded the demand increase.\nControls: The supplied campaign result compares campaigns with baseline and peers, but does not provide product-level or channel-level matching to the overall order increase.\nConfounders: Attribution may not capture all campaign influence.; Aggregated campaign results may conceal different outcomes among campaigns.\nCould be weakened by: Compare campaign-level spend, attributed orders, and efficiency over matched periods with suitable controls; stable or improved performance after attribution checks would weaken this explanation.\n\nSome orders were late, delayed, lost, or still past promise at the cutoff. The late rate was only slightly higher than baseline, and this evidence does not explain the demand surge.\nChronology: Delivery outcomes are recorded during the incident window, but the evidence does not establish their timing relative to the demand increase.\nControls: The late rate is compared with a baseline, but there is no matched comparison linking delivery outcomes to demand or customer behavior.\nConfounders: The delivery cohort is based on promise due dates, and some orders remained unresolved at the cutoff.; Review evidence is limited and does not measure all customer experiences.\nCould be weakened by: Compare subsequent purchases and feedback for customers with delayed or lost orders against matched on-time orders; no difference would weaken a claim that delivery problems affected demand.",
+          "evidenceIds": []
+        },
+        {
+          "title": "External research",
+          "text": "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Business impact",
+          "text": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+          "evidenceIds": [
+            "evd_70371b4a1b7ca27a"
+          ]
+        },
+        {
+          "title": "Advisory next steps",
+          "text": "Review: Timestamped product-level inventory, orders, and checkout failures are needed to test whether stock depletion preceded or followed the demand increase and whether purchase completion changed after depletion.\nReview: Product- and channel-level sessions and orders, including social attribution and relevant exposure or sharing changes, are needed to test whether social demand preceded the increase relative to suitable controls.\nReview: The failed checkout analysis should be retried or equivalent event-level evidence gathered to assess checkout completion and failure patterns by time, product, and failure code.\nReview: Order-linked delivery outcomes and subsequent customer behavior, compared with matched on-time orders, are needed to test whether fulfillment problems affected demand.",
+          "evidenceIds": []
+        }
+      ],
+      "handoff": {
+        "schemaVersion": 1,
+        "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+        "diagnosisId": "diag_aij_2844311dfb96d02846b56d9b",
+        "ready": false,
+        "supportedFindings": [
+          "The affected product was out of stock by the end of the observation window, with depletion and out-of-stock checkout failures recorded. This supports a stock constraint on some purchases, but does not establish that the constraint caused the demand increase; the timing of depletion relative to the surge is unknown."
+        ],
+        "affectedEntities": [
+          "nk_dunk_low_retro",
+          "social"
+        ],
+        "evidenceIds": [
+          "evd_70371b4a1b7ca27a",
+          "evd_fd2b218bfc32179e",
+          "evd_d3c564007c808776",
+          "evd_54c4fc888cebb40f",
+          "evd_6781e55afade28ae"
+        ],
+        "impactReference": "report_aij_2844311dfb96d02846b56d9b",
+        "uncertainty": [
+          "Timestamped product-level inventory, orders, and checkout failures are needed to test whether stock depletion preceded or followed the demand increase and whether purchase completion changed after depletion.",
+          "Product- and channel-level sessions and orders, including social attribution and relevant exposure or sharing changes, are needed to test whether social demand preceded the increase relative to suitable controls.",
+          "The failed checkout analysis should be retried or equivalent event-level evidence gathered to assess checkout completion and failure patterns by time, product, and failure code.",
+          "Order-linked delivery outcomes and subsequent customer behavior, compared with matched on-time orders, are needed to test whether fulfillment problems affected demand.",
+          "The available read-only analyses have been exhausted or failed, and the remaining evidence is insufficient to distinguish the source of the demand increase. Further causal attribution would require product- and channel-level chronology or customer-linked comparisons."
+        ],
+        "constraints": [
+          "Human review required",
+          "Stage five is read-only; no executable plan or business mutation",
+          "Synthetic data; external events cannot establish simulated causation"
+        ],
+        "advisoryCandidates": [
+          "Investigate: Timestamped product-level inventory, orders, and checkout failures are needed to test whether stock depletion preceded or followed the demand increase and whether purchase completion changed after depletion.",
+          "Investigate: Product- and channel-level sessions and orders, including social attribution and relevant exposure or sharing changes, are needed to test whether social demand preceded the increase relative to suitable controls.",
+          "Investigate: The failed checkout analysis should be retried or equivalent event-level evidence gathered to assess checkout completion and failure patterns by time, product, and failure code.",
+          "Investigate: Order-linked delivery outcomes and subsequent customer behavior, compared with matched on-time orders, are needed to test whether fulfillment problems affected demand."
+        ],
+        "executable": false
+      },
+      "insufficientEvidence": {
+        "known": [
+          "Revenue, orders and conversion versus baseline",
+          "Campaign performance versus baseline and peers",
+          "Inventory levels, depletion and demand velocity",
+          "Review volume, low ratings and delivery complaints",
+          "Delivery promise cohort and delayed orders"
+        ],
+        "unknown": [
+          "Timestamped product-level inventory, orders, and checkout failures are needed to test whether stock depletion preceded or followed the demand increase and whether purchase completion changed after depletion.",
+          "Product- and channel-level sessions and orders, including social attribution and relevant exposure or sharing changes, are needed to test whether social demand preceded the increase relative to suitable controls.",
+          "The failed checkout analysis should be retried or equivalent event-level evidence gathered to assess checkout completion and failure patterns by time, product, and failure code.",
+          "Order-linked delivery outcomes and subsequent customer behavior, compared with matched on-time orders, are needed to test whether fulfillment problems affected demand."
+        ],
+        "plausibleExplanations": [
+          "The affected product was out of stock by the end of the observation window, with depletion and out-of-stock checkout failures recorded. This supports a stock constraint on some purchases, but does not establish that the constraint caused the demand increase; the timing of depletion relative to the surge is unknown.",
+          "Sessions and orders increased, which is consistent with increased demand, but the evidence does not identify social traffic or sharing as its source. Campaign-attributed orders were approximately flat per hour, so the available evidence does not establish a specific acquisition source.",
+          "Campaign-attributed orders were approximately flat per hour while overall orders increased, and campaign efficiency measures weakened slightly against baseline. This may indicate limited paid contribution to the aggregate increase, but does not establish a material advertising failure or rule out advertising influence.",
+          "Some orders were late, delayed, lost, or unresolved at the cutoff. The late rate was only slightly above baseline, and there is no evidence linking delivery outcomes to the demand increase."
+        ],
+        "reason": "Revenue, sessions, and orders increased, but the evidence does not identify what drove the increase. The affected product was out of stock by the end of the window and had out-of-stock checkout failures, supporting an inventory constraint on some purchases without establishing when it began or whether it explains the surge. Campaign evidence does not establish a paid-ad driver; delivery issues are present but not linked to demand. The checkout analysis failed, limiting assessment of conversion and failure patterns. The primary cause remains unknown.",
+        "usefulNextEvidence": [
+          "Timestamped product-level inventory, orders, and checkout failures are needed to test whether stock depletion preceded or followed the demand increase and whether purchase completion changed after depletion.",
+          "Product- and channel-level sessions and orders, including social attribution and relevant exposure or sharing changes, are needed to test whether social demand preceded the increase relative to suitable controls.",
+          "The failed checkout analysis should be retried or equivalent event-level evidence gathered to assess checkout completion and failure patterns by time, product, and failure code.",
+          "Order-linked delivery outcomes and subsequent customer behavior, compared with matched on-time orders, are needed to test whether fulfillment problems affected demand."
+        ],
+        "externalResearchUnavailable": true,
+        "conclusionsNotJustified": [
+          "A definitive single root cause",
+          "A causal financial loss estimate",
+          "A verified real-world cause of this synthetic incident"
+        ]
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          "Canonical diagnosis schema",
+          "Business/run/investigation ownership",
+          "Evidence references exist and resolve",
+          "Timestamp cutoff",
+          "Duplicate references rejected",
+          "Numerical prose rejected; impact computed deterministically",
+          "Known contradiction disclosure",
+          "Single diagnosis shared by brief, report and handoff"
+        ],
+        "semanticSupport": "model_assessed_not_deterministic_proof"
+      }
+    },
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_3_0",
+        "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+        "callId": "aij_2844311dfb96d02846b56d9b_reasoning_0",
+        "jobId": "aij_2844311dfb96d02846b56d9b",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "497b74a305817a1858d1eb19d6641098766362d6a0d7d8e626d890a06b51245e",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:11:55.227Z",
+        "completedAt": "2026-10-24T21:12:06.948Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc182ba7951bbe683c94b27cb12",
+          "providerRequestId": "req_b27db562b750424db9e6cc383c1b3338",
+          "latencyMs": 11701,
+          "inputTokens": 2069,
+          "outputTokens": 1009,
+          "totalTokens": 3078,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 18170,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_3_0",
+        "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+        "callId": "aij_2844311dfb96d02846b56d9b_reasoning_1",
+        "jobId": "aij_2844311dfb96d02846b56d9b",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "7f69c0aa7e09c0d089c902f49104b52814a30657106e2a457c59d02312575a1a",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:12:35.513Z",
+        "completedAt": "2026-10-24T21:12:52.612Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc21ffa79b399326e11b5ff7bda",
+          "providerRequestId": "req_92a95866b0394c19b353721815386bb8",
+          "latencyMs": 17077,
+          "inputTokens": 3966,
+          "outputTokens": 1573,
+          "totalTokens": 5539,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 25616,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_3_0",
+        "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+        "callId": "aij_2844311dfb96d02846b56d9b_reasoning_2",
+        "jobId": "aij_2844311dfb96d02846b56d9b",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "d28d31ee00e22f3a55e95f000c341e0d55baf05a889609e1bda1312f600ee432",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:13:28.948Z",
+        "completedAt": "2026-10-24T21:13:45.514Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc2f0df7bf1a5c7cdf0ce283303",
+          "providerRequestId": "req_02b8eca7b3ae4da79498b8c9331023c9",
+          "latencyMs": 16504,
+          "inputTokens": 4491,
+          "outputTokens": 1753,
+          "totalTokens": 6244,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 27523,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_3_0",
+        "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+        "callId": "aij_2844311dfb96d02846b56d9b_reasoning_3",
+        "jobId": "aij_2844311dfb96d02846b56d9b",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "84c6043a92ececbce8b80021b81109388bcc15b2a6f3dbac0cba3cd524216d98",
+        "checksum": "de5308e0fcecf2382a6cd270e3374474f4e8ab591e6b103eac1d6b2bd4da2d2e",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:13:51.746Z",
+        "completedAt": "2026-10-24T21:14:05.411Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc349c17bc2990d8c6fef6f56fa",
+          "providerRequestId": "req_eb2cef32594d432f828ba92b5b7d4c6d",
+          "latencyMs": 13649,
+          "inputTokens": 5277,
+          "outputTokens": 1748,
+          "totalTokens": 7025,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 30756,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792875702318_3_0",
+        "investigationId": "inv_s5eval_1792875702318_3_0_a3c0ffd24aec",
+        "callId": "aij_2844311dfb96d02846b56d9b_diagnosis_0",
+        "jobId": "aij_2844311dfb96d02846b56d9b",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.1",
+        "promptFingerprint": "079b7939f094519e1fa767a5164536953aae9f50e1de78a75a5e316fda2be413",
+        "checksum": "cd4057c0f534fcda80f8c238472ce82739a5f3f4911d529fc993e9007283ed84",
+        "status": "completed",
+        "startedAt": "2026-10-24T21:14:08.937Z",
+        "completedAt": "2026-10-24T21:14:14.831Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fc38ccf7a82bcbe28b9352dde25",
+          "providerRequestId": "req_3de6376a624a44939cdf4278e8ce52f8",
+          "latencyMs": 5868,
+          "inputTokens": 5272,
+          "outputTokens": 648,
+          "totalTokens": 5920,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 32608,
+        "outputDiagnosisId": "diag_aij_2844311dfb96d02846b56d9b",
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      }
+    ],
+    "researchTraces": []
+  }
+}

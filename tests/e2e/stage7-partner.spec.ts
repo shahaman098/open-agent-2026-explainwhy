@@ -1,0 +1,50 @@
+import { artifactPath } from "./artifacts";
+import { expect,test } from '@playwright/test';
+import { readFileSync,writeFileSync } from 'node:fs';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+test.beforeEach(async()=>{await promisify(execFile)(process.execPath,['--conditions=react-server','--import','tsx','tests/e2e/seed.mts','--execution'],{timeout:90000});});
+test.use({extraHTTPHeaders:process.env.E2E_DEMO_KEY?{'x-normal-demo-key':process.env.E2E_DEMO_KEY}:{}});
+const acceptance=JSON.parse(readFileSync('docs/stage7-runs/acceptance.json','utf8'));
+const shipping=()=>JSON.parse(readFileSync('docs/stage7-runs/shipping-fixture.json','utf8'));
+test('Stage 7 partner interfaces execute exact approved versions against isolated MongoDB runs',async({page,request})=>{
+ test.setTimeout(180000);
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ const {simulationRunId,planId,planVersion}=acceptance;
+ const query=new URLSearchParams({businessId:'nike_demo',simulationRunId,planVersion:String(planVersion)}).toString();
+ const campaignUrl=`/api/dev/simulator/campaigns/cmp_basketball_search?simulationRunId=${simulationRunId}&days=30`;
+ const before=await (await request.get(campaignUrl)).json();expect(before.campaign.dailyBudgetMinor).toBe(9000);
+ await page.goto(`/ads?run=${simulationRunId}`);const row=page.getByTestId('campaign-cmp_basketball_search');await expect(row).toContainText('£90.00 / day');
+ await expect(row).toContainText((before.campaignPerformance.find((r:{campaignId:string})=>r.campaignId==='cmp_basketball_search').spendMinor/100).toFixed(2));
+ await expect(page.getByRole('button',{name:'Create',exact:true})).toBeDisabled();
+ await page.getByTitle('View charts').click();await expect(page.getByRole('img',{name:'Recorded daily advertising spend'})).toBeVisible();
+ await page.screenshot({path:artifactPath('docs/stage7-runs/meta-before.png'),fullPage:true});
+ expect((await request.post(`/api/plans/${planId}/execute?${query}`,{data:{approvalId:'unapproved'}})).status()).toBe(409);
+ await page.goto(`/dashboard/approvals?run=${simulationRunId}`);
+ await page.getByRole('button').filter({hasText:acceptance.handoff.plan.objective}).click();
+ await expect(page.getByRole('button',{name:'Approve exact version'})).toBeEnabled();
+ await page.getByRole('button',{name:'Approve exact version'}).click();await expect(page.getByTestId('approval-decision')).toContainText('approved');
+ await page.getByRole('button',{name:'Execute approved actions'}).click();await expect(page.getByTestId('execution-results')).toContainText('succeeded');
+ const snapshot=await (await request.get(`/api/plans/${planId}/executions?${query}`)).json();expect(snapshot.executions).toHaveLength(1);expect(snapshot.executions[0].status).toBe('succeeded');
+ expect((await request.post(`/api/plans/${planId}/execute?${query}`,{data:{approvalId:snapshot.approval.approvalId}})).status()).toBe(409);
+ await page.reload();await page.getByRole('button').filter({hasText:acceptance.handoff.plan.objective}).click();await expect(page.getByTestId('execution-results')).toContainText('succeeded');
+ await page.screenshot({path:artifactPath('docs/stage7-runs/approval-execution.png'),fullPage:true});
+ await page.goto(`/ads?run=${simulationRunId}`);await expect(page.getByTestId('campaign-cmp_basketball_search')).toContainText('£67.50 / day');await page.reload();await expect(page.getByTestId('campaign-cmp_basketball_search')).toContainText('£67.50 / day');
+ const after=await (await request.get(campaignUrl)).json();expect(after.campaign.dailyBudgetMinor).toBe(6750);expect(after.actions).toHaveLength(1);await page.screenshot({path:artifactPath('docs/stage7-runs/meta-after.png'),fullPage:true});
+ await page.goto(`/demo-store?run=${simulationRunId}`);await expect(page.locator('article[data-testid^="product-"]')).toHaveCount(17);
+ const products=await (await request.get(`/api/demo-store/products?simulationRunId=${simulationRunId}`)).json();expect(products.servedFrom).toBe('mongodb');expect(products.products).toHaveLength(17);
+
+ // Force lazy catalogue images into view and verify genuine decoded local assets.
+ for(const card of await page.locator('article[data-testid^="product-"]').all()){await card.scrollIntoViewIfNeeded();await expect.poll(()=>card.locator('img').first().evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>100&&!img.currentSrc.includes('unavailable'))).toBe(true)}
+ await page.getByPlaceholder('Search',{exact:true}).fill('Pegasus 42');await expect(page.locator('article[data-testid^="product-"]')).toHaveCount(1);await page.getByRole('heading',{name:'Nike Pegasus 42',exact:true}).click();
+ await page.getByRole('button',{name:'View 2',exact:true}).click();await page.getByRole('button',{name:'Add to Bag',exact:true}).click();await page.getByTitle('Bag',{exact:true}).click();
+ await page.getByRole('button',{name:/Checkout/}).click();await expect(page.getByRole('status').first()).toContainText('persisted');
+ await page.goto(`/demo-store?run=${simulationRunId}`);await expect(page.locator('article[data-testid^="product-"]')).toHaveCount(17);await page.screenshot({path:artifactPath('docs/stage7-runs/nike-storefront.png'),fullPage:true});
+ const banner=shipping(),bq=new URLSearchParams({businessId:'nike_demo',simulationRunId:banner.simulationRunId,planVersion:String(banner.planVersion)}).toString();
+ await page.goto(`/dashboard/approvals?run=${banner.simulationRunId}`);await page.getByRole('button').filter({hasText:'Bounded intervention'}).click();await page.getByRole('button',{name:'Approve exact version'}).click();await expect(page.getByTestId('approval-decision')).toContainText('approved');await page.getByRole('button',{name:'Execute approved actions'}).click();await expect(page.getByTestId('execution-results')).toContainText('succeeded');
+ const bannerResult=await (await request.get(`/api/plans/${banner.planId}/executions?${bq}`)).json();expect(bannerResult.executions.map((e:{status:string})=>e.status)).toEqual(['succeeded','succeeded']);
+ await page.goto(`/store?run=${banner.simulationRunId}`);await expect(page.getByTestId('storefront-banner')).toHaveText('Notice: Some deliveries are taking longer than usual. Check your order status for updates.');await page.screenshot({path:artifactPath('docs/stage7-runs/nike-banner.png'),fullPage:true});
+ await page.goto('/shopify');await expect(page.getByText('Synthetic Shopify intro demo · no live connection')).toBeVisible();await page.screenshot({path:artifactPath('docs/stage7-runs/shopify.png'),fullPage:true});
+ expect(errors).toEqual([]);
+ writeFileSync(artifactPath('docs/stage7-runs/browser.json'),JSON.stringify({simulationRunId,planId,planVersion,budgetBefore:before.campaign.dailyBudgetMinor,budgetAfter:after.campaign.dailyBudgetMinor,recordedAction:after.actions[0],snapshot,productCount:products.products.length,imageCount:products.products.reduce((n:number,p:{images:unknown[]})=>n+p.images.length,0),shipping:bannerResult,consoleErrors:errors},null,2));
+});

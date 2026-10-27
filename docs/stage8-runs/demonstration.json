@@ -1,0 +1,78 @@
+{
+  "label": "Read-only measurement of existing Stage 7 isolated executions; assessment records only.",
+  "assessments": [
+    {
+      "businessId": "nike_demo",
+      "simulationRunId": "stage7_1792893488465",
+      "assessmentId": "boa_c34fb47c9e570d34d2d288043d427bc2",
+      "planId": "stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2",
+      "planVersion": 1,
+      "actionId": "stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2_1_0",
+      "actionType": "ads.set_daily_budget",
+      "status": "pending_measurement",
+      "actionApplied": true,
+      "targetStateAchieved": true,
+      "businessEffect": "inconclusive",
+      "summary": "Budget change verified; awaiting a full post-action campaign window.",
+      "beforeValue": 9000,
+      "afterValue": 6750,
+      "beforeCoverage": {
+        "coveredMinutes": 1800,
+        "requiredMinutes": 1800
+      },
+      "afterCoverage": {
+        "coveredMinutes": 0,
+        "requiredMinutes": 1800
+      },
+      "callbackEvents": [
+        "ev_stage7_1792893488465:action:nike_demo:stage7_1792893488465:stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2:v1:stage7_1792893488465_plan_plj_c70db54aa7f98907532859f2_1_0:budget"
+      ],
+      "sourceReferences": 34
+    },
+    {
+      "businessId": "nike_demo",
+      "simulationRunId": "stage7_shipping_1792893488698",
+      "assessmentId": "boa_9144d5ab0749960239d2cc2b4ad1ccf5",
+      "planId": "plan_plj_5922b64e2054da6a61cebc40",
+      "planVersion": 1,
+      "actionId": "plan_plj_5922b64e2054da6a61cebc40_1_1",
+      "actionType": "storefront.publish_banner",
+      "status": "pending_measurement",
+      "actionApplied": true,
+      "targetStateAchieved": true,
+      "businessEffect": "inconclusive",
+      "summary": "Banner publication verified; downstream conversion impact is unmeasured.",
+      "beforeValue": null,
+      "afterValue": null,
+      "beforeCoverage": null,
+      "afterCoverage": null,
+      "callbackEvents": [
+        "ev_stage7_shipping_1792893488698:action:nike_demo:stage7_shipping_1792893488698:plan_plj_5922b64e2054da6a61cebc40:v1:plan_plj_5922b64e2054da6a61cebc40_1_1:banner"
+      ],
+      "sourceReferences": 3
+    },
+    {
+      "businessId": "nike_demo",
+      "simulationRunId": "stage7_shipping_1792893488698",
+      "assessmentId": "boa_08eb55dc5cc0614a441f4b27ea5add63",
+      "planId": "plan_plj_5922b64e2054da6a61cebc40",
+      "planVersion": 1,
+      "actionId": "plan_plj_5922b64e2054da6a61cebc40_1_0",
+      "actionType": "customer.send_delay_notice",
+      "status": "pending_measurement",
+      "actionApplied": true,
+      "targetStateAchieved": true,
+      "businessEffect": "inconclusive",
+      "summary": "Notices reached 2/2 intended simulated recipients; business impact is unmeasured.",
+      "beforeValue": null,
+      "afterValue": null,
+      "beforeCoverage": null,
+      "afterCoverage": null,
+      "callbackEvents": [
+        "ev_stage7_shipping_1792893488698:action:nike_demo:stage7_shipping_1792893488698:plan_plj_5922b64e2054da6a61cebc40:v1:plan_plj_5922b64e2054da6a61cebc40_1_0:msg:msg_stage7_shipping_1792893488698_nikedemostage7shipping1792893488698planplj5922b64e2054da6a61cebc40v1planplj5922b64e2054da6a61cebc4010_0",
+        "ev_stage7_shipping_1792893488698:action:nike_demo:stage7_shipping_1792893488698:plan_plj_5922b64e2054da6a61cebc40:v1:plan_plj_5922b64e2054da6a61cebc40_1_0:msg:msg_stage7_shipping_1792893488698_nikedemostage7shipping1792893488698planplj5922b64e2054da6a61cebc40v1planplj5922b64e2054da6a61cebc4010_1"
+      ],
+      "sourceReferences": 4
+    }
+  ]
+}

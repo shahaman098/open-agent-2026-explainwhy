@@ -1,0 +1,511 @@
+Browser tab: 1331642560, Title: "Requests — Middleware console", URL: "https://app.mubit.ai/console/projects/ws-31028979027c7c75/requests?request=01a1720e-287c-7732-945f-fa4d30b382a1".
+1 AXWebArea Requests — Middleware console, URL: app.mubit.ai/console/projects/ws-31028979027c7c75/requests?request=01a1720e-287c-7732-945f-fa4d30b382a1
+	2 container app
+		3 container Console
+			4 link Description: All projects, Value: app.mubit.ai/console/
+			5 pop up button (collapsed) Description: Project: normal-1792783517785903653, Secondary Actions: Expand
+			6 container
+				7 text PROJECT
+				8 content list PROJECT
+					9 link Description: Overview, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
+					10 link Description: Tasks 40, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/workloads
+					11 link Description: Adapters 3, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/adapters
+					12 link Description: Try models, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/try
+					13 link Description: Requests, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/requests
+					14 link Description: Learnings, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/learnings
+				15 text CONFIGURE
+				16 content list CONFIGURE
+					17 link Description: Connect, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/connect
+					18 link Description: Import past calls, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/imports
+					19 link Description: Mubit keys 1, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/keys
+					20 link Description: Settings, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/policy
+				21 text WORKSPACE
+				22 content list WORKSPACE
+					23 link Description: Projects, Value: app.mubit.ai/console/
+					24 link Description: Provider keys, Value: app.mubit.ai/console/provider-keys?project=ws-31028979027c7c75
+					25 link Description: Members, Value: app.mubit.ai/console/members
+					26 link Description: Billing, Value: app.mubit.ai/console/billing
+			27 button Getting started
+			28 link Description: How Mubit works, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/integration
+			29 text Normal
+			30 pop up button (collapsed) Description: [account redacted], Admin: account menu, Secondary Actions: Expand
+		31 container
+			32 container Breadcrumb
+				33 link Description: normal-1792783517785903653, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
+				575 text Requests
+			35 pop up button (collapsed) Description: Search pages, Secondary Actions: Expand
+				36 text Search…
+				37 text ⌘ K
+			38 button Switch to dark mode
+			39 pop up button (collapsed) Description: Notifications, 1, Secondary Actions: Expand
+		40 container
+			576 heading Requests, Value: 1
+				577 text Requests
+			578 text Every call through Middleware, newest first.
+			579 container Filters
+				580 pop up button (collapsed) Description: Range: Last 24 hours, ID: mb-v-4-0, Secondary Actions: Expand
+				581 pop up button (collapsed) Description: Route: All routes, ID: mb-v-4-5, Secondary Actions: Expand
+				582 pop up button (collapsed) Description: Task: All tasks, ID: mb-v-4-1, Secondary Actions: Expand
+				583 pop up button (collapsed) Description: Served by: Anyone, ID: mb-v-4-2, Secondary Actions: Expand
+				584 checkbox (settable, integer) Description: Errors only, Value: 0
+				585 container Silent-test and spot-check copies of calls
+					586 checkbox (settable, integer) Description: Include copies, Value: 0
+					587 text Include copies
+				588 search text field (settable) Session
+				589 button Clear
+				590 text Silent-test and spot-check copies of calls
+			591 container Calls
+				592 heading Calls, Value: 2, ID: mh-v-4-3
+					593 text Calls
+				594 container Chart
+					595 checkbox Calls, Value: 1
+					596 checkbox Errors, Value: 0
+					597 checkbox Response time, Value: 0
+				598 text Last 24 hours: 740 calls
+				599 image Calls per hour: 740 in all.
+			600 container Requests 25 shown
+				601 heading Requests 25 shown, Value: 2, ID: mh-v-4-4
+					602 text Requests 25 shown
+				603 text Newest first
+				604 table
+					605 row
+						606 cell
+							607 text TIME
+						608 cell
+							609 text TASK
+						610 cell
+							611 text MODEL ASKED
+						612 cell
+							613 text SERVED BY
+						614 cell
+							615 text RESPONSE
+						616 cell
+							617 text STATUS
+						618 cell
+							619 text RATING
+					620 row
+						621 cell
+							622 text just now
+						623 cell
+							624 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720e-287c-7732-945f-fa4d30b382a1
+						625 cell
+							626 text gemini-4-argon
+						627 cell
+							628 text Your provider
+						629 cell
+							630 text 3.26 s
+						631 cell
+							632 text 200
+						633 cell
+							634 text —
+					635 row
+						636 cell
+							637 text just now
+						638 cell
+							639 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720e-27c6-7303-8a6a-32066d852468
+						640 cell
+							641 text gemini-4-argon
+						642 cell
+							643 text Your provider
+						644 cell
+							645 text 3.84 s
+						646 cell
+							647 text 200
+						648 cell
+							649 text —
+					650 row
+						651 cell
+							652 text just now
+						653 cell
+							654 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720e-1ed2-7210-8db1-157f73759192
+						655 cell
+							656 text gemini-4-argon
+						657 cell
+							658 text Your provider
+						659 cell
+							660 text 2.26 s
+						661 cell
+							662 text 200
+						663 cell
+							664 text —
+					665 row
+						666 cell
+							667 text just now
+						668 cell
+							669 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720e-15da-7251-95ff-9e3aaefe5185
+						670 cell
+							671 text gemini-4-argon
+						672 cell
+							673 text Your provider
+						674 cell
+							675 text 2.27 s
+						676 cell
+							677 text 200
+						678 cell
+							679 text —
+					680 row
+						681 cell
+							682 text just now
+						683 cell
+							684 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720e-0cd3-7f41-a87d-ae6ac247543a
+						685 cell
+							686 text gemini-4-argon
+						687 cell
+							688 text Your provider
+						689 cell
+							690 text 2.29 s
+						691 cell
+							692 text 200
+						693 cell
+							694 text —
+					695 row
+						696 cell
+							697 text just now
+						698 cell
+							699 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720e-0be1-7ba0-a050-fffc93152a44
+						700 cell
+							701 text gemini-4-argon
+						702 cell
+							703 text Your provider
+						704 cell
+							705 text 7.30 s
+						706 cell
+							707 text 200
+						708 cell
+							709 text —
+					710 row
+						711 cell
+							712 text just now
+						713 cell
+							714 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720e-02c4-76f0-b59e-cb759e3ed806
+						715 cell
+							716 text gemini-4-argon
+						717 cell
+							718 text Your provider
+						719 cell
+							720 text 2.55 s
+						721 cell
+							722 text 200
+						723 cell
+							724 text —
+					725 row
+						726 cell
+							727 text just now
+						728 cell
+							729 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-f8ae-7ac2-af29-47fac1032562
+						730 cell
+							731 text gemini-4-argon
+						732 cell
+							733 text Your provider
+						734 cell
+							735 text 2.56 s
+						736 cell
+							737 text 200
+						738 cell
+							739 text —
+					740 row
+						741 cell
+							742 text just now
+						743 cell
+							744 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-ebf2-7023-9d47-96e3b4f825a8
+						745 cell
+							746 text gemini-4-argon
+						747 cell
+							748 text Your provider
+						749 cell
+							750 text 3.24 s
+						751 cell
+							752 text 200
+						753 cell
+							754 text —
+					755 row
+						756 cell
+							757 text just now
+						758 cell
+							759 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-e0bf-7373-9ebb-a5f74fd85a11
+						760 cell
+							761 text gemini-4-argon
+						762 cell
+							763 text Your provider
+						764 cell
+							765 text 2.84 s
+						766 cell
+							767 text 200
+						768 cell
+							769 text —
+					770 row
+						771 cell
+							772 text just now
+						773 cell
+							774 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-d461-72a3-8736-17e551389579
+						775 cell
+							776 text gemini-4-argon
+						777 cell
+							778 text Your provider
+						779 cell
+							780 text 3.19 s
+						781 cell
+							782 text 200
+						783 cell
+							784 text —
+					785 row
+						786 cell
+							787 text just now
+						788 cell
+							789 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-c3a4-7460-b479-c45b9cf27222
+						790 cell
+							791 text gemini-4-argon
+						792 cell
+							793 text Your provider
+						794 cell
+							795 text 4.21 s
+						796 cell
+							797 text 200
+						798 cell
+							799 text —
+					800 row
+						801 cell
+							802 text just now
+						803 cell
+							804 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-a6bb-7470-b34d-c99139e362e1
+						805 cell
+							806 text gemini-4-argon
+						807 cell
+							808 text Your provider
+						809 cell
+							810 text 7.37 s
+						811 cell
+							812 text 200
+						813 cell
+							814 text —
+					815 row
+						816 cell
+							817 text just now
+						818 cell
+							819 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-98d2-7480-b5c5-ca5f99aa7c92
+						820 cell
+							821 text gemini-4-argon
+						822 cell
+							823 text Your provider
+						824 cell
+							825 text 3.54 s
+						826 cell
+							827 text 200
+						828 cell
+							829 text —
+					830 row
+						831 cell
+							832 text just now
+						833 cell
+							834 pop up button Description: Not in a task yet, just now, served by Your provider, status 200, ID: request-row-01a1720d-87d9-7d83-a270-99d2dcae7516
+						835 cell
+							836 text gemini-4-argon
+						837 cell
+							838 text Your provider
+						839 cell
+							840 text 4.31 s
+						841 cell
+							842 text 200
+						843 cell
+							844 text —
+					845 row
+						846 cell
+							997 text 1 min ago
+						848 cell
+							849 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-7a38-7183-a56a-1cde4995292f
+						850 cell
+							851 text gemini-4-argon
+						852 cell
+							853 text Your provider
+						854 cell
+							855 text 3.46 s
+						856 cell
+							857 text 200
+						858 cell
+							859 text —
+					860 row
+						861 cell
+							998 text 1 min ago
+						863 cell
+							864 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-6a52-7962-b527-907daa0f2802
+						865 cell
+							866 text gemini-4-argon
+						867 cell
+							868 text Your provider
+						869 cell
+							870 text 4.05 s
+						871 cell
+							872 text 200
+						873 cell
+							874 text —
+					875 row
+						876 cell
+							999 text 1 min ago
+						878 cell
+							879 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-5a19-7a01-b6bd-0ab5794c37bb
+						880 cell
+							881 text gemini-4-argon
+						882 cell
+							883 text Your provider
+						884 cell
+							885 text 4.12 s
+						886 cell
+							887 text 200
+						888 cell
+							889 text —
+					890 row
+						891 cell
+							892 text 1 min ago
+						893 cell
+							894 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-4601-79a3-8fc6-5b77cfdbd63f
+						895 cell
+							896 text gemini-4-argon
+						897 cell
+							898 text Your provider
+						899 cell
+							900 text 5.12 s
+						901 cell
+							902 text 200
+						903 cell
+							904 text —
+					905 row
+						906 cell
+							907 text 1 min ago
+						908 cell
+							909 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-3bd1-7a32-be8d-e6fe0b4c64a6
+						910 cell
+							911 text gemini-4-argon
+						912 cell
+							913 text Your provider
+						914 cell
+							915 text 2.58 s
+						916 cell
+							917 text 200
+						918 cell
+							919 text —
+					920 row
+						921 cell
+							922 text 1 min ago
+						923 cell
+							924 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-2e4a-7062-b10f-9da7d0220ef0
+						925 cell
+							926 text gemini-4-argon
+						927 cell
+							928 text Your provider
+						929 cell
+							930 text 3.44 s
+						931 cell
+							932 text 200
+						933 cell
+							934 text —
+					935 row
+						936 cell
+							937 text 1 min ago
+						938 cell
+							939 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-2223-7c80-b579-7da1f081bf2a
+						940 cell
+							941 text gemini-4-argon
+						942 cell
+							943 text Your provider
+						944 cell
+							945 text 3.09 s
+						946 cell
+							947 text 200
+						948 cell
+							949 text —
+					950 row
+						951 cell
+							952 text 1 min ago
+						953 cell
+							954 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720d-13d2-7042-ac95-064634a14b73
+						955 cell
+							956 text gemini-4-argon
+						957 cell
+							958 text Your provider
+						959 cell
+							960 text 3.65 s
+						961 cell
+							962 text 200
+						963 cell
+							964 text —
+					965 row
+						966 cell
+							967 text 1 min ago
+						968 cell
+							969 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720c-ba65-7490-a789-202e662f1921
+						970 cell
+							971 text gemini-4-argon
+						972 cell
+							973 text Your provider
+						974 cell
+							975 text 22.76 s
+						976 cell
+							977 text 200
+						978 cell
+							979 text —
+					980 row
+						981 cell
+							982 text 1 min ago
+						983 cell
+							984 pop up button Description: Not in a task yet, 1 min ago, served by Your provider, status 200, ID: request-row-01a1720c-ade8-74a0-b797-904d28eeac2c
+						985 cell
+							986 text gemini-4-argon
+						987 cell
+							988 text Your provider
+						989 cell
+							990 text 3.18 s
+						991 cell
+							992 text 200
+						993 cell
+							994 text —
+				995 text Newest first
+				996 button Load more
+			1000 button Close the request
+			1001 container Request
+				1002 heading Request, Value: 2, ID: v-4-0-0
+					1003 text Request
+				1045 text 1 min ago · gemini-4-argon
+				1005 button Close
+				1006 definition list
+					1007 container Served by
+						1008 text Served by
+					1009 text Your provider
+					1010 container Status
+						1011 text Status
+					1012 text 200 · answered
+					1013 container Response
+						1014 text Response
+					1015 text 3.26 s in all
+					1016 container Tokens
+						1017 text Tokens
+					1018 text 66 in · 9 out
+				1019 container
+					1020 heading Request, Value: 3
+						1021 text Request
+					1022 text Reply with {"ok":true}.
+				1023 container
+					1024 heading Reply, Value: 3
+						1025 text Reply
+					1026 text {"ok":true}
+				1027 container
+					1028 heading Where the time went, Value: 3
+						1029 text Where the time went
+					1030 definition list
+						1031 container Middleware
+							1032 text Middleware
+						1033 text <1 ms
+						1034 container Your provider
+							1035 text Your provider
+						1036 text 3.26 s
+				1037 heading Rate this reply, Value: 3, ID: v-4-0-3
+					1038 text Rate this reply
+				1039 container Rate this reply
+					1040 checkbox Good, Value: 0
+					1041 checkbox Bad, Value: 0
+				1042 button (collapsed) Details, Secondary Actions: Expand
+					1043 text Details
+				1044 link Description: Open as a page, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/requests/01a1720e-287c-7732-945f-fa4d30b382a1
+		113 container Engine 0.14.0 · checked Oct 25, 2026, 07:55:33 AM
+			114 text Service status: Operational
+
+The focused UI element is 1005 button Close

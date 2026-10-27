@@ -1,0 +1,25 @@
+{
+  "businessId": "nike_eval",
+  "simulationRunId": "research_1792885024061",
+  "investigationId": "production_research_check",
+  "metadata": {
+    "provider": "mubit",
+    "model": "gemini-4-argon",
+    "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+    "requestId": "mreq_01a17046657a7aa286b40ac2f10cc1b8",
+    "providerRequestId": "IEHdavOTFLq4nsEP9eG40Ag",
+    "latencyMs": 7007,
+    "inputTokens": 378,
+    "outputTokens": 81,
+    "totalTokens": 459,
+    "estimatedCostUsd": null
+  },
+  "groundingPresent": false,
+  "queries": [],
+  "candidateCount": 0,
+  "limitations": [
+    "Search grounding and model-provided original URLs are discovery only; neither authenticates a source or claim.",
+    "Provider returned no grounding metadata."
+  ],
+  "sources": []
+}

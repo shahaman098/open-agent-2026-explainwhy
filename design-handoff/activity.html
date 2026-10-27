@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activity · Normal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="signals.html" aria-label="Normal dashboard"><span class="image-placeholder logo-placeholder">Normal logo</span></a>
+    <nav class="dashboard-nav" aria-label="Normal sections">
+      <a class="nav-link" href="overview.html">Overview</a>
+      <a class="nav-link" href="signals.html">Signals</a><a class="nav-link" href="investigations.html">Investigations</a>
+      <a class="nav-link" href="approvals.html">Approvals</a><a class="nav-link current" href="activity.html">Activity</a><a class="nav-link" href="outcomes.html">Outcomes</a>
+    </nav>
+    <div class="workspace"><span class="image-placeholder account-placeholder">Nike mark</span><span class="workspace-copy"><strong>Nike</strong><small>Workspace</small></span><span class="run-chip">stage5_1792885194280</span></div>
+  </header>
+  <main class="page">
+    <div class="page-head"><div><p class="eyebrow">Operations · Selected simulation run</p><h1>Activity</h1><p class="subhead">Canonical business activity, scoped to the selected simulation run.</p></div><span class="tag">4–5 Oct 2026 · 30 hour incident window</span></div>
+    <section class="stats">
+      <article class="card stat"><label>Completed orders</label><strong>20</strong><span class="detail">Net revenue £1,944.54</span></article>
+      <article class="card stat"><label>Sessions</label><strong>787</strong><span class="detail">Conversion 2.54%</span></article>
+      <article class="card stat"><label>Campaign-attributed orders</label><strong>10</strong><span class="detail">Across 5 campaigns</span></article>
+      <article class="card stat"><label>Delivery promises due</label><strong>44</strong><span class="detail">5 late · 3 delayed-order events</span></article>
+    </section>
+    <article class="card">
+      <div class="card-head"><div><h2>Event activity</h2><p>Selected window · grouped event counts from the persisted run report</p></div><span class="tag info">Nike · simulation</span></div>
+      <div class="toolbar"><input class="search" aria-label="Search events" placeholder="Search event, source, or ID"><select class="filter" aria-label="Source"><option>All sources</option><option>Simulator</option></select><select class="filter" aria-label="Event type"><option>All event types</option></select><span class="muted small">Window summary</span></div>
+      <div class="timeline">
+        <div class="timeline-row"><span class="timeline-time">4–5 Oct · 30 hours</span><div class="timeline-event"><strong><code>web.session_started</code></strong><small>787 sessions · storefront conversion measured at 2.54%</small></div><span class="tag">Storefront</span></div>
+        <div class="timeline-row"><span class="timeline-time">4–5 Oct · 30 hours</span><div class="timeline-event"><strong><code>order.completed</code></strong><small>20 orders · £1,944.54 net revenue</small></div><span class="tag ok">Commerce</span></div>
+        <div class="timeline-row"><span class="timeline-time">4–5 Oct · 30 hours</span><div class="timeline-event"><strong>Campaign-attributed orders</strong><small>10 attributed orders · £625.83 ad spend across five campaigns</small></div><span class="tag info">Advertising</span></div>
+        <div class="timeline-row"><span class="timeline-time">4–5 Oct · due-date cohort</span><div class="timeline-event"><strong>Delivery promise outcomes</strong><small>44 promises due · 5 not delivered by promise · 3 orders recorded as delayed</small></div><span class="tag warn">Fulfilment</span></div>
+        <div class="timeline-row"><span class="timeline-time">4–5 Oct · 30 hours</span><div class="timeline-event"><strong>Customer review activity</strong><small>1 review · average 4.00 stars · one delivery-related mention</small></div><span class="tag">Feedback</span></div>
+      </div>
+    </article>
+    <div class="callout blue" style="margin-top:15px">The saved investigation report contains these exact window totals, but not the raw event IDs or individual payloads. The rows above are grouped activity summaries for the design snapshot.</div>
+    <p class="footnote">Source: selected run report cutoff 5 Oct 2026 12:00 UTC. The live Activity route shows individual canonical events and expandable payloads.</p>
+  </main>
+</body>
+</html>

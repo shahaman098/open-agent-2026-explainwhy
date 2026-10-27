@@ -1,0 +1,8 @@
+{
+  "frozenAt": "2026-10-25T06:55:07.802Z",
+  "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+  "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+  "rule": "Positive paired accuracy delta, lower whole-scene bootstrap bound above zero, all adapter responses valid, no increase in false-supported claims. Preserve the original provider baseline and pinned adapter version.",
+  "baselineAlreadyObserved": true,
+  "note": "Comparison rule frozen before observing any adapter outputs. Provider baseline had already been observed; this is not a fully preregistered study."
+}

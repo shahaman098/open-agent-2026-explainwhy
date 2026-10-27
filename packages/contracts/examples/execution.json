@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "executionId": "execute_ads_001",
+  "planId": "plan_001",
+  "planVersion": 1,
+  "approvalId": "approval_001",
+  "actionId": "act_ads_001",
+  "missionId": "mission_marketing_001",
+  "idempotencyKey": "plan_001:v1:act_ads_001",
+  "status": "succeeded",
+  "attempts": 1,
+  "toolName": "ads.set_daily_budget",
+  "dryRun": true,
+  "startedAt": "2026-10-23T19:05:00Z",
+  "finishedAt": "2026-10-23T19:05:02Z",
+  "result": {
+    "providerOperationId": "sim_ad_update_001",
+    "affectedEntityIds": [
+      "campaign_A"
+    ],
+    "verification": "Re-read advertising simulator campaign budget after update."
+  }
+}

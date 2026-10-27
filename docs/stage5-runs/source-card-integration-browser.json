@@ -1,0 +1,37 @@
+{
+  "mode": "read-only Mongo source records + local report fixture; browser read responses intercepted; no persisted AI report created",
+  "scope": {
+    "businessId": "nike_eval",
+    "simulationRunId": "source_acceptance_1792885169199",
+    "investigationId": "official_source_check"
+  },
+  "associations": {
+    "investigations": 0,
+    "jobs": 0,
+    "reports": 0
+  },
+  "acceptedSourceId": "src_425e21019b7bed98dc2afc2c",
+  "rejectedSourceId": "src_aa8f07f021135a2a564c1abd",
+  "originalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+  "originalTitle": "NIKE, Inc. Announces Changes to Its Operating Model —",
+  "originalHttpStatus": 200,
+  "sourceImageLoaded": true,
+  "claimsLinked": true,
+  "unsupportedExcludedFromSupport": true,
+  "samePageClaimAssessmentsRetained": true,
+  "duplicateIdsRemoved": true,
+  "reportFixtureSurvivedReload": true,
+  "businessRunIsolation": [
+    404,
+    404
+  ],
+  "apiMethods": [
+    "GET"
+  ],
+  "newProviderCalls": 0,
+  "browserErrors": [],
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  }
+}

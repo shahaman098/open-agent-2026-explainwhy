@@ -1,0 +1,354 @@
+[
+  {
+    "caseId": "checkout-regression",
+    "inputHash": "20f0062e9c0916b955734629cf5cfc6232c976be5e9db67413364f29e1567825",
+    "capturedAt": "2026-10-25T07:07:15.272Z",
+    "cards": [
+      {
+        "label": "Reply from gemini-3.8-flash",
+        "text": "gemini-3.8-flashProvider model```json\n{\n  \"primaryCause\": \"checkout_failure\",\n  \"supportedHypotheses\": [\n    {\n      \"cause\": \"checkout_failure\",\n      \"confidence\": 0.98,\n      \"rationale\": \"Card authorization failures spiked immediately following a checkout deployment across all categories and were completely resolved by rolling back the deployment, confirming a technical failure in the checkout flow.\",\n      \"evidenceIds\": [\"QB\", \"QC\"]\n    }\n  ],\n  \"missingEvidence\": []\n}\n```3510 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "checkout_failure",
+          "supportedHypotheses": [
+            {
+              "cause": "checkout_failure",
+              "confidence": 0.98,
+              "rationale": "Card authorization failures spiked immediately following a checkout deployment across all categories and were completely resolved by rolling back the deployment, confirming a technical failure in the checkout flow.",
+              "evidenceIds": [
+                "QB",
+                "QC"
+              ]
+            }
+          ],
+          "missingEvidence": []
+        },
+        "displayedLatencyMs": 3510
+      },
+      {
+        "label": "Reply from Diagnose online shop's operational 3 v1",
+        "text": "Diagnose online shop's operational 3 v1Your adapter{\"primaryCause\": \"checkout_failure\", \"supportedHypotheses\": [{\"cause\": \"checkout_failure\", \"confidence\": 0.9, \"rationale\": \"Immediately after a checkout deployment, card authorisation failures rose sharply across all product categories, which were subsequently resolved by rolling back the deployment.\", \"evidenceIds\": [\"QB\"]}], \"missingEvidence\": [\"Underlying reasons for the card authorisation failures (e.g., whether the deployment introduced a bug in the payment gateway, caused a misconfiguration, or triggered a rate limit on the payment processor).\"]}1817 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "checkout_failure",
+          "supportedHypotheses": [
+            {
+              "cause": "checkout_failure",
+              "confidence": 0.9,
+              "rationale": "Immediately after a checkout deployment, card authorisation failures rose sharply across all product categories, which were subsequently resolved by rolling back the deployment.",
+              "evidenceIds": [
+                "QB"
+              ]
+            }
+          ],
+          "missingEvidence": [
+            "Underlying reasons for the card authorisation failures (e.g., whether the deployment introduced a bug in the payment gateway, caused a misconfiguration, or triggered a rate limit on the payment processor)."
+          ]
+        },
+        "displayedLatencyMs": 1817
+      }
+    ]
+  },
+  {
+    "caseId": "carrier-backlog",
+    "inputHash": "659f572226472e675e205e41c8eee81a0eca5551d3d26a3afe1cd16f3fa71193",
+    "capturedAt": "2026-10-25T07:07:58.354Z",
+    "cards": [
+      {
+        "label": "Reply from gemini-3.8-flash",
+        "text": "gemini-3.8-flashProvider model```json\n{\n  \"primaryCause\": \"delivery_delays\",\n  \"supportedHypotheses\": [\n    {\n      \"cause\": \"delivery_delays\",\n      \"confidence\": 0.95,\n      \"rationale\": \"Warehouse operations dispatched orders on schedule, but parcels from one carrier stalled at its sorting hub past delivery dates, leading directly to customer complaints regarding late arrivals.\",\n      \"evidenceIds\": [\"RA\", \"RB\", \"RC\", \"RD\"]\n    }\n  ],\n  \"missingEvidence\": []\n}\n```2508 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "delivery_delays",
+          "supportedHypotheses": [
+            {
+              "cause": "delivery_delays",
+              "confidence": 0.95,
+              "rationale": "Warehouse operations dispatched orders on schedule, but parcels from one carrier stalled at its sorting hub past delivery dates, leading directly to customer complaints regarding late arrivals.",
+              "evidenceIds": [
+                "RA",
+                "RB",
+                "RC",
+                "RD"
+              ]
+            }
+          ],
+          "missingEvidence": []
+        },
+        "displayedLatencyMs": 2508
+      },
+      {
+        "label": "Reply from Diagnose online shop's operational 3 v1",
+        "text": "Diagnose online shop's operational 3 v1Your adapter{\"primaryCause\": \"delivery_delays\", \"supportedHypotheses\": [{\"cause\": \"delivery_delays\", \"confidence\": 0.8, \"rationale\": \"One carrier serving the affected areas experienced a sorting depot delay, causing parcels to stay beyond the promised delivery date, while another carrier in the same region delivered on time, indicating the issue is carrier-specific and not driven by warehouse dispatch or product quality.\", \"evidenceIds\": [\"RB\"]}, {\"cause\": \"negative_sentiment\", \"confidence\": 0.2, \"rationale\": \"Customer complaints are focused on delayed arrivals rather than product quality, which suggests negative_sentiment is a secondary outcome of delivery_delays rather than the primary cause.\", \"evidenceIds\": [\"RD\"]}], \"missingEvidence\": [\"Delivery transit time metrics and carrier-specific sorting depot backlog data\", \"Customer support ticket volume and sentiment analysis\", \"Warehouse outbound dispatch and carrier transit time variance reports\"]}2629 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "delivery_delays",
+          "supportedHypotheses": [
+            {
+              "cause": "delivery_delays",
+              "confidence": 0.8,
+              "rationale": "One carrier serving the affected areas experienced a sorting depot delay, causing parcels to stay beyond the promised delivery date, while another carrier in the same region delivered on time, indicating the issue is carrier-specific and not driven by warehouse dispatch or product quality.",
+              "evidenceIds": [
+                "RB"
+              ]
+            },
+            {
+              "cause": "negative_sentiment",
+              "confidence": 0.2,
+              "rationale": "Customer complaints are focused on delayed arrivals rather than product quality, which suggests negative_sentiment is a secondary outcome of delivery_delays rather than the primary cause.",
+              "evidenceIds": [
+                "RD"
+              ]
+            }
+          ],
+          "missingEvidence": [
+            "Delivery transit time metrics and carrier-specific sorting depot backlog data",
+            "Customer support ticket volume and sentiment analysis",
+            "Warehouse outbound dispatch and carrier transit time variance reports"
+          ]
+        },
+        "displayedLatencyMs": 2629
+      }
+    ]
+  },
+  {
+    "caseId": "stockout",
+    "inputHash": "4335cf3957a2313eb0d7e7c670b182ea86dc07e0143caddac48d58b179fd92e9",
+    "capturedAt": "2026-10-25T07:09:01.101Z",
+    "cards": [
+      {
+        "label": "Reply from gemini-3.8-flash",
+        "text": "gemini-3.8-flashProvider model```json\n{\n  \"primaryCause\": \"stockout\",\n  \"supportedHypotheses\": [\n    {\n      \"cause\": \"stockout\",\n      \"confidence\": 0.95,\n      \"rationale\": \"Promoted items ran out of stock following traffic from a creator mention, leading shoppers to see unavailable-size messages, while checkout remained functional for in-stock items.\",\n      \"evidenceIds\": [\"SB\", \"SC\"]\n    },\n    {\n      \"cause\": \"viral_demand\",\n      \"confidence\": 0.8,\n      \"rationale\": \"A creator mention drove an influx of product-page visits that exhausted inventory.\",\n      \"evidenceIds\": [\"SA\", \"SB\"]\n    }\n  ],\n  \"missingEvidence\": \"Restock logs, inventory levels prior to the creator mention, and lost sales estimates due to the out-of-stock sizes.\"\n}\n```45788 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "stockout",
+          "supportedHypotheses": [
+            {
+              "cause": "stockout",
+              "confidence": 0.95,
+              "rationale": "Promoted items ran out of stock following traffic from a creator mention, leading shoppers to see unavailable-size messages, while checkout remained functional for in-stock items.",
+              "evidenceIds": [
+                "SB",
+                "SC"
+              ]
+            },
+            {
+              "cause": "viral_demand",
+              "confidence": 0.8,
+              "rationale": "A creator mention drove an influx of product-page visits that exhausted inventory.",
+              "evidenceIds": [
+                "SA",
+                "SB"
+              ]
+            }
+          ],
+          "missingEvidence": "Restock logs, inventory levels prior to the creator mention, and lost sales estimates due to the out-of-stock sizes."
+        },
+        "displayedLatencyMs": 45788
+      },
+      {
+        "label": "Reply from Diagnose online shop's operational 3 v1",
+        "text": "Diagnose online shop's operational 3 v1Your adapter{\"primaryCause\": \"stockout\", \"supportedHypotheses\": [{\"cause\": \"stockout\", \"confidence\": 0.9, \"rationale\": \"Promoted items ran out of stock, causing shoppers to see unavailable-size messages, while in-stock unpromoted items remained purchasable with normal checkout logs.\", \"evidenceIds\": [\"SB\"]}, {\"cause\": \"negative_sentiment\", \"confidence\": 0.2, \"rationale\": \"A creator mention increased product-page visits, which may have driven negative sentiment due to stock unavailability, but no social media or review data is provided.\", \"evidenceIds\": [\"SA\"]}, {\"cause\": \"delivery_delays\", \"confidence\": 0.1, \"rationale\": \"There is no evidence of delivery_delays affecting the promoted items or shopper checkout behavior.\", \"evidenceIds\": []}], \"missingEvidence\": [\"Customer support ticket volume or social media sentiment metrics to assess if the stockout triggered broader negative_sentiment\", \"Backend inventory and fulfillment system logs to confirm if the stockout was driven by a fulfillment_delays or batch expiry event\", \"Conversion rate and sales funnel metrics to determine if the stockout caused a significant drop in sales volume\"]}3799 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "stockout",
+          "supportedHypotheses": [
+            {
+              "cause": "stockout",
+              "confidence": 0.9,
+              "rationale": "Promoted items ran out of stock, causing shoppers to see unavailable-size messages, while in-stock unpromoted items remained purchasable with normal checkout logs.",
+              "evidenceIds": [
+                "SB"
+              ]
+            },
+            {
+              "cause": "negative_sentiment",
+              "confidence": 0.2,
+              "rationale": "A creator mention increased product-page visits, which may have driven negative sentiment due to stock unavailability, but no social media or review data is provided.",
+              "evidenceIds": [
+                "SA"
+              ]
+            },
+            {
+              "cause": "delivery_delays",
+              "confidence": 0.1,
+              "rationale": "There is no evidence of delivery_delays affecting the promoted items or shopper checkout behavior.",
+              "evidenceIds": []
+            }
+          ],
+          "missingEvidence": [
+            "Customer support ticket volume or social media sentiment metrics to assess if the stockout triggered broader negative_sentiment",
+            "Backend inventory and fulfillment system logs to confirm if the stockout was driven by a fulfillment_delays or batch expiry event",
+            "Conversion rate and sales funnel metrics to determine if the stockout caused a significant drop in sales volume"
+          ]
+        },
+        "displayedLatencyMs": 3799
+      }
+    ]
+  },
+  {
+    "caseId": "ad-fatigue",
+    "inputHash": "438cf036620335379d657cb3b601fa42003cb7cdb9d9f3d6a56e036a9bd1bbed",
+    "capturedAt": "2026-10-25T07:09:50.100Z",
+    "cards": [
+      {
+        "label": "Reply from gemini-3.8-flash",
+        "text": "gemini-3.8-flashProvider model```json\n{\n  \"primaryCause\": \"ad_fatigue\",\n  \"supportedHypotheses\": [\n    {\n      \"cause\": \"ad_fatigue\",\n      \"confidence\": 0.88,\n      \"rationale\": \"The evidence indicates that repeated exposure to the same creative increased alongside a deteriorating click-through rate, whereas a fresh creative targeting a similar audience sustained its response level, pointing to creative exhaustion rather than broader audience or funnel issues.\",\n      \"evidenceIds\": [\"TA\", \"TB\", \"TC\"]\n    }\n  ],\n  \"missingEvidence\": []\n}\n```3479 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "ad_fatigue",
+          "supportedHypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "confidence": 0.88,
+              "rationale": "The evidence indicates that repeated exposure to the same creative increased alongside a deteriorating click-through rate, whereas a fresh creative targeting a similar audience sustained its response level, pointing to creative exhaustion rather than broader audience or funnel issues.",
+              "evidenceIds": [
+                "TA",
+                "TB",
+                "TC"
+              ]
+            }
+          ],
+          "missingEvidence": []
+        },
+        "displayedLatencyMs": 3479
+      },
+      {
+        "label": "Reply from Diagnose online shop's operational 3 v1",
+        "text": "Diagnose online shop's operational 3 v1Your adapter{\"primaryCause\": \"ad_fatigue\", \"supportedHypotheses\": [{\"cause\": \"ad_fatigue\", \"confidence\": 0.8, \"rationale\": \"Repeated exposure to the same creative led to audience saturation and ad fatigue, driving down its click-through rate while a new creative targeting the same audience maintained its previous performance.\", \"evidenceIds\": [\"TA\", \"TB\"]}, {\"cause\": \"ad_inefficiency\", \"confidence\": 0.3, \"rationale\": \"The degraded CTR on the fatigued creative may reflect broader market saturation or auction price increases, though landing-page conversion and stock availability remained stable, ruling out post-click operational issues.\", \"evidenceIds\": [\"TA\", \"TC\"]}], \"missingEvidence\": [\"Conversion rate (CVR) metrics to confirm post-click funnel integrity\", \"On-site page load time and bounce rate data to assess if the landing page also experienced degradation\", \"Creative age and historical CTR trends to determine if the fatigue is occurring across multiple creatives or is isolated to one\"] }3186 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "ad_fatigue",
+          "supportedHypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "confidence": 0.8,
+              "rationale": "Repeated exposure to the same creative led to audience saturation and ad fatigue, driving down its click-through rate while a new creative targeting the same audience maintained its previous performance.",
+              "evidenceIds": [
+                "TA",
+                "TB"
+              ]
+            },
+            {
+              "cause": "ad_inefficiency",
+              "confidence": 0.3,
+              "rationale": "The degraded CTR on the fatigued creative may reflect broader market saturation or auction price increases, though landing-page conversion and stock availability remained stable, ruling out post-click operational issues.",
+              "evidenceIds": [
+                "TA",
+                "TC"
+              ]
+            }
+          ],
+          "missingEvidence": [
+            "Conversion rate (CVR) metrics to confirm post-click funnel integrity",
+            "On-site page load time and bounce rate data to assess if the landing page also experienced degradation",
+            "Creative age and historical CTR trends to determine if the fatigue is occurring across multiple creatives or is isolated to one"
+          ]
+        },
+        "displayedLatencyMs": 3186
+      }
+    ]
+  },
+  {
+    "caseId": "tracking-artifact",
+    "inputHash": "dbcd847fe0ab9c2d54b1f1cde42dd02730e1fdd47dd743858d5344fd4e2b51f0",
+    "capturedAt": "2026-10-25T07:10:27.337Z",
+    "cards": [
+      {
+        "label": "Reply from gemini-3.8-flash",
+        "text": "gemini-3.8-flashProvider model```json\n{\n  \"primaryCause\": \"unknown\",\n  \"supportedHypotheses\": [\n    {\n      \"cause\": \"unknown\",\n      \"confidence\": 0.95,\n      \"rationale\": \"Completed sales, payments, and warehouse fulfillments are operating normally, ruling out checkout failure or commercial demand drops. The issue is an instrumentation or telemetry defect in the purchase-event collector rather than any supported operational cause.\",\n      \"evidenceIds\": [\"UA\", \"UB\", \"UC\"]\n    }\n  ],\n  \"missingEvidence\": \"None for operational diagnosis; telemetry collector logs and tracking infrastructure diagnostics would be needed to inspect the event-pipeline failure.\"\n}\n```5310 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "unknown",
+          "supportedHypotheses": [
+            {
+              "cause": "unknown",
+              "confidence": 0.95,
+              "rationale": "Completed sales, payments, and warehouse fulfillments are operating normally, ruling out checkout failure or commercial demand drops. The issue is an instrumentation or telemetry defect in the purchase-event collector rather than any supported operational cause.",
+              "evidenceIds": [
+                "UA",
+                "UB",
+                "UC"
+              ]
+            }
+          ],
+          "missingEvidence": "None for operational diagnosis; telemetry collector logs and tracking infrastructure diagnostics would be needed to inspect the event-pipeline failure."
+        },
+        "displayedLatencyMs": 5310
+      },
+      {
+        "label": "Reply from Diagnose online shop's operational 3 v1",
+        "text": "Diagnose online shop's operational 3 v1Your adapter{\"primaryCause\": \"checkout_failure\", \"supportedHypotheses\": [{\"cause\": \"checkout_failure\", \"confidence\": 0.8, \"rationale\": \"The purchase-event collector began returning errors at the same time as the dashboard drop, while payment-provider settlement and warehouse order records show normal completed sales, indicating a failure in the final checkout step or event collection pipeline rather than a drop in actual sales.\", \"evidenceIds\": [\"UA\", \"UC\"]}, {\"cause\": \"negative_sentiment\", \"confidence\": 0.2, \"rationale\": \"There is no evidence of a sudden spike in negative social media or review volume, nor any mention of customer support ticket volume increasing, which would be expected if negative_sentiment were driving the drop in purchase events.\", \"evidenceIds\": [\"UA\"]}, {\"cause\": \"ad_inefficiency\", \"confidence\": 0.1, \"rationale\": \"The evidence does not show any changes in ad spend, CTR, or conversion rate metrics, nor any drop in traffic to the shop's website, which would be required to establish ad_inefficiency as the cause.\", \"evidenceIds\": [\"UA\"]}], \"missingEvidence\": [\"Customer support ticket volume and social media sentiment metrics to rule out negative_sentiment.\", \"Website traffic and conversion rate data to confirm ad_inefficiency is not driving the drop.\", \"Backend logs for the purchase-event collector to determine if the errors are caused by a server outage, database issue, or API failure.\"]}4136 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "checkout_failure",
+          "supportedHypotheses": [
+            {
+              "cause": "checkout_failure",
+              "confidence": 0.8,
+              "rationale": "The purchase-event collector began returning errors at the same time as the dashboard drop, while payment-provider settlement and warehouse order records show normal completed sales, indicating a failure in the final checkout step or event collection pipeline rather than a drop in actual sales.",
+              "evidenceIds": [
+                "UA",
+                "UC"
+              ]
+            },
+            {
+              "cause": "negative_sentiment",
+              "confidence": 0.2,
+              "rationale": "There is no evidence of a sudden spike in negative social media or review volume, nor any mention of customer support ticket volume increasing, which would be expected if negative_sentiment were driving the drop in purchase events.",
+              "evidenceIds": [
+                "UA"
+              ]
+            },
+            {
+              "cause": "ad_inefficiency",
+              "confidence": 0.1,
+              "rationale": "The evidence does not show any changes in ad spend, CTR, or conversion rate metrics, nor any drop in traffic to the shop's website, which would be required to establish ad_inefficiency as the cause.",
+              "evidenceIds": [
+                "UA"
+              ]
+            }
+          ],
+          "missingEvidence": [
+            "Customer support ticket volume and social media sentiment metrics to rule out negative_sentiment.",
+            "Website traffic and conversion rate data to confirm ad_inefficiency is not driving the drop.",
+            "Backend logs for the purchase-event collector to determine if the errors are caused by a server outage, database issue, or API failure."
+          ]
+        },
+        "displayedLatencyMs": 4136
+      }
+    ]
+  },
+  {
+    "caseId": "insufficient-evidence",
+    "inputHash": "3731d31f903b71d78915a0027bf72bd49b70e8946020bf6576132eac8c7fd755",
+    "capturedAt": "2026-10-25T07:11:27.211Z",
+    "cards": [
+      {
+        "label": "Reply from gemini-3.8-flash",
+        "text": "gemini-3.8-flashProvider model```json\n{\n  \"primaryCause\": \"unknown\",\n  \"supportedHypotheses\": [\n    {\n      \"cause\": \"unknown\",\n      \"confidence\": 0.95,\n      \"rationale\": \"Sales revenue has declined, but there are no traffic, campaign, checkout, inventory, delivery, or customer review records available to determine the underlying issue.\",\n      \"evidenceIds\": [\"VA\", \"VB\"]\n    }\n  ],\n  \"missingEvidence\": \"Traffic metrics, advertising campaign performance data and receipts, checkout and payment logs, inventory levels, delivery logs, and customer reviews are missing.\"\n}\n```4658 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "unknown",
+          "supportedHypotheses": [
+            {
+              "cause": "unknown",
+              "confidence": 0.95,
+              "rationale": "Sales revenue has declined, but there are no traffic, campaign, checkout, inventory, delivery, or customer review records available to determine the underlying issue.",
+              "evidenceIds": [
+                "VA",
+                "VB"
+              ]
+            }
+          ],
+          "missingEvidence": "Traffic metrics, advertising campaign performance data and receipts, checkout and payment logs, inventory levels, delivery logs, and customer reviews are missing."
+        },
+        "displayedLatencyMs": 4658
+      },
+      {
+        "label": "Reply from Diagnose online shop's operational 3 v1",
+        "text": "Diagnose online shop's operational 3 v1Your adapter{\"primaryCause\": \"unknown\", \"supportedHypotheses\": [], \"missingEvidence\": [\"campaign action receipt\", \"traffic, conversion, payment, stock, delivery, review records\", \"underlying sales and revenue data to confirm the extent of the drop\", \"merchantVerifiedCorrections for similar incidents in the past\"]}1182 ms · Answered with Diagnose online shop's operational 3's setup prompt.",
+        "output": {
+          "primaryCause": "unknown",
+          "supportedHypotheses": [],
+          "missingEvidence": [
+            "campaign action receipt",
+            "traffic, conversion, payment, stock, delivery, review records",
+            "underlying sales and revenue data to confirm the extent of the drop",
+            "merchantVerifiedCorrections for similar incidents in the past"
+          ]
+        },
+        "displayedLatencyMs": 1182
+      }
+    ]
+  }
+]

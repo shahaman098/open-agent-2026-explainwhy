@@ -1,0 +1,596 @@
+{
+  "generatedAt": "2026-10-25T08:26:28.642Z",
+  "task": "normal.source_support.v1",
+  "model": "gemini-4-argon",
+  "transport": "native",
+  "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+  "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+  "liveConfiguration": {
+    "model": "gemini-4-argon",
+    "reasoning": "low",
+    "transport": "native",
+    "matchesFrozenExperiment": true
+  },
+  "baseline": {
+    "total": 24,
+    "attempted": 24,
+    "valid": 24,
+    "correct": 18,
+    "accuracy": 0.75,
+    "accuracyWilson95": [
+      0.5510017468789357,
+      0.8800079652065766
+    ],
+    "macroF1": 0.7062324929971989,
+    "perClass": [
+      {
+        "relation": "supported",
+        "support": 6,
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "f1": 0.8333333333333334
+      },
+      {
+        "relation": "contradictory",
+        "support": 6,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "relation": "context_only",
+        "support": 6,
+        "precision": 1,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857
+      },
+      {
+        "relation": "insufficient",
+        "support": 6,
+        "precision": 0.5454545454545454,
+        "recall": 1,
+        "f1": 0.7058823529411765
+      }
+    ],
+    "confusionMatrix": {
+      "supported": {
+        "supported": 5,
+        "contradictory": 0,
+        "context_only": 0,
+        "insufficient": 1,
+        "invalid_or_missing": 0
+      },
+      "contradictory": {
+        "supported": 0,
+        "contradictory": 6,
+        "context_only": 0,
+        "insufficient": 0,
+        "invalid_or_missing": 0
+      },
+      "context_only": {
+        "supported": 1,
+        "contradictory": 0,
+        "context_only": 1,
+        "insufficient": 4,
+        "invalid_or_missing": 0
+      },
+      "insufficient": {
+        "supported": 0,
+        "contradictory": 0,
+        "context_only": 0,
+        "insufficient": 6,
+        "invalid_or_missing": 0
+      }
+    },
+    "p50LatencyMs": 3254,
+    "p95LatencyMs": 6074,
+    "totalTokens": 13040,
+    "costUsd": null,
+    "rows": [
+      {
+        "caseId": "14e0e9ceb47700fd8994dd40",
+        "expected": "supported",
+        "predicted": "supported",
+        "correct": true
+      },
+      {
+        "caseId": "39440075b003b0c04659c2d3",
+        "expected": "contradictory",
+        "predicted": "contradictory",
+        "correct": true
+      },
+      {
+        "caseId": "12ba086d12f235b2ccf2b1ff",
+        "expected": "context_only",
+        "predicted": "insufficient",
+        "correct": false
+      },
+      {
+        "caseId": "21591d25775ee0e315634e63",
+        "expected": "insufficient",
+        "predicted": "insufficient",
+        "correct": true
+      },
+      {
+        "caseId": "87da3317c2aa1ffaf325a0dd",
+        "expected": "supported",
+        "predicted": "supported",
+        "correct": true
+      },
+      {
+        "caseId": "4b6590b8fab38e26897886b2",
+        "expected": "contradictory",
+        "predicted": "contradictory",
+        "correct": true
+      },
+      {
+        "caseId": "9b78f33b6e44c23dd796cdcb",
+        "expected": "context_only",
+        "predicted": "insufficient",
+        "correct": false
+      },
+      {
+        "caseId": "7f6f78eb647322bad4350833",
+        "expected": "insufficient",
+        "predicted": "insufficient",
+        "correct": true
+      },
+      {
+        "caseId": "7cbfa7a71d5298637c13c781",
+        "expected": "supported",
+        "predicted": "supported",
+        "correct": true
+      },
+      {
+        "caseId": "41b30b734a54a0f8d9206509",
+        "expected": "contradictory",
+        "predicted": "contradictory",
+        "correct": true
+      },
+      {
+        "caseId": "1f74113f1155d20926fd3eb1",
+        "expected": "context_only",
+        "predicted": "supported",
+        "correct": false
+      },
+      {
+        "caseId": "434c62061b257ea73cfd53df",
+        "expected": "insufficient",
+        "predicted": "insufficient",
+        "correct": true
+      },
+      {
+        "caseId": "726826ff0cebfa9db41988e1",
+        "expected": "supported",
+        "predicted": "supported",
+        "correct": true
+      },
+      {
+        "caseId": "97a1a240d89ea339cf01fb6c",
+        "expected": "contradictory",
+        "predicted": "contradictory",
+        "correct": true
+      },
+      {
+        "caseId": "6ff1495fa69c2e0ab447b8b0",
+        "expected": "context_only",
+        "predicted": "insufficient",
+        "correct": false
+      },
+      {
+        "caseId": "9f645f8b9eafd3e2c74f6311",
+        "expected": "insufficient",
+        "predicted": "insufficient",
+        "correct": true
+      },
+      {
+        "caseId": "3002f73f3f2826c4a4f97a60",
+        "expected": "supported",
+        "predicted": "insufficient",
+        "correct": false
+      },
+      {
+        "caseId": "4a118d6f8816a9c86622cbe3",
+        "expected": "contradictory",
+        "predicted": "contradictory",
+        "correct": true
+      },
+      {
+        "caseId": "9a85ab01d77379601f172002",
+        "expected": "context_only",
+        "predicted": "insufficient",
+        "correct": false
+      },
+      {
+        "caseId": "a67b5e0ba9bb97f90cbe3edb",
+        "expected": "insufficient",
+        "predicted": "insufficient",
+        "correct": true
+      },
+      {
+        "caseId": "6deaf39e793a44d374d10221",
+        "expected": "supported",
+        "predicted": "supported",
+        "correct": true
+      },
+      {
+        "caseId": "402d5bdc26bfebd7a8b80568",
+        "expected": "contradictory",
+        "predicted": "contradictory",
+        "correct": true
+      },
+      {
+        "caseId": "b81a13ab40dc810a9ea14e81",
+        "expected": "context_only",
+        "predicted": "context_only",
+        "correct": true
+      },
+      {
+        "caseId": "2134a25930115e2764c41154",
+        "expected": "insufficient",
+        "predicted": "insufficient",
+        "correct": true
+      }
+    ]
+  },
+  "collection": {
+    "attempted": 40,
+    "successful": 40,
+    "teacherAgreement": {
+      "total": 40,
+      "attempted": 40,
+      "valid": 40,
+      "correct": 30,
+      "accuracy": 0.75,
+      "accuracyWilson95": [
+        0.598057409330299,
+        0.8581303210445048
+      ],
+      "macroF1": 0.7131135531135532,
+      "perClass": [
+        {
+          "relation": "supported",
+          "support": 10,
+          "precision": 0.9090909090909091,
+          "recall": 1,
+          "f1": 0.9523809523809523
+        },
+        {
+          "relation": "contradictory",
+          "support": 10,
+          "precision": 0.9090909090909091,
+          "recall": 1,
+          "f1": 0.9523809523809523
+        },
+        {
+          "relation": "context_only",
+          "support": 10,
+          "precision": 0.6666666666666666,
+          "recall": 0.2,
+          "f1": 0.3076923076923077
+        },
+        {
+          "relation": "insufficient",
+          "support": 10,
+          "precision": 0.5333333333333333,
+          "recall": 0.8,
+          "f1": 0.64
+        }
+      ],
+      "confusionMatrix": {
+        "supported": {
+          "supported": 10,
+          "contradictory": 0,
+          "context_only": 0,
+          "insufficient": 0,
+          "invalid_or_missing": 0
+        },
+        "contradictory": {
+          "supported": 0,
+          "contradictory": 10,
+          "context_only": 0,
+          "insufficient": 0,
+          "invalid_or_missing": 0
+        },
+        "context_only": {
+          "supported": 1,
+          "contradictory": 0,
+          "context_only": 2,
+          "insufficient": 7,
+          "invalid_or_missing": 0
+        },
+        "insufficient": {
+          "supported": 0,
+          "contradictory": 1,
+          "context_only": 1,
+          "insufficient": 8,
+          "invalid_or_missing": 0
+        }
+      },
+      "p50LatencyMs": 3366,
+      "p95LatencyMs": 7391,
+      "totalTokens": 21319,
+      "costUsd": null,
+      "rows": [
+        {
+          "caseId": "e4d48454780440c0109ea7d2",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "82e6c5ba9ec4809fe3012597",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "d13d8ea7a93ced0a2f7061f7",
+          "expected": "context_only",
+          "predicted": "insufficient",
+          "correct": false
+        },
+        {
+          "caseId": "21c8d3daf7987a1e33411438",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        },
+        {
+          "caseId": "120067f2168eae2a5928028c",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "77108a2cb67f632d6239dc50",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "84e395bf5c10e716572edb5a",
+          "expected": "context_only",
+          "predicted": "insufficient",
+          "correct": false
+        },
+        {
+          "caseId": "9ebd7d3604a8213cab3dc9d2",
+          "expected": "insufficient",
+          "predicted": "context_only",
+          "correct": false
+        },
+        {
+          "caseId": "d142dc22d23fa316906ea157",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "20af1bb6058dceab024f684c",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "2af61b993d3fbb86f8eff98f",
+          "expected": "context_only",
+          "predicted": "context_only",
+          "correct": true
+        },
+        {
+          "caseId": "7b5c3b2a69d5f38610fe2a9a",
+          "expected": "insufficient",
+          "predicted": "contradictory",
+          "correct": false
+        },
+        {
+          "caseId": "0cf1f737f5d5caa8e9e8da75",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "e16f9654156ba9c0f0e9064f",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "0c19fc021b2cb98c26e02941",
+          "expected": "context_only",
+          "predicted": "insufficient",
+          "correct": false
+        },
+        {
+          "caseId": "71bf6b5dd5350541fcf17215",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        },
+        {
+          "caseId": "0723fbfca93cf8b7faa307e1",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "f9d7e72252141b27eea2b295",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "32954b39d6277c97c20f5449",
+          "expected": "context_only",
+          "predicted": "supported",
+          "correct": false
+        },
+        {
+          "caseId": "00dd9591e724e172ca623d2a",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        },
+        {
+          "caseId": "372ddab288339f4a31f191e7",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "bca984ffe7802dd41775f630",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "b1df27a124ed1d384364797a",
+          "expected": "context_only",
+          "predicted": "insufficient",
+          "correct": false
+        },
+        {
+          "caseId": "b88924317d522ac9248326ac",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        },
+        {
+          "caseId": "91593beaaab96d808d7c83a8",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "52dd10abf4399a0e6bb0e2d0",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "7c583950e4584087ba128516",
+          "expected": "context_only",
+          "predicted": "insufficient",
+          "correct": false
+        },
+        {
+          "caseId": "326671e1a10e5e9e6a505776",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        },
+        {
+          "caseId": "8376784bf3cc1998e617e353",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "e9f05ad650940dc1c5807bb3",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "15b914e6c2c5da7d6e147b23",
+          "expected": "context_only",
+          "predicted": "context_only",
+          "correct": true
+        },
+        {
+          "caseId": "45f7fb590e3e3b29509bcde9",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        },
+        {
+          "caseId": "d0875ca7a7462766d99f1963",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "1c9de401458c050f11ca7cfb",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "b81a89d92f37d32e0c2ef273",
+          "expected": "context_only",
+          "predicted": "insufficient",
+          "correct": false
+        },
+        {
+          "caseId": "ffeffb7552ed1db13d367ac7",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        },
+        {
+          "caseId": "ee3719c7266596092d0eca2f",
+          "expected": "supported",
+          "predicted": "supported",
+          "correct": true
+        },
+        {
+          "caseId": "ab9ae1838287b03645cd9825",
+          "expected": "contradictory",
+          "predicted": "contradictory",
+          "correct": true
+        },
+        {
+          "caseId": "ebd54747e24ee7d1b956b2e7",
+          "expected": "context_only",
+          "predicted": "insufficient",
+          "correct": false
+        },
+        {
+          "caseId": "3238d22c8381817f99e84d65",
+          "expected": "insufficient",
+          "predicted": "insufficient",
+          "correct": true
+        }
+      ]
+    },
+    "keptExamples": 0,
+    "trainingStatus": "reviewing_examples",
+    "adapterVersion": null,
+    "consoleObservation": {
+      "origin": "mubit_console",
+      "task": "normal.source_support.v1",
+      "model": "gemini-4-argon",
+      "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+      "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+      "mubitTaskId": "ln_a328d88258f6df01151561dc",
+      "observedAt": "2026-10-25T08:25:43.782Z",
+      "taskUrl": "https://app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_a328d88258f6df01151561dc",
+      "trainingStatus": "reviewing_examples",
+      "callsObserved": 40,
+      "keptExamples": 0,
+      "rejectedExamples": 0,
+      "waitingForReview": 40,
+      "reviewQueued": 40,
+      "reviewRunning": 3,
+      "firstTrainingStarted": false,
+      "adapterVersionId": null,
+      "evidencePaths": [
+        "docs/training/source-support-gemini-4-argon-v1/console/submission-queue.txt",
+        "docs/training/source-support-gemini-4-argon-v1/console/submission-queue.png"
+      ]
+    }
+  },
+  "comparison": {
+    "status": "waiting_for_first_training",
+    "improved": null,
+    "reason": "Console observation at 2026-10-25T08:25:43.782Z: 0 kept, 40 waiting for review; first training has not started. No adapter exists for this task to evaluate."
+  },
+  "limitations": [
+    "Labels and passages authored with agent assistance, not independently human adjudicated.",
+    "Only source-support classification is tested; no claim about full investigator accuracy.",
+    "Related claim variants share a passage within a split; 24 cases comprise six held-out scenes, not 24 independent incidents. Case-wise Wilson intervals are descriptive and ignore clustering; paired comparison resamples whole scenes.",
+    "Mubit console kept-example counts and adapter history are authoritative; a successful request does not confirm training.",
+    "Unknown monetary rates remain null."
+  ]
+}

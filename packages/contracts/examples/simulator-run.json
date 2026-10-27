@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "simulationRunId": "run_nova_001",
+  "seed": 42023,
+  "status": "running",
+  "virtualTime": "2026-10-23T19:00:00Z",
+  "minutesPerTick": 1,
+  "activeScenario": "delivery_delays",
+  "scenarioSeverity": 0.75,
+  "createdAt": "2026-10-23T18:00:00Z",
+  "updatedAt": "2026-10-23T19:00:00Z"
+}

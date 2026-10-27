@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "correctionId": "feedback_001",
+  "investigationId": "inv_001",
+  "diagnosisId": "diag_001",
+  "modelCallId": "call_001",
+  "predictedCause": "ad_fatigue",
+  "correctedCause": "delivery_delays",
+  "correctedEvidenceIds": [
+    "e_ship_01"
+  ],
+  "note": "Delivery delays were independently verified as the dominant contributing factor in this synthetic scenario.",
+  "verifiedByUserId": "owner_demo",
+  "verifiedAt": "2026-10-23T19:08:00Z",
+  "ingestionStatus": "local_only"
+}

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "schemaVersion": 1,
+      "businessId": "nova_store",
+      "eventId": "evt_order_001",
+      "source": "simulator",
+      "type": "order.completed",
+      "occurredAt": "2026-10-23T18:30:00Z",
+      "receivedAt": "2026-10-23T18:30:01Z",
+      "provenance": {
+        "sourceRecordId": "sim-order-1",
+        "connectorId": "simulator_v1",
+        "simulated": true,
+        "ingestMethod": "simulation"
+      },
+      "simulationRunId": "run_nova_001",
+      "payload": {
+        "orderId": "ord_001",
+        "sessionId": "sess_001",
+        "customerId": "customer_demo_001",
+        "productIds": [
+          "sku_headphones"
+        ],
+        "grossTotalMinor": 6999,
+        "discountMinor": 1000,
+        "netRevenueMinor": 5999,
+        "currency": "GBP",
+        "campaignId": "campaign_A"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "businessId": "nova_store",
+      "eventId": "evt_ad_001",
+      "source": "simulator",
+      "type": "ad.metrics_observed",
+      "occurredAt": "2026-10-23T18:30:00Z",
+      "receivedAt": "2026-10-23T18:30:01Z",
+      "provenance": {
+        "sourceRecordId": "sim-ad-1",
+        "connectorId": "simulator_v1",
+        "simulated": true,
+        "ingestMethod": "simulation"
+      },
+      "simulationRunId": "run_nova_001",
+      "payload": {
+        "campaignId": "campaign_A",
+        "window": {
+          "startAt": "2026-10-23T18:00:00Z",
+          "endAt": "2026-10-23T19:00:00Z"
+        },
+        "impressions": 10000,
+        "clicks": 150,
+        "spendMinor": 35000,
+        "attributedOrders": 8,
+        "attributedRevenueMinor": 47992,
+        "frequency": 6.2,
+        "currency": "GBP"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "businessId": "nova_store",
+      "eventId": "evt_review_001",
+      "source": "simulator",
+      "type": "review.created",
+      "occurredAt": "2026-10-23T18:30:00Z",
+      "receivedAt": "2026-10-23T18:30:01Z",
+      "provenance": {
+        "sourceRecordId": "sim-review-1",
+        "connectorId": "simulator_v1",
+        "simulated": true,
+        "ingestMethod": "simulation"
+      },
+      "simulationRunId": "run_nova_001",
+      "payload": {
+        "reviewId": "review_001",
+        "productId": "sku_headphones",
+        "orderId": "ord_001",
+        "rating": 2,
+        "text": "Delivery arrived much later than promised."
+      }
+    }
+  ]
+}

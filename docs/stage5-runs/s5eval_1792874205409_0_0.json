@@ -1,0 +1,1623 @@
+{
+  "metrics": {
+    "businessId": "nike_eval",
+    "simulationRunId": "s5eval_1792874205409_0_0",
+    "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+    "scenarioAfterInference": "ad_fatigue",
+    "seed": 11,
+    "detected": true,
+    "completion": "completed",
+    "primaryCause": "ad_fatigue",
+    "mechanismInHypotheses": true,
+    "leadingMechanismMatch": true,
+    "hypothesisRevisions": 4,
+    "evidence": 6,
+    "citations": 4,
+    "invalidCitations": 0,
+    "latencyMs": 84509,
+    "modelCalls": 5,
+    "tokens": 30068,
+    "estimatedCostUsd": null,
+    "externalResearchRounds": 0,
+    "externalCausalValidity": "not_established_by_synthetic_evaluation",
+    "requestIds": [
+      "mreq_01a16fa1a737755194f1a1e8fa2e716c",
+      "mreq_01a16fa1d80476d38a08cbf2ece62eb2",
+      "mreq_01a16fa213187690b7f4774ed6bec7d5",
+      "mreq_01a16fa252fe71a3b5442d061384656a",
+      "mreq_01a16fa28037701285da4a9412b86d2c"
+    ]
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_f2e99c41ddc026ef6546e3d5",
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792874205409_0_0",
+      "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+      "status": "completed",
+      "stage": "completed",
+      "createdAt": "2026-10-24T20:37:07.138Z",
+      "updatedAt": "2026-10-24T20:38:10.478Z",
+      "startedAt": "2026-10-24T20:37:07.326Z",
+      "completedAt": "2026-10-24T20:38:10.478Z",
+      "round": 3,
+      "toolCount": 7,
+      "researchCount": 0,
+      "callCount": 5,
+      "reservedTokens": 144835,
+      "actualTokens": 30068,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 0,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-05T12:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-04T06:00:00.000Z",
+        "endAt": "2026-10-05T12:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-03T00:00:00.000Z",
+        "endAt": "2026-10-04T06:00:00.000Z"
+      },
+      "evidenceIds": [
+        "evd_224bc55d8aabd9e3",
+        "evd_36acb03e0cfb5d77",
+        "evd_1f640fdcf3265f94",
+        "evd_c08888ae66062529",
+        "evd_65ff21b26e873ac9",
+        "evd_ff85bb676a226343"
+      ],
+      "sourceIds": [],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T20:37:18.758Z",
+          "hypotheses": [
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "The reported deterioration spans paid search and paid social campaigns, with lower CTR and higher CAC observed. This is consistent with reduced advertising efficiency, but campaign-level drivers and the downstream business impact are not yet established.",
+              "mechanism": "Changes in targeting, bidding, placements, or traffic quality could reduce engagement and increase acquisition cost.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Affected campaigns show degraded CTR or acquisition efficiency relative to their own baselines.",
+                "Unaffected campaigns or other traffic sources do not show the same change."
+              ],
+              "missingEvidence": [
+                "Campaign-level impressions, clicks, spend, frequency, attributed sessions, and comparisons with unaffected campaigns.",
+                "Revenue and conversion trends to determine whether the advertising changes translated into business impact."
+              ],
+              "falsificationTests": [
+                "Compare affected campaigns with unaffected campaigns over the same hours; similar changes across both groups would weaken a campaign-specific inefficiency explanation.",
+                "Check whether spend, clicks, and attributed sessions remain stable despite the reported metric changes; if so, the proposed performance mechanism may not explain the anomaly."
+              ],
+              "chronology": "The reported CTR deterioration falls within the incident window; the available observations do not establish when a campaign change or other cause began.",
+              "confounders": [
+                "The supplied anomaly summary does not provide underlying counts or metric definitions.",
+                "The campaigns span multiple products and paid channels, so a shared measurement or platform factor could mimic campaign inefficiency."
+              ],
+              "controlComparison": "No unaffected-campaign comparison is available yet.",
+              "hypothesisId": "hyp_d221a57d4f009c71"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement, attribution, or reporting change could produce apparent deterioration across multiple campaigns. The current summary does not distinguish this from a genuine change in user response or traffic quality.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported CTR or CAC without a corresponding change in underlying customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Raw ad observations or attribution/session counts disagree with the reported derived metrics, or show a discontinuity shared across affected and comparison campaigns."
+              ],
+              "missingEvidence": [
+                "Underlying ad observations and attributed session counts by campaign and time.",
+                "A comparison against unaffected campaigns and independent revenue or session measures."
+              ],
+              "falsificationTests": [
+                "Reconcile reported campaign metrics with raw impressions, clicks, spend, and attributed sessions; consistent underlying counts and derived metrics would weaken a measurement-change hypothesis.",
+                "Compare campaign-attributed sessions with independent session and order trends over the same period."
+              ],
+              "chronology": "No measurement or attribution change is documented in the supplied evidence, and its timing cannot be assessed.",
+              "confounders": [
+                "A real cross-campaign performance shift could also explain the reported pattern."
+              ],
+              "controlComparison": "Comparison campaigns and independent business measures have not yet been examined.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "The supplied anomaly summary indicates deterioration across several campaigns, but contains no canonical evidence IDs or underlying measurements. Advertising inefficiency is a plausible lead; a measurement or attribution issue remains an alternative. Review campaign-level data alongside conversion outcomes before drawing a causal conclusion."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T20:37:34.247Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "The advertising records show lower engagement alongside higher average exposure frequency, making audience fatigue a plausible contributor. This supports an advertising-performance change, but does not establish why it occurred or whether it caused the broader business decline.",
+              "mechanism": "Repeated exposure may reduce response, lowering clicks and attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Engagement declines most in campaigns or audiences whose exposure frequency increased.",
+                "The decline is less pronounced among comparable campaigns or audiences with lower exposure frequency."
+              ],
+              "missingEvidence": [
+                "Campaign- and audience-level frequency and engagement trends over time.",
+                "A comparison with unaffected campaigns or audiences.",
+                "Evidence tying the advertising change to the decline in total sessions and orders."
+              ],
+              "falsificationTests": [
+                "Compare engagement over time across audiences with different exposure-frequency trends; similar declines regardless of frequency would weaken fatigue as the mechanism.",
+                "Check whether engagement recovers among comparable audiences after lower-frequency exposure; no recovery would weaken this hypothesis."
+              ],
+              "chronology": "The advertising deterioration and elevated exposure frequency are observed within the incident window. The evidence does not establish which changed first.",
+              "confounders": [
+                "Changes in targeting, bidding, placements, or traffic mix could also reduce engagement.",
+                "A reporting or attribution change could affect campaign metrics.",
+                "Overall sessions and conversion also declined, and their causes are not established."
+              ],
+              "controlComparison": "The supplied advertising analysis reports affected campaigns as a group but does not provide an unaffected-campaign comparison.",
+              "hypothesisId": "hyp_2198a3d67997c8b7"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement or attribution change remains possible, but the observed declines in ad clicks and attributed sessions occur alongside a decline in overall sessions and orders. The current evidence does not establish a reporting discontinuity or rule one out.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported campaign performance without an equivalent change in underlying customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3",
+                "evd_36acb03e0cfb5d77"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Raw campaign events and derived metrics disagree, or show a shared discontinuity across affected and comparison campaigns.",
+                "Independent session or order records do not track the reported campaign-attributed changes."
+              ],
+              "missingEvidence": [
+                "Raw campaign-event reconciliation and attribution settings or change history.",
+                "Comparison-campaign data and channel-level session trends."
+              ],
+              "falsificationTests": [
+                "Reconcile campaign impressions, clicks, spend, and attributed sessions against their underlying events; consistent records and derivations would weaken a measurement-change explanation.",
+                "Compare campaign-attributed sessions with independent session and order records over the same period; aligned changes would weaken the hypothesis."
+              ],
+              "chronology": "No measurement or attribution change is documented in the supplied evidence, so timing cannot be established.",
+              "confounders": [
+                "A genuine decline in advertising response could produce the observed campaign metrics.",
+                "The overall business decline may have causes separate from advertising."
+              ],
+              "controlComparison": "Overall revenue and session records also show declines, but the supplied evidence does not give a channel-matched or unaffected-campaign control.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "The records support a real advertising-performance deterioration and make exposure-related fatigue plausible, while not identifying its cause. Overall sessions, orders, and conversion also declined; checkout failures were not observed. Measurement or attribution change remains unresolved, so causal attribution should remain qualified."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 3,
+          "createdAt": "2026-10-24T20:37:50.895Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "The advertising evidence shows deteriorating response alongside higher average exposure frequency, which is consistent with fatigue. It does not establish that fatigue caused the broader business decline.",
+              "mechanism": "Repeated exposure may reduce engagement, lowering clicks and campaign-attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Engagement declines more in campaigns or audiences where exposure frequency rose.",
+                "Comparable audiences with lower frequency show a smaller decline or recover sooner."
+              ],
+              "missingEvidence": [
+                "Campaign- and audience-level frequency and engagement trends over time.",
+                "A comparison with unaffected campaigns or audiences."
+              ],
+              "falsificationTests": [
+                "Compare engagement trends across audiences with different frequency changes; similar declines regardless of frequency would weaken the fatigue explanation.",
+                "Test whether lower-frequency exposure is followed by engagement recovery in comparable audiences; no recovery would weaken it."
+              ],
+              "chronology": "Higher frequency and weaker advertising response are observed in the incident window, but the evidence does not establish which changed first.",
+              "confounders": [
+                "Changes in targeting, bidding, placements, or traffic mix could also reduce response.",
+                "A measurement or attribution change could affect campaign metrics.",
+                "Overall sessions and conversion also declined, and their causes are not established."
+              ],
+              "controlComparison": "The supplied advertising analysis reports affected campaigns as a group but does not provide an unaffected-campaign comparison.",
+              "hypothesisId": "hyp_2198a3d67997c8b7"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Advertising spend continued while clicks, attributed sessions, and attributed orders weakened. This supports deteriorating campaign efficiency, but the evidence does not identify whether targeting, bidding, placement, or another campaign factor drove it.",
+              "mechanism": "Less effective delivery or traffic selection could reduce qualified visits and purchases per unit of spend.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Efficiency deterioration is concentrated in particular campaigns, placements, or audience segments.",
+                "Changes in delivery or traffic composition precede or coincide with weaker engagement and attributed outcomes."
+              ],
+              "missingEvidence": [
+                "Campaign-level delivery, placement, targeting, and bidding change history.",
+                "Segment-level traffic quality and conversion comparisons.",
+                "Reconciliation of attributed outcomes against independent session and order records."
+              ],
+              "falsificationTests": [
+                "Compare delivery and outcome trends by campaign and segment; uniform deterioration without delivery or mix differences would weaken this mechanism.",
+                "Reconcile attributed outcomes with independent session and order records; a reporting discrepancy would weaken a genuine efficiency explanation."
+              ],
+              "chronology": "The efficiency deterioration is observed during the incident window; the supplied evidence does not show whether campaign settings or delivery conditions changed beforehand.",
+              "confounders": [
+                "Higher exposure frequency may reflect or contribute to fatigue rather than a separate delivery problem.",
+                "Attribution or reporting changes could produce apparent efficiency deterioration.",
+                "The concurrent decline in overall sessions and conversion may have causes outside advertising."
+              ],
+              "controlComparison": "No unaffected-campaign or audience-level control is provided.",
+              "hypothesisId": "hyp_d221a57d4f009c71"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement or attribution change remains possible, but no such change is documented. The decline in overall sessions and orders alongside the advertising deterioration is consistent with a real business change, without resolving its cause.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported campaign results without an equivalent change in customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3",
+                "evd_36acb03e0cfb5d77"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Underlying campaign events and derived metrics disagree, or show a discontinuity not present in independent business records.",
+                "Campaign-attributed sessions diverge from independently recorded sessions or orders."
+              ],
+              "missingEvidence": [
+                "Raw campaign-event reconciliation and attribution settings or change history.",
+                "Channel-level session trends and a comparison-campaign series."
+              ],
+              "falsificationTests": [
+                "Reconcile campaign impressions, clicks, spend, and attributed sessions against underlying events; consistent records and derivations would weaken this hypothesis.",
+                "Compare campaign-attributed sessions with independent session and order records over the same period; aligned changes would weaken it."
+              ],
+              "chronology": "No measurement or attribution change is documented, so its timing cannot be established.",
+              "confounders": [
+                "Genuine deterioration in advertising response could explain the campaign metrics.",
+                "The broader business decline may have causes separate from advertising."
+              ],
+              "controlComparison": "Overall revenue and session records also show declines, but no channel-matched or unaffected-campaign control is supplied.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "Advertising performance deteriorated, with elevated exposure frequency making fatigue plausible and other forms of campaign inefficiency also possible. Overall sessions, orders, and conversion declined as well. The supplied checkout records show no checkout failures, while inventory, review, and delivery evidence does not establish an explanation for the advertising change. No single cause is established; measurement or attribution change remains unresolved."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 4,
+          "createdAt": "2026-10-24T20:38:02.672Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "Higher average exposure frequency coincides with substantially weaker advertising response. This is consistent with fatigue but does not show that repeated exposure caused the decline.",
+              "mechanism": "Repeated exposure may reduce engagement, lowering clicks and campaign-attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Engagement falls more in audiences whose exposure frequency rose most.",
+                "Comparable lower-frequency audiences show a smaller decline or recover sooner."
+              ],
+              "missingEvidence": [
+                "Audience- and campaign-level frequency and engagement trends over time.",
+                "A comparison with unaffected audiences or campaigns."
+              ],
+              "falsificationTests": [
+                "Compare engagement changes across audiences with different frequency changes; similar declines regardless of frequency would weaken the fatigue explanation.",
+                "Check whether comparable lower-frequency exposure is followed by engagement recovery; no recovery would weaken this explanation."
+              ],
+              "chronology": "Higher frequency and weaker advertising response are observed in the incident window; the evidence does not establish which changed first.",
+              "confounders": [
+                "Targeting, bidding, placement, or traffic-mix changes could also reduce response.",
+                "A measurement or attribution change could affect campaign metrics.",
+                "Overall sessions and conversion also declined, and their causes are unresolved."
+              ],
+              "controlComparison": "The supplied advertising evidence reports affected campaigns as a group but provides no unaffected-campaign or audience-level control.",
+              "hypothesisId": "hyp_2198a3d67997c8b7"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Spend continued while clicks, attributed sessions, and attributed orders weakened. This supports deteriorating campaign efficiency, but the evidence does not identify the responsible delivery or campaign factor.",
+              "mechanism": "Less effective delivery or traffic selection could reduce qualified visits and purchases per unit of spend.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Deterioration is concentrated in particular campaigns, placements, or audience segments.",
+                "Delivery or traffic-composition changes precede or coincide with weaker engagement and attributed outcomes."
+              ],
+              "missingEvidence": [
+                "Campaign-level delivery, placement, targeting, and bidding change history.",
+                "Segment-level traffic quality and conversion comparisons.",
+                "Reconciliation of attributed outcomes with independent session and order records."
+              ],
+              "falsificationTests": [
+                "Compare delivery and outcomes by campaign and segment; uniform deterioration without delivery or mix differences would weaken this mechanism.",
+                "Reconcile attributed outcomes with independent session and order records; a reporting discrepancy would weaken a genuine efficiency explanation."
+              ],
+              "chronology": "Efficiency deterioration is observed during the incident window, but the evidence does not show whether campaign settings or delivery conditions changed beforehand.",
+              "confounders": [
+                "Higher exposure frequency may reflect or contribute to fatigue.",
+                "Attribution or reporting changes could produce apparent efficiency deterioration.",
+                "The broader decline in sessions and conversion may have causes outside advertising."
+              ],
+              "controlComparison": "No unaffected-campaign or audience-level control is supplied.",
+              "hypothesisId": "hyp_d221a57d4f009c71"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement or attribution change remains possible, but none is documented. The concurrent decline in overall sessions and orders is consistent with a broader business change, without resolving its cause.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported campaign results without an equivalent change in customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3",
+                "evd_36acb03e0cfb5d77"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Underlying campaign events and derived metrics disagree, or show a discontinuity absent from independent business records.",
+                "Campaign-attributed sessions diverge from independently recorded sessions or orders."
+              ],
+              "missingEvidence": [
+                "Raw campaign-event reconciliation and attribution settings or change history.",
+                "Channel-level session trends and a comparison-campaign series."
+              ],
+              "falsificationTests": [
+                "Reconcile campaign impressions, clicks, spend, and attributed sessions against underlying events; consistent records and derivations would weaken this hypothesis.",
+                "Compare campaign-attributed sessions with independent session and order records over the same period; aligned changes would weaken it."
+              ],
+              "chronology": "No measurement or attribution change is documented, so its timing cannot be established.",
+              "confounders": [
+                "Genuine deterioration in advertising response could explain the campaign metrics.",
+                "The broader business decline may have causes separate from advertising."
+              ],
+              "controlComparison": "Overall revenue and session records also show declines, but no channel-matched or unaffected-campaign control is supplied.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "Advertising response and efficiency weakened alongside increased exposure frequency, making fatigue and other campaign inefficiency plausible but not established. Overall sessions, orders, and conversion also declined. The supplied checkout evidence records no checkout failures; inventory, reviews, and delivery evidence do not establish an explanation for the advertising deterioration. Measurement or attribution change remains unresolved."
+        }
+      ],
+      "steps": [
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T20:37:07.326Z",
+          "completedAt": "2026-10-24T20:37:07.326Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:07.381Z",
+          "completedAt": "2026-10-24T20:37:18.758Z",
+          "resultSummary": "The supplied anomaly summary indicates deterioration across several campaigns, but contains no canonical evidence IDs or underlying measurements. Advertising inefficiency is a plausible lead; a measurement or attribution issue remains an alternative. Review campaign-level data alongside conversion outcomes before drawing a causal conclusion.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "advertising_analysis",
+          "question": "Compare affected campaigns with the rest over the incident and baseline windows. Show campaign-level impressions, clicks, CTR, spend, CPA/CAC, ROAS, frequency, and attributed sessions to distinguish real performance deterioration from a shared measurement or attribution shift.",
+          "startedAt": "2026-10-24T20:37:18.779Z",
+          "completedAt": "2026-10-24T20:37:18.924Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "revenue_analysis",
+          "question": "Check whether sessions, orders, conversion, and revenue changed over the same period, with channel comparisons where available, to establish whether the advertising anomaly coincided with a broader business change.",
+          "startedAt": "2026-10-24T20:37:18.984Z",
+          "completedAt": "2026-10-24T20:37:19.211Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_36acb03e0cfb5d77"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "checkout_analysis",
+          "question": "Check session-to-purchase conversion and checkout failures over the incident versus baseline, including failure codes and device, to test whether a downstream conversion issue could contribute to higher acquisition cost.",
+          "startedAt": "2026-10-24T20:37:19.269Z",
+          "completedAt": "2026-10-24T20:37:19.665Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_1f640fdcf3265f94"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:19.920Z",
+          "completedAt": "2026-10-24T20:37:34.248Z",
+          "resultSummary": "The records support a real advertising-performance deterioration and make exposure-related fatigue plausible, while not identifying its cause. Overall sessions, orders, and conversion also declined; checkout failures were not observed. Measurement or attribution change remains unresolved, so causal attribution should remain qualified.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s6",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "inventory_analysis",
+          "question": "Did stock availability or stockout events change during the incident window in ways that could explain lower sessions or conversion?",
+          "startedAt": "2026-10-24T20:37:34.269Z",
+          "completedAt": "2026-10-24T20:37:34.373Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_c08888ae66062529"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s7",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did review volume, ratings, or complaint themes change during or before the incident window in a way that could explain reduced customer response?",
+          "startedAt": "2026-10-24T20:37:34.427Z",
+          "completedAt": "2026-10-24T20:37:34.533Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_65ff21b26e873ac9"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s8",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Did late-delivery rates or delivery backlog change around the incident window, potentially affecting customer response or conversion?",
+          "startedAt": "2026-10-24T20:37:34.590Z",
+          "completedAt": "2026-10-24T20:37:34.722Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_ff85bb676a226343"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s9",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:35.033Z",
+          "completedAt": "2026-10-24T20:37:50.896Z",
+          "resultSummary": "Advertising performance deteriorated, with elevated exposure frequency making fatigue plausible and other forms of campaign inefficiency also possible. Overall sessions, orders, and conversion declined as well. The supplied checkout records show no checkout failures, while inventory, review, and delivery evidence does not establish an explanation for the advertising change. No single cause is established; measurement or attribution change remains unresolved.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s10",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there prior incidents with similar cross-campaign engagement deterioration, and were any diagnoses recorded that could help distinguish fatigue, delivery inefficiency, or measurement change?",
+          "startedAt": "2026-10-24T20:37:50.919Z",
+          "completedAt": "2026-10-24T20:37:51.039Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-05T12:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s11",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:51.395Z",
+          "completedAt": "2026-10-24T20:38:02.672Z",
+          "resultSummary": "Advertising response and efficiency weakened alongside increased exposure frequency, making fatigue and other campaign inefficiency plausible but not established. Overall sessions, orders, and conversion also declined. The supplied checkout evidence records no checkout failures; inventory, reviews, and delivery evidence do not establish an explanation for the advertising deterioration. Measurement or attribution change remains unresolved.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s12",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T20:38:02.962Z",
+          "completedAt": "2026-10-24T20:38:10.455Z",
+          "resultSummary": "The strongest supported explanations are ad fatigue and broader campaign inefficiency: exposure frequency was higher as advertising response and attributed outcomes weakened. Overall sessions, orders, and conversion also declined, so the advertising pattern may be part of a wider change. The evidence does not establish a causal mechanism. Checkout failure, stockout, customer feedback, and delivery evidence do not establish explanations for the campaign deterioration.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s13",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T20:38:10.455Z",
+          "completedAt": "2026-10-24T20:38:10.455Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s14",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T20:38:10.455Z",
+          "completedAt": "2026-10-24T20:38:10.455Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": null,
+      "stopReason": "All supplied read-only tools have already been run, and no further eligible tool calls remain. The available evidence supports competing possibilities but does not establish a single cause.",
+      "reportId": "report_aij_f2e99c41ddc026ef6546e3d5",
+      "attempts": 1
+    },
+    "report": {
+      "schemaVersion": 1,
+      "reportId": "report_aij_f2e99c41ddc026ef6546e3d5",
+      "version": 1,
+      "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+      "diagnosisId": "diag_aij_f2e99c41ddc026ef6546e3d5",
+      "createdAt": "2026-10-24T20:38:10.456Z",
+      "diagnosis": {
+        "primaryCause": "ad_fatigue",
+        "hypotheses": [
+          {
+            "cause": "ad_fatigue",
+            "strength": "moderate",
+            "evidenceIds": [
+              "evd_224bc55d8aabd9e3"
+            ],
+            "counterEvidenceIds": [],
+            "explanation": "Higher average exposure frequency coincided with substantially lower click-through response and weaker attributed outcomes. This is consistent with ad fatigue, but the evidence does not establish that repeated exposure caused the decline or whether frequency rose before response weakened."
+          },
+          {
+            "cause": "ad_inefficiency",
+            "strength": "moderate",
+            "evidenceIds": [
+              "evd_224bc55d8aabd9e3"
+            ],
+            "counterEvidenceIds": [],
+            "explanation": "Spend continued while clicks, attributed sessions, and attributed orders weakened, supporting deteriorating campaign efficiency. The available evidence does not identify whether delivery, targeting, bidding, traffic composition, or another factor explains it."
+          },
+          {
+            "cause": "unknown",
+            "strength": "weak",
+            "evidenceIds": [
+              "evd_224bc55d8aabd9e3",
+              "evd_36acb03e0cfb5d77"
+            ],
+            "counterEvidenceIds": [],
+            "explanation": "A measurement or attribution change remains possible but is not documented. The broader decline in sessions, orders, and conversion alongside weaker campaign results does not distinguish a measurement change from genuine deterioration or establish a single underlying cause."
+          }
+        ],
+        "summary": "The strongest supported explanations are ad fatigue and broader campaign inefficiency: exposure frequency was higher as advertising response and attributed outcomes weakened. Overall sessions, orders, and conversion also declined, so the advertising pattern may be part of a wider change. The evidence does not establish a causal mechanism. Checkout failure, stockout, customer feedback, and delivery evidence do not establish explanations for the campaign deterioration.",
+        "missingEvidence": [
+          "Compare audience- and campaign-level frequency changes with engagement over time, including lower-frequency or unaffected groups; similar declines regardless of frequency would weaken the fatigue explanation.",
+          "Review campaign delivery, placement, targeting, and bidding history alongside segment-level traffic quality; no relevant changes or segment differences would weaken a delivery or traffic-mix explanation.",
+          "Reconcile underlying campaign events, attribution settings, and campaign-attributed sessions with independent session and order records; consistent records and aligned trends would weaken the measurement-change hypothesis."
+        ],
+        "requiresReview": true,
+        "schemaVersion": 1,
+        "businessId": "nike_eval",
+        "diagnosisId": "diag_aij_f2e99c41ddc026ef6546e3d5",
+        "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+        "modelCallId": "aij_f2e99c41ddc026ef6546e3d5_diagnosis_0",
+        "taskKey": "revenue_diagnosis_v1",
+        "createdAt": "2026-10-24T20:38:10.455Z"
+      },
+      "executiveBrief": {
+        "whatChanged": "The detector observed changes in the incident metrics shown above.",
+        "explanation": "The strongest supported explanations are ad fatigue and broader campaign inefficiency: exposure frequency was higher as advertising response and attributed outcomes weakened. Overall sessions, orders, and conversion also declined, so the advertising pattern may be part of a wider change. The evidence does not establish a causal mechanism. Checkout failure, stockout, customer feedback, and delivery evidence do not establish explanations for the campaign deterioration.",
+        "certainty": "Qualified model assessment requiring operator review; not a calibrated probability.",
+        "impact": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+        "review": [
+          "Compare audience- and campaign-level frequency changes with engagement over time, including lower-frequency or unaffected groups; similar declines regardless of frequency would weaken the fatigue explanation.",
+          "Review campaign delivery, placement, targeting, and bidding history alongside segment-level traffic quality; no relevant changes or segment differences would weaken a delivery or traffic-mix explanation.",
+          "Reconcile underlying campaign events, attribution settings, and campaign-attributed sessions with independent session and order records; consistent records and aligned trends would weaken the measurement-change hypothesis."
+        ]
+      },
+      "impact": {
+        "schemaVersion": 1,
+        "status": "measured",
+        "evidenceId": "evd_36acb03e0cfb5d77",
+        "metric": "net_revenue_minor_per_hour",
+        "value": 6479.4,
+        "baseline": 14015.3667,
+        "delta": -7535.966700000001,
+        "unit": "GBP minor units/hour",
+        "interpretation": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+        "limitations": [
+          "Simulated operational data.",
+          "Baseline composition and time-window differences may confound the comparison.",
+          "Campaign-level percentages are not added or averaged."
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "diag_aij_f2e99c41ddc026ef6546e3d5_claim_0",
+          "claim": "Higher average exposure frequency coincided with substantially lower click-through response and weaker attributed outcomes. This is consistent with ad fatigue, but the evidence does not establish that repeated exposure caused the decline or whether frequency rose before response weakened.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3"
+          ],
+          "counterEvidenceIds": [],
+          "sourceIds": [],
+          "support": "moderately_supported",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_f2e99c41ddc026ef6546e3d5_claim_1",
+          "claim": "Spend continued while clicks, attributed sessions, and attributed orders weakened, supporting deteriorating campaign efficiency. The available evidence does not identify whether delivery, targeting, bidding, traffic composition, or another factor explains it.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3"
+          ],
+          "counterEvidenceIds": [],
+          "sourceIds": [],
+          "support": "moderately_supported",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        },
+        {
+          "claimId": "diag_aij_f2e99c41ddc026ef6546e3d5_claim_2",
+          "claim": "A measurement or attribution change remains possible but is not documented. The broader decline in sessions, orders, and conversion alongside weaker campaign results does not distinguish a measurement change from genuine deterioration or establish a single underlying cause.",
+          "kind": "hypothesis",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3",
+            "evd_36acb03e0cfb5d77"
+          ],
+          "counterEvidenceIds": [],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        }
+      ],
+      "ledger": [
+        {
+          "evidenceId": "evd_224bc55d8aabd9e3",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_f2e99c41ddc026ef6546e3d5_claim_0",
+            "diag_aij_f2e99c41ddc026ef6546e3d5_claim_1",
+            "diag_aij_f2e99c41ddc026ef6546e3d5_claim_2"
+          ],
+          "role": "support",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792874205409_0_0_d07498fe5b17/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792874205409_0_0&evidenceId=evd_224bc55d8aabd9e3"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_36acb03e0cfb5d77",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [
+            "diag_aij_f2e99c41ddc026ef6546e3d5_claim_2"
+          ],
+          "role": "support",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792874205409_0_0_d07498fe5b17/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792874205409_0_0&evidenceId=evd_36acb03e0cfb5d77"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_1f640fdcf3265f94",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [],
+          "role": "context",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792874205409_0_0_d07498fe5b17/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792874205409_0_0&evidenceId=evd_1f640fdcf3265f94"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_c08888ae66062529",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [],
+          "role": "context",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792874205409_0_0_d07498fe5b17/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792874205409_0_0&evidenceId=evd_c08888ae66062529"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_65ff21b26e873ac9",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [],
+          "role": "context",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792874205409_0_0_d07498fe5b17/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792874205409_0_0&evidenceId=evd_65ff21b26e873ac9"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        },
+        {
+          "evidenceId": "evd_ff85bb676a226343",
+          "origin": "internal",
+          "verification": "Canonical schema and scoped source references verified",
+          "claimIds": [],
+          "role": "context",
+          "sourceLinks": [
+            "/api/investigations/inv_s5eval_1792874205409_0_0_d07498fe5b17/ai/sources?businessId=nike_eval&simulationRunId=s5eval_1792874205409_0_0&evidenceId=evd_ff85bb676a226343"
+          ],
+          "limitations": [
+            "Measured source validity does not prove a causal interpretation."
+          ]
+        }
+      ],
+      "hypotheses": [
+        {
+          "schemaVersion": 1,
+          "revision": 1,
+          "createdAt": "2026-10-24T20:37:18.758Z",
+          "hypotheses": [
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "The reported deterioration spans paid search and paid social campaigns, with lower CTR and higher CAC observed. This is consistent with reduced advertising efficiency, but campaign-level drivers and the downstream business impact are not yet established.",
+              "mechanism": "Changes in targeting, bidding, placements, or traffic quality could reduce engagement and increase acquisition cost.",
+              "support": "tentative",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Affected campaigns show degraded CTR or acquisition efficiency relative to their own baselines.",
+                "Unaffected campaigns or other traffic sources do not show the same change."
+              ],
+              "missingEvidence": [
+                "Campaign-level impressions, clicks, spend, frequency, attributed sessions, and comparisons with unaffected campaigns.",
+                "Revenue and conversion trends to determine whether the advertising changes translated into business impact."
+              ],
+              "falsificationTests": [
+                "Compare affected campaigns with unaffected campaigns over the same hours; similar changes across both groups would weaken a campaign-specific inefficiency explanation.",
+                "Check whether spend, clicks, and attributed sessions remain stable despite the reported metric changes; if so, the proposed performance mechanism may not explain the anomaly."
+              ],
+              "chronology": "The reported CTR deterioration falls within the incident window; the available observations do not establish when a campaign change or other cause began.",
+              "confounders": [
+                "The supplied anomaly summary does not provide underlying counts or metric definitions.",
+                "The campaigns span multiple products and paid channels, so a shared measurement or platform factor could mimic campaign inefficiency."
+              ],
+              "controlComparison": "No unaffected-campaign comparison is available yet.",
+              "hypothesisId": "hyp_d221a57d4f009c71"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement, attribution, or reporting change could produce apparent deterioration across multiple campaigns. The current summary does not distinguish this from a genuine change in user response or traffic quality.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported CTR or CAC without a corresponding change in underlying customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Raw ad observations or attribution/session counts disagree with the reported derived metrics, or show a discontinuity shared across affected and comparison campaigns."
+              ],
+              "missingEvidence": [
+                "Underlying ad observations and attributed session counts by campaign and time.",
+                "A comparison against unaffected campaigns and independent revenue or session measures."
+              ],
+              "falsificationTests": [
+                "Reconcile reported campaign metrics with raw impressions, clicks, spend, and attributed sessions; consistent underlying counts and derived metrics would weaken a measurement-change hypothesis.",
+                "Compare campaign-attributed sessions with independent session and order trends over the same period."
+              ],
+              "chronology": "No measurement or attribution change is documented in the supplied evidence, and its timing cannot be assessed.",
+              "confounders": [
+                "A real cross-campaign performance shift could also explain the reported pattern."
+              ],
+              "controlComparison": "Comparison campaigns and independent business measures have not yet been examined.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "The supplied anomaly summary indicates deterioration across several campaigns, but contains no canonical evidence IDs or underlying measurements. Advertising inefficiency is a plausible lead; a measurement or attribution issue remains an alternative. Review campaign-level data alongside conversion outcomes before drawing a causal conclusion."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 2,
+          "createdAt": "2026-10-24T20:37:34.247Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "The advertising records show lower engagement alongside higher average exposure frequency, making audience fatigue a plausible contributor. This supports an advertising-performance change, but does not establish why it occurred or whether it caused the broader business decline.",
+              "mechanism": "Repeated exposure may reduce response, lowering clicks and attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Engagement declines most in campaigns or audiences whose exposure frequency increased.",
+                "The decline is less pronounced among comparable campaigns or audiences with lower exposure frequency."
+              ],
+              "missingEvidence": [
+                "Campaign- and audience-level frequency and engagement trends over time.",
+                "A comparison with unaffected campaigns or audiences.",
+                "Evidence tying the advertising change to the decline in total sessions and orders."
+              ],
+              "falsificationTests": [
+                "Compare engagement over time across audiences with different exposure-frequency trends; similar declines regardless of frequency would weaken fatigue as the mechanism.",
+                "Check whether engagement recovers among comparable audiences after lower-frequency exposure; no recovery would weaken this hypothesis."
+              ],
+              "chronology": "The advertising deterioration and elevated exposure frequency are observed within the incident window. The evidence does not establish which changed first.",
+              "confounders": [
+                "Changes in targeting, bidding, placements, or traffic mix could also reduce engagement.",
+                "A reporting or attribution change could affect campaign metrics.",
+                "Overall sessions and conversion also declined, and their causes are not established."
+              ],
+              "controlComparison": "The supplied advertising analysis reports affected campaigns as a group but does not provide an unaffected-campaign comparison.",
+              "hypothesisId": "hyp_2198a3d67997c8b7"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement or attribution change remains possible, but the observed declines in ad clicks and attributed sessions occur alongside a decline in overall sessions and orders. The current evidence does not establish a reporting discontinuity or rule one out.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported campaign performance without an equivalent change in underlying customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3",
+                "evd_36acb03e0cfb5d77"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Raw campaign events and derived metrics disagree, or show a shared discontinuity across affected and comparison campaigns.",
+                "Independent session or order records do not track the reported campaign-attributed changes."
+              ],
+              "missingEvidence": [
+                "Raw campaign-event reconciliation and attribution settings or change history.",
+                "Comparison-campaign data and channel-level session trends."
+              ],
+              "falsificationTests": [
+                "Reconcile campaign impressions, clicks, spend, and attributed sessions against their underlying events; consistent records and derivations would weaken a measurement-change explanation.",
+                "Compare campaign-attributed sessions with independent session and order records over the same period; aligned changes would weaken the hypothesis."
+              ],
+              "chronology": "No measurement or attribution change is documented in the supplied evidence, so timing cannot be established.",
+              "confounders": [
+                "A genuine decline in advertising response could produce the observed campaign metrics.",
+                "The overall business decline may have causes separate from advertising."
+              ],
+              "controlComparison": "Overall revenue and session records also show declines, but the supplied evidence does not give a channel-matched or unaffected-campaign control.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "The records support a real advertising-performance deterioration and make exposure-related fatigue plausible, while not identifying its cause. Overall sessions, orders, and conversion also declined; checkout failures were not observed. Measurement or attribution change remains unresolved, so causal attribution should remain qualified."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 3,
+          "createdAt": "2026-10-24T20:37:50.895Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "The advertising evidence shows deteriorating response alongside higher average exposure frequency, which is consistent with fatigue. It does not establish that fatigue caused the broader business decline.",
+              "mechanism": "Repeated exposure may reduce engagement, lowering clicks and campaign-attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Engagement declines more in campaigns or audiences where exposure frequency rose.",
+                "Comparable audiences with lower frequency show a smaller decline or recover sooner."
+              ],
+              "missingEvidence": [
+                "Campaign- and audience-level frequency and engagement trends over time.",
+                "A comparison with unaffected campaigns or audiences."
+              ],
+              "falsificationTests": [
+                "Compare engagement trends across audiences with different frequency changes; similar declines regardless of frequency would weaken the fatigue explanation.",
+                "Test whether lower-frequency exposure is followed by engagement recovery in comparable audiences; no recovery would weaken it."
+              ],
+              "chronology": "Higher frequency and weaker advertising response are observed in the incident window, but the evidence does not establish which changed first.",
+              "confounders": [
+                "Changes in targeting, bidding, placements, or traffic mix could also reduce response.",
+                "A measurement or attribution change could affect campaign metrics.",
+                "Overall sessions and conversion also declined, and their causes are not established."
+              ],
+              "controlComparison": "The supplied advertising analysis reports affected campaigns as a group but does not provide an unaffected-campaign comparison.",
+              "hypothesisId": "hyp_2198a3d67997c8b7"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Advertising spend continued while clicks, attributed sessions, and attributed orders weakened. This supports deteriorating campaign efficiency, but the evidence does not identify whether targeting, bidding, placement, or another campaign factor drove it.",
+              "mechanism": "Less effective delivery or traffic selection could reduce qualified visits and purchases per unit of spend.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Efficiency deterioration is concentrated in particular campaigns, placements, or audience segments.",
+                "Changes in delivery or traffic composition precede or coincide with weaker engagement and attributed outcomes."
+              ],
+              "missingEvidence": [
+                "Campaign-level delivery, placement, targeting, and bidding change history.",
+                "Segment-level traffic quality and conversion comparisons.",
+                "Reconciliation of attributed outcomes against independent session and order records."
+              ],
+              "falsificationTests": [
+                "Compare delivery and outcome trends by campaign and segment; uniform deterioration without delivery or mix differences would weaken this mechanism.",
+                "Reconcile attributed outcomes with independent session and order records; a reporting discrepancy would weaken a genuine efficiency explanation."
+              ],
+              "chronology": "The efficiency deterioration is observed during the incident window; the supplied evidence does not show whether campaign settings or delivery conditions changed beforehand.",
+              "confounders": [
+                "Higher exposure frequency may reflect or contribute to fatigue rather than a separate delivery problem.",
+                "Attribution or reporting changes could produce apparent efficiency deterioration.",
+                "The concurrent decline in overall sessions and conversion may have causes outside advertising."
+              ],
+              "controlComparison": "No unaffected-campaign or audience-level control is provided.",
+              "hypothesisId": "hyp_d221a57d4f009c71"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement or attribution change remains possible, but no such change is documented. The decline in overall sessions and orders alongside the advertising deterioration is consistent with a real business change, without resolving its cause.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported campaign results without an equivalent change in customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3",
+                "evd_36acb03e0cfb5d77"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Underlying campaign events and derived metrics disagree, or show a discontinuity not present in independent business records.",
+                "Campaign-attributed sessions diverge from independently recorded sessions or orders."
+              ],
+              "missingEvidence": [
+                "Raw campaign-event reconciliation and attribution settings or change history.",
+                "Channel-level session trends and a comparison-campaign series."
+              ],
+              "falsificationTests": [
+                "Reconcile campaign impressions, clicks, spend, and attributed sessions against underlying events; consistent records and derivations would weaken this hypothesis.",
+                "Compare campaign-attributed sessions with independent session and order records over the same period; aligned changes would weaken it."
+              ],
+              "chronology": "No measurement or attribution change is documented, so its timing cannot be established.",
+              "confounders": [
+                "Genuine deterioration in advertising response could explain the campaign metrics.",
+                "The broader business decline may have causes separate from advertising."
+              ],
+              "controlComparison": "Overall revenue and session records also show declines, but no channel-matched or unaffected-campaign control is supplied.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "Advertising performance deteriorated, with elevated exposure frequency making fatigue plausible and other forms of campaign inefficiency also possible. Overall sessions, orders, and conversion declined as well. The supplied checkout records show no checkout failures, while inventory, review, and delivery evidence does not establish an explanation for the advertising change. No single cause is established; measurement or attribution change remains unresolved."
+        },
+        {
+          "schemaVersion": 1,
+          "revision": 4,
+          "createdAt": "2026-10-24T20:38:02.672Z",
+          "hypotheses": [
+            {
+              "cause": "ad_fatigue",
+              "explanation": "Higher average exposure frequency coincides with substantially weaker advertising response. This is consistent with fatigue but does not show that repeated exposure caused the decline.",
+              "mechanism": "Repeated exposure may reduce engagement, lowering clicks and campaign-attributed sessions while spend continues.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Engagement falls more in audiences whose exposure frequency rose most.",
+                "Comparable lower-frequency audiences show a smaller decline or recover sooner."
+              ],
+              "missingEvidence": [
+                "Audience- and campaign-level frequency and engagement trends over time.",
+                "A comparison with unaffected audiences or campaigns."
+              ],
+              "falsificationTests": [
+                "Compare engagement changes across audiences with different frequency changes; similar declines regardless of frequency would weaken the fatigue explanation.",
+                "Check whether comparable lower-frequency exposure is followed by engagement recovery; no recovery would weaken this explanation."
+              ],
+              "chronology": "Higher frequency and weaker advertising response are observed in the incident window; the evidence does not establish which changed first.",
+              "confounders": [
+                "Targeting, bidding, placement, or traffic-mix changes could also reduce response.",
+                "A measurement or attribution change could affect campaign metrics.",
+                "Overall sessions and conversion also declined, and their causes are unresolved."
+              ],
+              "controlComparison": "The supplied advertising evidence reports affected campaigns as a group but provides no unaffected-campaign or audience-level control.",
+              "hypothesisId": "hyp_2198a3d67997c8b7"
+            },
+            {
+              "cause": "ad_inefficiency",
+              "explanation": "Spend continued while clicks, attributed sessions, and attributed orders weakened. This supports deteriorating campaign efficiency, but the evidence does not identify the responsible delivery or campaign factor.",
+              "mechanism": "Less effective delivery or traffic selection could reduce qualified visits and purchases per unit of spend.",
+              "support": "moderately_supported",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Deterioration is concentrated in particular campaigns, placements, or audience segments.",
+                "Delivery or traffic-composition changes precede or coincide with weaker engagement and attributed outcomes."
+              ],
+              "missingEvidence": [
+                "Campaign-level delivery, placement, targeting, and bidding change history.",
+                "Segment-level traffic quality and conversion comparisons.",
+                "Reconciliation of attributed outcomes with independent session and order records."
+              ],
+              "falsificationTests": [
+                "Compare delivery and outcomes by campaign and segment; uniform deterioration without delivery or mix differences would weaken this mechanism.",
+                "Reconcile attributed outcomes with independent session and order records; a reporting discrepancy would weaken a genuine efficiency explanation."
+              ],
+              "chronology": "Efficiency deterioration is observed during the incident window, but the evidence does not show whether campaign settings or delivery conditions changed beforehand.",
+              "confounders": [
+                "Higher exposure frequency may reflect or contribute to fatigue.",
+                "Attribution or reporting changes could produce apparent efficiency deterioration.",
+                "The broader decline in sessions and conversion may have causes outside advertising."
+              ],
+              "controlComparison": "No unaffected-campaign or audience-level control is supplied.",
+              "hypothesisId": "hyp_d221a57d4f009c71"
+            },
+            {
+              "cause": "unknown",
+              "explanation": "A measurement or attribution change remains possible, but none is documented. The concurrent decline in overall sessions and orders is consistent with a broader business change, without resolving its cause.",
+              "mechanism": "A change in event capture, attribution, deduplication, or metric calculation could alter reported campaign results without an equivalent change in customer behavior.",
+              "support": "insufficient_evidence",
+              "evidenceIds": [
+                "evd_224bc55d8aabd9e3",
+                "evd_36acb03e0cfb5d77"
+              ],
+              "counterEvidenceIds": [],
+              "expectedObservations": [
+                "Underlying campaign events and derived metrics disagree, or show a discontinuity absent from independent business records.",
+                "Campaign-attributed sessions diverge from independently recorded sessions or orders."
+              ],
+              "missingEvidence": [
+                "Raw campaign-event reconciliation and attribution settings or change history.",
+                "Channel-level session trends and a comparison-campaign series."
+              ],
+              "falsificationTests": [
+                "Reconcile campaign impressions, clicks, spend, and attributed sessions against underlying events; consistent records and derivations would weaken this hypothesis.",
+                "Compare campaign-attributed sessions with independent session and order records over the same period; aligned changes would weaken it."
+              ],
+              "chronology": "No measurement or attribution change is documented, so its timing cannot be established.",
+              "confounders": [
+                "Genuine deterioration in advertising response could explain the campaign metrics.",
+                "The broader business decline may have causes separate from advertising."
+              ],
+              "controlComparison": "Overall revenue and session records also show declines, but no channel-matched or unaffected-campaign control is supplied.",
+              "hypothesisId": "hyp_0bf91ff4872b534e"
+            }
+          ],
+          "decisionSummary": "Advertising response and efficiency weakened alongside increased exposure frequency, making fatigue and other campaign inefficiency plausible but not established. Overall sessions, orders, and conversion also declined. The supplied checkout evidence records no checkout failures; inventory, reviews, and delivery evidence do not establish an explanation for the advertising deterioration. Measurement or attribution change remains unresolved."
+        }
+      ],
+      "timeline": [
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T20:37:07.326Z",
+          "completedAt": "2026-10-24T20:37:07.326Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s1",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:07.381Z",
+          "completedAt": "2026-10-24T20:37:18.758Z",
+          "resultSummary": "The supplied anomaly summary indicates deterioration across several campaigns, but contains no canonical evidence IDs or underlying measurements. Advertising inefficiency is a plausible lead; a measurement or attribution issue remains an alternative. Review campaign-level data alongside conversion outcomes before drawing a causal conclusion.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s2",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "advertising_analysis",
+          "question": "Compare affected campaigns with the rest over the incident and baseline windows. Show campaign-level impressions, clicks, CTR, spend, CPA/CAC, ROAS, frequency, and attributed sessions to distinguish real performance deterioration from a shared measurement or attribution shift.",
+          "startedAt": "2026-10-24T20:37:18.779Z",
+          "completedAt": "2026-10-24T20:37:18.924Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s3",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "revenue_analysis",
+          "question": "Check whether sessions, orders, conversion, and revenue changed over the same period, with channel comparisons where available, to establish whether the advertising anomaly coincided with a broader business change.",
+          "startedAt": "2026-10-24T20:37:18.984Z",
+          "completedAt": "2026-10-24T20:37:19.211Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_36acb03e0cfb5d77"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s4",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "checkout_analysis",
+          "question": "Check session-to-purchase conversion and checkout failures over the incident versus baseline, including failure codes and device, to test whether a downstream conversion issue could contribute to higher acquisition cost.",
+          "startedAt": "2026-10-24T20:37:19.269Z",
+          "completedAt": "2026-10-24T20:37:19.665Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_1f640fdcf3265f94"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s5",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:19.920Z",
+          "completedAt": "2026-10-24T20:37:34.248Z",
+          "resultSummary": "The records support a real advertising-performance deterioration and make exposure-related fatigue plausible, while not identifying its cause. Overall sessions, orders, and conversion also declined; checkout failures were not observed. Measurement or attribution change remains unresolved, so causal attribution should remain qualified.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s6",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "inventory_analysis",
+          "question": "Did stock availability or stockout events change during the incident window in ways that could explain lower sessions or conversion?",
+          "startedAt": "2026-10-24T20:37:34.269Z",
+          "completedAt": "2026-10-24T20:37:34.373Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_c08888ae66062529"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s7",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "customer_feedback_analysis",
+          "question": "Did review volume, ratings, or complaint themes change during or before the incident window in a way that could explain reduced customer response?",
+          "startedAt": "2026-10-24T20:37:34.427Z",
+          "completedAt": "2026-10-24T20:37:34.533Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_65ff21b26e873ac9"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s8",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "shipping_analysis",
+          "question": "Did late-delivery rates or delivery backlog change around the incident window, potentially affecting customer response or conversion?",
+          "startedAt": "2026-10-24T20:37:34.590Z",
+          "completedAt": "2026-10-24T20:37:34.722Z",
+          "resultSummary": "1 verified evidence records collected",
+          "evidenceIds": [
+            "evd_ff85bb676a226343"
+          ],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s9",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:35.033Z",
+          "completedAt": "2026-10-24T20:37:50.896Z",
+          "resultSummary": "Advertising performance deteriorated, with elevated exposure frequency making fatigue plausible and other forms of campaign inefficiency also possible. Overall sessions, orders, and conversion declined as well. The supplied checkout records show no checkout failures, while inventory, review, and delivery evidence does not establish an explanation for the advertising change. No single cause is established; measurement or attribution change remains unresolved.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s10",
+          "type": "tool",
+          "status": "completed",
+          "identifier": "historical_incidents",
+          "question": "Are there prior incidents with similar cross-campaign engagement deterioration, and were any diagnoses recorded that could help distinguish fatigue, delivery inefficiency, or measurement change?",
+          "startedAt": "2026-10-24T20:37:50.919Z",
+          "completedAt": "2026-10-24T20:37:51.039Z",
+          "resultSummary": "No earlier investigations exist for this simulation run before 2026-10-05T12:00:00.000Z; there are no prior diagnoses or recorded actions to compare against.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s11",
+          "type": "reasoning",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:37:51.395Z",
+          "completedAt": "2026-10-24T20:38:02.672Z",
+          "resultSummary": "Advertising response and efficiency weakened alongside increased exposure frequency, making fatigue and other campaign inefficiency plausible but not established. Overall sessions, orders, and conversion also declined. The supplied checkout evidence records no checkout failures; inventory, reviews, and delivery evidence do not establish an explanation for the advertising deterioration. Measurement or attribution change remains unresolved.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s12",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T20:38:02.962Z",
+          "completedAt": "2026-10-24T20:38:10.455Z",
+          "resultSummary": "The strongest supported explanations are ad fatigue and broader campaign inefficiency: exposure frequency was higher as advertising response and attributed outcomes weakened. Overall sessions, orders, and conversion also declined, so the advertising pattern may be part of a wider change. The evidence does not establish a causal mechanism. Checkout failure, stockout, customer feedback, and delivery evidence do not establish explanations for the campaign deterioration.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s13",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T20:38:10.455Z",
+          "completedAt": "2026-10-24T20:38:10.455Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_f2e99c41ddc026ef6546e3d5_s14",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T20:38:10.455Z",
+          "completedAt": "2026-10-24T20:38:10.455Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "sections": [
+        {
+          "title": "Executive summary",
+          "text": "The strongest supported explanations are ad fatigue and broader campaign inefficiency: exposure frequency was higher as advertising response and attributed outcomes weakened. Overall sessions, orders, and conversion also declined, so the advertising pattern may be part of a wider change. The evidence does not establish a causal mechanism. Checkout failure, stockout, customer feedback, and delivery evidence do not establish explanations for the campaign deterioration.",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3",
+            "evd_36acb03e0cfb5d77"
+          ]
+        },
+        {
+          "title": "Observed evidence",
+          "text": "Campaign performance versus baseline and peers: 5 campaign(s) analysed over 30 h ending 2026-10-05T12:00:00.000Z: CTR 0.40%, spend £623.29, 5 attributed orders, CPA £124.66, ROAS 0.95. Versus baseline: CTR -77.9%, hourly spend +26.7%, hourly attributed orders -81.5%. Observations are simulated ad-platform records; frequency and CTR describe exposure and response, not intent.\n\nRevenue, orders and conversion versus baseline: Over 30 h ending 2026-10-05T12:00:00.000Z: 18 orders, net revenue £1943.82, 851 sessions, conversion 2.12%. Baseline (30 h): hourly revenue -53.8% change, hourly orders -53.8%, hourly sessions -37.8%. Decomposition: sessions share 0.616, conversion share 0.386, AOV share -0.002 of the revenue change. Values are simulated business records; this describes what changed, not why.\n\nSessions, conversion and checkout failures: 851 sessions and 18 orders over 30 h ending 2026-10-05T12:00:00.000Z (conversion 2.12%); 0 checkout failures (0.00% of sessions). Baseline: conversion 2.85% (-25.8% change), failures per hour n/a change, sessions per hour -37.8% change. Simulated storefront records; device and channel slices join orders to their canonical session.\n\nInventory levels, depletion and demand velocity: 17 product(s) observed to 2026-10-05T12:00:00.000Z: 0 at zero available units, 0 projected to run out within 72 h at current velocity, 5 units depleted in the 30 h window, 0 out-of-stock checkout failures. No product is currently out of stock. Simulated inventory records derived from canonical inventory.level_changed events.\n\nReview volume, low ratings and delivery complaints: 3 reviews over 30 h ending 2026-10-05T12:00:00.000Z: 0 rated ≤2 (0.0%), average rating 4.00, 1 mention delivery terms. Most low-rated products: Nike Dunk Low Retro (0/2), Nike Mercurial Superfly 11 Academy (0/1). Simulated review records; delivery mentions are a keyword heuristic.\n\nDelivery promise cohort and delayed orders: Cohort of 52 promises due in the 30 h ending 2026-10-05T12:00:00.000Z: 3 not delivered by promise (late rate 5.8%). Baseline late rate 7.1% on 14 promises (-19.2% change). 3 order(s) received a delayed status (average recorded delay 1556 min), 0 lost; 2 shipped order(s) are past promise with no delivered or lost event at the cutoff. Simulated fulfilment records; cohort membership is by promise due date, so immature promises never read as healthy.",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3",
+            "evd_36acb03e0cfb5d77",
+            "evd_1f640fdcf3265f94",
+            "evd_c08888ae66062529",
+            "evd_65ff21b26e873ac9",
+            "evd_ff85bb676a226343"
+          ]
+        },
+        {
+          "title": "Competing explanations",
+          "text": "ad fatigue (moderate): Higher average exposure frequency coincided with substantially lower click-through response and weaker attributed outcomes. This is consistent with ad fatigue, but the evidence does not establish that repeated exposure caused the decline or whether frequency rose before response weakened.\n\nad inefficiency (moderate): Spend continued while clicks, attributed sessions, and attributed orders weakened, supporting deteriorating campaign efficiency. The available evidence does not identify whether delivery, targeting, bidding, traffic composition, or another factor explains it.\n\nunknown (weak): A measurement or attribution change remains possible but is not documented. The broader decline in sessions, orders, and conversion alongside weaker campaign results does not distinguish a measurement change from genuine deterioration or establish a single underlying cause.",
+          "evidenceIds": [
+            "evd_224bc55d8aabd9e3",
+            "evd_36acb03e0cfb5d77"
+          ]
+        },
+        {
+          "title": "Causal challenges and uncertainty",
+          "text": "Higher average exposure frequency coincides with substantially weaker advertising response. This is consistent with fatigue but does not show that repeated exposure caused the decline.\nChronology: Higher frequency and weaker advertising response are observed in the incident window; the evidence does not establish which changed first.\nControls: The supplied advertising evidence reports affected campaigns as a group but provides no unaffected-campaign or audience-level control.\nConfounders: Targeting, bidding, placement, or traffic-mix changes could also reduce response.; A measurement or attribution change could affect campaign metrics.; Overall sessions and conversion also declined, and their causes are unresolved.\nCould be weakened by: Compare engagement changes across audiences with different frequency changes; similar declines regardless of frequency would weaken the fatigue explanation.; Check whether comparable lower-frequency exposure is followed by engagement recovery; no recovery would weaken this explanation.\n\nSpend continued while clicks, attributed sessions, and attributed orders weakened. This supports deteriorating campaign efficiency, but the evidence does not identify the responsible delivery or campaign factor.\nChronology: Efficiency deterioration is observed during the incident window, but the evidence does not show whether campaign settings or delivery conditions changed beforehand.\nControls: No unaffected-campaign or audience-level control is supplied.\nConfounders: Higher exposure frequency may reflect or contribute to fatigue.; Attribution or reporting changes could produce apparent efficiency deterioration.; The broader decline in sessions and conversion may have causes outside advertising.\nCould be weakened by: Compare delivery and outcomes by campaign and segment; uniform deterioration without delivery or mix differences would weaken this mechanism.; Reconcile attributed outcomes with independent session and order records; a reporting discrepancy would weaken a genuine efficiency explanation.\n\nA measurement or attribution change remains possible, but none is documented. The concurrent decline in overall sessions and orders is consistent with a broader business change, without resolving its cause.\nChronology: No measurement or attribution change is documented, so its timing cannot be established.\nControls: Overall revenue and session records also show declines, but no channel-matched or unaffected-campaign control is supplied.\nConfounders: Genuine deterioration in advertising response could explain the campaign metrics.; The broader business decline may have causes separate from advertising.\nCould be weakened by: Reconcile campaign impressions, clicks, spend, and attributed sessions against underlying events; consistent records and derivations would weaken this hypothesis.; Compare campaign-attributed sessions with independent session and order records over the same period; aligned changes would weaken it.",
+          "evidenceIds": []
+        },
+        {
+          "title": "External research",
+          "text": "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Business impact",
+          "text": "Observed hourly revenue difference relative to baseline; this is not a causal loss estimate.",
+          "evidenceIds": [
+            "evd_36acb03e0cfb5d77"
+          ]
+        },
+        {
+          "title": "Advisory next steps",
+          "text": "Review: Compare audience- and campaign-level frequency changes with engagement over time, including lower-frequency or unaffected groups; similar declines regardless of frequency would weaken the fatigue explanation.\nReview: Review campaign delivery, placement, targeting, and bidding history alongside segment-level traffic quality; no relevant changes or segment differences would weaken a delivery or traffic-mix explanation.\nReview: Reconcile underlying campaign events, attribution settings, and campaign-attributed sessions with independent session and order records; consistent records and aligned trends would weaken the measurement-change hypothesis.",
+          "evidenceIds": []
+        }
+      ],
+      "handoff": {
+        "schemaVersion": 1,
+        "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+        "diagnosisId": "diag_aij_f2e99c41ddc026ef6546e3d5",
+        "ready": true,
+        "supportedFindings": [
+          "Higher average exposure frequency coincided with substantially lower click-through response and weaker attributed outcomes. This is consistent with ad fatigue, but the evidence does not establish that repeated exposure caused the decline or whether frequency rose before response weakened.",
+          "Spend continued while clicks, attributed sessions, and attributed orders weakened, supporting deteriorating campaign efficiency. The available evidence does not identify whether delivery, targeting, bidding, traffic composition, or another factor explains it."
+        ],
+        "affectedEntities": [
+          "cmp_apparel_search",
+          "cmp_basketball_search",
+          "cmp_football_mercurial",
+          "cmp_lifestyle_af1",
+          "cmp_running_pegasus",
+          "paid_search",
+          "paid_social"
+        ],
+        "evidenceIds": [
+          "evd_224bc55d8aabd9e3",
+          "evd_36acb03e0cfb5d77",
+          "evd_1f640fdcf3265f94",
+          "evd_c08888ae66062529",
+          "evd_65ff21b26e873ac9",
+          "evd_ff85bb676a226343"
+        ],
+        "impactReference": "report_aij_f2e99c41ddc026ef6546e3d5",
+        "uncertainty": [
+          "Compare audience- and campaign-level frequency changes with engagement over time, including lower-frequency or unaffected groups; similar declines regardless of frequency would weaken the fatigue explanation.",
+          "Review campaign delivery, placement, targeting, and bidding history alongside segment-level traffic quality; no relevant changes or segment differences would weaken a delivery or traffic-mix explanation.",
+          "Reconcile underlying campaign events, attribution settings, and campaign-attributed sessions with independent session and order records; consistent records and aligned trends would weaken the measurement-change hypothesis.",
+          "All supplied read-only tools have already been run, and no further eligible tool calls remain. The available evidence supports competing possibilities but does not establish a single cause."
+        ],
+        "constraints": [
+          "Human review required",
+          "Stage five is read-only; no executable plan or business mutation",
+          "Synthetic data; external events cannot establish simulated causation"
+        ],
+        "advisoryCandidates": [
+          "Investigate: Compare audience- and campaign-level frequency changes with engagement over time, including lower-frequency or unaffected groups; similar declines regardless of frequency would weaken the fatigue explanation.",
+          "Investigate: Review campaign delivery, placement, targeting, and bidding history alongside segment-level traffic quality; no relevant changes or segment differences would weaken a delivery or traffic-mix explanation.",
+          "Investigate: Reconcile underlying campaign events, attribution settings, and campaign-attributed sessions with independent session and order records; consistent records and aligned trends would weaken the measurement-change hypothesis."
+        ],
+        "executable": false
+      },
+      "insufficientEvidence": null,
+      "validation": {
+        "passed": true,
+        "checks": [
+          "Canonical diagnosis schema",
+          "Business/run/investigation ownership",
+          "Evidence references exist and resolve",
+          "Timestamp cutoff",
+          "Duplicate references rejected",
+          "Numerical prose rejected; impact computed deterministically",
+          "Known contradiction disclosure",
+          "Single diagnosis shared by brief, report and handoff"
+        ],
+        "semanticSupport": "model_assessed_not_deterministic_proof"
+      }
+    },
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792874205409_0_0",
+        "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+        "callId": "aij_f2e99c41ddc026ef6546e3d5_reasoning_0",
+        "jobId": "aij_f2e99c41ddc026ef6546e3d5",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "checksum": "a44ca75b714d281355e6e86dd626448b8b21ce53d571d83e3c2a7e1b62538ff0",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:37:07.434Z",
+        "completedAt": "2026-10-24T20:37:18.702Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fa1a737755194f1a1e8fa2e716c",
+          "providerRequestId": "req_25adff7f8c57493ab8e715dff24267cd",
+          "latencyMs": 11247,
+          "inputTokens": 2448,
+          "outputTokens": 1113,
+          "totalTokens": 3561,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 19260,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792874205409_0_0",
+        "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+        "callId": "aij_f2e99c41ddc026ef6546e3d5_reasoning_1",
+        "jobId": "aij_f2e99c41ddc026ef6546e3d5",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "checksum": "fb876f16a7531b5c3f0ba7886ccc02fd496d60d1b07d761c6a73af82866386eb",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:37:19.971Z",
+        "completedAt": "2026-10-24T20:37:34.189Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fa1d80476d38a08cbf2ece62eb2",
+          "providerRequestId": "req_01c72e2cf60744f4a61cc511a1f2885d",
+          "latencyMs": 14197,
+          "inputTokens": 4467,
+          "outputTokens": 1204,
+          "totalTokens": 5671,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 27437,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792874205409_0_0",
+        "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+        "callId": "aij_f2e99c41ddc026ef6546e3d5_reasoning_2",
+        "jobId": "aij_f2e99c41ddc026ef6546e3d5",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "checksum": "f429b0db333a7c7d59684d27a80f310e79a9e91a2cf4919ba409ae484f331d55",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:37:35.091Z",
+        "completedAt": "2026-10-24T20:37:50.826Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fa213187690b7f4774ed6bec7d5",
+          "providerRequestId": "req_63ab656429014f758472d53754f3d477",
+          "latencyMs": 15713,
+          "inputTokens": 5608,
+          "outputTokens": 1546,
+          "totalTokens": 7154,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 31347,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792874205409_0_0",
+        "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+        "callId": "aij_f2e99c41ddc026ef6546e3d5_reasoning_3",
+        "jobId": "aij_f2e99c41ddc026ef6546e3d5",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "checksum": "b2ed2b8b41f9cd73a3397023812046a59de79eb6cbc3f503f4c4ed78cd017f8f",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:37:51.452Z",
+        "completedAt": "2026-10-24T20:38:02.608Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fa252fe71a3b5442d061384656a",
+          "providerRequestId": "req_a9faa0b9c30d4233ba2b37a84db08e09",
+          "latencyMs": 11050,
+          "inputTokens": 6004,
+          "outputTokens": 1315,
+          "totalTokens": 7319,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 33397,
+        "outputDiagnosisId": null,
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_eval",
+        "simulationRunId": "s5eval_1792874205409_0_0",
+        "investigationId": "inv_s5eval_1792874205409_0_0_d07498fe5b17",
+        "callId": "aij_f2e99c41ddc026ef6546e3d5_diagnosis_0",
+        "jobId": "aij_f2e99c41ddc026ef6546e3d5",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.0",
+        "checksum": "8f19b6b8d346ebd1b60631f2036a05bfa106c03b58ca026b048e6642e39a2777",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:38:03.022Z",
+        "completedAt": "2026-10-24T20:38:10.407Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16fa28037701285da4a9412b86d2c",
+          "providerRequestId": "req_ba48731ad21348c8ad3e6e4734b714eb",
+          "latencyMs": 7358,
+          "inputTokens": 5695,
+          "outputTokens": 668,
+          "totalTokens": 6363,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 33394,
+        "outputDiagnosisId": "diag_aij_f2e99c41ddc026ef6546e3d5",
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      }
+    ],
+    "researchTraces": []
+  }
+}

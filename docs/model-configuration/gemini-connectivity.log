@@ -1,0 +1,7 @@
+
+> normal@0.1.0 investigator:check
+> node --conditions=react-server --import tsx scripts/check-mubit.ts
+
+{"check":"structured_output","value":{"ok":true},"provider":"mubit","model":"gemini-4-argon","route":"https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent","requestId":"mreq_01a171fc99c071c0b92644fbe76303b7","providerRequestId":"TrHdaoWOIYnrnsEPwePTyAU","latencyMs":6697,"inputTokens":197,"outputTokens":21,"totalTokens":218,"estimatedCostUsd":null}
+{"check":"function_call","calls":[{"id":"call_1577104","name":"acknowledge","arguments":{"ok":true}}],"provider":"mubit","model":"gemini-4-argon","route":"https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent","requestId":"mreq_01a171fcb3987082a54e28e68977aef5","providerRequestId":"VbHdaqabAuv1kdUPk4Xc8AU","latencyMs":3089,"inputTokens":90,"outputTokens":19,"totalTokens":109,"estimatedCostUsd":null}
+{"check":"invalid_model","code":"http_400","provider":"mubit","model":"normal-invalid-connectivity-model","route":"https://api.mubit.ai/openai/v1/chat/completions","requestId":"mreq_01a171fcbfaa7fb39cebd783f230f527","providerRequestId":null,"latencyMs":92,"inputTokens":null,"outputTokens":null,"totalTokens":null,"estimatedCostUsd":null}

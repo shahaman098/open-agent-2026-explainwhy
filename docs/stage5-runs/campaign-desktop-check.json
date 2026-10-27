@@ -1,0 +1,10 @@
+{
+  "href": "/dashboard/campaigns/cmp_apparel_search?run=stage5_1792885194280",
+  "campaignRows": 5,
+  "errors": [],
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "passed": true
+}

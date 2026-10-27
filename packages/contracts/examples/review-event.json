@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "eventId": "evt_review_001",
+  "source": "simulator",
+  "type": "review.created",
+  "occurredAt": "2026-10-23T18:30:00Z",
+  "receivedAt": "2026-10-23T18:30:01Z",
+  "provenance": {
+    "sourceRecordId": "sim-review-1",
+    "connectorId": "simulator_v1",
+    "simulated": true,
+    "ingestMethod": "simulation"
+  },
+  "simulationRunId": "run_nova_001",
+  "payload": {
+    "reviewId": "review_001",
+    "productId": "sku_headphones",
+    "orderId": "ord_001",
+    "rating": 2,
+    "text": "Delivery arrived much later than promised."
+  }
+}

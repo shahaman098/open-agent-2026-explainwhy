@@ -1,0 +1,22 @@
+%% Future target architecture. Mubit, planning, approval orchestration, outcome verification and learning are NOT implemented.
+flowchart TD
+    S[Simulator or External API] --> I[Ingestion connector]
+    I --> V[Zod validation + deduplication]
+    V --> B[(MongoDB business_events)]
+    B --> M[Metric snapshots]
+    M --> A{Anomaly?}
+    A -->|Yes| INV[Investigation]
+    INV --> EV[Evidence retrieval]
+    EV --> L[Mubit gateway - recurring diagnosis]
+    L --> DI[Diagnosis schema validation]
+    DI --> P[Mubit-routed solution planner]
+    P --> PLAN[(ProposedPlan v1)]
+    PLAN --> H[Partner approval UI]
+    H -->|Approved plan version and action IDs| ORCH[Mission orchestrator]
+    ORCH --> API[Restricted action APIs]
+    API --> S
+    API --> OUT[(ActionExecution / ActionOutcome)]
+    DI --> COR[(ModelCorrection in MongoDB)]
+    COR -.->|Only if supported| TRAIN[Mubit feedback + adapter training]
+    L -.-> TRAIN
+    TRAIN --> BENCH[Independent unseen-case evaluation]

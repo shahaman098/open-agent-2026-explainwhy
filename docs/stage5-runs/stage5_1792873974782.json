@@ -1,0 +1,448 @@
+{
+  "metrics": {
+    "businessId": "nike_demo",
+    "simulationRunId": "stage5_1792873974782",
+    "investigationId": "inv_stage5_1792873974782_d07498fe5b17",
+    "jobId": "aij_5abdf2b7b50627f073e7b9a4",
+    "status": "insufficient_evidence",
+    "primaryCause": "unknown",
+    "expectedScenarioAfterInference": "ad_fatigue",
+    "canonicalEvidence": 0,
+    "citedEvidence": 0,
+    "unresolvedCitations": 0,
+    "modelCalls": 2,
+    "mubitRequestIds": [
+      "mreq_01a16f9f40f87a72bb5821c23c33e406",
+      "mreq_01a16f9f7b457f02bd48e56db523b0d6"
+    ],
+    "tokens": 2464,
+    "estimatedCostUsd": null,
+    "demoPreserved": true,
+    "workspace": "/dashboard/investigations/inv_stage5_1792873974782_d07498fe5b17?run=stage5_1792873974782"
+  },
+  "result": {
+    "state": {
+      "schemaVersion": 1,
+      "jobId": "aij_5abdf2b7b50627f073e7b9a4",
+      "businessId": "nike_demo",
+      "simulationRunId": "stage5_1792873974782",
+      "investigationId": "inv_stage5_1792873974782_d07498fe5b17",
+      "status": "insufficient_evidence",
+      "stage": "completed",
+      "createdAt": "2026-10-24T20:34:27.141Z",
+      "updatedAt": "2026-10-24T20:34:50.136Z",
+      "startedAt": "2026-10-24T20:34:30.066Z",
+      "completedAt": "2026-10-24T20:34:50.136Z",
+      "round": 0,
+      "toolCount": 0,
+      "researchCount": 0,
+      "callCount": 2,
+      "reservedTokens": 38566,
+      "actualTokens": 2464,
+      "estimatedCostUsd": 0,
+      "budget": {
+        "maxRounds": 5,
+        "maxTools": 12,
+        "maxResearchRounds": 0,
+        "maxSources": 8,
+        "maxCalls": 10,
+        "maxTokens": 180000,
+        "maxWallMs": 600000,
+        "maxCostUsd": null
+      },
+      "cutoff": "2026-10-05T12:00:00.000Z",
+      "incidentWindow": {
+        "startAt": "2026-10-04T06:00:00.000Z",
+        "endAt": "2026-10-05T12:00:00.000Z"
+      },
+      "baselineWindow": {
+        "startAt": "2026-10-03T00:00:00.000Z",
+        "endAt": "2026-10-04T06:00:00.000Z"
+      },
+      "evidenceIds": [],
+      "sourceIds": [],
+      "hypotheses": [],
+      "steps": [
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T20:34:30.066Z",
+          "completedAt": "2026-10-24T20:34:30.066Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s1",
+          "type": "reasoning",
+          "status": "failed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:34:30.115Z",
+          "completedAt": "2026-10-24T20:34:43.057Z",
+          "resultSummary": "",
+          "evidenceIds": [],
+          "error": "Provider unavailable: invalid_structured_output"
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s2",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T20:34:45.075Z",
+          "completedAt": "2026-10-24T20:34:50.114Z",
+          "resultSummary": "The reported decline spans several campaigns and paid channels, but the packet contains no verified evidence IDs or tool outcomes to establish a cause. No specific diagnosis is supported; review is required.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s3",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T20:34:50.114Z",
+          "completedAt": "2026-10-24T20:34:50.114Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s4",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T20:34:50.114Z",
+          "completedAt": "2026-10-24T20:34:50.114Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "error": null,
+      "stopReason": "Provider unavailable: invalid_structured_output",
+      "reportId": "report_aij_5abdf2b7b50627f073e7b9a4",
+      "attempts": 1
+    },
+    "report": {
+      "schemaVersion": 1,
+      "reportId": "report_aij_5abdf2b7b50627f073e7b9a4",
+      "version": 1,
+      "investigationId": "inv_stage5_1792873974782_d07498fe5b17",
+      "diagnosisId": "diag_aij_5abdf2b7b50627f073e7b9a4",
+      "createdAt": "2026-10-24T20:34:50.115Z",
+      "diagnosis": {
+        "primaryCause": "unknown",
+        "hypotheses": [
+          {
+            "cause": "unknown",
+            "strength": "weak",
+            "evidenceIds": [],
+            "counterEvidenceIds": [],
+            "explanation": "The reported advertising deterioration is not accompanied by verified internal evidence records or completed analysis results, so the underlying cause cannot be distinguished."
+          }
+        ],
+        "summary": "The reported decline spans several campaigns and paid channels, but the packet contains no verified evidence IDs or tool outcomes to establish a cause. No specific diagnosis is supported; review is required.",
+        "missingEvidence": [
+          "Check canonical campaign-level ad observations and attributed sessions across the incident and baseline windows; determine whether impressions, clicks, spend, frequency, or attribution changed, and verify source coverage and deduplication.",
+          "Compare affected campaigns with unaffected campaigns and inspect campaign, targeting, creative, and bidding changes before the decline; verify whether any observed changes align in time with the anomaly.",
+          "Check canonical session, checkout failure, and order records for corresponding changes in traffic quality or purchase completion; determine whether the pattern is limited to advertising metrics or extends to downstream outcomes."
+        ],
+        "requiresReview": true,
+        "schemaVersion": 1,
+        "businessId": "nike_demo",
+        "diagnosisId": "diag_aij_5abdf2b7b50627f073e7b9a4",
+        "investigationId": "inv_stage5_1792873974782_d07498fe5b17",
+        "modelCallId": "aij_5abdf2b7b50627f073e7b9a4_diagnosis_0",
+        "taskKey": "revenue_diagnosis_v1",
+        "createdAt": "2026-10-24T20:34:50.114Z"
+      },
+      "executiveBrief": {
+        "whatChanged": "The detector observed changes in the incident metrics shown above.",
+        "explanation": "The reported decline spans several campaigns and paid channels, but the packet contains no verified evidence IDs or tool outcomes to establish a cause. No specific diagnosis is supported; review is required.",
+        "certainty": "Insufficient evidence to select a reliable primary explanation.",
+        "impact": "A unique comparable business-wide revenue measurement is unavailable.",
+        "review": [
+          "Check canonical campaign-level ad observations and attributed sessions across the incident and baseline windows; determine whether impressions, clicks, spend, frequency, or attribution changed, and verify source coverage and deduplication.",
+          "Compare affected campaigns with unaffected campaigns and inspect campaign, targeting, creative, and bidding changes before the decline; verify whether any observed changes align in time with the anomaly.",
+          "Check canonical session, checkout failure, and order records for corresponding changes in traffic quality or purchase completion; determine whether the pattern is limited to advertising metrics or extends to downstream outcomes."
+        ]
+      },
+      "impact": {
+        "schemaVersion": 1,
+        "status": "unknown",
+        "evidenceId": null,
+        "metric": null,
+        "value": null,
+        "baseline": null,
+        "delta": null,
+        "unit": null,
+        "interpretation": "A unique comparable business-wide revenue measurement is unavailable.",
+        "limitations": [
+          "No financial loss estimate is justified."
+        ]
+      },
+      "claims": [
+        {
+          "claimId": "diag_aij_5abdf2b7b50627f073e7b9a4_claim_0",
+          "claim": "The reported advertising deterioration is not accompanied by verified internal evidence records or completed analysis results, so the underlying cause cannot be distinguished.",
+          "kind": "hypothesis",
+          "evidenceIds": [],
+          "counterEvidenceIds": [],
+          "sourceIds": [],
+          "support": "tentative",
+          "limitations": [
+            "Model-assessed semantic support; reference validity is checked separately.",
+            "Observational association does not establish causality."
+          ]
+        }
+      ],
+      "ledger": [],
+      "hypotheses": [],
+      "timeline": [
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s0",
+          "type": "context",
+          "status": "completed",
+          "identifier": "canonical_context",
+          "question": "Load scoped incident observations",
+          "startedAt": "2026-10-24T20:34:30.066Z",
+          "completedAt": "2026-10-24T20:34:30.066Z",
+          "resultSummary": "Context loaded from canonical observations; hidden simulation controls excluded.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s1",
+          "type": "reasoning",
+          "status": "failed",
+          "identifier": "gpt-6-luna",
+          "question": "Compare hypotheses and choose discriminating evidence",
+          "startedAt": "2026-10-24T20:34:30.115Z",
+          "completedAt": "2026-10-24T20:34:43.057Z",
+          "resultSummary": "",
+          "evidenceIds": [],
+          "error": "Provider unavailable: invalid_structured_output"
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s2",
+          "type": "diagnosis",
+          "status": "completed",
+          "identifier": "gpt-6-luna",
+          "question": "Synthesize qualified diagnosis against verified evidence",
+          "startedAt": "2026-10-24T20:34:45.075Z",
+          "completedAt": "2026-10-24T20:34:50.114Z",
+          "resultSummary": "The reported decline spans several campaigns and paid channels, but the packet contains no verified evidence IDs or tool outcomes to establish a cause. No specific diagnosis is supported; review is required.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s3",
+          "type": "validation",
+          "status": "completed",
+          "identifier": "deterministic_validator",
+          "question": "Validate references, scope, calculations and contradictions",
+          "startedAt": "2026-10-24T20:34:50.114Z",
+          "completedAt": "2026-10-24T20:34:50.114Z",
+          "resultSummary": "Validation passed; semantic support remains a model assessment.",
+          "evidenceIds": [],
+          "error": null
+        },
+        {
+          "stepId": "aij_5abdf2b7b50627f073e7b9a4_s4",
+          "type": "report",
+          "status": "completed",
+          "identifier": "report_composer_v1",
+          "question": "Create consistent report, brief and read-only handoff",
+          "startedAt": "2026-10-24T20:34:50.114Z",
+          "completedAt": "2026-10-24T20:34:50.114Z",
+          "resultSummary": "Report composed from the single validated diagnosis.",
+          "evidenceIds": [],
+          "error": null
+        }
+      ],
+      "sections": [
+        {
+          "title": "Executive summary",
+          "text": "The reported decline spans several campaigns and paid channels, but the packet contains no verified evidence IDs or tool outcomes to establish a cause. No specific diagnosis is supported; review is required.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Observed evidence",
+          "text": "No verified internal evidence was available.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Competing explanations",
+          "text": "unknown (weak): The reported advertising deterioration is not accompanied by verified internal evidence records or completed analysis results, so the underlying cause cannot be distinguished.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Causal challenges and uncertainty",
+          "text": "Insufficient evidence for causal comparison.",
+          "evidenceIds": []
+        },
+        {
+          "title": "External research",
+          "text": "No external source was relied upon. Internal evidence may be sufficient, or research was disabled/unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Business impact",
+          "text": "A unique comparable business-wide revenue measurement is unavailable.",
+          "evidenceIds": []
+        },
+        {
+          "title": "Advisory next steps",
+          "text": "Review: Check canonical campaign-level ad observations and attributed sessions across the incident and baseline windows; determine whether impressions, clicks, spend, frequency, or attribution changed, and verify source coverage and deduplication.\nReview: Compare affected campaigns with unaffected campaigns and inspect campaign, targeting, creative, and bidding changes before the decline; verify whether any observed changes align in time with the anomaly.\nReview: Check canonical session, checkout failure, and order records for corresponding changes in traffic quality or purchase completion; determine whether the pattern is limited to advertising metrics or extends to downstream outcomes.",
+          "evidenceIds": []
+        }
+      ],
+      "handoff": {
+        "schemaVersion": 1,
+        "investigationId": "inv_stage5_1792873974782_d07498fe5b17",
+        "diagnosisId": "diag_aij_5abdf2b7b50627f073e7b9a4",
+        "ready": false,
+        "supportedFindings": [],
+        "affectedEntities": [
+          "cmp_apparel_search",
+          "cmp_basketball_search",
+          "cmp_football_mercurial",
+          "cmp_lifestyle_af1",
+          "cmp_running_pegasus",
+          "paid_search",
+          "paid_social"
+        ],
+        "evidenceIds": [],
+        "impactReference": "report_aij_5abdf2b7b50627f073e7b9a4",
+        "uncertainty": [
+          "Check canonical campaign-level ad observations and attributed sessions across the incident and baseline windows; determine whether impressions, clicks, spend, frequency, or attribution changed, and verify source coverage and deduplication.",
+          "Compare affected campaigns with unaffected campaigns and inspect campaign, targeting, creative, and bidding changes before the decline; verify whether any observed changes align in time with the anomaly.",
+          "Check canonical session, checkout failure, and order records for corresponding changes in traffic quality or purchase completion; determine whether the pattern is limited to advertising metrics or extends to downstream outcomes.",
+          "Provider unavailable: invalid_structured_output"
+        ],
+        "constraints": [
+          "Human review required",
+          "Stage five is read-only; no executable plan or business mutation",
+          "Synthetic data; external events cannot establish simulated causation"
+        ],
+        "advisoryCandidates": [
+          "Investigate: Check canonical campaign-level ad observations and attributed sessions across the incident and baseline windows; determine whether impressions, clicks, spend, frequency, or attribution changed, and verify source coverage and deduplication.",
+          "Investigate: Compare affected campaigns with unaffected campaigns and inspect campaign, targeting, creative, and bidding changes before the decline; verify whether any observed changes align in time with the anomaly.",
+          "Investigate: Check canonical session, checkout failure, and order records for corresponding changes in traffic quality or purchase completion; determine whether the pattern is limited to advertising metrics or extends to downstream outcomes."
+        ],
+        "executable": false
+      },
+      "insufficientEvidence": {
+        "known": [],
+        "unknown": [
+          "Check canonical campaign-level ad observations and attributed sessions across the incident and baseline windows; determine whether impressions, clicks, spend, frequency, or attribution changed, and verify source coverage and deduplication.",
+          "Compare affected campaigns with unaffected campaigns and inspect campaign, targeting, creative, and bidding changes before the decline; verify whether any observed changes align in time with the anomaly.",
+          "Check canonical session, checkout failure, and order records for corresponding changes in traffic quality or purchase completion; determine whether the pattern is limited to advertising metrics or extends to downstream outcomes."
+        ],
+        "plausibleExplanations": [
+          "The reported advertising deterioration is not accompanied by verified internal evidence records or completed analysis results, so the underlying cause cannot be distinguished."
+        ],
+        "reason": "The reported decline spans several campaigns and paid channels, but the packet contains no verified evidence IDs or tool outcomes to establish a cause. No specific diagnosis is supported; review is required.",
+        "usefulNextEvidence": [
+          "Check canonical campaign-level ad observations and attributed sessions across the incident and baseline windows; determine whether impressions, clicks, spend, frequency, or attribution changed, and verify source coverage and deduplication.",
+          "Compare affected campaigns with unaffected campaigns and inspect campaign, targeting, creative, and bidding changes before the decline; verify whether any observed changes align in time with the anomaly.",
+          "Check canonical session, checkout failure, and order records for corresponding changes in traffic quality or purchase completion; determine whether the pattern is limited to advertising metrics or extends to downstream outcomes."
+        ],
+        "externalResearchUnavailable": true,
+        "conclusionsNotJustified": [
+          "A definitive single root cause",
+          "A causal financial loss estimate",
+          "A verified real-world cause of this synthetic incident"
+        ]
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          "Canonical diagnosis schema",
+          "Business/run/investigation ownership",
+          "Evidence references exist and resolve",
+          "Timestamp cutoff",
+          "Duplicate references rejected",
+          "Numerical prose rejected; impact computed deterministically",
+          "Known contradiction disclosure",
+          "Single diagnosis shared by brief, report and handoff"
+        ],
+        "semanticSupport": "model_assessed_not_deterministic_proof"
+      }
+    },
+    "sources": [],
+    "calls": [
+      {
+        "businessId": "nike_demo",
+        "simulationRunId": "stage5_1792873974782",
+        "investigationId": "inv_stage5_1792873974782_d07498fe5b17",
+        "callId": "aij_5abdf2b7b50627f073e7b9a4_reasoning_0",
+        "jobId": "aij_5abdf2b7b50627f073e7b9a4",
+        "task": "normal.investigation.v1",
+        "promptVersion": "1.0.0",
+        "checksum": "372a741ab1c393a2956e17ad226083852addd34889dad3a60c242ae026ec2a12",
+        "status": "failed",
+        "startedAt": "2026-10-24T20:34:30.173Z",
+        "completedAt": "2026-10-24T20:34:42.318Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16f9f40f87a72bb5821c23c33e406",
+          "providerRequestId": "req_0d32c829773e4eba88b424ab17d09d7e",
+          "latencyMs": 12123,
+          "inputTokens": 2437,
+          "outputTokens": 1372,
+          "totalTokens": 3809,
+          "estimatedCostUsd": null
+        },
+        "error": "invalid_structured_output",
+        "ambiguous": false,
+        "reservedTokens": 19232,
+        "outputDiagnosisId": null,
+        "validationStatus": null,
+        "correctionId": null,
+        "adapterVersion": null
+      },
+      {
+        "businessId": "nike_demo",
+        "simulationRunId": "stage5_1792873974782",
+        "investigationId": "inv_stage5_1792873974782_d07498fe5b17",
+        "callId": "aij_5abdf2b7b50627f073e7b9a4_diagnosis_0",
+        "jobId": "aij_5abdf2b7b50627f073e7b9a4",
+        "task": "normal.root_cause_diagnosis.v1",
+        "promptVersion": "1.0.0",
+        "checksum": "11a7baadfcdcdd395de48edb4928b10e4e97a1fe60d3f0c51bbb7338d852b18a",
+        "status": "completed",
+        "startedAt": "2026-10-24T20:34:45.154Z",
+        "completedAt": "2026-10-24T20:34:49.484Z",
+        "metadata": {
+          "provider": "mubit",
+          "model": "gpt-6-luna",
+          "route": "https://api.mubit.ai/openai/v1/chat/completions",
+          "requestId": "mreq_01a16f9f7b457f02bd48e56db523b0d6",
+          "providerRequestId": "req_12767256e04340fa9dccef1e81385af7",
+          "latencyMs": 4311,
+          "inputTokens": 2152,
+          "outputTokens": 312,
+          "totalTokens": 2464,
+          "estimatedCostUsd": null
+        },
+        "error": null,
+        "ambiguous": false,
+        "reservedTokens": 19334,
+        "outputDiagnosisId": "diag_aij_5abdf2b7b50627f073e7b9a4",
+        "validationStatus": "validated",
+        "correctionId": null,
+        "adapterVersion": null
+      }
+    ],
+    "researchTraces": []
+  }
+}

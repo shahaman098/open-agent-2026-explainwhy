@@ -1,0 +1,23 @@
+{
+  "origin": "mubit_console",
+  "task": "normal.source_support.v1",
+  "model": "gpt-6-luna",
+  "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+  "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+  "mubitTaskId": "ln_fa0a441a893491aa9e57315c",
+  "observedAt": "2026-10-25T07:22:22.659Z",
+  "taskUrl": "https://app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_fa0a441a893491aa9e57315c",
+  "trainingStatus": "reviewing_examples",
+  "callsObserved": 40,
+  "keptExamples": 0,
+  "rejectedExamples": 0,
+  "waitingForReview": 40,
+  "reviewQueued": 40,
+  "reviewRunning": 3,
+  "firstTrainingStarted": false,
+  "adapterVersionId": null,
+  "evidencePaths": [
+    "docs/training/source-support-v1/console/recheck-2026-10-25-0722.jpg",
+    "docs/training/source-support-v1/console/recheck-2026-10-25-0722-redacted.txt"
+  ]
+}

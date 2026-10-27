@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "eventId": "evt_ad_001",
+  "source": "simulator",
+  "type": "ad.metrics_observed",
+  "occurredAt": "2026-10-23T18:30:00Z",
+  "receivedAt": "2026-10-23T18:30:01Z",
+  "provenance": {
+    "sourceRecordId": "sim-ad-1",
+    "connectorId": "simulator_v1",
+    "simulated": true,
+    "ingestMethod": "simulation"
+  },
+  "simulationRunId": "run_nova_001",
+  "payload": {
+    "campaignId": "campaign_A",
+    "window": {
+      "startAt": "2026-10-23T18:00:00Z",
+      "endAt": "2026-10-23T19:00:00Z"
+    },
+    "impressions": 10000,
+    "clicks": 150,
+    "spendMinor": 35000,
+    "attributedOrders": 8,
+    "attributedRevenueMinor": 47992,
+    "frequency": 6.2,
+    "currency": "GBP"
+  }
+}

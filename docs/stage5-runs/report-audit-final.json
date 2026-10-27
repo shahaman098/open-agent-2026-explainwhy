@@ -1,0 +1,32 @@
+{
+  "reports": 1,
+  "passed": 1,
+  "rows": [
+    {
+      "artifact": "docs/stage5-runs/stage5_1792885194280.json",
+      "investigationId": "inv_stage5_1792885194280_d07498fe5b17",
+      "status": "completed",
+      "primaryCause": "ad_inefficiency",
+      "sections": 7,
+      "claims": 3,
+      "internalEvidence": 6,
+      "externalSources": 0,
+      "checks": {
+        "validated": true,
+        "shared_diagnosis": true,
+        "shared_brief": true,
+        "saved_report_id": true,
+        "saved_timeline": true,
+        "saved_hypotheses": true,
+        "claim_references_resolve": true,
+        "diagnosis_references_resolve": true,
+        "external_sources_resolve": true,
+        "impact_reference_resolves": true,
+        "handoff_not_executable": true,
+        "status_consistent": true,
+        "provider_requests_attributed": true
+      },
+      "passed": true
+    }
+  ]
+}

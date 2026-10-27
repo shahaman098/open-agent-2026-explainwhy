@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-25T08:27:56.299687Z",
+  "baseRevision": "07f966ad68de0bf8e093bf4ae3c807c5adaaba4f",
+  "commands": {
+    "npm run verify": {
+      "exitCode": 0,
+      "contracts": 15,
+      "testFiles": 62,
+      "testsPassed": 385,
+      "eslintErrors": 0,
+      "eslintWarnings": 14
+    },
+    "npm run test:e2e": {
+      "exitCode": 0,
+      "testsPassed": 66,
+      "projects": [
+        "desktop-chromium",
+        "mobile-chromium"
+      ],
+      "duration": "3.6 minutes",
+      "database": "normal_e2e",
+      "newModelRequests": false
+    },
+    "NORMAL_NEXT_DIST_DIR=.next/submission-build npm run build": {
+      "exitCode": 0
+    }
+  },
+  "models": {
+    "investigator": "gemini-4-argon",
+    "diagnosis": "gemini-4-argon",
+    "planner": "gemini-4-argon",
+    "research": "gemini-4-argon",
+    "geminiTransport": "native"
+  },
+  "training": {
+    "baselineCorrect": 18,
+    "baselineTotal": 24,
+    "baselineValid": 24,
+    "trainCallsPerRoute": 40,
+    "transportRuns": 2,
+    "keptPerTask": 0,
+    "firstTrainingStarted": false,
+    "adapterImprovement": null,
+    "nativeStatus": "docs/training/source-support-gemini-4-argon-v1/console-status.json",
+    "compatibleStatus": "docs/training/source-support-gemini-4-argon-compat-v1/console-status.json"
+  },
+  "video": {
+    "file": "docs/demo/Normal_NightShift_Demo.mp4",
+    "durationSeconds": 110.16,
+    "sizeBytes": 4980760,
+    "sha256": "17fa3459fc2de48a177a9f6add5529feaa8e124f6e170cdeeb8bd41d96c37a0b",
+    "completeDecode": true
+  },
+  "submissionReceiptVerified": false,
+  "sourceChecksums": {
+    ".env.example": "cf5cb0ce637250f7a046ebd4dbe53f7e1e5f736e85d6c06ea156c89de9986b53",
+    "scripts/train-source-support.ts": "2cd8d0ee7521f28009a0ca2ae51dabde3005ee70c421e871105e26a090527fa5",
+    "scripts/investigator-worker.ts": "c259e7479a1df0769a0f50d2948059425b8b3c80b0beb2e6bfcfcf76ed068a04",
+    "scripts/planner-worker.ts": "d0681d1c70406dfa0ce0d358457b9c6cca65529aa7020dcadd66c060fc1983b3",
+    "src/intelligence/investigator/provider.ts": "c9b038d86d4226af6eaeea7950e0e8cb536933394770dd2a2c2a1a449a396023",
+    "src/intelligence/model-settings.ts": "bacac28d18531a6a7aacc09bfb63a5bab9df12d131423b55326a7e1c85f7cbc3"
+  },
+  "publicationChecks": {
+    "localMarkdownLinksChecked": 142,
+    "missingPublishedTargets": 0,
+    "credentialPatternMatches": 0,
+    "accountAddressMatches": 0,
+    "privateEnvironmentStaged": false,
+    "newConsoleSnapshotsExcludeAccountSidebar": true
+  }
+}

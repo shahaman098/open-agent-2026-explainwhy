@@ -1,0 +1,98 @@
+%% Implemented Stage 4 architecture; Future nodes are explicitly unimplemented.
+flowchart LR
+  subgraph Reference["Reference data service"]
+    NK[nike.com/gb + investors.nike.com\npublic pages, cited & dated] --> RC[src/reference/nike-catalogue.ts\nverified cache + fallback]
+    RC --> RP[(reference_products\nreference_financials)]
+  end
+
+  subgraph Sim["Simulator engine (src/simulator)"]
+    BOOT[bootstrap: seeded world] --> ENG[TickEngine\nads → sessions → orders → fulfilment → reviews]
+    SCN[scenarios.ts\nmechanistic params] -.-> ENG
+    RNG[sfc32 RNG state] <--> ENG
+    RUN[runtime.ts\nlease lock · idempotent ticks · chunked persistence]
+    ENG --> RUN
+    CHK[checkout.ts\ntransaction + atomic stock]
+  end
+
+  subgraph Ing["Ingestion service"]
+    ING[ingestBatch\nZod strict · eventBusinessRules · tenant scope\nunique (businessId, connectorId, sourceRecordId)]
+  end
+
+  subgraph Mongo["MongoDB normal_dev"]
+    ST[(simulator_state)]
+    DOM[(simulated_* domain records)]
+    EV[(business_events\nimmutable ledger)]
+    MS[(metric_snapshots)]
+    GT[(simulator_ground_truth\nPRIVATE)]
+    RCPT[(action_receipts)]
+  end
+
+  subgraph An["Analytics service"]
+    AGG[computeSnapshots\n$facet aggregation · dedupe ad windows · null rates]
+  end
+
+  subgraph UI["Next.js app"]
+    STORE[/demo-store\nstorefront + checkout/]
+    CR[/dev/simulator\ncontrol room/]
+  end
+
+  subgraph API["Route handlers"]
+    DEVAPI[/api/dev/simulator/*]
+    INGAPI[/api/ingest/events]
+    MET[/api/metrics, /api/metrics/breakdown]
+    SHOP[/api/demo-store/*]
+    PLANS[/api/plans/:id → PlanHandoff]
+  end
+
+  subgraph Partner["Partner adapters (src/adapters)"]
+    AD[setDailyBudget · sendDelayNotice · publishBanner\nread-backs · verifyAction]
+  end
+
+  RP --> BOOT
+  RUN --> ST
+  RUN --> DOM
+  RUN --> ING
+  CHK --> DOM
+  CHK --> ING
+  ING --> EV
+  EV --> AGG --> MS
+  RUN -.-> GT
+  DEVAPI --> RUN
+  INGAPI --> ING
+  MET --> AGG
+  SHOP --> CHK
+  SHOP --> DOM
+  CR --> DEVAPI
+  CR --> MET
+  STORE --> SHOP
+  AD --> DOM
+  AD --> ING
+  AD --> RCPT
+  RUN --> PUB[After durable commit and lock release: publish completed metrics]
+  PUB --> MW[(monitoring_windows)]
+  PUB --> DIRECT[Next.js after: bounded direct trigger]
+  MW --> WATCH[Standalone Change Stream worker + reconciliation]
+  DIRECT --> JOB[(monitoring_jobs: unique keys + leases)]
+  WATCH --> JOB
+  JOB --> DET[Shared detector: baselines → rules → correlation → severity]
+  EV --> DET
+  MS --> DET
+  DET --> GRAPH[(Atomic anomalies + incidents + investigations)]
+  GRAPH --> MON[/dev/monitor]
+  GRAPH --> CTX[Evidence context: anomalies · findings · affected entities · cutoff]
+  CTX --> POL[Deterministic routing policy: primary · alternative · context tools]
+  POL --> REG[Tool registry: 8 read-only tools, strict Zod inputs]
+  REG --> EV
+  REG --> MS
+  REG --> RP
+  REG --> GRAPH
+  REG --> VER[Verification: schema · source resolution · finite · cutoff · bounded · labelled]
+  VER --> EVID[(evidence canonical + evidence_details + evidence_tool_runs + evidence_collections)]
+  EVID --> DASH[/dashboard · /dashboard/architecture · /dashboard/investigations/:id/]
+  GRAPH --> DASH
+  CAP[/api/intelligence/capabilities\nmeasured readiness/] --> DASH
+  EVID --> FUT[Future: Mubit investigator → Diagnosis → ProposedPlan]
+  REG -.->|same registry, model-chosen calls| FUT
+  FUT --> PLANS
+  PLANS --> EXEC[Partner: approval + orchestration]
+  EXEC --> AD

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Investigations · Normal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="signals.html" aria-label="Normal dashboard"><span class="image-placeholder logo-placeholder">Normal logo</span></a>
+    <nav class="dashboard-nav" aria-label="Normal sections">
+      <a class="nav-link" href="overview.html">Overview</a>
+      <a class="nav-link" href="signals.html">Signals</a>
+      <a class="nav-link current" href="investigations.html">Investigations</a>
+      <a class="nav-link" href="approvals.html">Approvals</a>
+      <a class="nav-link" href="activity.html">Activity</a>
+      <a class="nav-link" href="outcomes.html">Outcomes</a>
+    </nav>
+    <div class="workspace"><span class="image-placeholder account-placeholder">Nike mark</span><span class="workspace-copy"><strong>Nike</strong><small>Workspace</small></span><span class="run-chip">stage5_1792885194280</span></div>
+  </header>
+  <main class="page">
+    <div class="page-head">
+      <div><p class="eyebrow">Operations · Selected simulation run</p><h1>Investigations</h1><p class="subhead">Persisted investigations linked to the selected run. Open a record to review its incident, evidence, and collection history.</p></div>
+      <div class="page-actions"><span class="tag info">Nike — Unaffiliated Simulation</span></div>
+    </div>
+    <section class="stats" aria-label="Investigation summary">
+      <article class="card stat"><label>Investigations</label><strong>1</strong><span class="detail">In this run</span></article>
+      <article class="card stat"><label>Open records</label><strong>1</strong><span class="detail">Awaiting operator review</span></article>
+      <article class="card stat"><label>Signals in record</label><strong>—</strong><span class="detail">Anomaly count not in report export</span></article>
+      <article class="card stat"><label>Evidence links</label><strong>6</strong><span class="detail">All 6 source records verified</span></article>
+    </section>
+    <article class="card">
+      <div class="card-head"><div><h2>Investigation records</h2><p>1 record · selected run <code>stage5_1792885194280</code></p></div><span class="tag">1 result</span></div>
+      <div class="toolbar"><input class="search" aria-label="Search investigations" placeholder="Search title, theme, or ID"><select class="filter" aria-label="Status"><option>All statuses</option><option>Awaiting review</option></select><span class="muted small">Showing 1 of 1</span></div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Investigation</th><th>Impact</th><th>Status</th><th>Campaigns</th><th>Evidence</th><th>Updated</th><th></th></tr></thead>
+          <tbody><tr>
+            <td><strong>Paid advertising efficiency declined</strong><small><code>inv_stage5_1792885194280_d07498fe5b17</code></small></td>
+            <td><span class="tag warn">Severity not in report</span></td>
+            <td><span class="tag review">Awaiting review</span></td>
+            <td>5 affected</td><td>6 verified</td><td>24 Oct 2026<br><small>23:42 UTC</small></td>
+            <td><a class="btn" href="investigation-detail.html">Review</a></td>
+          </tr></tbody>
+        </table>
+      </div>
+      <div class="card-body"><div class="callout">Advertising efficiency is the best-supported explanation in this completed AI investigation. The diagnosis is qualified and requires human review; it does not establish a definitive cause.</div></div>
+    </article>
+    <p class="footnote">The signal count and incident severity are not present in the saved Stage 5 report, so they are left unfilled here.</p>
+  </main>
+</body>
+</html>

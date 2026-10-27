@@ -1,0 +1,8 @@
+{
+  "frozenAt": "2026-10-25T07:52:05.835Z",
+  "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+  "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+  "rule": "Positive paired accuracy delta, lower whole-scene bootstrap bound above zero, all adapter responses valid, no increase in false-supported claims. Preserve the original provider baseline and pinned adapter version.",
+  "baselineAlreadyObserved": false,
+  "note": "Comparison rule frozen before observing this experiment's provider or adapter outputs. Dataset and scoring code were developed for the earlier model pilot; this is not an independently designed benchmark."
+}

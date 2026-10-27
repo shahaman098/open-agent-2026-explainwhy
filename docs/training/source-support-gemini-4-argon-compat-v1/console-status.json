@@ -1,0 +1,23 @@
+{
+  "task": "normal.source_support.v1",
+  "model": "gemini-4-argon",
+  "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+  "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+  "origin": "mubit_console",
+  "mubitTaskId": "ln_270abbb4ba2db3dc8779bae5",
+  "observedAt": "2026-10-25T08:25:50.463Z",
+  "taskUrl": "https://app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_270abbb4ba2db3dc8779bae5",
+  "trainingStatus": "reviewing_examples",
+  "callsObserved": 40,
+  "keptExamples": 0,
+  "rejectedExamples": 0,
+  "waitingForReview": 40,
+  "reviewQueued": 40,
+  "reviewRunning": 3,
+  "firstTrainingStarted": false,
+  "adapterVersionId": null,
+  "evidencePaths": [
+    "docs/training/source-support-gemini-4-argon-compat-v1/console/submission-queue.txt",
+    "docs/training/source-support-gemini-4-argon-compat-v1/console/submission-queue.png"
+  ]
+}

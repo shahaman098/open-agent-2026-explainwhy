@@ -1,0 +1,16 @@
+{
+  "run": "stage5_1792885194280",
+  "investigation": "inv_stage5_1792885194280_d07498fe5b17",
+  "planId": "plan_plj_c70db54aa7f98907532859f2",
+  "planVersion": 1,
+  "strategies": 3,
+  "requests": [
+    "mreq_01a1709b795f78c183811ab9fc88a3e0",
+    "mreq_01a1709ce9f57110a533816c09e3d9b5",
+    "mreq_01a170a09c2c775184fffe17575bd54c"
+  ],
+  "canonicalHandoff": true,
+  "persistedAcrossReload": true,
+  "demoPreserved": true,
+  "executed": false
+}

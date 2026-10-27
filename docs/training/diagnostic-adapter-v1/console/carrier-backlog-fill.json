@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "complete": true,
+  "dryRun": false,
+  "report": [
+    {
+      "question": "Message",
+      "wanted": "Investigate this synthetic shop incident. [RA] Warehouse scans show orders dispatched on schedule. [RB] Parcels from one carrier stayed at its sorting depot beyond the promised delivery date. [RC] Another carrier serving the same areas continued delivering on time. [RD] Complaints concern delayed arrivals, not product quality. What explanation is supported?",
+      "got": "Investigate this synthetic shop incident. [RA] Warehouse scans show orders dispatched on schedule. [RB] Parcels from one carrier stayed at its sorting depot beyond the promised delivery date. [RC] Another carrier serving the same areas continued delivering on time. [RD] Complaints concern delayed arrivals, not product quality. What explanation is supported?",
+      "ok": true
+    }
+  ],
+  "manualTable": null,
+  "script_version": "2.0.0+74233b855b41",
+  "observed_at": "2026-10-25T07:07:17.670Z",
+  "url": null,
+  "categories": {},
+  "verified_fields": [
+    "Message"
+  ]
+}

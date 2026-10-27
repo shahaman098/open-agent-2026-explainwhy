@@ -1,0 +1,175 @@
+Observed at 2026-10-25T07:22:22.659Z
+URL: https://app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_fa0a441a893491aa9e57315c
+
+- complementary:
+  - navigation "Console":
+    - link "All projects":
+      - /url: /console/
+      - generic: Mubit
+    - 'button "Project: normal-1792783517785903653"':
+      - generic: "N"
+      - generic: normal-1792783517785903653
+      - generic: production
+    - paragraph: Project
+    - list "Project":
+      - link "Overview":
+        - /url: /console/projects/ws-31028979027c7c75
+        - generic: Overview
+      - link "Tasks 37":
+        - /url: /console/projects/ws-31028979027c7c75/workloads
+        - generic: Tasks
+        - generic: "37"
+      - link "Adapters 3":
+        - /url: /console/projects/ws-31028979027c7c75/adapters
+        - generic: Adapters
+        - generic: "3"
+      - link "Try models":
+        - /url: /console/projects/ws-31028979027c7c75/try
+        - generic: Try models
+      - link "Requests":
+        - /url: /console/projects/ws-31028979027c7c75/requests
+        - generic: Requests
+      - link "Learnings":
+        - /url: /console/projects/ws-31028979027c7c75/learnings
+        - generic: Learnings
+    - paragraph: Configure
+    - list "Configure":
+      - link "Connect":
+        - /url: /console/projects/ws-31028979027c7c75/connect
+        - generic: Connect
+      - link "Import past calls":
+        - /url: /console/projects/ws-31028979027c7c75/imports
+        - generic: Import past calls
+      - link "Mubit keys 1":
+        - /url: /console/projects/ws-31028979027c7c75/keys
+        - generic: Mubit keys
+        - generic: "1"
+      - link "Settings":
+        - /url: /console/projects/ws-31028979027c7c75/policy
+        - generic: Settings
+    - paragraph: Workspace
+    - list "Workspace":
+      - link "Projects":
+        - /url: /console/
+        - generic: Projects
+      - link "Provider keys":
+        - /url: /console/provider-keys?project=ws-31028979027c7c75
+        - generic: Provider keys
+      - link "Members":
+        - /url: /console/members
+        - generic: Members
+      - link "Billing":
+        - /url: /console/billing
+        - generic: Billing
+    - button "Getting started":
+      - generic: Getting started
+    - link "How Mubit works":
+      - /url: /console/projects/ws-31028979027c7c75/integration
+      - text: How Mubit works
+    - paragraph:
+      - generic: Normal
+    - 'button "[account email redacted], Admin: account menu"':
+      - generic: EG
+      - generic: [account email redacted]
+      - generic: Admin
+- banner:
+  - navigation "Breadcrumb":
+    - link "normal-1792783517785903653":
+      - /url: /console/projects/ws-31028979027c7c75
+    - generic: Task
+  - button "Search pages":
+    - generic: Search…
+    - generic: ⌘ K
+  - button "Switch to dark mode":
+  - button "Notifications, 1":
+    - generic: "1"
+- main:
+  - link "Tasks":
+    - /url: /console/projects/ws-31028979027c7c75/workloads
+    - text: Tasks
+  - heading "Assess whether each supplied" [level=1]
+  - paragraph: "Prompt: Assess whether each supplied actual source…"
+  - paragraph:
+    - generic: Reviewing examples
+  - paragraph: "Collecting examples: 0 of 25"
+  - paragraph:
+    - text: "Results on real calls: not measured yet."
+    - button "Why": i
+  - term: Calls
+  - definition: "40"
+  - term:
+    - text: Examples kept
+    - button "Why": i
+  - definition: "0"
+  - term:
+    - text: Answered by your model, all versions · 7 d
+    - button "Why": i
+  - definition: —
+  - heading "Its traffic, last 7 days" [level=2]
+  - term: Calls
+  - definition: 40 · 5.4% of all calls
+  - term: Examples
+  - definition: 0 kept
+  - paragraph: "7 days: 40 calls"
+  - 'img "Calls per day for Assess whether each supplied, last 7 days: 40 in all."':
+  - generic: 6 days ago
+  - generic: Today
+  - heading "Models asked" [level=2]
+  - list:
+    - generic: gpt-6-luna
+    - text: 100%
+  - paragraph: Of its last 40 calls.
+  - heading "Why these calls are one task" [level=2]
+  - list:
+    - generic: Rule
+    - generic: "Grouped: same instructions and tools"
+    - generic: 22 min ago
+    - generic: Rule
+    - generic: Named from its instructions
+  - generic "Details" [active]:
+    - generic: Details
+  - term: Usable for training
+  - definition: 40 calls
+  - term: Examples
+  - definition: 0 kept · 0 rejected · 40 waiting for review
+  - term: Sessions
+  - definition: 0 with kept examples
+  - term: Review today
+  - definition: 40 queued · 0 over today's limit · 3 running
+  - term: First training
+  - definition: not started
+  - term: Routes
+  - definition: none
+  - term: Progress
+  - definition: not measured
+  - term: Regression check
+  - definition: not measured
+  - term: Match cut-off
+  - definition: not measured
+  - term: Ids
+  - definition: ln_fa0a441a893491aa9e57315c · task key lk1_52e9579da6e15f18ff27e93c3d99cef9
+  - heading "History Why" [level=2]:
+    - text: History
+    - button "Why": i
+  - list:
+    - generic "Oct 25, 2026, 07:03:48 AM": 17 min ago
+    - text: "Reviewer: 10 new calls, 0 kept, 0 rejected."
+    - generic "Show each":
+      - generic: Show each
+    - generic "Oct 25, 2026, 06:58:48 AM": 22 min ago
+    - text: "Reviewer: 30 new calls, 0 kept, 0 rejected."
+    - generic "Show each":
+      - generic: Show each
+    - generic "Oct 25, 2026, 06:58:48 AM": 22 min ago
+    - text: Found
+    - button "Why": i
+- contentinfo:
+  - generic "Engine 0.14.0 · checked Oct 25, 2026, 07:21:39 AM":
+    - generic: "Service status:"
+    - text: Operational
+- region "Getting started guide":
+  - button "Expand getting started guide":
+    - generic: 2/3
+    - strong: Get started
+- button "Get help":
+  - generic: "?"

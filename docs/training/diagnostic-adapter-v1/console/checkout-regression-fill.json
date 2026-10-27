@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "complete": true,
+  "dryRun": false,
+  "report": [
+    {
+      "question": "Message",
+      "wanted": "Investigate this synthetic shop incident. [QA] Paid social clicks and product views remained stable. [QB] Immediately after a checkout deployment, card authorisation failures rose sharply for all product categories. [QC] Rolling the deployment back restored successful payments while traffic stayed steady. What explanation is supported, and what remains uncertain?",
+      "got": "Investigate this synthetic shop incident. [QA] Paid social clicks and product views remained stable. [QB] Immediately after a checkout deployment, card authorisation failures rose sharply for all product categories. [QC] Rolling the deployment back restored successful payments while traffic stayed steady. What explanation is supported, and what remains uncertain?",
+      "ok": true
+    }
+  ],
+  "manualTable": null,
+  "script_version": "2.0.0+74233b855b41",
+  "observed_at": "2026-10-25T07:05:44.819Z",
+  "url": null,
+  "categories": {},
+  "verified_fields": [
+    "Message"
+  ]
+}

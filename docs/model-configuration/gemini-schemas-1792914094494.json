@@ -1,0 +1,110 @@
+{
+  "observedAt": "2026-10-25T07:41:48.701Z",
+  "models": {
+    "investigator": "gemini-4-argon",
+    "diagnosis": "gemini-4-argon",
+    "planner": "gemini-4-argon",
+    "research": "gemini-4-argon"
+  },
+  "scope": "Synthetic schema probes, not business diagnosis or accuracy evaluation. No live business records changed.",
+  "results": [
+    {
+      "check": "investigation_schema",
+      "passed": true,
+      "metadata": {
+        "provider": "mubit",
+        "model": "gemini-4-argon",
+        "route": "https://api.mubit.ai/gemini/v1beta/models/gemini-4-argon:generateContent",
+        "requestId": "mreq_01a17201f9e87af3aa6a421c6aed0e46",
+        "providerRequestId": "rrLdau_ZLInnnsEPgPXvmAg",
+        "latencyMs": 14203,
+        "inputTokens": 1703,
+        "outputTokens": 977,
+        "totalTokens": 2680,
+        "estimatedCostUsd": null
+      },
+      "value": {
+        "hypotheses": [
+          {
+            "cause": "checkout_failure",
+            "explanation": "A technical disruption in the checkout funnel or payment gateway could be preventing customers from completing purchases, leading to an observed revenue change.",
+            "mechanism": "Payment processing errors or checkout page failures block transaction completion after items are added to the cart.",
+            "support": "insufficient_evidence",
+            "evidenceIds": [],
+            "counterEvidenceIds": [],
+            "expectedObservations": [
+              "Sharp drop in checkout completion rate while cart additions remain stable",
+              "Elevated error logs or payment gateway timeout rates"
+            ],
+            "missingEvidence": [
+              "Checkout funnel conversion metrics",
+              "Payment processor error rates and latency logs"
+            ],
+            "falsificationTests": [
+              "If checkout conversion rates and payment success rates remain unchanged across all devices and payment methods during the period of interest, this hypothesis is falsified."
+            ],
+            "chronology": "No temporal data is currently available to establish when the revenue observation began relative to checkout system changes.",
+            "confounders": [
+              "Tracking pixel or analytics reporting outage",
+              "Simultaneous shifts in traffic quality from advertising campaigns"
+            ],
+            "controlComparison": "Compare checkout completion rates across unaffected payment methods, browsers, or regions against the affected scope."
+          },
+          {
+            "cause": "stockout",
+            "explanation": "Inventory depletion on high-volume products could restrict purchasable supply and cause a decline in overall revenue.",
+            "mechanism": "Unavailable stock prevents customers from adding key products to their carts or completing orders.",
+            "support": "insufficient_evidence",
+            "evidenceIds": [],
+            "counterEvidenceIds": [],
+            "expectedObservations": [
+              "Zero available inventory recorded for top-selling products",
+              "Drop in product page add-to-cart rate coinciding with out-of-stock status"
+            ],
+            "missingEvidence": [
+              "Product-level inventory availability records",
+              "Product-level revenue and unit sales breakdown"
+            ],
+            "falsificationTests": [
+              "If inventory levels for all major products remained adequately stocked and available for purchase throughout the observation window, this hypothesis is falsified."
+            ],
+            "chronology": "No timeline is available to verify whether inventory depletion preceded the revenue observation.",
+            "confounders": [
+              "Catalog or pricing display bugs hiding in-stock items",
+              "Seasonal demand shifts affecting specific product lines"
+            ],
+            "controlComparison": "Compare sales performance of fully stocked products against products experiencing low or zero inventory."
+          },
+          {
+            "cause": "unknown",
+            "explanation": "With no supporting observations or measurement data available, the revenue observation cannot be attributed to a specific operational, marketing, or external factor, including potential measurement or reporting artifacts.",
+            "mechanism": "Unobserved operational changes, external shifts, or data pipeline reporting anomalies alter recorded revenue.",
+            "support": "insufficient_evidence",
+            "evidenceIds": [],
+            "counterEvidenceIds": [],
+            "expectedObservations": [
+              "Discrepancies between order database records and analytics reporting, or unmonitored system changes"
+            ],
+            "missingEvidence": [
+              "Baseline revenue and traffic measurements",
+              "Data pipeline integrity checks and full operational metrics"
+            ],
+            "falsificationTests": [
+              "If complete, verified operational metrics clearly isolate a single well-defined causal mechanism with corroborating control comparisons, the unknown classification is superseded."
+            ],
+            "chronology": "No chronological observations are present in the input.",
+            "confounders": [
+              "Measurement definition changes or delayed data ingestion"
+            ],
+            "controlComparison": "Compare raw backend transaction ledger totals against aggregated reporting views across unaffected business segments."
+          }
+        ],
+        "decisionSummary": "No evidence, tools, or remaining investigation rounds are available. Formulated three competing unconfirmed hypotheses (checkout_failure, stockout, and unknown) with concrete falsification checks, confounders, and control comparisons, and stopped due to insufficient evidence.",
+        "nextTools": [],
+        "research": null,
+        "stop": true,
+        "stopReason": "Insufficient evidence: no observations, tools, external research, or investigation rounds are available to evaluate or discriminate between competing hypotheses."
+      }
+    }
+  ]
+}

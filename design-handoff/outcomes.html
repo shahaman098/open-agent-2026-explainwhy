@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outcomes · Normal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="signals.html" aria-label="Normal dashboard"><span class="image-placeholder logo-placeholder">Normal logo</span></a>
+    <nav class="dashboard-nav" aria-label="Normal sections">
+      <a class="nav-link" href="overview.html">Overview</a>
+      <a class="nav-link" href="signals.html">Signals</a><a class="nav-link" href="investigations.html">Investigations</a>
+      <a class="nav-link" href="approvals.html">Approvals</a><a class="nav-link" href="activity.html">Activity</a><a class="nav-link current" href="outcomes.html">Outcomes</a>
+    </nav>
+    <div class="workspace"><span class="image-placeholder account-placeholder">Nike mark</span><span class="workspace-copy"><strong>Nike</strong><small>Workspace</small></span><span class="run-chip">stage5_1792885194280</span></div>
+  </header>
+  <main class="page">
+    <div class="page-head"><div><p class="eyebrow">Operations · Selected simulation run</p><h1>Outcomes</h1><p class="subhead">Revenue, demand, advertising, delivery, and review outcomes from persisted records.</p></div><span class="tag">Incident window · 30 hours</span></div>
+    <section class="stats">
+      <article class="card stat"><label>Revenue</label><strong>£1,944.54</strong><span class="detail">Net revenue · 30 hour window</span></article>
+      <article class="card stat"><label>Orders</label><strong>20</strong><span class="detail">787 sessions · 2.54% conversion</span></article>
+      <article class="card stat"><label>Ad spend</label><strong>£625.83</strong><span class="detail">10 attributed orders · £62.58 CPA</span></article>
+      <article class="card stat"><label>Sessions</label><strong>787</strong><span class="detail">Selected incident window</span></article>
+    </section>
+    <div class="outcomes-grid">
+      <article class="card">
+        <div class="card-head"><div><h2>Revenue per hour vs baseline</h2><p>30 hour incident window · 4 Oct 06:00 to 5 Oct 12:00 UTC</p></div><span class="tag">Measured comparison</span></div>
+        <div class="card-body">
+          <div style="display:flex;align-items:flex-end;gap:18px"><strong style="font-size:34px;letter-spacing:-.05em">£64.82 / hour</strong><span class="tag danger">−46.9% vs baseline</span></div>
+          <div class="bars" role="img" aria-label="Hourly net revenue was £122.18 in the baseline window and £64.82 in the incident window"><div class="bar-slot"><span class="bar" style="height:87%"></span><span class="bar-label">Baseline · £122.18/h</span></div><div class="bar-slot"><span class="bar" style="height:46%"></span><span class="bar-label">Incident · £64.82/h</span></div></div>
+          <p class="section-note">Net revenue for the incident window was £1,944.54. The report gives aggregate window revenue, not the daily series used by the live dashboard chart.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-head"><div><h2>Operating rates</h2><p>Observed in the selected run</p></div></div>
+        <div class="card-body"><dl class="rates">
+          <dt>Conversion</dt><dd>2.54%</dd>
+          <dt>Late deliveries</dt><dd>11.4%</dd>
+          <dt>Low-rating share</dt><dd>0.0%</dd>
+          <dt>Reviews</dt><dd>1</dd>
+          <dt>Low-rating reviews</dt><dd>0</dd>
+          <dt>Promises late</dt><dd>5 / 44</dd>
+          <dt>Recorded delayed orders</dt><dd>3</dd>
+          <dt>Average recorded delay</dt><dd>31h 59m</dd>
+        </dl></div>
+      </article>
+    </div>
+    <section class="grid-three" style="margin-top:15px">
+      <article class="card card-pad"><div class="section-title-row"><h2>Advertising</h2><span class="tag danger">CTR −82.5%</span></div><p class="muted small">0.33% CTR · £625.83 spend · 10 attributed orders · £62.58 cost per order · 1.64× ROAS</p></article>
+      <article class="card card-pad"><div class="section-title-row"><h2>Inventory</h2><span class="tag ok">No stockouts</span></div><p class="muted small">17 products observed · 10 units depleted in the window · 0 out-of-stock checkout failures</p></article>
+      <article class="card card-pad"><div class="section-title-row"><h2>Customer feedback</h2><span class="tag">1 review</span></div><p class="muted small">Average rating 4.00 · 0 low ratings · 1 review mentioned delivery terms</p></article>
+    </section>
+    <p class="footnote">The report's observed hourly revenue difference is £57.36 below baseline. This is a measured comparison, not a causal loss estimate. Full daily 30-day snapshots are not included in this design handoff.</p>
+  </main>
+</body>
+</html>

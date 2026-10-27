@@ -1,0 +1,692 @@
+{
+  "mode": "read-only Mongo source records + local report fixture; browser read responses intercepted; no persisted AI report created",
+  "scope": {
+    "businessId": "nike_eval",
+    "simulationRunId": "source_acceptance_1792885169199",
+    "investigationId": "official_source_check"
+  },
+  "associations": {
+    "investigations": 0,
+    "jobs": 0,
+    "reports": 0
+  },
+  "sources": [
+    {
+      "schemaVersion": 1,
+      "sourceId": "src_425e21019b7bed98dc2afc2c",
+      "claimId": "clm_4830d40c665c9c29ad0bdfd3",
+      "investigationId": "official_source_check",
+      "businessId": "nike_eval",
+      "simulationRunId": "source_acceptance_1792885169199",
+      "originalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "canonicalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "title": "NIKE, Inc. Announces Changes to Its Operating Model",
+      "publisher": "about.nike.com",
+      "author": null,
+      "publishedAt": "2026-10-01T20:20:00.000Z",
+      "updatedAt": "2026-10-05T20:30:16.000Z",
+      "retrievedAt": "2026-10-24T23:39:40.983Z",
+      "eventWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-05T23:59:59.000Z"
+      },
+      "proposedClaim": "NIKE shared an employee note about changes to its operating model.",
+      "excerpt": "NIKE, Inc. today shared the following note with employees regarding changes to its operating model.",
+      "excerptMatched": true,
+      "contentHash": "39c647979760ecf77399dc680d57fab23042a81638cb4b011f41760351360eae",
+      "status": "contextual",
+      "semanticAssessment": "model_only",
+      "temporalValidity": "within_cutoff",
+      "claimSupport": "supported",
+      "contextRelevance": "not_assessed",
+      "publisherIdentity": "official_domain",
+      "previewImageUrl": "https://nmp.about.nike.com/about/prod/412311af-5388-4bcd-b4ac-e4be088ab686/final-tribrand-black-3000x2000.jpg?m=eyJlZGl0cyI6eyJqcGVnIjp7InF1YWxpdHkiOjEwMH0sIndlYnAiOnsicXVhbGl0eSI6MTAwfSwiZXh0cmFjdCI6eyJsZWZ0IjowLCJ0b3AiOjAsIndpZHRoIjozMDAwLCJoZWlnaHQiOjIwMDB9LCJyZXNpemUiOnsid2lkdGgiOjkwMH19fQ%3D%3D&s=88808cf41a95f770ebaf102c910efad3b8c6735e9f48f0eda2ba39c3cbd4be68",
+      "limitations": [
+        "An accessible page or matching passage does not establish semantic support or a business cause.",
+        "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+        "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+        "Independent Mubit passage assessment: supported. The passage directly states that NIKE shared a note with employees regarding changes to its operating model."
+      ],
+      "duplicateOf": null,
+      "httpStatus": 200
+    },
+    {
+      "schemaVersion": 1,
+      "sourceId": "src_aa8f07f021135a2a564c1abd",
+      "claimId": "clm_4c511f0276f2652ab67cd210",
+      "investigationId": "official_source_check",
+      "businessId": "nike_eval",
+      "simulationRunId": "source_acceptance_1792885169199",
+      "originalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "canonicalUrl": "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026",
+      "title": "NIKE, Inc. Announces Changes to Its Operating Model",
+      "publisher": "about.nike.com",
+      "author": null,
+      "publishedAt": "2026-10-01T20:20:00.000Z",
+      "updatedAt": "2026-10-05T20:30:16.000Z",
+      "retrievedAt": "2026-10-24T23:39:40.983Z",
+      "eventWindow": {
+        "startAt": "2026-10-01T00:00:00.000Z",
+        "endAt": "2026-10-05T23:59:59.000Z"
+      },
+      "proposedClaim": "The operating model change was caused by a Google Ads outage.",
+      "excerpt": "NIKE, Inc. today shared the following note with employees regarding changes to its operating model.",
+      "excerptMatched": true,
+      "contentHash": "39c647979760ecf77399dc680d57fab23042a81638cb4b011f41760351360eae",
+      "status": "insufficient_evidence",
+      "semanticAssessment": "model_only",
+      "temporalValidity": "within_cutoff",
+      "claimSupport": "insufficient",
+      "contextRelevance": "not_assessed",
+      "publisherIdentity": "official_domain",
+      "previewImageUrl": "https://nmp.about.nike.com/about/prod/412311af-5388-4bcd-b4ac-e4be088ab686/final-tribrand-black-3000x2000.jpg?m=eyJlZGl0cyI6eyJqcGVnIjp7InF1YWxpdHkiOjEwMH0sIndlYnAiOnsicXVhbGl0eSI6MTAwfSwiZXh0cmFjdCI6eyJsZWZ0IjowLCJ0b3AiOjAsIndpZHRoIjozMDAwLCJoZWlnaHQiOjIwMDB9LCJyZXNpemUiOnsid2lkdGgiOjkwMH19fQ%3D%3D&s=88808cf41a95f770ebaf102c910efad3b8c6735e9f48f0eda2ba39c3cbd4be68",
+      "limitations": [
+        "An accessible page or matching passage does not establish semantic support or a business cause.",
+        "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+        "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+        "Independent Mubit passage assessment: insufficient. The passage mentions operating-model changes but says nothing about a Google Ads outage or the cause of the changes.",
+        "Duplicate URL/content; not independent corroboration."
+      ],
+      "duplicateOf": "src_425e21019b7bed98dc2afc2c",
+      "httpStatus": 200
+    }
+  ],
+  "state": {
+    "schemaVersion": 1,
+    "jobId": "source_card_ui_fixture_no_provider",
+    "businessId": "nike_eval",
+    "simulationRunId": "source_acceptance_1792885169199",
+    "investigationId": "official_source_check",
+    "status": "insufficient_evidence",
+    "stage": "isolated_source_card_fixture",
+    "createdAt": "2026-10-25T00:47:32.078Z",
+    "updatedAt": "2026-10-25T00:47:32.078Z",
+    "startedAt": null,
+    "completedAt": "2026-10-25T00:47:32.078Z",
+    "round": 0,
+    "toolCount": 0,
+    "researchCount": 0,
+    "sourceCount": 2,
+    "callCount": 0,
+    "reservedTokens": 0,
+    "actualTokens": 0,
+    "estimatedCostUsd": 0,
+    "budget": {
+      "maxRounds": 1,
+      "maxTools": 1,
+      "maxResearchRounds": 0,
+      "maxSources": 2,
+      "maxCalls": 2,
+      "maxTokens": 5000,
+      "maxWallMs": 60000,
+      "maxCostUsd": null
+    },
+    "cutoff": "2026-10-24T23:39:40.983Z",
+    "incidentWindow": {
+      "startAt": "2026-10-01T00:00:00.000Z",
+      "endAt": "2026-10-05T23:59:59.000Z"
+    },
+    "baselineWindow": null,
+    "evidenceIds": [],
+    "sourceIds": [
+      "src_425e21019b7bed98dc2afc2c",
+      "src_aa8f07f021135a2a564c1abd"
+    ],
+    "hypotheses": [],
+    "steps": [],
+    "error": null,
+    "stopReason": "Isolated UI integration fixture. Reuses real retrieved sources; no live investigator or provider call was made.",
+    "reportId": "report_source_card_ui_fixture_no_provider",
+    "attempts": 0
+  },
+  "report": {
+    "schemaVersion": 1,
+    "reportId": "report_source_card_ui_fixture_no_provider",
+    "version": 1,
+    "investigationId": "official_source_check",
+    "diagnosisId": "source_card_fixture_unknown",
+    "createdAt": "2026-10-25T00:47:32.081Z",
+    "diagnosis": {
+      "primaryCause": "unknown",
+      "hypotheses": [
+        {
+          "cause": "unknown",
+          "strength": "weak",
+          "evidenceIds": [],
+          "counterEvidenceIds": [],
+          "explanation": "This fixture tests source attribution and claim links, not a business cause."
+        }
+      ],
+      "summary": "Source-card integration fixture: review the retrieved Nike announcement and its claim assessments. No business incident or causal diagnosis is asserted; no live AI run occurred.",
+      "missingEvidence": [
+        "Spontaneous research delegation in a source-relevant live investigation remains unverified."
+      ],
+      "requiresReview": true,
+      "schemaVersion": 1,
+      "businessId": "nike_eval",
+      "diagnosisId": "source_card_fixture_unknown",
+      "investigationId": "official_source_check",
+      "modelCallId": "fixture_no_provider_call",
+      "taskKey": "revenue_diagnosis_v1",
+      "createdAt": "2026-10-25T00:47:32.078Z"
+    },
+    "executiveBrief": {
+      "whatChanged": "The detector observed changes in the incident metrics shown above.",
+      "explanation": "Source-card integration fixture: review the retrieved Nike announcement and its claim assessments. No business incident or causal diagnosis is asserted; no live AI run occurred.",
+      "certainty": "Insufficient evidence to select a reliable primary explanation.",
+      "impact": "A unique comparable business-wide revenue measurement is unavailable.",
+      "review": [
+        "Spontaneous research delegation in a source-relevant live investigation remains unverified."
+      ]
+    },
+    "impact": {
+      "schemaVersion": 1,
+      "status": "unknown",
+      "evidenceId": null,
+      "metric": null,
+      "value": null,
+      "baseline": null,
+      "delta": null,
+      "unit": null,
+      "interpretation": "A unique comparable business-wide revenue measurement is unavailable.",
+      "limitations": [
+        "No financial loss estimate is justified."
+      ]
+    },
+    "claims": [
+      {
+        "claimId": "source_card_fixture_unknown_claim_0",
+        "claim": "This fixture tests source attribution and claim links, not a business cause.",
+        "kind": "hypothesis",
+        "evidenceIds": [],
+        "counterEvidenceIds": [],
+        "sourceIds": [],
+        "support": "insufficient_evidence",
+        "limitations": [
+          "Model-assessed semantic support; reference validity is checked separately.",
+          "Observational association does not establish causality."
+        ]
+      },
+      {
+        "claimId": "clm_4830d40c665c9c29ad0bdfd3",
+        "claim": "NIKE shared an employee note about changes to its operating model.",
+        "kind": "external_context",
+        "evidenceIds": [],
+        "counterEvidenceIds": [],
+        "sourceIds": [
+          "src_425e21019b7bed98dc2afc2c"
+        ],
+        "support": "tentative",
+        "limitations": [
+          "An accessible page or matching passage does not establish semantic support or a business cause.",
+          "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+          "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+          "Independent Mubit passage assessment: supported. The passage directly states that NIKE shared a note with employees regarding changes to its operating model."
+        ]
+      },
+      {
+        "claimId": "clm_4c511f0276f2652ab67cd210",
+        "claim": "The operating model change was caused by a Google Ads outage.",
+        "kind": "external_context",
+        "evidenceIds": [],
+        "counterEvidenceIds": [],
+        "sourceIds": [
+          "src_aa8f07f021135a2a564c1abd"
+        ],
+        "support": "insufficient_evidence",
+        "limitations": [
+          "An accessible page or matching passage does not establish semantic support or a business cause.",
+          "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+          "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+          "Independent Mubit passage assessment: insufficient. The passage mentions operating-model changes but says nothing about a Google Ads outage or the cause of the changes.",
+          "Duplicate URL/content; not independent corroboration."
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "evidenceId": "src_425e21019b7bed98dc2afc2c",
+        "origin": "external",
+        "verification": "contextual",
+        "claimIds": [
+          "clm_4830d40c665c9c29ad0bdfd3"
+        ],
+        "role": "context",
+        "sourceLinks": [
+          "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026"
+        ],
+        "limitations": [
+          "An accessible page or matching passage does not establish semantic support or a business cause.",
+          "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+          "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+          "Independent Mubit passage assessment: supported. The passage directly states that NIKE shared a note with employees regarding changes to its operating model."
+        ]
+      },
+      {
+        "evidenceId": "src_aa8f07f021135a2a564c1abd",
+        "origin": "external",
+        "verification": "insufficient_evidence",
+        "claimIds": [
+          "clm_4c511f0276f2652ab67cd210"
+        ],
+        "role": "context",
+        "sourceLinks": [
+          "https://about.nike.com/en/newsroom/releases/nike-inc-corporate-announcement-october-1-2026"
+        ],
+        "limitations": [
+          "An accessible page or matching passage does not establish semantic support or a business cause.",
+          "The retrieved HTTPS host is a recognized official domain; page metadata and archival availability are not independently attested.",
+          "Event timing requires review; publication timing is not event timing. Public sources cannot establish causation in this simulation.",
+          "Independent Mubit passage assessment: insufficient. The passage mentions operating-model changes but says nothing about a Google Ads outage or the cause of the changes.",
+          "Duplicate URL/content; not independent corroboration."
+        ]
+      }
+    ],
+    "hypotheses": [],
+    "timeline": [],
+    "sections": [
+      {
+        "title": "Executive summary",
+        "text": "Source-card integration fixture: review the retrieved Nike announcement and its claim assessments. No business incident or causal diagnosis is asserted; no live AI run occurred.",
+        "evidenceIds": []
+      },
+      {
+        "title": "Observed evidence",
+        "text": "No verified internal evidence was available.",
+        "evidenceIds": []
+      },
+      {
+        "title": "Competing explanations",
+        "text": "unknown (weak): This fixture tests source attribution and claim links, not a business cause.",
+        "evidenceIds": []
+      },
+      {
+        "title": "Causal challenges and uncertainty",
+        "text": "Insufficient evidence for causal comparison.",
+        "evidenceIds": []
+      },
+      {
+        "title": "External research",
+        "text": "NIKE shared an employee note about changes to its operating model. [src_425e21019b7bed98dc2afc2c]\n\nThese are model-assessed public facts from independently retrieved pages. They do not establish a cause of this unaffiliated simulation. Other candidates remain in Research Activity with their rejection or uncertainty status.",
+        "evidenceIds": [
+          "src_425e21019b7bed98dc2afc2c"
+        ]
+      },
+      {
+        "title": "Business impact",
+        "text": "A unique comparable business-wide revenue measurement is unavailable.",
+        "evidenceIds": []
+      },
+      {
+        "title": "Advisory next steps",
+        "text": "Review: Spontaneous research delegation in a source-relevant live investigation remains unverified.",
+        "evidenceIds": []
+      }
+    ],
+    "handoff": {
+      "schemaVersion": 1,
+      "investigationId": "official_source_check",
+      "diagnosisId": "source_card_fixture_unknown",
+      "ready": false,
+      "supportedFindings": [],
+      "affectedEntities": [],
+      "evidenceIds": [],
+      "impactReference": "report_source_card_ui_fixture_no_provider",
+      "uncertainty": [
+        "Spontaneous research delegation in a source-relevant live investigation remains unverified.",
+        "Isolated UI integration fixture. Reuses real retrieved sources; no live investigator or provider call was made."
+      ],
+      "constraints": [
+        "Human review required",
+        "Stage five is read-only; no executable plan or business mutation",
+        "Synthetic data; external events cannot establish simulated causation"
+      ],
+      "advisoryCandidates": [
+        "Investigate: Spontaneous research delegation in a source-relevant live investigation remains unverified."
+      ],
+      "executable": false
+    },
+    "insufficientEvidence": {
+      "known": [],
+      "unknown": [
+        "Spontaneous research delegation in a source-relevant live investigation remains unverified."
+      ],
+      "plausibleExplanations": [
+        "This fixture tests source attribution and claim links, not a business cause."
+      ],
+      "reason": "Source-card integration fixture: review the retrieved Nike announcement and its claim assessments. No business incident or causal diagnosis is asserted; no live AI run occurred.",
+      "usefulNextEvidence": [
+        "Spontaneous research delegation in a source-relevant live investigation remains unverified."
+      ],
+      "externalResearchUnavailable": true,
+      "conclusionsNotJustified": [
+        "A definitive single root cause",
+        "A causal financial loss estimate",
+        "A verified real-world cause of this synthetic incident"
+      ]
+    },
+    "validation": {
+      "passed": true,
+      "checks": [
+        "Canonical diagnosis schema",
+        "Business/run/investigation ownership",
+        "Evidence references exist and resolve",
+        "Timestamp cutoff",
+        "Duplicate references rejected",
+        "Numerical prose rejected; impact computed deterministically",
+        "Known contradiction disclosure",
+        "Single diagnosis shared by brief, report and handoff"
+      ],
+      "semanticSupport": "model_assessed_not_deterministic_proof"
+    }
+  },
+  "originalResearchRequestId": "mreq_01a170489d8b7320a4f6e0cce4d9b774",
+  "originalAssessmentRequestId": "mreq_01a17048cae175c0b135a31cce2a17a3",
+  "newProviderCalls": 0,
+  "preserved": {
+    "demo_nike:businesses": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:businesses": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:reference_products": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:reference_products": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:reference_financials": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:reference_financials": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:simulator_state": {
+      "count": 1,
+      "hash": "9a947a2b2fd125a639c189e9889e7a008a13bc80936c75f661f4f100348f26f2"
+    },
+    "stage5_1792885194280:simulator_state": {
+      "count": 1,
+      "hash": "67b524cf9ec885d6584ab52d509e4fce816d0ae715230c88ca14bccfbdaa7158"
+    },
+    "demo_nike:simulator_ground_truth": {
+      "count": 1,
+      "hash": "c99b09f58265b88e0458b8c8d5f3b53f3b96153f9d49adf8083dae8e919d6f0b"
+    },
+    "stage5_1792885194280:simulator_ground_truth": {
+      "count": 1,
+      "hash": "fbedfea6e62f0b4706f0a87a484c7820def5e5b2e9f40e6e5be6c4e4973a379f"
+    },
+    "demo_nike:simulated_products": {
+      "count": 17,
+      "hash": "978c5f86c2cb1142800d0d633ebb8f0def6c6498cb4027fb8747170853b6b4c2"
+    },
+    "stage5_1792885194280:simulated_products": {
+      "count": 17,
+      "hash": "51c7986226fda3f995fb9ba87e932e835990a8324402fe1bcba3af0f8e137059"
+    },
+    "demo_nike:simulated_customers": {
+      "count": 350,
+      "hash": "63a1da527eece25a9a479c73d4133298549cd10a4c9993d45d22a36e610e7508"
+    },
+    "stage5_1792885194280:simulated_customers": {
+      "count": 359,
+      "hash": "9800e9039f79670806cf5491c8b3e4e3f3af7235b9d6d076c3cc0e82ba12138a"
+    },
+    "demo_nike:simulated_sessions": {
+      "count": 4843,
+      "hash": "7b953883a125c497b226645c6ed0f424ceccda1ad510408a8a7d8afca87cb348"
+    },
+    "stage5_1792885194280:simulated_sessions": {
+      "count": 5051,
+      "hash": "01d7be51549affd567226c2a3e01b520bc3c79205a42fb82497dd39a097f4ce2"
+    },
+    "demo_nike:simulated_orders": {
+      "count": 105,
+      "hash": "32b18d2150d31bd8a78487af2d3d426640f7fd30921faa6016df9e000281cb7a"
+    },
+    "stage5_1792885194280:simulated_orders": {
+      "count": 115,
+      "hash": "4b9153f91afe83f655b1ad89f74ab53ce68f73f260f9bbffacf561f594f9504f"
+    },
+    "demo_nike:simulated_campaigns": {
+      "count": 5,
+      "hash": "4efdb53ecaf6768a387e90663ad1dd86ada999c4c7c96fcf9c577ddd9e23577a"
+    },
+    "stage5_1792885194280:simulated_campaigns": {
+      "count": 5,
+      "hash": "44811b77befd6f73a11d103fbfd565333a48c9ff16bb474b5eaa8fb89823abfb"
+    },
+    "demo_nike:simulated_shipments": {
+      "count": 105,
+      "hash": "b88fb2986b118fd29f61e16a17035b9247ef422b7a7bc3d539f2ae6c53aebca9"
+    },
+    "stage5_1792885194280:simulated_shipments": {
+      "count": 115,
+      "hash": "9a3f930803902a76974633fdab3d24f91d306eaf181259f5bc0b3c62e2746c9b"
+    },
+    "demo_nike:simulated_reviews": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:simulated_reviews": {
+      "count": 1,
+      "hash": "52afbb08ff67825dc3bbc900e7731ecd14411f6466dc5447f63b5a92c9fed6a0"
+    },
+    "demo_nike:simulated_storefront": {
+      "count": 1,
+      "hash": "a9e34291c5238b4b8e1fddf6fa5238440c736f36011aa3aca222251fc5fb0d5b"
+    },
+    "stage5_1792885194280:simulated_storefront": {
+      "count": 1,
+      "hash": "aaf441c969bfe0557505971a6d13f79a57f2df4d0b5b042b3fddb8d7581a9766"
+    },
+    "demo_nike:simulated_messages": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:simulated_messages": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:business_events": {
+      "count": 5790,
+      "hash": "9482e3ffab80889b8b403f80570f1fb36be4f109cc05a91240141d7de33049a2"
+    },
+    "stage5_1792885194280:business_events": {
+      "count": 6105,
+      "hash": "911c8811709ce1928d22d64a25623a5e7758474d5426e9e0ed75432632ce2305"
+    },
+    "demo_nike:metric_snapshots": {
+      "count": 132,
+      "hash": "c16b0d6b31eb1f67db81b5a73eb3427321c626ab7e57ba6ae59e6eb328baa00d"
+    },
+    "stage5_1792885194280:metric_snapshots": {
+      "count": 136,
+      "hash": "528a86d4ee6a7ce49e5c0b6c8756e13cbb3e3b651d1e57540eddd45fe50996a1"
+    },
+    "demo_nike:plans": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:plans": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:diagnoses": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:diagnoses": {
+      "count": 1,
+      "hash": "38c5c78a7a74d4a6f06c1fdd07beb0dce0d3a0430ffa1e7c1ddd0d272078de22"
+    },
+    "demo_nike:evidence": {
+      "count": 7,
+      "hash": "6c86ea59c1df7a0700c51acb43e44339ba27c8f1cd9b48062f10605e6fa90a3c"
+    },
+    "stage5_1792885194280:evidence": {
+      "count": 6,
+      "hash": "3f81c0ce980501c83b0ffec8b723b72eefa064416e49c30911db3030dd8040aa"
+    },
+    "demo_nike:action_receipts": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:action_receipts": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:anomalies": {
+      "count": 6,
+      "hash": "38ed916384ac481f04068ce20203161dff1a1210ebafcb94670c412c6cba39a4"
+    },
+    "stage5_1792885194280:anomalies": {
+      "count": 7,
+      "hash": "c9cb49de7e430f77cf208e51eb519e7ca17b5ee30007b80c413d0bda856b1a7d"
+    },
+    "demo_nike:investigations": {
+      "count": 1,
+      "hash": "75c5bc787f78872e47bef788df16da6d03325adba3f9dd9469cc4fc0d959f242"
+    },
+    "stage5_1792885194280:investigations": {
+      "count": 1,
+      "hash": "e06f28ded81dc3aa4bcacf4ec6557a4c7fd057c3a78324c270d92c71f388c66f"
+    },
+    "demo_nike:detection_findings": {
+      "count": 21,
+      "hash": "5f130afe2c8aa5df625bbef7b82d25c553e7cf131943a7af16be6ba155094dbd"
+    },
+    "stage5_1792885194280:detection_findings": {
+      "count": 22,
+      "hash": "9a7c25abeee6984658778b74624f117350296f4baaa76cb8df4200878398fc28"
+    },
+    "demo_nike:detection_observations": {
+      "count": 35,
+      "hash": "cdefd255d8b84cfd8095653b3209bdcaf00f29fca22857a6baf491ac4f6614ae"
+    },
+    "stage5_1792885194280:detection_observations": {
+      "count": 22,
+      "hash": "415dfb03b3af178508c834f1066420d8c4194e6d974648d2380a481534b0bcfc"
+    },
+    "demo_nike:incidents": {
+      "count": 1,
+      "hash": "fee0ba6143dcddc5a20ce4fb4d831823faede890bd3e4edde83e4d7a4c9597ce"
+    },
+    "stage5_1792885194280:incidents": {
+      "count": 1,
+      "hash": "c68fcf1464c1fa2fa1ba89a64683d121476452cc989648e2f2df98b9223ac605"
+    },
+    "demo_nike:monitor_runs": {
+      "count": 5,
+      "hash": "fe1e05fb2178a076bf1611e36ad87ff7b1a35c304aef93b5258413e2a6cd11bc"
+    },
+    "stage5_1792885194280:monitor_runs": {
+      "count": 2,
+      "hash": "a5aa0231c6b496c77d2a68e4e73fd359552854e224f5a535fc2f2ac8c2df1c61"
+    },
+    "demo_nike:monitor_state": {
+      "count": 1,
+      "hash": "301cc712edfa0960bb1f52e0d719f223aa7ab60ee7fb112757f8315d63a609b9"
+    },
+    "stage5_1792885194280:monitor_state": {
+      "count": 1,
+      "hash": "db17c718873db46548926aafb72d719522735cd85fb5d7ffa364266ee2519fc7"
+    },
+    "demo_nike:monitoring_windows": {
+      "count": 5,
+      "hash": "74ab754e0a5b1fc92767864ea6d3fec114c63d3259cc752e8fc582a0e4a72f33"
+    },
+    "stage5_1792885194280:monitoring_windows": {
+      "count": 3,
+      "hash": "4f9fed7bfabf8ea1bbe9e4323474127340df048df5ad64dd97f338f07af202bb"
+    },
+    "demo_nike:monitoring_jobs": {
+      "count": 5,
+      "hash": "ffbc97fba97f07b303b305209cf6cfed56006dc7221e3e7de5a745483272873d"
+    },
+    "stage5_1792885194280:monitoring_jobs": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:monitoring_workers": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:monitoring_workers": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:evidence_collections": {
+      "count": 1,
+      "hash": "e7ae71779c735d8f8c952c78c4b85b9c3aca3b01705732a018a435a20f9db3ec"
+    },
+    "stage5_1792885194280:evidence_collections": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "demo_nike:evidence_tool_runs": {
+      "count": 8,
+      "hash": "f1c728bfd2ace6798511d5b693f1abe30742a15eb3c0f7d8f375f4b0333b9013"
+    },
+    "stage5_1792885194280:evidence_tool_runs": {
+      "count": 7,
+      "hash": "1847af85d2b70b7227beb8132bc68ca1950491509cc85554409f1b5af8b55501"
+    },
+    "demo_nike:evidence_details": {
+      "count": 7,
+      "hash": "336d8c98bb13bde9a55c28db0505710732a1ba863516faba4f0f998e50a8fa58"
+    },
+    "stage5_1792885194280:evidence_details": {
+      "count": 6,
+      "hash": "c5cdf9caf9a399af8917193f16ebb669ba62a8ea6e5377e437a8f83953782d4f"
+    },
+    "demo_nike:investigation_jobs": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:investigation_jobs": {
+      "count": 1,
+      "hash": "b01a4378b529bdc98d5829d7d8f417c33a807febd8b744b6a761ee13faf19ce2"
+    },
+    "demo_nike:investigation_calls": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:investigation_calls": {
+      "count": 5,
+      "hash": "f3e5d99749714d2fe782350e6ba47a4d586157034e62a4eab670557c10d6b781"
+    },
+    "demo_nike:investigation_reports": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:investigation_reports": {
+      "count": 1,
+      "hash": "ff6273f9f918730625ab154e2030e7b78ec95e2ad2b4eacc197b6f03d4d39f84"
+    },
+    "demo_nike:external_sources": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage5_1792885194280:external_sources": {
+      "count": 0,
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "activeBusiness": {
+      "count": 1,
+      "hash": "9de3d4f37054099450dc70aef53df292397e51042b5d300322f1a4978e356ccd"
+    },
+    "originalSources": {
+      "count": 2,
+      "hash": "ef1dd038e49f1eb5e52c4b97c80e01367c1696e3614cf47fbc345ae96d895cfb"
+    }
+  }
+}

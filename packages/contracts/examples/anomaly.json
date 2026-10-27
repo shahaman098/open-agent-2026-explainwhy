@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "businessId": "nova_store",
+  "anomalyId": "anomaly_rev_001",
+  "metric": "revenue_minor",
+  "direction": "decrease",
+  "severity": "high",
+  "currentWindow": {
+    "startAt": "2026-10-23T18:00:00Z",
+    "endAt": "2026-10-23T19:00:00Z"
+  },
+  "baselineWindow": {
+    "startAt": "2026-10-16T18:00:00Z",
+    "endAt": "2026-10-16T19:00:00Z"
+  },
+  "actualValue": 135978,
+  "baselineValue": 195000,
+  "changePercent": -30.2677,
+  "sourceSnapshotIds": [
+    "snapshot_001"
+  ],
+  "detectorVersion": "rev-threshold-v1",
+  "status": "investigating",
+  "detectedAt": "2026-10-23T19:00:03Z"
+}

@@ -1,0 +1,186 @@
+{
+  "plan": {
+    "schemaVersion": 1,
+    "businessId": "nova_store",
+    "planId": "plan_001",
+    "planVersion": 1,
+    "investigationId": "inv_001",
+    "diagnosisId": "diag_001",
+    "status": "awaiting_approval",
+    "objective": "Reduce inefficient spend and address delivery dissatisfaction.",
+    "summary": "Propose three controlled interventions based on campaign and shipping evidence.",
+    "actions": [
+      {
+        "requiresApproval": true,
+        "dependsOnActionIds": [],
+        "risk": "medium",
+        "actionId": "act_ads_001",
+        "agent": "marketing",
+        "title": "Lower Campaign A daily budget",
+        "rationale": "Campaign has higher acquisition costs and reduced engagement.",
+        "evidenceIds": [
+          "e_ads_01"
+        ],
+        "actionType": "ads.set_daily_budget",
+        "params": {
+          "campaignId": "campaign_A",
+          "newDailyBudgetMinor": 3000,
+          "currency": "GBP"
+        }
+      },
+      {
+        "requiresApproval": true,
+        "dependsOnActionIds": [],
+        "risk": "medium",
+        "actionId": "act_email_001",
+        "agent": "customer_care",
+        "title": "Send targeted delivery notices",
+        "rationale": "Customers with delayed deliveries should receive accurate status information.",
+        "evidenceIds": [
+          "e_ship_01"
+        ],
+        "actionType": "customer.send_delay_notice",
+        "params": {
+          "orderIds": [
+            "ord_001",
+            "ord_002"
+          ],
+          "templateId": "shipping_delay_v1",
+          "maxRecipients": 2
+        }
+      },
+      {
+        "requiresApproval": true,
+        "dependsOnActionIds": [],
+        "risk": "medium",
+        "actionId": "act_banner_001",
+        "agent": "storefront",
+        "title": "Publish a revised delivery notice",
+        "rationale": "Prevent checkout confusion while fulfilment performance recovers.",
+        "evidenceIds": [
+          "e_ship_01"
+        ],
+        "actionType": "storefront.publish_banner",
+        "params": {
+          "bannerId": "banner_ship_001",
+          "message": "Delivery times for selected products may be longer than usual.",
+          "startsAt": "2026-10-23T19:05:00Z",
+          "expiresAt": "2026-10-25T19:05:00Z"
+        }
+      }
+    ],
+    "successCriteria": [
+      {
+        "metric": "cac_minor",
+        "direction": "decrease",
+        "measurementWindowMinutes": 120
+      },
+      {
+        "metric": "late_delivery_rate",
+        "direction": "decrease",
+        "measurementWindowMinutes": 240
+      }
+    ],
+    "createdAt": "2026-10-23T19:03:00Z",
+    "expiresAt": "2026-10-24T19:03:00Z"
+  },
+  "diagnosis": {
+    "schemaVersion": 1,
+    "businessId": "nova_store",
+    "primaryCause": "ad_fatigue",
+    "hypotheses": [
+      {
+        "cause": "ad_fatigue",
+        "strength": "moderate",
+        "evidenceIds": [
+          "e_ads_01"
+        ],
+        "counterEvidenceIds": [],
+        "explanation": "Campaign frequency rose while CTR declined."
+      },
+      {
+        "cause": "delivery_delays",
+        "strength": "moderate",
+        "evidenceIds": [
+          "e_ship_01"
+        ],
+        "counterEvidenceIds": [],
+        "explanation": "Shipping delays increased and may affect repeat purchases."
+      }
+    ],
+    "summary": "Marketing inefficiency and fulfilment delays are plausible contributors; further review is needed.",
+    "missingEvidence": [
+      "Comparable unaffected customer cohort"
+    ],
+    "requiresReview": true,
+    "diagnosisId": "diag_001",
+    "investigationId": "inv_001",
+    "modelCallId": "call_001",
+    "taskKey": "revenue_diagnosis_v1",
+    "createdAt": "2026-10-23T19:02:00Z"
+  },
+  "evidence": [
+    {
+      "schemaVersion": 1,
+      "businessId": "nova_store",
+      "evidenceId": "e_ads_01",
+      "investigationId": "inv_001",
+      "category": "advertising",
+      "title": "Acquisition efficiency deteriorating",
+      "observation": "Campaign A frequency is elevated and CTR is lower than its reference period.",
+      "window": {
+        "startAt": "2026-10-23T18:00:00Z",
+        "endAt": "2026-10-23T19:00:00Z"
+      },
+      "measurements": [
+        {
+          "metric": "frequency",
+          "value": 6.2,
+          "unit": "views per reached user",
+          "baseline": 3.1
+        },
+        {
+          "metric": "ctr",
+          "value": 0.015,
+          "unit": "ratio",
+          "baseline": 0.031
+        }
+      ],
+      "sourceRecords": [
+        {
+          "collection": "business_events",
+          "recordId": "evt_ad_001"
+        }
+      ],
+      "retrievedAt": "2026-10-23T19:01:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "businessId": "nova_store",
+      "evidenceId": "e_ship_01",
+      "investigationId": "inv_001",
+      "category": "fulfillment",
+      "title": "Late deliveries increasing",
+      "observation": "24% of recently observed shipments were delayed.",
+      "window": {
+        "startAt": "2026-10-23T18:00:00Z",
+        "endAt": "2026-10-23T19:00:00Z"
+      },
+      "measurements": [
+        {
+          "metric": "late_delivery_rate",
+          "value": 0.24,
+          "unit": "ratio",
+          "baseline": 0.08
+        }
+      ],
+      "sourceRecords": [
+        {
+          "collection": "metric_snapshots",
+          "recordId": "snapshot_001"
+        }
+      ],
+      "retrievedAt": "2026-10-23T19:01:00Z"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "task": "normal.source_support.v1",
+  "promptVersion": "1.0.1",
+  "model": "gemini-4-argon",
+  "fingerprint": "1898fbcad0c5f8f373f4d7fb28741c8823519b171901e446126b24b6d0cb32ad",
+  "datasetHash": "32a110765c79133f0b48542c13bb6a1cf29c0203f0e476fcd4166b925aff65d5",
+  "reasoning": "low",
+  "transport": "openai",
+  "trainCases": 40,
+  "testCases": 24,
+  "protocol": "Source-scene grouped synthetic pilot; provider distillation, no correction-label ingestion. Test calls use x-middleware-record: metadata. No test output is uploaded for training. No parameter tuning on this test.",
+  "comparisonRule": "Positive paired accuracy delta, lower whole-scene bootstrap bound above zero, all adapter responses valid, no increase in false-supported claims. Preserve the original provider baseline and pinned adapter version.",
+  "limitations": [
+    "Labels and passages authored with agent assistance, not independently human adjudicated.",
+    "Only source-support classification is tested; no claim about full investigator accuracy.",
+    "Related claim variants share a passage within a split; 24 cases comprise six held-out scenes, not 24 independent incidents. Case-wise Wilson intervals are descriptive and ignore clustering; paired comparison resamples whole scenes.",
+    "Mubit console kept-example counts and adapter history are authoritative; a successful request does not confirm training.",
+    "Unknown monetary rates remain null."
+  ],
+  "frozenAt": "2026-10-25T07:56:01.674Z"
+}

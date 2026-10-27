@@ -1,0 +1,36 @@
+{
+  "caseCount": 1,
+  "results": [
+    {
+      "businessId": "nike_eval",
+      "simulationRunId": "s5eval_1792881375759_0_0",
+      "investigationId": "inv_s5eval_1792881375759_0_0_3154805b5294",
+      "scenarioAfterInference": "promo_checkout_failure",
+      "seed": 11,
+      "detected": true,
+      "completion": "completed",
+      "primaryCause": "discount_failure",
+      "mechanismInHypotheses": true,
+      "leadingMechanismMatch": true,
+      "hypothesisRevisions": 2,
+      "evidence": 2,
+      "citations": 4,
+      "invalidCitations": 0,
+      "latencyMs": 73209,
+      "modelCalls": 3,
+      "tokens": 11735,
+      "estimatedCostUsd": null,
+      "externalResearchRounds": 0,
+      "externalCausalValidity": "not_established_by_synthetic_evaluation",
+      "requestIds": [
+        "mreq_01a1700f53ac70538018c9ad42a5dd69",
+        "mreq_01a1700f8e8677a1b3a0752933309808",
+        "mreq_01a1700fd38f733396050620e07b83ae"
+      ],
+      "isolatedFixtureRemovedAfterVerification": true
+    }
+  ],
+  "calibration": "Qualitative support only; no calibrated probabilities",
+  "costs": "Unknown unless configured provider rates are supplied",
+  "hiddenScenarioBoundary": "Setup and post-inference scoring only"
+}

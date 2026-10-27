@@ -1,0 +1,50 @@
+{
+  "investigation": "inv_stage5_1792885194280_d07498fe5b17",
+  "run": "stage5_1792885194280",
+  "snapshots": [
+    {
+      "status": "completed",
+      "stage": "completed",
+      "evidence": 6,
+      "tools": 7
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "evidence": 6,
+      "tools": 7
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "evidence": 6,
+      "tools": 7
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "evidence": 6,
+      "tools": 7
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "evidence": 6,
+      "tools": 7
+    }
+  ],
+  "reportId": "report_aij_8975b41f9c5b32fd37f01dcd",
+  "requestIds": [
+    "mreq_01a1704a2da17a43bcdbc66d3a46f3d2",
+    "mreq_01a1704a5a4b7133ba6501a4451c390d",
+    "mreq_01a1704a8c8378108d91eee06fcbf883",
+    "mreq_01a1704ac9fc7db188efc2e1ea4c73e6",
+    "mreq_01a1704af83475c1acdc2ba82919b228"
+  ],
+  "citationsResolved": 4,
+  "persistedAcrossReload": true,
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  }
+}

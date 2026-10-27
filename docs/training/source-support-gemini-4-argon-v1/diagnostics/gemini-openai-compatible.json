@@ -1,0 +1,48 @@
+{
+  "name": "gemini-openai-compatible",
+  "start": "2026-10-25T07:54:52.913Z",
+  "url": "https://api.mubit.ai/gemini/v1beta/openai/chat/completions",
+  "recording": "full",
+  "request": {
+    "model": "gemini-4-argon",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Return the requested connectivity acknowledgement as JSON. This is a synthetic capture diagnostic, not a source-support training example."
+      },
+      {
+        "role": "user",
+        "content": "Reply with {\"ok\":true}."
+      }
+    ],
+    "max_tokens": 2048
+  },
+  "status": 200,
+  "requestId": "mreq_01a1720e287c72d290f9032e88352461",
+  "response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "content": "{\"ok\":true}",
+          "extra_content": {
+            "google": {
+              "thought_signature": "ElkKVwFpFH0T/jzQelcp4T1HpbIpYk7rDhiioCeeT/DxUsVfhtQK1PuXgdrKoo1NgMOi/Vp3dCzUUIZl8sAcBxN1fXpQqWTjnJ2Ti1TCY8UHx2EZTHzMkfveTQ=="
+            }
+          },
+          "role": "assistant"
+        }
+      }
+    ],
+    "created": 1792914896,
+    "id": "zbXdarWwAubkxN8Pye3CiQI",
+    "model": "gemini-4-argon",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 9,
+      "prompt_tokens": 66,
+      "total_tokens": 75
+    }
+  }
+}

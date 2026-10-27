@@ -1,0 +1,150 @@
+Browser tab: 1331642560, Title: "Task — Middleware console", URL: "https://app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_a328d88258f6df01151561dc".
+1 AXWebArea Task — Middleware console, URL: app.mubit.ai/console/projects/ws-31028979027c7c75/workloads/ln_a328d88258f6df01151561dc
+	2 container app
+		3 container Console
+			4 link Description: All projects, Value: app.mubit.ai/console/
+			5 pop up button (collapsed) Description: Project: normal-1792783517785903653, Secondary Actions: Expand
+			6 container
+				7 text PROJECT
+				8 content list PROJECT
+					9 link Description: Overview, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
+					10 link Description: Tasks 41, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/workloads
+					11 link Description: Adapters 3, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/adapters
+					12 link Description: Try models, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/try
+					13 link Description: Requests, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/requests
+					14 link Description: Learnings, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/learnings
+				15 text CONFIGURE
+				16 content list CONFIGURE
+					17 link Description: Connect, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/connect
+					18 link Description: Import past calls, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/imports
+					19 link Description: Mubit keys 1, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/keys
+					20 link Description: Settings, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/policy
+				21 text WORKSPACE
+				22 content list WORKSPACE
+					23 link Description: Projects, Value: app.mubit.ai/console/
+					24 link Description: Provider keys, Value: app.mubit.ai/console/provider-keys?project=ws-31028979027c7c75
+					25 link Description: Members, Value: app.mubit.ai/console/members
+					26 link Description: Billing, Value: app.mubit.ai/console/billing
+			27 button Getting started
+			28 link Description: How Mubit works, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/integration
+			29 text Normal
+			30 pop up button (collapsed) Description: [account redacted], Admin: account menu, Secondary Actions: Expand
+		31 container
+			32 container Breadcrumb
+				33 link Description: normal-1792783517785903653, Value: app.mubit.ai/console/projects/ws-31028979027c7c75
+				92 text Task
+			35 pop up button (collapsed) Description: Search pages, Secondary Actions: Expand
+				36 text Search…
+				37 text ⌘ K
+			38 button Switch to dark mode
+			39 pop up button (collapsed) Description: Notifications, 1, Secondary Actions: Expand
+		40 container
+			93 link Description: Tasks, Value: app.mubit.ai/console/projects/ws-31028979027c7c75/workloads
+			94 heading Assess whether each supplied 2, Value: 1
+				95 text Assess whether each supplied 2
+			96 text Prompt: Assess whether each supplied actual source…
+			97 text Reviewing examples
+			98 text Collecting examples: 0 of 25
+			99 text Results on real calls: not measured yet.
+			100 button Why
+				203 text i
+			102 definition list
+				103 container CALLS
+					104 text CALLS
+				105 text 21
+				106 container EXAMPLES KEPT Why
+					107 text EXAMPLES KEPT
+					108 button Why
+						204 text i
+				110 text 0
+				111 container ANSWERED BY YOUR MODEL, ALL VERSIONS · 7 D Why
+					112 text ANSWERED BY YOUR MODEL, ALL VERSIONS · 7 D
+					113 button Why
+						205 text i
+				115 text —
+			116 container
+				117 heading Its traffic, last 7 days, Value: 2
+					118 text Its traffic, last 7 days
+				119 definition list
+					120 container Calls
+						121 text Calls
+					122 text 40 · 4.9% of all calls
+					123 container Examples
+						124 text Examples
+					125 text 0 kept
+				126 text 7 days: 40 calls
+				127 image Calls per day for Assess whether each supplied 2, last 7 days: 40 in all.
+			128 container
+				129 heading Models asked, Value: 2
+					130 text Models asked
+				131 content list
+					132 container
+						133 text gemini-4-argon  100%
+				134 text Of its last 40 calls.
+			135 container
+				136 heading Why these calls are one task, Value: 2
+					137 text Why these calls are one task
+				138 content list
+					139 container
+						140 text Rule Grouped: same instructions and tools 2 min ago
+					141 container
+						142 text Rule Named from its instructions
+			169 container
+				170 button (expanded) Details, Secondary Actions: Collapse
+					171 text Details
+				172 definition list
+					173 container Usable for training
+						174 text Usable for training
+					175 text 21 calls
+					176 container Examples
+						177 text Examples
+					178 text 0 kept · 0 rejected · 40 waiting for review
+					179 container Sessions
+						180 text Sessions
+					181 text 0 with kept examples
+					182 container Review today
+						183 text Review today
+					184 text 21 queued · 0 over today's limit · 2 running
+					185 container First training
+						186 text First training
+					187 text not started
+					188 container Routes
+						189 text Routes
+					190 text none
+					191 container Progress
+						192 text Progress
+					193 text not measured
+					194 container Regression check
+						195 text Regression check
+					196 text not measured
+					197 container Match cut-off
+						198 text Match cut-off
+					199 text not measured
+					200 container Ids
+						201 text Ids
+					202 text ln_a328d88258f6df01151561dc · task key lk1_058fee5f51dc490648fcdaad51243f62
+			145 heading History Why, Value: 2
+				146 text History
+				147 button Why
+					206 text i
+			149 content list
+				150 container
+					151 text 2 min ago
+					152 text Reviewer: 21 new calls, 0 kept, 0 rejected.
+					153 button (collapsed) Show each, Secondary Actions: Expand
+						154 text Show each
+				155 container
+					156 text 2 min ago
+					157 text Found
+					158 button Why
+						207 text i
+		90 container Engine 0.14.0 · checked Oct 25, 2026, 08:01:16 AM
+			91 text Service status: Operational
+		160 container
+			161 container Getting started guide
+				162 button (collapsed) Description: Expand getting started guide, Secondary Actions: Expand
+					163 text 2/3
+					164 text Get started
+			165 button (collapsed) Description: Get help, Secondary Actions: Expand
+
+The focused UI element is 170 button (expanded) Details, Secondary Actions: Collapse
